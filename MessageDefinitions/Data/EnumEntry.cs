@@ -2,6 +2,8 @@
 {
     public class EnumEntry
     {
+        public string OriginalName { get; set; }
+
         public string Name { get; set; }
 
         public int Value { get; set; }

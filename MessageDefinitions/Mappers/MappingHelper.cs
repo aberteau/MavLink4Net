@@ -41,8 +41,9 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             Data.Message dMessage = new Data.Message();
             dMessage.Id = xMessage.Id;
+            dMessage.OriginalName = xMessage.Name;
             dMessage.Name = NamingConventionHelper.GetPascalStyleString(xMessage.Name);
-            dMessage.Description = xMessage.Description;
+            dMessage.Description = StringHelper.TrimAndNormalizeCarriageReturn(xMessage.Description);
             dMessage.Fields = ToModels(xMessage.Fields);
             return dMessage;
         }
@@ -60,8 +61,9 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             Data.Enum dEnum = new Data.Enum();
             string xEnumName = xEnum.Name;
-            dEnum.Name = NamingConventionHelper.GetPascalStyleString(xEnumName);
-            dEnum.Description = xEnum.Description;
+            dEnum.OriginalName = xEnumName;
+            dEnum.Name = NamingConventionHelper.GetEnumName(xEnumName);
+            dEnum.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnum.Description);
             dEnum.Entries = ToModels(xEnum.Entries, xEnumName);
             return dEnum;
         }
@@ -78,52 +80,72 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         private static Data.MessageField ToModel(Xml.MessageField xMessageField)
         {
             Data.MessageField dMessageField = new Data.MessageField();
-            dMessageField.Type = ToFieldType(xMessageField.Type);
+            dMessageField.Type = GetFieldType(xMessageField);
+            dMessageField.OriginalName = xMessageField.Name;
             dMessageField.Name = NamingConventionHelper.GetPascalStyleString(xMessageField.Name);
-            dMessageField.Enum = GetEnumName(xMessageField);
             dMessageField.Units = xMessageField.Units;
-            dMessageField.Display = xMessageField.Display;
-            dMessageField.Text = xMessageField.Text;
+            dMessageField.Display = StringHelper.TrimAndNormalizeCarriageReturn(xMessageField.Display);
+            dMessageField.Text = StringHelper.TrimAndNormalizeCarriageReturn(xMessageField.Text);
             return dMessageField;
         }
 
-        private static string GetEnumName(Xml.MessageField xMessageField)
+        private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField)
         {
-            string enumName = String.IsNullOrWhiteSpace(xMessageField.Enum) ? null : NamingConventionHelper.GetPascalStyleString(xMessageField.Enum);
-            return enumName;
+            Data.MessageFieldType fieldType = new Data.MessageFieldType();
+            fieldType.ArraySize = GetArraySize(xMessageField.Type);
+            fieldType.PrimitiveType = ToFieldType(xMessageField.Type);
+            fieldType.Enum = NamingConventionHelper.GetEnumName(xMessageField.Enum);
+            return fieldType;
         }
 
-        private static MessageFieldType ToFieldType(string type)
+        private static int GetArraySize(string t)
+        {
+            string[] tt = t.Split('[', ']');
+            if (tt.Length > 1)
+                return ParseToInt(tt[1]);
+
+            return 0;
+        }
+
+        private static int ParseToInt(string str, int defaultValue = -1)
+        {
+            if (int.TryParse(str, out var result))
+                return result;
+
+            return defaultValue;
+        }
+
+        private static MessageFieldPrimitiveType ToFieldType(string type)
         {
             string basicType = GetBasicFieldTypeFromString(type);
 
             switch (basicType)
             {
                 case "float":
-                    return MessageFieldType.Float32;
+                    return MessageFieldPrimitiveType.Float32;
                 case "int8_t":
-                    return MessageFieldType.Int8;
+                    return MessageFieldPrimitiveType.Int8;
                 case "uint8_t":
                 case "uint8_t_mavlink_version":
-                    return MessageFieldType.UInt8;
+                    return MessageFieldPrimitiveType.UInt8;
                 case "int16_t":
-                    return MessageFieldType.Int16;
+                    return MessageFieldPrimitiveType.Int16;
                 case "uint16_t":
-                    return MessageFieldType.UInt16;
+                    return MessageFieldPrimitiveType.UInt16;
                 case "int32_t":
-                    return MessageFieldType.Int32;
+                    return MessageFieldPrimitiveType.Int32;
                 case "uint32_t":
-                    return MessageFieldType.UInt32;
+                    return MessageFieldPrimitiveType.UInt32;
                 case "int64_t":
-                    return MessageFieldType.Int64;
+                    return MessageFieldPrimitiveType.Int64;
                 case "uint64_t":
-                    return MessageFieldType.UInt64;
+                    return MessageFieldPrimitiveType.UInt64;
                 case "char":
-                    return MessageFieldType.Char;
+                    return MessageFieldPrimitiveType.Char;
                 case "double":
-                    return MessageFieldType.Double;
+                    return MessageFieldPrimitiveType.Double;
                 default:
-                    return MessageFieldType.None;
+                    return MessageFieldPrimitiveType.None;
             }
         }
 
@@ -152,9 +174,10 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             Data.EnumEntry dEnumEntry = new Data.EnumEntry();
             string shortEntryName = GetShortEnumEntryName(xEnumName, xEnumEntry.Name);
             string entryName = NamingConventionHelper.GetPascalStyleString(shortEntryName);
+            dEnumEntry.OriginalName = xEnumEntry.Name;
             dEnumEntry.Name = entryName;
             dEnumEntry.Value = xEnumEntry.Value;
-            dEnumEntry.Description = xEnumEntry.Description;
+            dEnumEntry.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
             return dEnumEntry;
         }
 

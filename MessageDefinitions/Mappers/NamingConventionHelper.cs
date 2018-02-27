@@ -7,6 +7,25 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 {
     class NamingConventionHelper
     {
+        private static string RemoveStart(string enumName, string enumNamePrefix)
+        {
+            if (!enumName.StartsWith(enumNamePrefix))
+                return enumName;
+
+            return enumName.Substring(enumNamePrefix.Length + 1);
+        }
+
+        public static string GetEnumName(string enumName)
+        {
+            if (String.IsNullOrWhiteSpace(enumName))
+                return null;
+
+            var enumNamePrefix = "MAV_";
+            string shortEnumName = RemoveStart(enumName, enumNamePrefix);
+            string pascalStyleString = GetPascalStyleString(shortEnumName);
+            return pascalStyleString;
+        }
+
         public static string GetPascalStyleString(string str)
         {
             // MAV_AUTOPILOT -> MavAutopilot
