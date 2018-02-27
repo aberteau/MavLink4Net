@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>MavLink4Net.MessageDefinitions</AssemblyName>
+    <RootNamespace>MavLink4Net.MessageDefinitions</RootNamespace>
+  </PropertyGroup>
+
+</Project>
