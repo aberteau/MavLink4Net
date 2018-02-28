@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Linq;
 using MavLink4Net.MessageDefinitions.Data;
 
 namespace MavLink4Net.CodeGenerator.Core
@@ -64,8 +65,10 @@ namespace MavLink4Net.CodeGenerator.Core
             if (enumEntry.Value.HasValue)
                 field.InitExpression = new CodePrimitiveExpression(enumEntry.Value);
 
+            string[] lines = GetSummaryCommentLines(enumEntry);
+
             // Add summary comments
-            CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(enumEntry.Description);
+            CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(lines);
             field.Comments.AddRange(summaryCommentStatements);
 
             // Add remarks comments
@@ -76,6 +79,16 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeAttributeDeclaration descriptionAttributeDeclaration = CreateDescriptionAttributeDeclaration(enumEntry);
             field.CustomAttributes.Add(descriptionAttributeDeclaration);
             return field;
+        }
+
+        private static string[] GetSummaryCommentLines(EnumEntry enumEntry)
+        {
+            IList<String> lines = new List<String>() { enumEntry.Description };
+
+            foreach (EnumEntryParameter entryParameter in enumEntry.Parameters)
+                lines.Add($"Mission Param #{entryParameter.Index} : {entryParameter.Description}");
+
+            return lines.ToArray();
         }
 
         private static CodeAttributeDeclaration CreateDescriptionAttributeDeclaration(EnumEntry enumEntry)
