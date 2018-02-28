@@ -8,7 +8,7 @@ namespace MavLink4Net.MessageDefinitions.Data
 
         public MessageFieldType Type { get; set; }
 
-        public string OriginalName { get; set; }
+        //public string OriginalName { get; set; }
 
         public string Name { get; set; }
 

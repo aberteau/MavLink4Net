@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MavLink4Net.MessageDefinitions.Data;
+using Enum = MavLink4Net.MessageDefinitions.Data.Enum;
 
 namespace MavLink4Net.MessageDefinitions.Mappers
 {
@@ -9,42 +10,37 @@ namespace MavLink4Net.MessageDefinitions.Mappers
     {
         #region MavLink
 
-        public static Data.MavLink ToModel(Xml.MavLink xMavLink, EnumValuePrefixRemovalStrategy strategy)
+        public static Data.MavLink ToModel(Xml.MavLink xMavLink)
         {
             Data.MavLink dMavLink = new Data.MavLink();
             dMavLink.Version = xMavLink.Version;
             dMavLink.Dialect = xMavLink.Dialect;
-            dMavLink.Enums = ToModels(xMavLink.Enums, strategy);
-            
-            IEnumerable<Xml.Message> xMessages = Filter(xMavLink.Messages).ToList();
-            dMavLink.Messages = ToModels(xMessages);
-            return dMavLink;
-        }
+            IEnumerable<Data.Enum> enums = ToModels(xMavLink.Enums);
+            dMavLink.Enums = enums;
 
-        private static IEnumerable<Xml.Message> Filter(IEnumerable<Xml.Message> xMessages)
-        {
-            // discard anything beyond 255
-            IEnumerable<Xml.Message> filteredMessages = xMessages.Where(m => m.Id < 256);
-            return filteredMessages;
+            IDictionary<String, Data.Enum> enumByName = enums.ToDictionary(e => e.Name, e => e);
+
+            dMavLink.Messages = ToModels(xMavLink.Messages, enumByName);
+
+            return dMavLink;
         }
 
         #endregion
 
         #region Message
 
-        private static IEnumerable<Data.Message> ToModels(IEnumerable<Xml.Message> xMessages)
+        private static IEnumerable<Data.Message> ToModels(IEnumerable<Xml.Message> xMessages, IDictionary<String, Data.Enum> enumByName)
         {
-            return xMessages.Select(m => ToModel(m));
+            return xMessages.Select(m => ToModel(m, enumByName));
         }
 
-        private static Data.Message ToModel(Xml.Message xMessage)
+        private static Data.Message ToModel(Xml.Message xMessage, IDictionary<String, Data.Enum> enumByName)
         {
             Data.Message dMessage = new Data.Message();
             dMessage.Id = xMessage.Id;
-            dMessage.OriginalName = xMessage.Name;
-            dMessage.Name = NamingConventionHelper.GetPascalStyleString(xMessage.Name);
+            dMessage.Name = xMessage.Name;
             dMessage.Description = StringHelper.TrimAndNormalizeCarriageReturn(xMessage.Description);
-            dMessage.Fields = ToModels(xMessage.Fields);
+            dMessage.Fields = ToModels(xMessage.Fields, enumByName);
             return dMessage;
         }
 
@@ -52,19 +48,18 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region Enum
 
-        private static IEnumerable<Data.Enum> ToModels(IEnumerable<Xml.Enum> xEnums, EnumValuePrefixRemovalStrategy strategy)
+        private static IEnumerable<Data.Enum> ToModels(IEnumerable<Xml.Enum> xEnums)
         {
-            return xEnums.Select(m => ToModel(m, strategy));
+            return xEnums.Select(m => ToModel(m));
         }
 
-        private static Data.Enum ToModel(Xml.Enum xEnum, EnumValuePrefixRemovalStrategy strategy)
+        private static Data.Enum ToModel(Xml.Enum xEnum)
         {
             Data.Enum dEnum = new Data.Enum();
             string xEnumName = xEnum.Name;
-            dEnum.OriginalName = xEnumName;
-            dEnum.Name = NamingConventionHelper.GetEnumName(xEnumName);
+            dEnum.Name = xEnumName;
             dEnum.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnum.Description);
-            dEnum.Entries = ToModels(xEnum.Entries, xEnumName, strategy);
+            dEnum.Entries = ToModels(xEnum.Entries);
             return dEnum;
         }
 
@@ -72,13 +67,13 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region MessageField
 
-        private static IEnumerable<Data.MessageField> ToModels(IEnumerable<Xml.MessageField> xMessageFields)
+        private static IEnumerable<Data.MessageField> ToModels(IEnumerable<Xml.MessageField> xMessageFields, IDictionary<String, Data.Enum> enumByName)
         {
             IList<Data.MessageField> fields = new List<MessageField>();
             int definitionIndex = 0;
             foreach (Xml.MessageField xMessageField in xMessageFields)
             {
-                MessageField messageField = ToModel(xMessageField, definitionIndex);
+                MessageField messageField = ToModel(xMessageField, definitionIndex, enumByName);
                 fields.Add(messageField);
                 definitionIndex++;
             }
@@ -86,27 +81,26 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             return fields;
         }
 
-        private static Data.MessageField ToModel(Xml.MessageField xMessageField, Int32 definitionIndex)
+        private static Data.MessageField ToModel(Xml.MessageField xMessageField, Int32 definitionIndex, IDictionary<String, Data.Enum> enumByName)
         {
             Data.MessageField dMessageField = new Data.MessageField();
             dMessageField.DefinitionIndex = definitionIndex;
-            dMessageField.Type = GetFieldType(xMessageField);
-            dMessageField.OriginalName = xMessageField.Name;
-            dMessageField.Name = NamingConventionHelper.GetPascalStyleString(xMessageField.Name);
+            dMessageField.Type = GetFieldType(xMessageField, enumByName);
+            dMessageField.Name = xMessageField.Name;
             dMessageField.Units = xMessageField.Units;
             dMessageField.Display = StringHelper.TrimAndNormalizeCarriageReturn(xMessageField.Display);
             dMessageField.Text = StringHelper.TrimAndNormalizeCarriageReturn(xMessageField.Text);
             return dMessageField;
         }
 
-        private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField)
+        private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField, IDictionary<String, Data.Enum> enumByName)
         {
             Data.MessageFieldType fieldType = new Data.MessageFieldType();
             fieldType.ArrayLength = GetArraySize(xMessageField.Type);
             MessageFieldPrimitiveType primitiveType = ToFieldPrimitiveType(xMessageField.Type);
             fieldType.PrimitiveType = primitiveType;
             fieldType.TypeLength = TypeLengthHelper.GetTypeLength(primitiveType);
-            fieldType.Enum = NamingConventionHelper.GetEnumName(xMessageField.Enum);
+            fieldType.Enum = String.IsNullOrWhiteSpace(xMessageField.Enum) ? null : enumByName[xMessageField.Enum];
             return fieldType;
         }
 
@@ -176,53 +170,17 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region EnumEntry
 
-        private static string GetEnumValuePrefix(IEnumerable<Xml.EnumEntry> xEnumEntries, String xEnumName, EnumValuePrefixRemovalStrategy strategy)
+
+
+        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries)
         {
-            switch (strategy)
-            {
-                case EnumValuePrefixRemovalStrategy.None:
-                    return null;
-
-                case EnumValuePrefixRemovalStrategy.RemoveEnumName:
-                    if (!String.IsNullOrWhiteSpace(xEnumName))
-                        return xEnumName;
-
-                    return null;
-
-                case EnumValuePrefixRemovalStrategy.RemoveLongestCommonString:
-                    if (xEnumEntries.Count() > 1)
-                    {
-                        IEnumerable<String> xEnumValues = xEnumEntries.Select(e => e.Name);
-                        string longestStartSubstring = StringHelper.GetLongestCommonStartSubstring(xEnumValues);
-
-                        if (String.IsNullOrWhiteSpace(longestStartSubstring))
-                            return null;
-
-                        return longestStartSubstring;
-                    }
-
-                    if (!String.IsNullOrWhiteSpace(xEnumName))
-                        return xEnumName;
-
-                    return null;
-            }
-
-            return null;
+            return xEnumEntries.Select(m => ToModel(m)).ToList();
         }
 
-        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries, string xEnumName, EnumValuePrefixRemovalStrategy strategy)
-        {
-            string enumValuePrefix = GetEnumValuePrefix(xEnumEntries, xEnumName, strategy);
-            return xEnumEntries.Select(m => ToModel(m, enumValuePrefix));
-        }
-
-        private static Data.EnumEntry ToModel(Xml.EnumEntry xEnumEntry, string enumValuePrefix)
+        private static Data.EnumEntry ToModel(Xml.EnumEntry xEnumEntry)
         {
             Data.EnumEntry dEnumEntry = new Data.EnumEntry();
-            string shortEntryName = StringHelper.RemoveAtStart(xEnumEntry.Name, enumValuePrefix);
-            string entryName = NamingConventionHelper.GetPascalStyleString(shortEntryName);
-            dEnumEntry.OriginalName = xEnumEntry.Name;
-            dEnumEntry.Name = entryName;
+            dEnumEntry.Name = xEnumEntry.Name;
             dEnumEntry.Value = GetNullableInt(xEnumEntry.Value);
             dEnumEntry.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
             dEnumEntry.Parameters = ToModels(xEnumEntry.Parameters);

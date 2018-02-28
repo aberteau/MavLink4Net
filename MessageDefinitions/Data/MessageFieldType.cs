@@ -10,9 +10,9 @@ namespace MavLink4Net.MessageDefinitions.Data
 
         public Int32 ArrayLength { get; set; }
 
-        public string Enum { get; set; }
+        public Data.Enum Enum { get; set; }
 
-        public bool IsEnum => !string.IsNullOrWhiteSpace(Enum);
+        public bool IsEnum => Enum != null;
 
         public bool IsArray => ArrayLength > 0;
 

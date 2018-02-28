@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MavLink4Net.MessageDefinitions.Mappers
 {
-    class StringHelper
+    public class StringHelper
     {
         public static string RemoveAtStart(string str, string toRemove)
         {

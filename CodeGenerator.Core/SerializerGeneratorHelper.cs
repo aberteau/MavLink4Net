@@ -176,7 +176,7 @@ namespace MavLink4Net.CodeGenerator.Core
                     {
                         var codeMethodInvokeExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(readerParamName), readMethodName);
 
-                        string enumFullname = NamespaceHelper.GetFullname(ns, messageField.Type.Enum);
+                        string enumFullname = NamespaceHelper.GetFullname(ns, messageField.Type.Enum.Name);
                         CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
                             new CodeCastExpression(enumFullname, codeMethodInvokeExpression));
 

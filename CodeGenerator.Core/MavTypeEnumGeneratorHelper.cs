@@ -1,12 +1,13 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using MavLink4Net.CodeGenerator.Core.Translations;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
     class MavTypeEnumGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(string enumName, IEnumerable<MessageDefinitions.Data.Message> messages, string ns)
+        public static CodeCompileUnit CreateCodeCompileUnit(string enumName, IEnumerable<MessageDefinitions.Data.Message> messages, string ns, MavLinkTranslationMap translationMap)
         {
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
 
@@ -21,7 +22,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeNamespace codeNamespace = new CodeNamespace(ns);
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
-            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(enumName, messages);
+            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(enumName, messages, translationMap);
 
             // Add enum to the namespace
             codeNamespace.Types.Add(enumTypeDeclaration);
@@ -29,7 +30,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(string enumName, IEnumerable<MessageDefinitions.Data.Message> messages)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(string enumName, IEnumerable<MessageDefinitions.Data.Message> messages, MavLinkTranslationMap translationMap)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -42,14 +43,14 @@ namespace MavLink4Net.CodeGenerator.Core
             // Add values
             foreach (MessageDefinitions.Data.Message message in messages)
             {
-                CodeMemberField field = ToCodeMemberField(message);
+                CodeMemberField field = ToCodeMemberField(message, translationMap);
                 codeTypeDeclaration.Members.Add(field);
             }
 
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberField ToCodeMemberField(MessageDefinitions.Data.Message message)
+        private static CodeMemberField ToCodeMemberField(MessageDefinitions.Data.Message message, MavLinkTranslationMap translationMap)
         {
             CodeMemberField field = new CodeMemberField
             {
@@ -61,9 +62,13 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(message.Description);
             field.Comments.AddRange(summaryCommentStatements);
 
-            // Add remarks comments
-            CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.OriginalName);
-            field.Comments.AddRange(remarksCommentStatements);
+            if (translationMap?.MessageMap != null && translationMap.MessageMap.ContainsKey(message))
+            {
+                // Add remarks comments
+                string originalName = translationMap.MessageMap[message].Name;
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(originalName);
+                field.Comments.AddRange(remarksCommentStatements);
+            }
 
             // Add description attribute
             CodeAttributeDeclaration descriptionAttributeDeclaration = CreateDescriptionAttributeDeclaration(message);

@@ -4,8 +4,6 @@ namespace MavLink4Net.MessageDefinitions.Data
 {
     public class Enum
     {
-        public string OriginalName { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
