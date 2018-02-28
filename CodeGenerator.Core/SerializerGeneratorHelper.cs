@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MavLink4Net.MessageDefinitions;
 using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Data.Extensions;
 
@@ -48,7 +49,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeMemberMethod serializeCodeMemberMethod = CreateSerializeCodeMemberMethod(messageBaseClassName, message);
             codeTypeDeclaration.Members.Add(serializeCodeMemberMethod);
 
-            CodeMemberMethod deserializeCodeMemberMethod = CreateDeserializeCodeMemberMethod(messageBaseClassName);
+            CodeMemberMethod deserializeCodeMemberMethod = CreateDeserializeCodeMemberMethod(messageBaseClassName, message);
             codeTypeDeclaration.Members.Add(deserializeCodeMemberMethod);
 
             return codeTypeDeclaration;
@@ -67,7 +68,8 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageBaseClassName, messageParamName));
 
             string messageClassName = GeneratorHelper.GetMessageClassName(message);
-            string messageClassFullName = $"MavLink4Net.Messages.Common.{messageClassName}";
+            string commonNamespace = "MavLink4Net.Messages.Common";
+            string messageClassFullName = NamespaceHelper.GetFullname(commonNamespace, messageClassName);
 
             string messageVariableName = "tMessage";
 
@@ -94,7 +96,8 @@ namespace MavLink4Net.CodeGenerator.Core
                 {
                     if (messageField.Type.IsEnum)
                     {
-                        CodeCastExpression castExpression = new CodeCastExpression(typeof(byte), propertyExpression);
+                        Type type = MessageFieldPrimitiveTypeHelper.GetCSharpType(messageField.Type.PrimitiveType);
+                        CodeCastExpression castExpression = new CodeCastExpression(type, propertyExpression);
 
                         CodeMethodInvokeExpression writeInvoke =
                             new CodeMethodInvokeExpression(
@@ -128,17 +131,101 @@ namespace MavLink4Net.CodeGenerator.Core
             }
         }
 
-        private static CodeMemberMethod CreateDeserializeCodeMemberMethod(string messageBaseClassName)
+        private static CodeMemberMethod CreateDeserializeCodeMemberMethod(string messageBaseClassName, Message message)
         {
+            string readerParamName = "reader";
+            string messageVariableName = "message";
+
+            string messageClassName = GeneratorHelper.GetMessageClassName(message);
+            string ns = "MavLink4Net.Messages.Common";
+            string messageClassFullName = NamespaceHelper.GetFullname(ns, messageClassName);
+
             CodeMemberMethod codeMemberMethod = new CodeMemberMethod();
             codeMemberMethod.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             codeMemberMethod.Name = "Deserialize";
             codeMemberMethod.ReturnType = new CodeTypeReference(messageBaseClassName);
-            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(BinaryReader), "reader"));
+            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(BinaryReader), readerParamName));
 
-            //TODO
+            CodeTypeReference classTypeReference = new CodeTypeReference(messageClassFullName);
+            codeMemberMethod.Statements.Add(new CodeVariableDeclarationStatement(
+                classTypeReference, messageVariableName,
+                new CodeObjectCreateExpression(classTypeReference)));
+
+            AddReadPropertyStatements(codeMemberMethod, message, readerParamName, messageVariableName, ns);
+
+            codeMemberMethod.Statements.Add(new CodeMethodReturnStatement(new CodeVariableReferenceExpression(messageVariableName)));
 
             return codeMemberMethod;
+        }
+
+        private static void AddReadPropertyStatements(CodeMemberMethod codeMemberMethod, Message message, string readerParamName, string messageVariableName, string ns)
+        {
+            IEnumerable<MessageField> orderedMessageFields = message.Fields.OrderForSerialization().ToList();
+
+            foreach (MessageField messageField in orderedMessageFields)
+            {
+                CodePropertyReferenceExpression propertyExpression =
+                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName),
+                        messageField.Name);
+
+                String readMethodName = GetReadMethodName(messageField.Type.PrimitiveType);
+
+                if (!messageField.Type.IsArray)
+                {
+                    if (messageField.Type.IsEnum)
+                    {
+                        var codeMethodInvokeExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(readerParamName), readMethodName);
+
+                        string enumFullname = NamespaceHelper.GetFullname(ns, messageField.Type.Enum);
+                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
+                            new CodeCastExpression(enumFullname, codeMethodInvokeExpression));
+
+                        codeMemberMethod.Statements.Add(propertyAssignStatement);
+                    }
+                    else
+                    {
+                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
+                            new CodeMethodInvokeExpression(
+                                new CodeVariableReferenceExpression(readerParamName), readMethodName));
+
+                        codeMemberMethod.Statements.Add(propertyAssignStatement);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < messageField.Type.ArrayLength; i++)
+                    {
+                        CodeArrayIndexerExpression codeArrayIndexerExpression =
+                            new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
+
+                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(codeArrayIndexerExpression,
+                            new CodeMethodInvokeExpression(
+                                new CodeVariableReferenceExpression(readerParamName), readMethodName));
+
+                        codeMemberMethod.Statements.Add(propertyAssignStatement);
+                    }
+                }
+            }
+        }
+
+        private static string GetReadMethodName(MessageFieldPrimitiveType t)
+        {
+            switch (t)
+            {
+                case MessageFieldPrimitiveType.Float32: return "ReadSingle";
+                case MessageFieldPrimitiveType.Int8: return "ReadSByte";
+                case MessageFieldPrimitiveType.UInt8: return "ReadByte";
+                case MessageFieldPrimitiveType.Int16: return "ReadInt16";
+                case MessageFieldPrimitiveType.UInt16: return "ReadUInt16";
+                case MessageFieldPrimitiveType.Int32: return "ReadInt32";
+                case MessageFieldPrimitiveType.UInt32: return "ReadUInt32";
+                case MessageFieldPrimitiveType.Int64: return "ReadInt64";
+                case MessageFieldPrimitiveType.UInt64: return "ReadUInt64";
+                case MessageFieldPrimitiveType.Char: return "ReadChar";
+                case MessageFieldPrimitiveType.Double: return "ReadDouble";
+                default:
+                    return null;
+            }
         }
     }
 }
