@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
-    class NamespaceHelper
+    public class NamespaceHelper
     {
         public static String Combine(String[] s)
         {

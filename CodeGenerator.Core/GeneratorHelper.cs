@@ -6,36 +6,34 @@ using System.IO;
 using MavLink4Net.CodeGenerator.Core.Translations;
 using MavLink4Net.MessageDefinitions.Data;
 using Microsoft.CSharp;
-using Enum = MavLink4Net.MessageDefinitions.Data.Enum;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
     public class GeneratorHelper
     {
-        private const string MessageBaseClassName = "Message";
-        private const string CommonName = "Common";
-        private const string MessageTypeEnumName = "MavMessageType";
-
-        public static void Generate(MavLink mavLink, string language, string outputPath, string ns, MavLinkTranslationMap translationMap = null)
+        public static void Generate(MavLink mavLink, string language, string outputPath, string ns, string messageBaseClassName, string commonName, string mavMessageTypeEnumName, string serializationNamespace, string serializationOutputPath, string serializerInterfaceName, string serializerFactoryClassName, MavLinkTranslationMap translationMap = null)
         {
             CodeGeneratorOptions options = new CodeGeneratorOptions() { BracingStyle = "C" };
             CodeDomProvider codeProvider = CreateCodeDomProvider(language);
 
-            GenerateMessageTypeEnum(outputPath, mavLink.Messages, options, codeProvider, ns, MessageTypeEnumName, translationMap);
+            GenerateMessageTypeEnum(outputPath, mavLink.Messages, options, codeProvider, ns, mavMessageTypeEnumName, translationMap);
 
-            string commonNamespace = NamespaceHelper.GetNamespace(ns, CommonName);
-            string commonPath = Path.Combine(outputPath, CommonName);
+            string commonNamespace = NamespaceHelper.GetNamespace(ns, commonName);
+            string commonPath = Path.Combine(outputPath, commonName);
 
             GenerateEnumFiles(commonPath, mavLink.Enums, options, codeProvider, commonNamespace, translationMap);
 
-            string messageBaseClassFullName = NamespaceHelper.GetFullname(ns, MessageBaseClassName);
-            string messageTypeEnumFullName = NamespaceHelper.GetFullname(ns, MessageTypeEnumName);
+            string messageBaseClassFullName = NamespaceHelper.GetFullname(ns, messageBaseClassName);
+            string messageTypeEnumFullName = NamespaceHelper.GetFullname(ns, mavMessageTypeEnumName);
             GenerateMessageClassFiles(commonPath, mavLink.Messages, options, codeProvider, commonNamespace, messageBaseClassFullName, messageTypeEnumFullName, translationMap);
 
-            string serializerOutputPath = @"F:\Developpement\MavLink4Net\Messages.Serialization\Common";
-            string serializationCommonNamespace = "MavLink4Net.Messages.Serialization.Common";
-            string serializerInterfaceName = "MavLink4Net.Messages.Serialization.IMessageSerializer";
-            GenerateSerializerClassFiles(serializerOutputPath, mavLink.Messages, options, codeProvider, serializationCommonNamespace, serializerInterfaceName, messageBaseClassFullName);
+            string serializerCommonOutputPath = Path.Combine(serializationOutputPath, commonName);
+            string serializationCommonNamespace = NamespaceHelper.GetNamespace(serializationNamespace, commonName);
+
+            string serializerInterfaceFullname = NamespaceHelper.GetFullname(serializationNamespace, serializerInterfaceName);
+            GenerateSerializerClassFiles(serializerCommonOutputPath, mavLink.Messages, options, codeProvider, serializationCommonNamespace, serializerInterfaceFullname, messageBaseClassFullName);
+
+            GenerateSerializerFactory(serializationOutputPath, mavLink.Messages, options, codeProvider, serializationNamespace, serializerFactoryClassName, serializationCommonNamespace, messageTypeEnumFullName, serializerInterfaceName);
         }
 
         private static CodeDomProvider CreateCodeDomProvider(string language)
@@ -44,13 +42,13 @@ namespace MavLink4Net.CodeGenerator.Core
             return new CSharpCodeProvider();
         }
 
-        #region MavType
+        #region MessageType
 
-        private static void GenerateMessageTypeEnum(string outputPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string messageTypeEnumName, MavLinkTranslationMap translationMap)
+        private static void GenerateMessageTypeEnum(string outputPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string className, MavLinkTranslationMap translationMap)
         {
-            string filename = $"{messageTypeEnumName}.cs";
+            string filename = $"{className}.cs";
             String filePath = Path.Combine(outputPath, filename);
-            CodeCompileUnit unit = MavTypeEnumGeneratorHelper.CreateCodeCompileUnit(messageTypeEnumName, messages, ns, translationMap);
+            CodeCompileUnit unit = MavTypeEnumGeneratorHelper.CreateCodeCompileUnit(className, messages, ns, translationMap);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 
@@ -69,17 +67,11 @@ namespace MavLink4Net.CodeGenerator.Core
 
         private static void GenerateMessageClassFile(string folderPath, MessageDefinitions.Data.Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
         {
-            string messageName = GetMessageClassName(message);
+            string messageName = NameHelper.GetMessageClassName(message);
             string filename = $"{messageName}.cs";
             String filePath = Path.Combine(folderPath, filename);
             CodeCompileUnit unit = MessageGeneratorHelper.CreateCodeCompileUnit(message, messageName, ns, baseClassName, messageTypeEnumValue, translationMap);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
-        }
-
-        public static string GetMessageClassName(MessageDefinitions.Data.Message message)
-        {
-            string messageClassName = $"{message.Name}Message";
-            return messageClassName;
         }
 
         #endregion
@@ -121,18 +113,23 @@ namespace MavLink4Net.CodeGenerator.Core
 
         private static void GenerateSerializerClassFile(string folderPath, Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageBaseClassName)
         {
-            string serializerClassName = GetSerializerClassName(message);
+            string serializerClassName = NameHelper.GetSerializerClassName(message);
             string filename = $"{serializerClassName}.cs";
             String filePath = Path.Combine(folderPath, filename);
             CodeCompileUnit unit = SerializerGeneratorHelper.CreateCodeCompileUnit(message, serializerClassName, ns, baseClassName, messageBaseClassName);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 
-        private static string GetSerializerClassName(Message message)
+        #endregion
+
+        #region SerializerFactory
+
+        private static void GenerateSerializerFactory(string outputPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string className, string serializerNamespace, string messageTypeEnumFullName, string serializerInterfaceName)
         {
-            string messageName = GetMessageClassName(message);
-            string serializerClassName = $"{messageName}Serializer";
-            return serializerClassName;
+            string filename = $"{className}.cs";
+            String filePath = Path.Combine(outputPath, filename);
+            CodeCompileUnit unit = SerializerFactoryGeneratorHelper.CreateCodeCompileUnit(className, messages, ns, serializerNamespace, messageTypeEnumFullName, serializerInterfaceName);
+            codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 
         #endregion
