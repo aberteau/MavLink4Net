@@ -4,9 +4,9 @@ namespace MavLink4Net.Messages
 {
     public class Message
     {
-        public MavType MavType { get; }
+        public MavMessageType MavType { get; }
 
-        protected Message(MavType mavType)
+        protected Message(MavMessageType mavType)
         {
             MavType = mavType;
         }

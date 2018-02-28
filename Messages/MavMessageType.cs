@@ -16,7 +16,7 @@ namespace MavLink4Net.Messages
 {
     
     
-    public enum MavType : byte
+    public enum MavMessageType : byte
     {
         
         /// <summary>

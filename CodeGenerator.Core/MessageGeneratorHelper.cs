@@ -12,7 +12,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MessageGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string baseClassName, string messageIdValue, MavLinkTranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -29,7 +29,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, baseClassName, messageIdValue, translationMap);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, baseClassName, messageTypeEnumValue, translationMap);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -37,7 +37,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string baseClassName, string messageIdValue, MavLinkTranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -47,7 +47,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             codeTypeDeclaration.BaseTypes.Add(baseClassName);
 
-            AddConstructor(codeTypeDeclaration, messageIdValue);
+            AddConstructor(codeTypeDeclaration, messageTypeEnumValue);
 
             // Add summary comments
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(message.Description);
@@ -77,13 +77,13 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeDeclaration;
         }
 
-        private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageIdValue)
+        private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageTypeEnumValue)
         {
             // Declare the constructor
             CodeConstructor constructor = new CodeConstructor();
             constructor.Attributes = MemberAttributes.Public | MemberAttributes.Final;
 
-            constructor.BaseConstructorArgs.Add(new CodeArgumentReferenceExpression(messageIdValue));
+            constructor.BaseConstructorArgs.Add(new CodeArgumentReferenceExpression(messageTypeEnumValue));
 
             codeTypeDeclaration.Members.Add(constructor);
         }
