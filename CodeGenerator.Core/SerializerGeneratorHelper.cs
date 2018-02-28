@@ -67,7 +67,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(BinaryWriter), writerParamName));
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageBaseClassName, messageParamName));
 
-            string messageClassName = GeneratorHelper.GetMessageClassName(message);
+            string messageClassName = NameHelper.GetMessageClassName(message);
             string commonNamespace = "MavLink4Net.Messages.Common";
             string messageClassFullName = NamespaceHelper.GetFullname(commonNamespace, messageClassName);
 
@@ -136,7 +136,7 @@ namespace MavLink4Net.CodeGenerator.Core
             string readerParamName = "reader";
             string messageVariableName = "message";
 
-            string messageClassName = GeneratorHelper.GetMessageClassName(message);
+            string messageClassName = NameHelper.GetMessageClassName(message);
             string ns = "MavLink4Net.Messages.Common";
             string messageClassFullName = NamespaceHelper.GetFullname(ns, messageClassName);
 
