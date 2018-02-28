@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MavLink4Net.MessageDefinitions.Xml
@@ -13,5 +14,8 @@ namespace MavLink4Net.MessageDefinitions.Xml
 
         [XmlElement("description")]
         public string Description { get; set; }
+
+        [XmlElement("param")]
+        public List<EnumEntryParameter> Parameters { get; set; }
     }
 }

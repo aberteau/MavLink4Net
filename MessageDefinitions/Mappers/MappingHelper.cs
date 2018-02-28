@@ -179,6 +179,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             dEnumEntry.Name = entryName;
             dEnumEntry.Value = GetNullableInt(xEnumEntry.Value);
             dEnumEntry.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
+            dEnumEntry.Parameters = ToModels(xEnumEntry.Parameters);
             return dEnumEntry;
         }
 
@@ -186,6 +187,23 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             int? nullableInt = String.IsNullOrWhiteSpace(valueStr) ? new Nullable<int>() : Int32.Parse(valueStr);
             return nullableInt;
+        }
+
+        #endregion
+
+        #region EnumEntryParameter
+
+        private static IEnumerable<EnumEntryParameter> ToModels(IEnumerable<Xml.EnumEntryParameter> xEnumEntries)
+        {
+            return xEnumEntries.Select(m => ToModel(m));
+        }
+
+        private static EnumEntryParameter ToModel(Xml.EnumEntryParameter xEnumEntry)
+        {
+            EnumEntryParameter entryParameter = new EnumEntryParameter();
+            entryParameter.Index = xEnumEntry.Index;
+            entryParameter.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
+            return entryParameter;
         }
 
         #endregion
