@@ -31,7 +31,7 @@ namespace MavLink4Net.CodeGenerator.Core
             string serializationCommonNamespace = NamespaceHelper.GetNamespace(serializationNamespace, commonName);
 
             string serializerInterfaceFullname = NamespaceHelper.GetFullname(serializationNamespace, serializerInterfaceName);
-            GenerateSerializerClassFiles(serializerCommonOutputPath, mavLink.Messages, options, codeProvider, serializationCommonNamespace, serializerInterfaceFullname, messageBaseClassFullName);
+            GenerateSerializerClassFiles(serializerCommonOutputPath, mavLink.Messages, options, codeProvider, serializationCommonNamespace, serializerInterfaceFullname, messageBaseClassFullName, commonNamespace);
 
             GenerateSerializerFactory(serializationOutputPath, mavLink.Messages, options, codeProvider, serializationNamespace, serializerFactoryClassName, serializationCommonNamespace, messageTypeEnumFullName, serializerInterfaceName);
         }
@@ -103,20 +103,20 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region Serializer
 
-        private static void GenerateSerializerClassFiles(string folderPath, IEnumerable<MessageDefinitions.Data.Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string interfaceName, string messageBaseClassName)
+        private static void GenerateSerializerClassFiles(string folderPath, IEnumerable<MessageDefinitions.Data.Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string interfaceName, string messageBaseClassName, string commonNamespace)
         {
             foreach (MessageDefinitions.Data.Message message in messages)
             {
-                GenerateSerializerClassFile(folderPath, message, options, codeProvider, ns, interfaceName, messageBaseClassName);
+                GenerateSerializerClassFile(folderPath, message, options, codeProvider, ns, interfaceName, messageBaseClassName, commonNamespace);
             }
         }
 
-        private static void GenerateSerializerClassFile(string folderPath, Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageBaseClassName)
+        private static void GenerateSerializerClassFile(string folderPath, Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageBaseClassName, string commonNamespace)
         {
             string serializerClassName = NameHelper.GetSerializerClassName(message);
             string filename = $"{serializerClassName}.cs";
             String filePath = Path.Combine(folderPath, filename);
-            CodeCompileUnit unit = SerializerGeneratorHelper.CreateCodeCompileUnit(message, serializerClassName, ns, baseClassName, messageBaseClassName);
+            CodeCompileUnit unit = SerializerGeneratorHelper.CreateCodeCompileUnit(message, serializerClassName, ns, baseClassName, messageBaseClassName, commonNamespace);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 

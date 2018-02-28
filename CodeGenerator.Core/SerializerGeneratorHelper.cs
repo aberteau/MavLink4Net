@@ -3,7 +3,6 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MavLink4Net.MessageDefinitions;
 using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Data.Extensions;
 
@@ -11,7 +10,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class SerializerGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string interfaceName, string messageBaseClassName)
+        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string interfaceName, string messageBaseClassName, string commonNamespace)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -28,7 +27,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, interfaceName, messageBaseClassName);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, interfaceName, messageBaseClassName, commonNamespace);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -36,7 +35,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string interfaceName, string messageBaseClassName)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string interfaceName, string messageBaseClassName, string commonNamespace)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -46,7 +45,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             codeTypeDeclaration.BaseTypes.Add(interfaceName);
 
-            CodeMemberMethod serializeCodeMemberMethod = CreateSerializeCodeMemberMethod(messageBaseClassName, message);
+            CodeMemberMethod serializeCodeMemberMethod = CreateSerializeCodeMemberMethod(messageBaseClassName, message, commonNamespace);
             codeTypeDeclaration.Members.Add(serializeCodeMemberMethod);
 
             CodeMemberMethod deserializeCodeMemberMethod = CreateDeserializeCodeMemberMethod(messageBaseClassName, message);
@@ -55,7 +54,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberMethod CreateSerializeCodeMemberMethod(string messageBaseClassName, Message message)
+        private static CodeMemberMethod CreateSerializeCodeMemberMethod(string messageBaseClassName, Message message, string commonNamespace)
         {
             string writerParamName = "writer";
             string messageParamName = "message";
@@ -68,7 +67,6 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageBaseClassName, messageParamName));
 
             string messageClassName = NameHelper.GetMessageClassName(message);
-            string commonNamespace = "MavLink4Net.Messages.Common";
             string messageClassFullName = NamespaceHelper.GetFullname(commonNamespace, messageClassName);
 
             string messageVariableName = "tMessage";
