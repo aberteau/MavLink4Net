@@ -96,7 +96,7 @@ namespace MavLink4Net.CodeGenerator.Core
                 {
                     if (messageField.Type.IsEnum)
                     {
-                        Type type = MessageFieldPrimitiveTypeHelper.GetCSharpType(messageField.Type.PrimitiveType);
+                        Type type = SystemTypeHelper.GetType(messageField.Type.PrimitiveType);
                         CodeCastExpression castExpression = new CodeCastExpression(type, propertyExpression);
 
                         CodeMethodInvokeExpression writeInvoke =

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MavLink4Net.MessageDefinitions.Data;
 
-namespace MavLink4Net.MessageDefinitions
+namespace MavLink4Net.CodeGenerator.Core
 {
-    public class MessageFieldPrimitiveTypeHelper
+    public class SystemTypeHelper
     {
-        public static Type GetCSharpType(MessageFieldPrimitiveType t)
+        public static Type GetType(MessageFieldPrimitiveType t)
         {
             switch (t)
             {

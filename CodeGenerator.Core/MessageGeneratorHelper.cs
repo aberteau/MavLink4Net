@@ -91,7 +91,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberField.Name = GetFieldName(messageField.Name);
 
             // Type
-            Type type = MessageFieldPrimitiveTypeHelper.GetCSharpType(messageField.Type.PrimitiveType);
+            Type type = SystemTypeHelper.GetType(messageField.Type.PrimitiveType);
             CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
             codeMemberField.Type = codeTypeReference;
 
@@ -149,7 +149,7 @@ namespace MavLink4Net.CodeGenerator.Core
             
             // Type
             MessageFieldType fieldType = messageField.Type;
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(fieldType, MessageFieldPrimitiveTypeHelper.GetCSharpType(fieldType.PrimitiveType));
+            CodeTypeReference codeTypeReference = GetCodeTypeReference(fieldType, SystemTypeHelper.GetType(fieldType.PrimitiveType));
             codeMemberProperty.Type = codeTypeReference;
 
             string fieldName = GetFieldName(messageField.Name);
