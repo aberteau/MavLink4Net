@@ -58,11 +58,11 @@ namespace MavLink4Net.CodeGenerator.Core
 
         private static CodeMemberField ToCodeMemberField(EnumEntry enumEntry)
         {
-            CodeMemberField field = new CodeMemberField
-            {
-                Name = enumEntry.Name,
-                InitExpression = new CodePrimitiveExpression(enumEntry.Value)
-            };
+            CodeMemberField field = new CodeMemberField();
+            field.Name = enumEntry.Name;
+
+            if (enumEntry.Value.HasValue)
+                field.InitExpression = new CodePrimitiveExpression(enumEntry.Value);
 
             // Add summary comments
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(enumEntry.Description);

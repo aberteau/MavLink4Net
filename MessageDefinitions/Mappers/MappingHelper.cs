@@ -64,7 +64,8 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             dEnum.OriginalName = xEnumName;
             dEnum.Name = NamingConventionHelper.GetEnumName(xEnumName);
             dEnum.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnum.Description);
-            dEnum.Entries = ToModels(xEnum.Entries, xEnumName);
+            String enumValuePrefix = $"{xEnumName}_";
+            dEnum.Entries = ToModels(xEnum.Entries, enumValuePrefix);
             return dEnum;
         }
 
@@ -164,30 +165,27 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region EnumEntry
 
-        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries, string xEnumName)
+        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries, string enumValuePrefix)
         {
-            return xEnumEntries.Select(m => ToModel(m, xEnumName));
+            return xEnumEntries.Select(m => ToModel(m, enumValuePrefix));
         }
 
-        private static Data.EnumEntry ToModel(Xml.EnumEntry xEnumEntry, string xEnumName)
+        private static Data.EnumEntry ToModel(Xml.EnumEntry xEnumEntry, string enumValuePrefix)
         {
             Data.EnumEntry dEnumEntry = new Data.EnumEntry();
-            string shortEntryName = GetShortEnumEntryName(xEnumName, xEnumEntry.Name);
+            string shortEntryName = StringHelper.RemoveAtStart(xEnumEntry.Name, enumValuePrefix);
             string entryName = NamingConventionHelper.GetPascalStyleString(shortEntryName);
             dEnumEntry.OriginalName = xEnumEntry.Name;
             dEnumEntry.Name = entryName;
-            dEnumEntry.Value = xEnumEntry.Value;
+            dEnumEntry.Value = GetNullableInt(xEnumEntry.Value);
             dEnumEntry.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
             return dEnumEntry;
         }
 
-
-        private static string GetShortEnumEntryName(string enumName, string entryName)
+        private static int? GetNullableInt(string valueStr)
         {
-            if (!entryName.StartsWith(enumName))
-                return entryName;
-
-            return entryName.Substring(enumName.Length + 1);
+            int? nullableInt = String.IsNullOrWhiteSpace(valueStr) ? new Nullable<int>() : Int32.Parse(valueStr);
+            return nullableInt;
         }
 
         #endregion
