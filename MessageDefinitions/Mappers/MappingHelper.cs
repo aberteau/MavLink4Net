@@ -74,12 +74,22 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         private static IEnumerable<Data.MessageField> ToModels(IEnumerable<Xml.MessageField> xMessageFields)
         {
-            return xMessageFields.Select(m => ToModel(m));
+            IList<Data.MessageField> fields = new List<MessageField>();
+            int definitionIndex = 0;
+            foreach (Xml.MessageField xMessageField in xMessageFields)
+            {
+                MessageField messageField = ToModel(xMessageField, definitionIndex);
+                fields.Add(messageField);
+                definitionIndex++;
+            }
+
+            return fields;
         }
 
-        private static Data.MessageField ToModel(Xml.MessageField xMessageField)
+        private static Data.MessageField ToModel(Xml.MessageField xMessageField, Int32 definitionIndex)
         {
             Data.MessageField dMessageField = new Data.MessageField();
+            dMessageField.DefinitionIndex = definitionIndex;
             dMessageField.Type = GetFieldType(xMessageField);
             dMessageField.OriginalName = xMessageField.Name;
             dMessageField.Name = NamingConventionHelper.GetPascalStyleString(xMessageField.Name);
@@ -92,8 +102,10 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField)
         {
             Data.MessageFieldType fieldType = new Data.MessageFieldType();
-            fieldType.ArraySize = GetArraySize(xMessageField.Type);
-            fieldType.PrimitiveType = ToFieldType(xMessageField.Type);
+            fieldType.ArrayLength = GetArraySize(xMessageField.Type);
+            MessageFieldPrimitiveType primitiveType = ToFieldPrimitiveType(xMessageField.Type);
+            fieldType.PrimitiveType = primitiveType;
+            fieldType.TypeLength = TypeLengthHelper.GetTypeLength(primitiveType);
             fieldType.Enum = NamingConventionHelper.GetEnumName(xMessageField.Enum);
             return fieldType;
         }
@@ -115,7 +127,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             return defaultValue;
         }
 
-        private static MessageFieldPrimitiveType ToFieldType(string type)
+        private static MessageFieldPrimitiveType ToFieldPrimitiveType(string type)
         {
             string basicType = GetBasicFieldTypeFromString(type);
 

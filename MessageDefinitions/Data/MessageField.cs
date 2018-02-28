@@ -1,7 +1,11 @@
-﻿namespace MavLink4Net.MessageDefinitions.Data
+﻿using System;
+
+namespace MavLink4Net.MessageDefinitions.Data
 {
     public class MessageField
     {
+        public Int32 DefinitionIndex { get; set; }
+
         public MessageFieldType Type { get; set; }
 
         public string OriginalName { get; set; }

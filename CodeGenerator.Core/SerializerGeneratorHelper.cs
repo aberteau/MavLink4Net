@@ -1,9 +1,10 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MavLink4Net.MessageDefinitions;
 using MavLink4Net.MessageDefinitions.Data;
+using MavLink4Net.MessageDefinitions.Data.Extensions;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
@@ -74,7 +75,9 @@ namespace MavLink4Net.CodeGenerator.Core
                 new CodeTypeReference(messageClassFullName), messageVariableName,
                 new CodeSnippetExpression($"{messageParamName} as {messageClassFullName}")));
 
-            foreach (MessageField messageField in message.Fields)
+            IEnumerable<MessageField> orderedMessageFields = message.Fields.OrderForSerialization().ToList();
+
+            foreach (MessageField messageField in orderedMessageFields)
             {
                 CodePropertyReferenceExpression propertyExpression = new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName), messageField.Name);
 
@@ -101,7 +104,7 @@ namespace MavLink4Net.CodeGenerator.Core
                 }
                 else
                 {
-                    for (int i = 0; i < messageField.Type.ArraySize; i++)
+                    for (int i = 0; i < messageField.Type.ArrayLength; i++)
                     {
                         CodeArrayIndexerExpression codeArrayIndexerExpression = new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
 
@@ -128,105 +131,6 @@ namespace MavLink4Net.CodeGenerator.Core
             //TODO
 
             return codeMemberMethod;
-        }
-
-        private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageIdValue)
-        {
-            // Declare the constructor
-            CodeConstructor constructor = new CodeConstructor();
-            constructor.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-
-            constructor.BaseConstructorArgs.Add(new CodeArgumentReferenceExpression(messageIdValue));
-
-            codeTypeDeclaration.Members.Add(constructor);
-        }
-
-        private static CodeMemberField ToCodeMemberField(MessageField messageField)
-        {
-            CodeMemberField codeMemberField = new CodeMemberField();
-            codeMemberField.Attributes = MemberAttributes.Private;
-            codeMemberField.Name = GetFieldName(messageField.Name);
-
-            // Type
-            Type type = MessageFieldPrimitiveTypeHelper.GetCSharpType(messageField.Type.PrimitiveType);
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
-            codeMemberField.Type = codeTypeReference;
-
-            if (messageField.Type.IsArray)
-            {
-                
-                CodeArrayCreateExpression ca1 = new CodeArrayCreateExpression(type, messageField.Type.ArraySize);
-                codeMemberField.InitExpression = ca1;
-            }
-                
-            // Add summary comments
-            CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(messageField.Text);
-            codeMemberField.Comments.AddRange(summaryCommentStatements);
-
-            // Add remarks comments
-            CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(messageField.OriginalName);
-            codeMemberField.Comments.AddRange(remarksCommentStatements);
-
-
-            return codeMemberField;
-        }
-
-        public static string GetFieldName(string word)
-        {
-            if (String.IsNullOrWhiteSpace(word))
-                return null;
-
-            String firstChar = word.First().ToString().ToLower();
-            String otherChars = word.Substring(1);
-
-            string pascalStyleWord = $"_{firstChar}{otherChars}";
-            return pascalStyleWord;
-        }
-
-        private static CodeTypeReference GetCodeTypeReference(MessageFieldType fieldType, Type type)
-        {
-            if (fieldType.IsEnum)
-            {
-                return new CodeTypeReference(fieldType.Enum);
-            }
-
-            CodeTypeReference codeTypeReference = new CodeTypeReference(type);
-
-            if (fieldType.IsArray)
-                codeTypeReference.ArrayRank = 1;
-
-            return codeTypeReference;
-        }
-
-        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField)
-        {
-            CodeMemberProperty codeMemberProperty = new CodeMemberProperty();
-            codeMemberProperty.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-            codeMemberProperty.Name = messageField.Name;
-            codeMemberProperty.HasGet = true;
-            
-            // Type
-            MessageFieldType fieldType = messageField.Type;
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(fieldType, MessageFieldPrimitiveTypeHelper.GetCSharpType(fieldType.PrimitiveType));
-            codeMemberProperty.Type = codeTypeReference;
-
-            string fieldName = GetFieldName(messageField.Name);
-
-            // Getter
-            codeMemberProperty.GetStatements.Add(new CodeMethodReturnStatement(
-                new CodeFieldReferenceExpression(
-                    new CodeThisReferenceExpression(), fieldName)));
-
-            // Setter
-            codeMemberProperty.SetStatements.Add(new CodeAssignStatement(
-                new CodeFieldReferenceExpression(
-                    new CodeThisReferenceExpression(), fieldName), new CodePropertySetValueReferenceExpression()));
-
-            // Add summary comments
-            CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(messageField.Text);
-            codeMemberProperty.Comments.AddRange(summaryCommentStatements);
-
-            return codeMemberProperty;
         }
     }
 }
