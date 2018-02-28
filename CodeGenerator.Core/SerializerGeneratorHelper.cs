@@ -70,16 +70,25 @@ namespace MavLink4Net.CodeGenerator.Core
             string messageClassFullName = $"MavLink4Net.Messages.Common.{messageClassName}";
 
             string messageVariableName = "tMessage";
-            
+
             codeMemberMethod.Statements.Add(new CodeVariableDeclarationStatement(
                 new CodeTypeReference(messageClassFullName), messageVariableName,
                 new CodeSnippetExpression($"{messageParamName} as {messageClassFullName}")));
 
+            AddWritePropertyStatements(codeMemberMethod, message, writerParamName, messageVariableName);
+
+            return codeMemberMethod;
+        }
+
+        private static void AddWritePropertyStatements(CodeMemberMethod codeMemberMethod, Message message, string writerParamName, string messageVariableName)
+        {
             IEnumerable<MessageField> orderedMessageFields = message.Fields.OrderForSerialization().ToList();
 
             foreach (MessageField messageField in orderedMessageFields)
             {
-                CodePropertyReferenceExpression propertyExpression = new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName), messageField.Name);
+                CodePropertyReferenceExpression propertyExpression =
+                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName),
+                        messageField.Name);
 
                 if (!messageField.Type.IsArray)
                 {
@@ -106,7 +115,8 @@ namespace MavLink4Net.CodeGenerator.Core
                 {
                     for (int i = 0; i < messageField.Type.ArrayLength; i++)
                     {
-                        CodeArrayIndexerExpression codeArrayIndexerExpression = new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
+                        CodeArrayIndexerExpression codeArrayIndexerExpression =
+                            new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
 
                         CodeMethodInvokeExpression writeInvoke =
                             new CodeMethodInvokeExpression(
@@ -116,8 +126,6 @@ namespace MavLink4Net.CodeGenerator.Core
                     }
                 }
             }
-
-            return codeMemberMethod;
         }
 
         private static CodeMemberMethod CreateDeserializeCodeMemberMethod(string messageBaseClassName)
