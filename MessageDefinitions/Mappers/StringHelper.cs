@@ -6,6 +6,15 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 {
     class StringHelper
     {
+        public static string RemoveAtStart(string str, string toRemove)
+        {
+            if (!str.StartsWith(toRemove))
+                return str;
+
+            string resultStr = str.Substring(toRemove.Length);
+            return resultStr;
+        }
+
         private static string NormalizeCarriageReturn(string rawStr)
         {
             if (String.IsNullOrWhiteSpace(rawStr))
