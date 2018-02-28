@@ -9,12 +9,12 @@ namespace MavLink4Net.MessageDefinitions.Mappers
     {
         #region MavLink
 
-        public static Data.MavLink ToModel(Xml.MavLink xMavLink)
+        public static Data.MavLink ToModel(Xml.MavLink xMavLink, EnumValuePrefixRemovalStrategy strategy)
         {
             Data.MavLink dMavLink = new Data.MavLink();
             dMavLink.Version = xMavLink.Version;
             dMavLink.Dialect = xMavLink.Dialect;
-            dMavLink.Enums = ToModels(xMavLink.Enums);
+            dMavLink.Enums = ToModels(xMavLink.Enums, strategy);
             
             IEnumerable<Xml.Message> xMessages = Filter(xMavLink.Messages).ToList();
             dMavLink.Messages = ToModels(xMessages);
@@ -52,20 +52,19 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region Enum
 
-        private static IEnumerable<Data.Enum> ToModels(IEnumerable<Xml.Enum> xEnums)
+        private static IEnumerable<Data.Enum> ToModels(IEnumerable<Xml.Enum> xEnums, EnumValuePrefixRemovalStrategy strategy)
         {
-            return xEnums.Select(m => ToModel(m));
+            return xEnums.Select(m => ToModel(m, strategy));
         }
 
-        private static Data.Enum ToModel(Xml.Enum xEnum)
+        private static Data.Enum ToModel(Xml.Enum xEnum, EnumValuePrefixRemovalStrategy strategy)
         {
             Data.Enum dEnum = new Data.Enum();
             string xEnumName = xEnum.Name;
             dEnum.OriginalName = xEnumName;
             dEnum.Name = NamingConventionHelper.GetEnumName(xEnumName);
             dEnum.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnum.Description);
-            String enumValuePrefix = $"{xEnumName}_";
-            dEnum.Entries = ToModels(xEnum.Entries, enumValuePrefix);
+            dEnum.Entries = ToModels(xEnum.Entries, xEnumName, strategy);
             return dEnum;
         }
 
@@ -165,8 +164,43 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         #region EnumEntry
 
-        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries, string enumValuePrefix)
+        private static string GetEnumValuePrefix(IEnumerable<Xml.EnumEntry> xEnumEntries, String xEnumName, EnumValuePrefixRemovalStrategy strategy)
         {
+            switch (strategy)
+            {
+                case EnumValuePrefixRemovalStrategy.None:
+                    return null;
+
+                case EnumValuePrefixRemovalStrategy.RemoveEnumName:
+                    if (!String.IsNullOrWhiteSpace(xEnumName))
+                        return xEnumName;
+
+                    return null;
+
+                case EnumValuePrefixRemovalStrategy.RemoveLongestCommonString:
+                    if (xEnumEntries.Count() > 1)
+                    {
+                        IEnumerable<String> xEnumValues = xEnumEntries.Select(e => e.Name);
+                        string longestStartSubstring = StringHelper.GetLongestCommonStartSubstring(xEnumValues);
+
+                        if (String.IsNullOrWhiteSpace(longestStartSubstring))
+                            return null;
+
+                        return longestStartSubstring;
+                    }
+
+                    if (!String.IsNullOrWhiteSpace(xEnumName))
+                        return xEnumName;
+
+                    return null;
+            }
+
+            return null;
+        }
+
+        private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries, string xEnumName, EnumValuePrefixRemovalStrategy strategy)
+        {
+            string enumValuePrefix = GetEnumValuePrefix(xEnumEntries, xEnumName, strategy);
             return xEnumEntries.Select(m => ToModel(m, enumValuePrefix));
         }
 
