@@ -97,9 +97,8 @@ namespace MavLink4Net.CodeGenerator.Core
 
             if (messageField.Type.IsArray)
             {
-                
-                CodeArrayCreateExpression ca1 = new CodeArrayCreateExpression(type, messageField.Type.ArraySize);
-                codeMemberField.InitExpression = ca1;
+                CodeArrayCreateExpression arrayCreateExpression = new CodeArrayCreateExpression(type, messageField.Type.ArrayLength);
+                codeMemberField.InitExpression = arrayCreateExpression;
             }
                 
             // Add summary comments
