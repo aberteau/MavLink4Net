@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MavLink4Net.CodeGenerator.Core.Translations.Interfaces;
 using MavLink4Net.MessageDefinitions.Data;
-using MavLink4Net.MessageDefinitions.Mappers;
-using Enum = MavLink4Net.MessageDefinitions.Data.Enum;
 
 namespace MavLink4Net.CodeGenerator.Core.Translations
 {
     public class MavLinkTranslator
     {
-        private readonly EnumValuePrefixRemovalStrategy _strategy;
+        private readonly IMessageNameTranslation _messageNameTranslation;
+        private readonly IMessageFieldNameTranslation _messageFieldNameTranslation;
+        private readonly IEnumNameTranslation _enumNameTranslation;
+        private readonly IEnumEntryNameTranslation _enumEntryNameTranslation;
+
         private readonly IDictionary<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum> _enumMap;
         private readonly IDictionary<MessageDefinitions.Data.EnumEntry, MessageDefinitions.Data.EnumEntry> _enumEntryMap;
         private readonly IDictionary<MessageDefinitions.Data.Message, MessageDefinitions.Data.Message> _messageMap;
         private readonly IDictionary<MessageDefinitions.Data.MessageField, MessageDefinitions.Data.MessageField> _messageFieldMap;
 
-        public MavLinkTranslator(EnumValuePrefixRemovalStrategy strategy)
+        public MavLinkTranslator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation)
         {
-            _strategy = strategy;
+            _messageNameTranslation = messageNameTranslation;
+            _messageFieldNameTranslation = messageFieldNameTranslation;
+            _enumNameTranslation = enumNameTranslation;
+            _enumEntryNameTranslation = enumEntryNameTranslation;
             _enumMap = new Dictionary<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum>();
             _enumEntryMap = new Dictionary<MessageDefinitions.Data.EnumEntry, MessageDefinitions.Data.EnumEntry>();
             _messageMap = new Dictionary<MessageDefinitions.Data.Message, MessageDefinitions.Data.Message> ();
@@ -73,7 +79,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
         {
             Message dMessage = new Message();
             dMessage.Id = xMessage.Id;
-            dMessage.Name = NamingConventionHelper.GetPascalStyleString(xMessage.Name);
+            dMessage.Name = _messageNameTranslation.TranslateName(xMessage);
             dMessage.Description = xMessage.Description;
             dMessage.Fields = Translate(xMessage.Fields);
 
@@ -94,7 +100,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
         private MessageDefinitions.Data.Enum Translate(MessageDefinitions.Data.Enum xEnum)
         {
             MessageDefinitions.Data.Enum dEnum = new MessageDefinitions.Data.Enum();
-            string enumName = NamingConventionHelper.GetEnumName(xEnum.Name);
+            string enumName = _enumNameTranslation.TranslateName(xEnum);
             dEnum.Name = enumName;
             dEnum.Description = xEnum.Description;
             dEnum.Entries = Translate(xEnum.Entries, enumName);
@@ -118,7 +124,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             MessageField dMessageField = new MessageField();
             dMessageField.DefinitionIndex = xMessageField.DefinitionIndex;
             dMessageField.Type = Translate(xMessageField.Type);
-            dMessageField.Name = NamingConventionHelper.GetPascalStyleString(xMessageField.Name);
+            dMessageField.Name = _messageFieldNameTranslation.TranslateName(xMessageField);
             dMessageField.Units = xMessageField.Units;
             dMessageField.Display = xMessageField.Display;
             dMessageField.Text = xMessageField.Text;
@@ -138,13 +144,13 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             return fieldType;
         }
 
-        private Enum GetTranslatedEnum(Enum pEnum)
+        private MessageDefinitions.Data.Enum GetTranslatedEnum(MessageDefinitions.Data.Enum pEnum)
         {
             if (pEnum == null)
                 return null;
 
-            IEnumerable<KeyValuePair<Enum, Enum>> keyValuePairs = _enumMap.Where(kvp => kvp.Value.Name.Equals(pEnum.Name));
-            Enum translatedEnum = keyValuePairs.Select(kvp => kvp.Key).FirstOrDefault();
+            IEnumerable<KeyValuePair<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum>> keyValuePairs = _enumMap.Where(kvp => kvp.Value.Name.Equals(pEnum.Name));
+            MessageDefinitions.Data.Enum translatedEnum = keyValuePairs.Select(kvp => kvp.Key).FirstOrDefault();
             return translatedEnum;
         }
 
@@ -154,16 +160,14 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
 
         private IEnumerable<EnumEntry> Translate(IEnumerable<EnumEntry> xEnumEntries, string xEnumName)
         {
-            string enumValuePrefix = EnumHelper.GetEnumValuePrefix(xEnumEntries, xEnumName, _strategy);
-            return xEnumEntries.Select(m => Translate(m, enumValuePrefix)).ToList();
+            _enumEntryNameTranslation.SetContext(xEnumEntries, xEnumName);
+            return xEnumEntries.Select(m => Translate(m)).ToList();
         }
 
-        private EnumEntry Translate(EnumEntry xEnumEntry, string enumValuePrefix)
+        private EnumEntry Translate(EnumEntry xEnumEntry)
         {
             EnumEntry dEnumEntry = new EnumEntry();
-            String shortName = StringHelper.RemoveAtStart(xEnumEntry.Name, enumValuePrefix);
-            string entryName = NamingConventionHelper.GetPascalStyleString(shortName);
-            dEnumEntry.Name = entryName;
+            dEnumEntry.Name = _enumEntryNameTranslation.TranslateName(xEnumEntry);
             dEnumEntry.Value = xEnumEntry.Value;
             dEnumEntry.Description = xEnumEntry.Description;
             dEnumEntry.Parameters = xEnumEntry.Parameters;
