@@ -99,7 +99,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
             codeMemberField.Type = codeTypeReference;
 
-            if (messageField.Type.IsArray)
+            if (messageField.Type.FieldType == FieldType.Array)
             {
                 CodeArrayCreateExpression arrayCreateExpression = new CodeArrayCreateExpression(type, messageField.Type.ArrayLength);
                 codeMemberField.InitExpression = arrayCreateExpression;
@@ -134,14 +134,14 @@ namespace MavLink4Net.CodeGenerator.Core
 
         private static CodeTypeReference GetCodeTypeReference(MessageFieldType fieldType, Type type)
         {
-            if (fieldType.IsEnum)
+            if (fieldType.FieldType == FieldType.Enum)
             {
                 return new CodeTypeReference(fieldType.Enum.Name);
             }
 
             CodeTypeReference codeTypeReference = new CodeTypeReference(type);
 
-            if (fieldType.IsArray)
+            if (fieldType.FieldType == FieldType.Array)
                 codeTypeReference.ArrayRank = 1;
 
             return codeTypeReference;

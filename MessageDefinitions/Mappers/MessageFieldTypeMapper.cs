@@ -82,5 +82,11 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             string result = tt[0];
             return result;
         }
+
+        public static bool IsArray(string rawFieldType)
+        {
+            bool isArray = rawFieldType.Contains("[");
+            return isArray;
+        }
     }
 }

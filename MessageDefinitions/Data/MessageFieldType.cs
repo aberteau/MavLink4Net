@@ -6,18 +6,39 @@ namespace MavLink4Net.MessageDefinitions.Data
 {
     public class MessageFieldType
     {
-        public MessageFieldDataType DataType { get; set; }
+        public MessageFieldDataType DataType { get; }
 
-        public Int32 ArrayLength { get; set; }
+        public FieldType FieldType { get; }
 
-        public Data.Enum Enum { get; set; }
+        public Int32 ArrayLength { get; }
 
-        public bool IsEnum => Enum != null;
+        public Data.Enum Enum { get; }
 
-        public bool IsArray => ArrayLength > 0;
+        public Int32 TypeLength { get; }
 
-        public Int32 TypeLength { get; set; }
+        public Int32 WireLength => FieldType == FieldType.Array ? ArrayLength * TypeLength : TypeLength;
 
-        public Int32 WireLength => IsArray ? ArrayLength * TypeLength : TypeLength;
+        protected MessageFieldType(FieldType fieldType, MessageFieldDataType dataType, Int32 typeLength)
+        {
+            FieldType = fieldType;
+            DataType = dataType;
+            TypeLength = typeLength;
+        }
+
+        public MessageFieldType(MessageFieldDataType dataType, int typeLength)
+            : this(FieldType.Primitive, dataType, typeLength)
+        { }
+
+        public MessageFieldType(MessageFieldDataType dataType, int typeLength, Enum pEnum)
+            : this(FieldType.Enum, dataType, typeLength)
+        {
+            Enum = pEnum;
+        }
+
+        public MessageFieldType(MessageFieldDataType dataType, int typeLength, int arrayLength)
+            : this(FieldType.Array, dataType, typeLength)
+        {
+            ArrayLength = arrayLength;
+        }
     }
 }

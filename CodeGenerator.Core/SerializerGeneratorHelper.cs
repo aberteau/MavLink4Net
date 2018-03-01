@@ -80,6 +80,8 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeMemberMethod;
         }
 
+        #region WriteCodeStatements
+
         private static void AddWritePropertyStatements(CodeMemberMethod codeMemberMethod, Message message, string writerParamName, string messageVariableName)
         {
             IEnumerable<MessageField> orderedMessageFields = message.Fields.OrderForSerialization().ToList();
@@ -90,44 +92,58 @@ namespace MavLink4Net.CodeGenerator.Core
                     new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName),
                         messageField.Name);
 
-                if (!messageField.Type.IsArray)
+                switch (messageField.Type.FieldType)
                 {
-                    if (messageField.Type.IsEnum)
-                    {
-                        Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
-                        CodeCastExpression castExpression = new CodeCastExpression(type, propertyExpression);
-
-                        CodeMethodInvokeExpression writeInvoke =
-                            new CodeMethodInvokeExpression(
-                                new CodeVariableReferenceExpression(writerParamName), "Write", castExpression);
-
-                        codeMemberMethod.Statements.Add(writeInvoke);
-                    }
-                    else
-                    {
-                        CodeMethodInvokeExpression writeInvoke =
-                            new CodeMethodInvokeExpression(
-                                new CodeVariableReferenceExpression(writerParamName), "Write", propertyExpression);
-
-                        codeMemberMethod.Statements.Add(writeInvoke);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < messageField.Type.ArrayLength; i++)
-                    {
-                        CodeArrayIndexerExpression codeArrayIndexerExpression =
-                            new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
-
-                        CodeMethodInvokeExpression writeInvoke =
-                            new CodeMethodInvokeExpression(
-                                new CodeVariableReferenceExpression(writerParamName), "Write", codeArrayIndexerExpression);
-
-                        codeMemberMethod.Statements.Add(writeInvoke);
-                    }
+                    case FieldType.Array:
+                        AddArrayWriteCodeStatements(codeMemberMethod.Statements, writerParamName, messageField.Type, propertyExpression);
+                        break;
+                    case FieldType.Enum:
+                        AddEnumWriteCodeStatements(codeMemberMethod.Statements, writerParamName, messageField.Type, propertyExpression);
+                        break;
+                    default:
+                        AddPrimitiveWriteCodeStatements(codeMemberMethod.Statements, writerParamName, propertyExpression);
+                        break;
                 }
             }
         }
+
+        private static void AddEnumWriteCodeStatements(CodeStatementCollection statements, string writerParamName, MessageFieldType fieldType, CodePropertyReferenceExpression propertyExpression)
+        {
+            Type type = SystemTypeHelper.GetType(fieldType.DataType);
+            CodeCastExpression castExpression = new CodeCastExpression(type, propertyExpression);
+
+            CodeMethodInvokeExpression writeInvoke =
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression(writerParamName), "Write", castExpression);
+
+            statements.Add(writeInvoke);
+        }
+
+        private static void AddArrayWriteCodeStatements(CodeStatementCollection statements, string writerParamName, MessageFieldType type, CodePropertyReferenceExpression propertyExpression)
+        {
+            for (int i = 0; i < type.ArrayLength; i++)
+            {
+                CodeArrayIndexerExpression codeArrayIndexerExpression =
+                    new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
+
+                CodeMethodInvokeExpression writeInvoke =
+                    new CodeMethodInvokeExpression(
+                        new CodeVariableReferenceExpression(writerParamName), "Write", codeArrayIndexerExpression);
+
+                statements.Add(writeInvoke);
+            }
+        }
+
+        private static void AddPrimitiveWriteCodeStatements(CodeStatementCollection statements, string writerParamName, CodePropertyReferenceExpression propertyExpression)
+        {
+            CodeMethodInvokeExpression writeInvoke =
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression(writerParamName), "Write", propertyExpression);
+
+            statements.Add(writeInvoke);
+        }
+
+        #endregion
 
         private static CodeMemberMethod CreateDeserializeCodeMemberMethod(string messageBaseClassName, Message message)
         {
@@ -156,6 +172,8 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeMemberMethod;
         }
 
+        #region ReadCodeStatements
+
         private static void AddReadPropertyStatements(CodeMemberMethod codeMemberMethod, Message message, string readerParamName, string messageVariableName, string ns)
         {
             IEnumerable<MessageField> orderedMessageFields = message.Fields.OrderForSerialization().ToList();
@@ -163,45 +181,22 @@ namespace MavLink4Net.CodeGenerator.Core
             foreach (MessageField messageField in orderedMessageFields)
             {
                 CodePropertyReferenceExpression propertyExpression =
-                    new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName),
+                    new CodePropertyReferenceExpression(
+                        new CodeVariableReferenceExpression(messageVariableName),
                         messageField.Name);
 
-                String readMethodName = GetReadMethodName(messageField.Type.DataType);
-
-                if (!messageField.Type.IsArray)
+                switch (messageField.Type.FieldType)
                 {
-                    if (messageField.Type.IsEnum)
-                    {
-                        var codeMethodInvokeExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(readerParamName), readMethodName);
-
+                    case FieldType.Array:
+                        AddArrayReadCodeStatements(codeMemberMethod.Statements, readerParamName, messageField, propertyExpression);
+                        break;
+                    case FieldType.Enum:
                         string enumFullname = NamespaceHelper.GetFullname(ns, messageField.Type.Enum.Name);
-                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
-                            new CodeCastExpression(enumFullname, codeMethodInvokeExpression));
-
-                        codeMemberMethod.Statements.Add(propertyAssignStatement);
-                    }
-                    else
-                    {
-                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
-                            new CodeMethodInvokeExpression(
-                                new CodeVariableReferenceExpression(readerParamName), readMethodName));
-
-                        codeMemberMethod.Statements.Add(propertyAssignStatement);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < messageField.Type.ArrayLength; i++)
-                    {
-                        CodeArrayIndexerExpression codeArrayIndexerExpression =
-                            new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
-
-                        CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(codeArrayIndexerExpression,
-                            new CodeMethodInvokeExpression(
-                                new CodeVariableReferenceExpression(readerParamName), readMethodName));
-
-                        codeMemberMethod.Statements.Add(propertyAssignStatement);
-                    }
+                        AddEnumReadCodeStatements(codeMemberMethod.Statements, readerParamName, messageField.Type, propertyExpression, enumFullname);
+                        break;
+                    default:
+                        AddPrimitiveReadCodeStatements(codeMemberMethod.Statements, readerParamName, messageField, propertyExpression);
+                        break;
                 }
             }
         }
@@ -225,5 +220,45 @@ namespace MavLink4Net.CodeGenerator.Core
                     return null;
             }
         }
+
+        private static void AddPrimitiveReadCodeStatements(CodeStatementCollection codeStatementCollection, string readerParamName, MessageField messageField, CodePropertyReferenceExpression propertyExpression)
+        {
+            String readMethodName = GetReadMethodName(messageField.Type.DataType);
+            CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
+                new CodeMethodInvokeExpression(
+                    new CodeVariableReferenceExpression(readerParamName), readMethodName));
+
+            codeStatementCollection.Add(propertyAssignStatement);
+        }
+
+        private static void AddArrayReadCodeStatements(CodeStatementCollection codeStatementCollection, string readerParamName, MessageField messageField, CodePropertyReferenceExpression propertyExpression)
+        {
+            String readMethodName = GetReadMethodName(messageField.Type.DataType);
+            for (int i = 0; i < messageField.Type.ArrayLength; i++)
+            {
+                CodeArrayIndexerExpression codeArrayIndexerExpression =
+                    new CodeArrayIndexerExpression(propertyExpression, new CodePrimitiveExpression(i));
+
+                CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(codeArrayIndexerExpression,
+                    new CodeMethodInvokeExpression(
+                        new CodeVariableReferenceExpression(readerParamName), readMethodName));
+
+                codeStatementCollection.Add(propertyAssignStatement);
+            }
+        }
+
+        private static void AddEnumReadCodeStatements(CodeStatementCollection codeStatementCollection, string readerParamName, MessageFieldType type, CodePropertyReferenceExpression propertyExpression, string enumFullname)
+        {
+            String readMethodName = GetReadMethodName(type.DataType);
+
+            var codeMethodInvokeExpression = new CodeMethodInvokeExpression(new CodeVariableReferenceExpression(readerParamName), readMethodName);
+
+            CodeAssignStatement propertyAssignStatement = new CodeAssignStatement(propertyExpression,
+                new CodeCastExpression(enumFullname, codeMethodInvokeExpression));
+
+            codeStatementCollection.Add(propertyAssignStatement);
+        }
+
+        #endregion
     }
 }

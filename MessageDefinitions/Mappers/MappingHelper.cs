@@ -96,13 +96,24 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField, IDictionary<String, Data.Enum> enumByName)
         {
-            Data.MessageFieldType fieldType = new Data.MessageFieldType();
-            fieldType.ArrayLength = GetArraySize(xMessageField.Type);
             MessageFieldDataType dataType = MessageFieldTypeMapper.ToDataType(xMessageField.Type);
-            fieldType.DataType = dataType;
-            fieldType.TypeLength = TypeLengthHelper.GetTypeLength(dataType);
-            fieldType.Enum = String.IsNullOrWhiteSpace(xMessageField.Enum) ? null : enumByName[xMessageField.Enum];
-            return fieldType;
+            int typeLength = TypeLengthHelper.GetTypeLength(dataType);
+
+            bool isArray = MessageFieldTypeMapper.IsArray(xMessageField.Type);
+            if (isArray)
+            {
+                Int32 arrayLength = GetArraySize(xMessageField.Type);
+                return new Data.MessageFieldType(dataType, typeLength, arrayLength);
+            }
+
+            bool isNotNullEnum = !String.IsNullOrWhiteSpace(xMessageField.Enum);
+            if (isNotNullEnum)
+            {
+                Data.Enum vEnum = enumByName[xMessageField.Enum];
+                return new Data.MessageFieldType(dataType, typeLength, vEnum);
+            }
+
+            return new Data.MessageFieldType(dataType, typeLength);
         }
 
         private static int GetArraySize(string t)
