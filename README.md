@@ -11,6 +11,14 @@ Inspired by / Based on :
 * MAVLink Code Generator
 * MAVLink Messages + Serialization
 
+### Improvements
+* Target Platform .Net Standard
+* Options for generation (naming conventions, path, ...)
+* Reading MAVLink definition files using XML Serializer
+* Code generation using CodeDOM
+* .Net Attribute for Metadata
+* NuGet Package
+
 ## Getting Started
 ### Prerequisites
 
