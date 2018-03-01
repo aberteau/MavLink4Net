@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HOME_POSITION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HomePosition, Name="HOME_POSITION", Description=@"This message can be requested by sending the MAV_CMD_GET_HOME_POSITION command. The position the system will return to and land on. The position is set automatically by the system during the takeoff in case it was not explicitely set by the operator before or after. The position the system will return to and land on. The global and local positions encode the position in the respective coordinate frames, while the q parameter encodes the orientation of the surface. Under normal conditions it describes the heading and terrain slope, which can be used by the aircraft to adjust the approach. The approach 3D vector describes the point to which the system should fly in normal flight mode and then perform a landing sequence along the vector.")]
     public class HomePositionMessage : MavLink4Net.Messages.Message
     {
         
@@ -121,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="latitude", Type="int32_t", Units="degE7", Description="Latitude (WGS84), in degrees * 1E7")]
         public int Latitude
         {
             get
@@ -136,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84, in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="longitude", Type="int32_t", Units="degE7", Description="Longitude (WGS84, in degrees * 1E7")]
         public int Longitude
         {
             get
@@ -151,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (AMSL), in meters * 1000 (positive for up)
         /// </summary>
+        [MessageFieldMetadata(Name="altitude", Type="int32_t", Units="mm", Description="Altitude (AMSL), in meters * 1000 (positive for up)")]
         public int Altitude
         {
             get
@@ -166,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local X position of this position in the local coordinate frame
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="Local X position of this position in the local coordinate frame")]
         public float X
         {
             get
@@ -181,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local Y position of this position in the local coordinate frame
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Local Y position of this position in the local coordinate frame")]
         public float Y
         {
             get
@@ -196,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local Z position of this position in the local coordinate frame
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Local Z position of this position in the local coordinate frame")]
         public float Z
         {
             get
@@ -211,6 +219,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// World to surface normal and heading transformation of the takeoff position. Used to indicate the heading and slope of the ground
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="World to surface normal and heading transformation of the takeoff position. Used " +
+            "to indicate the heading and slope of the ground")]
         public float[] Q
         {
             get
@@ -226,6 +236,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
         /// </summary>
+        [MessageFieldMetadata(Name="approach_x", Type="float", Units="m", Description=@"Local X position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.")]
         public float ApproachX
         {
             get
@@ -241,6 +252,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
         /// </summary>
+        [MessageFieldMetadata(Name="approach_y", Type="float", Units="m", Description=@"Local Y position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.")]
         public float ApproachY
         {
             get
@@ -256,6 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.
         /// </summary>
+        [MessageFieldMetadata(Name="approach_z", Type="float", Units="m", Description=@"Local Z position of the end of the approach vector. Multicopters should set this position based on their takeoff path. Grass-landing fixed wing aircraft should set it the same way as multicopters. Runway-landing fixed wing aircraft should set it to the opposite direction of the takeoff, assuming the takeoff happened from the threshold / touchdown zone.")]
         public float ApproachZ
         {
             get
@@ -271,6 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get

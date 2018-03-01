@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOCAL_POSITION_NED
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LocalPositionNed, Name="LOCAL_POSITION_NED", Description="The filtered local position (e.g. fused computer vision and accelerometers). Coor" +
+        "dinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-" +
+        "down convention)")]
     public class LocalPositionNedMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -104,6 +109,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Position
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="X Position")]
         public float X
         {
             get
@@ -119,6 +125,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Position
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Y Position")]
         public float Y
         {
             get
@@ -134,6 +141,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Position
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Z Position")]
         public float Z
         {
             get
@@ -149,6 +157,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Speed
         /// </summary>
+        [MessageFieldMetadata(Name="vx", Type="float", Units="m/s", Description="X Speed")]
         public float Vx
         {
             get
@@ -164,6 +173,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Speed
         /// </summary>
+        [MessageFieldMetadata(Name="vy", Type="float", Units="m/s", Description="Y Speed")]
         public float Vy
         {
             get
@@ -179,6 +189,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Speed
         /// </summary>
+        [MessageFieldMetadata(Name="vz", Type="float", Units="m/s", Description="Z Speed")]
         public float Vz
         {
             get

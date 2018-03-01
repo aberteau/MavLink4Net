@@ -96,10 +96,10 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField, IDictionary<String, Data.Enum> enumByName)
         {
-            MessageFieldDataType dataType = MessageFieldTypeMapper.ToDataType(xMessageField.Type);
+            MessageFieldDataType dataType = MessageFieldDataTypeMapper.ToDataType(xMessageField.Type);
             int typeLength = TypeLengthHelper.GetTypeLength(dataType);
 
-            bool isArray = MessageFieldTypeMapper.IsArray(xMessageField.Type);
+            bool isArray = MessageFieldDataTypeMapper.IsArray(xMessageField.Type);
             if (isArray)
             {
                 Int32 arrayLength = GetArraySize(xMessageField.Type);

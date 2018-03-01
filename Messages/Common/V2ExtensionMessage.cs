@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// V2_EXTENSION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.V2Extension, Name="V2_EXTENSION", Description="Message implementing parts of the V2 payload specs in V1 frames for transitional " +
+        "support.")]
     public class V2ExtensionMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +76,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Network ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_network", Type="uint8_t", Description="Network ID (0 for broadcast)")]
         public byte TargetNetwork
         {
             get
@@ -88,6 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID (0 for broadcast)")]
         public byte TargetSystem
         {
             get
@@ -103,6 +108,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID (0 for broadcast)")]
         public byte TargetComponent
         {
             get
@@ -118,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// A code that identifies the software component that understands this message (analogous to usb device classes or mime type strings).  If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/extension-message-ids.xml.  Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.
         /// </summary>
+        [MessageFieldMetadata(Name="message_type", Type="uint16_t", Description=@"A code that identifies the software component that understands this message (analogous to usb device classes or mime type strings).  If this code is less than 32768, it is considered a 'registered' protocol extension and the corresponding entry should be added to https://github.com/mavlink/mavlink/extension-message-ids.xml.  Software creators can register blocks of message IDs as needed (useful for GCS specific metadata, etc...). Message_types greater than 32767 are considered local experiments and should not be checked in to any widely distributed codebase.")]
         public ushort MessageType
         {
             get
@@ -133,6 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
         /// </summary>
+        [MessageFieldMetadata(Name="payload", Type="uint8_t[249]", Description=@"Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.")]
         public byte[] Payload
         {
             get

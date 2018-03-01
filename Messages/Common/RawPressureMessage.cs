@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// RAW_PRESSURE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.RawPressure, Name="RAW_PRESSURE", Description="The RAW pressure readings for the typical setup of one absolute pressure and one " +
+        "differential pressure sensor. The sensor values should be the raw, UNSCALED ADC " +
+        "values.")]
     public class RawPressureMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +77,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -88,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Absolute pressure (raw)
         /// </summary>
+        [MessageFieldMetadata(Name="press_abs", Type="int16_t", Description="Absolute pressure (raw)")]
         public short PressAbs
         {
             get
@@ -103,6 +109,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Differential pressure 1 (raw, 0 if nonexistant)
         /// </summary>
+        [MessageFieldMetadata(Name="press_diff1", Type="int16_t", Description="Differential pressure 1 (raw, 0 if nonexistant)")]
         public short PressDiff1
         {
             get
@@ -118,6 +125,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Differential pressure 2 (raw, 0 if nonexistant)
         /// </summary>
+        [MessageFieldMetadata(Name="press_diff2", Type="int16_t", Description="Differential pressure 2 (raw, 0 if nonexistant)")]
         public short PressDiff2
         {
             get
@@ -133,6 +141,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Raw Temperature measurement (raw)
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="int16_t", Description="Raw Temperature measurement (raw)")]
         public short Temperature
         {
             get

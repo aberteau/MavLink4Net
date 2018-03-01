@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GPS_GLOBAL_ORIGIN
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GpsGlobalOrigin, Name="GPS_GLOBAL_ORIGIN", Description="Once the MAV sets a new GPS-Local correspondence, this message announces the orig" +
+        "in (0,0,0) position")]
     public class GpsGlobalOriginMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="latitude", Type="int32_t", Units="degE7", Description="Latitude (WGS84), in degrees * 1E7")]
         public int Latitude
         {
             get
@@ -80,6 +84,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="longitude", Type="int32_t", Units="degE7", Description="Longitude (WGS84), in degrees * 1E7")]
         public int Longitude
         {
             get
@@ -95,6 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (AMSL), in meters * 1000 (positive for up)
         /// </summary>
+        [MessageFieldMetadata(Name="altitude", Type="int32_t", Units="mm", Description="Altitude (AMSL), in meters * 1000 (positive for up)")]
         public int Altitude
         {
             get
@@ -110,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get

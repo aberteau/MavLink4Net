@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ADSB_VEHICLE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AdsbVehicle, Name="ADSB_VEHICLE", Description="The location and information of an ADSB vehicle")]
     public class AdsbVehicleMessage : MavLink4Net.Messages.Message
     {
         
@@ -137,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// ICAO address
         /// </summary>
+        [MessageFieldMetadata(Name="ICAO_address", Type="uint32_t", Description="ICAO address")]
         public uint IcaoAddress
         {
             get
@@ -152,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude, expressed as degrees * 1E7")]
         public int Lat
         {
             get
@@ -167,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude, expressed as degrees * 1E7")]
         public int Lon
         {
             get
@@ -182,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type from ADSB_ALTITUDE_TYPE enum
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_type", Type="ADSB_ALTITUDE_TYPE enum", Description="Type from ADSB_ALTITUDE_TYPE enum")]
         public AdsbAltitudeType AltitudeType
         {
             get
@@ -197,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude(ASL) in millimeters
         /// </summary>
+        [MessageFieldMetadata(Name="altitude", Type="int32_t", Units="mm", Description="Altitude(ASL) in millimeters")]
         public int Altitude
         {
             get
@@ -212,6 +219,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Course over ground in centidegrees
         /// </summary>
+        [MessageFieldMetadata(Name="heading", Type="uint16_t", Units="cdeg", Description="Course over ground in centidegrees")]
         public ushort Heading
         {
             get
@@ -227,6 +235,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The horizontal velocity in centimeters/second
         /// </summary>
+        [MessageFieldMetadata(Name="hor_velocity", Type="uint16_t", Units="cm/s", Description="The horizontal velocity in centimeters/second")]
         public ushort HorVelocity
         {
             get
@@ -242,6 +251,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The vertical velocity in centimeters/second, positive is up
         /// </summary>
+        [MessageFieldMetadata(Name="ver_velocity", Type="int16_t", Units="cm/s", Description="The vertical velocity in centimeters/second, positive is up")]
         public short VerVelocity
         {
             get
@@ -257,6 +267,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The callsign, 8+null
         /// </summary>
+        [MessageFieldMetadata(Name="callsign", Type="char[9]", Description="The callsign, 8+null")]
         public char[] Callsign
         {
             get
@@ -272,6 +283,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type from ADSB_EMITTER_TYPE enum
         /// </summary>
+        [MessageFieldMetadata(Name="emitter_type", Type="ADSB_EMITTER_TYPE enum", Description="Type from ADSB_EMITTER_TYPE enum")]
         public AdsbEmitterType EmitterType
         {
             get
@@ -287,6 +299,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time since last communication in seconds
         /// </summary>
+        [MessageFieldMetadata(Name="tslc", Type="uint8_t", Units="s", Description="Time since last communication in seconds")]
         public byte Tslc
         {
             get
@@ -302,6 +315,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flags to indicate various statuses including valid data fields
         /// </summary>
+        [MessageFieldMetadata(Name="flags", Type="ADSB_FLAGS enum", Display="bitmask", Description="Flags to indicate various statuses including valid data fields")]
         public AdsbFlags Flags
         {
             get
@@ -317,6 +331,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Squawk code
         /// </summary>
+        [MessageFieldMetadata(Name="squawk", Type="uint16_t", Description="Squawk code")]
         public ushort Squawk
         {
             get

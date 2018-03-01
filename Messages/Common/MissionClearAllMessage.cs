@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_CLEAR_ALL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionClearAll, Name="MISSION_CLEAR_ALL", Description="Delete all mission items at once.")]
     public class MissionClearAllMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -72,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -87,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mission type, see MAV_MISSION_TYPE
         /// </summary>
+        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
         public MissionType MissionType
         {
             get

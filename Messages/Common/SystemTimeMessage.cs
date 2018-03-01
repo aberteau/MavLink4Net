@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SYSTEM_TIME
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SystemTime, Name="SYSTEM_TIME", Description="The system time is the time of the master clock, typically the computer clock of " +
+        "the main onboard computer.")]
     public class SystemTimeMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +52,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp of the master clock in microseconds since UNIX epoch.
         /// </summary>
+        [MessageFieldMetadata(Name="time_unix_usec", Type="uint64_t", Units="us", Description="Timestamp of the master clock in microseconds since UNIX epoch.")]
         public ulong TimeUnixUsec
         {
             get
@@ -64,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp of the component clock since boot time in milliseconds.
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp of the component clock since boot time in milliseconds.")]
         public uint TimeBootMs
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// VISION_POSITION_ESTIMATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.VisionPositionEstimate, Name="VISION_POSITION_ESTIMATE", Description=null)]
     public class VisionPositionEstimateMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds, synced to UNIX time or since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds, synced to UNIX time or since system boot)")]
         public ulong Usec
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global X position
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="Global X position")]
         public float X
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global Y position
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Global Y position")]
         public float Y
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global Z position
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Global Z position")]
         public float Z
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angle in rad
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Units="rad", Description="Roll angle in rad")]
         public float Roll
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angle in rad
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Units="rad", Description="Pitch angle in rad")]
         public float Pitch
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angle in rad
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Units="rad", Description="Yaw angle in rad")]
         public float Yaw
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// EXTENDED_SYS_STATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ExtendedSysState, Name="EXTENDED_SYS_STATE", Description="Provides state for additional features")]
     public class ExtendedSysStateMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in VTOL configuration.
         /// </summary>
+        [MessageFieldMetadata(Name="vtol_state", Type="MAV_VTOL_STATE enum", Description="The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in" +
+            " VTOL configuration.")]
         public VtolState VtolState
         {
             get
@@ -64,6 +68,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
         /// </summary>
+        [MessageFieldMetadata(Name="landed_state", Type="MAV_LANDED_STATE enum", Description="The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown" +
+            ".")]
         public LandedState LandedState
         {
             get

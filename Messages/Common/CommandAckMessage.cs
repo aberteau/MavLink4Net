@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// COMMAND_ACK
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.CommandAck, Name="COMMAND_ACK", Description="Report status of a command. Includes feedback whether the command was executed.")]
     public class CommandAckMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Command ID, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="Command ID, as defined by MAV_CMD enum.")]
         public Cmd Command
         {
             get
@@ -96,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See MAV_RESULT enum
         /// </summary>
+        [MessageFieldMetadata(Name="result", Type="MAV_RESULT enum", Description="See MAV_RESULT enum")]
         public Result Result
         {
             get
@@ -111,6 +115,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
         /// </summary>
+        [MessageFieldMetadata(Name="progress", Type="uint8_t", Description="WIP: Also used as result_param1, it can be set with a enum containing the errors " +
+            "reasons of why the command was denied or the progress percentage or 255 if unkno" +
+            "wn the progress when result is MAV_RESULT_IN_PROGRESS.")]
         public byte Progress
         {
             get
@@ -126,6 +133,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
         /// </summary>
+        [MessageFieldMetadata(Name="result_param2", Type="int32_t", Description="WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_" +
+            "WAYPOINT caused it to be denied.")]
         public int ResultParam2
         {
             get
@@ -141,6 +150,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// WIP: System which requested the command to be executed
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="WIP: System which requested the command to be executed")]
         public byte TargetSystem
         {
             get
@@ -156,6 +166,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// WIP: Component which requested the command to be executed
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="WIP: Component which requested the command to be executed")]
         public byte TargetComponent
         {
             get

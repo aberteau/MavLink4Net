@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIL_RC_INPUTS_RAW
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HilRcInputsRaw, Name="HIL_RC_INPUTS_RAW", Description="Sent from simulation to autopilot. The RAW values of the RC channels received. Th" +
+        "e standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microsecond" +
+        "s: 100%. Individual receivers/transmitters might violate this specification.")]
     public class HilRcInputsRawMessage : MavLink4Net.Messages.Message
     {
         
@@ -145,6 +149,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -160,6 +165,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 1 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan1_raw", Type="uint16_t", Units="us", Description="RC channel 1 value, in microseconds")]
         public ushort Chan1Raw
         {
             get
@@ -175,6 +181,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 2 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan2_raw", Type="uint16_t", Units="us", Description="RC channel 2 value, in microseconds")]
         public ushort Chan2Raw
         {
             get
@@ -190,6 +197,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 3 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan3_raw", Type="uint16_t", Units="us", Description="RC channel 3 value, in microseconds")]
         public ushort Chan3Raw
         {
             get
@@ -205,6 +213,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 4 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan4_raw", Type="uint16_t", Units="us", Description="RC channel 4 value, in microseconds")]
         public ushort Chan4Raw
         {
             get
@@ -220,6 +229,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 5 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan5_raw", Type="uint16_t", Units="us", Description="RC channel 5 value, in microseconds")]
         public ushort Chan5Raw
         {
             get
@@ -235,6 +245,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 6 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan6_raw", Type="uint16_t", Units="us", Description="RC channel 6 value, in microseconds")]
         public ushort Chan6Raw
         {
             get
@@ -250,6 +261,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 7 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan7_raw", Type="uint16_t", Units="us", Description="RC channel 7 value, in microseconds")]
         public ushort Chan7Raw
         {
             get
@@ -265,6 +277,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 8 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan8_raw", Type="uint16_t", Units="us", Description="RC channel 8 value, in microseconds")]
         public ushort Chan8Raw
         {
             get
@@ -280,6 +293,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 9 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan9_raw", Type="uint16_t", Units="us", Description="RC channel 9 value, in microseconds")]
         public ushort Chan9Raw
         {
             get
@@ -295,6 +309,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 10 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan10_raw", Type="uint16_t", Units="us", Description="RC channel 10 value, in microseconds")]
         public ushort Chan10Raw
         {
             get
@@ -310,6 +325,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 11 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan11_raw", Type="uint16_t", Units="us", Description="RC channel 11 value, in microseconds")]
         public ushort Chan11Raw
         {
             get
@@ -325,6 +341,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 12 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="chan12_raw", Type="uint16_t", Units="us", Description="RC channel 12 value, in microseconds")]
         public ushort Chan12Raw
         {
             get
@@ -340,6 +357,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Receive signal strength indicator, 0: 0%, 255: 100%
         /// </summary>
+        [MessageFieldMetadata(Name="rssi", Type="uint8_t", Description="Receive signal strength indicator, 0: 0%, 255: 100%")]
         public byte Rssi
         {
             get

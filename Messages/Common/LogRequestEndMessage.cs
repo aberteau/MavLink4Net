@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOG_REQUEST_END
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LogRequestEnd, Name="LOG_REQUEST_END", Description="Stop log transfer and resume normal logging")]
     public class LogRequestEndMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -64,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get

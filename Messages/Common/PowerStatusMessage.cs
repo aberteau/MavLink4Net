@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// POWER_STATUS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.PowerStatus, Name="POWER_STATUS", Description="Power supply status")]
     public class PowerStatusMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 5V rail voltage in millivolts
         /// </summary>
+        [MessageFieldMetadata(Name="Vcc", Type="uint16_t", Units="mV", Description="5V rail voltage in millivolts")]
         public ushort Vcc
         {
             get
@@ -72,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// servo rail voltage in millivolts
         /// </summary>
+        [MessageFieldMetadata(Name="Vservo", Type="uint16_t", Units="mV", Description="servo rail voltage in millivolts")]
         public ushort Vservo
         {
             get
@@ -87,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// power supply status flags (see MAV_POWER_STATUS enum)
         /// </summary>
+        [MessageFieldMetadata(Name="flags", Type="MAV_POWER_STATUS enum", Display="bitmask", Description="power supply status flags (see MAV_POWER_STATUS enum)")]
         public PowerStatus Flags
         {
             get

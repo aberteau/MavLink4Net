@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// STATUSTEXT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Statustext, Name="STATUSTEXT", Description=@"Status text message. These messages are printed in yellow in the COMM console of QGroundControl. WARNING: They consume quite some bandwidth, so use only for important status and error messages. If implemented wisely, these messages are buffered on the MCU and sent only at a limited rate (e.g. 10 Hz).")]
     public class StatustextMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVERITY.
         /// </summary>
+        [MessageFieldMetadata(Name="severity", Type="MAV_SEVERITY enum", Description="Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVER" +
+            "ITY.")]
         public Severity Severity
         {
             get
@@ -64,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Status text message, without null termination character
         /// </summary>
+        [MessageFieldMetadata(Name="text", Type="char[50]", Description="Status text message, without null termination character")]
         public char[] Text
         {
             get

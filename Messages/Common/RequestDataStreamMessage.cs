@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// REQUEST_DATA_STREAM
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.RequestDataStream, Name="REQUEST_DATA_STREAM", Description="THIS INTERFACE IS DEPRECATED. USE SET_MESSAGE_INTERVAL INSTEAD.")]
     public class RequestDataStreamMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The target requested to send the message stream.
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="The target requested to send the message stream.")]
         public byte TargetSystem
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The target requested to send the message stream.
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="The target requested to send the message stream.")]
         public byte TargetComponent
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The ID of the requested data stream
         /// </summary>
+        [MessageFieldMetadata(Name="req_stream_id", Type="uint8_t", Description="The ID of the requested data stream")]
         public byte ReqStreamId
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The requested message rate
         /// </summary>
+        [MessageFieldMetadata(Name="req_message_rate", Type="uint16_t", Units="Hz", Description="The requested message rate")]
         public ushort ReqMessageRate
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 1 to start sending, 0 to stop sending.
         /// </summary>
+        [MessageFieldMetadata(Name="start_stop", Type="uint8_t", Description="1 to start sending, 0 to stop sending.")]
         public byte StartStop
         {
             get

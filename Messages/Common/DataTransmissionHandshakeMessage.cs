@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// DATA_TRANSMISSION_HANDSHAKE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.DataTransmissionHandshake, Name="DATA_TRANSMISSION_HANDSHAKE", Description=null)]
     public class DataTransmissionHandshakeMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// type of requested/acknowledged data (as defined in ENUM DATA_TYPES in mavlink/include/mavlink_types.h)
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="uint8_t", Description="type of requested/acknowledged data (as defined in ENUM DATA_TYPES in mavlink/inc" +
+            "lude/mavlink_types.h)")]
         public byte Type
         {
             get
@@ -104,6 +108,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// total data size in bytes (set on ACK only)
         /// </summary>
+        [MessageFieldMetadata(Name="size", Type="uint32_t", Units="bytes", Description="total data size in bytes (set on ACK only)")]
         public uint Size
         {
             get
@@ -119,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Width of a matrix or image
         /// </summary>
+        [MessageFieldMetadata(Name="width", Type="uint16_t", Description="Width of a matrix or image")]
         public ushort Width
         {
             get
@@ -134,6 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Height of a matrix or image
         /// </summary>
+        [MessageFieldMetadata(Name="height", Type="uint16_t", Description="Height of a matrix or image")]
         public ushort Height
         {
             get
@@ -149,6 +156,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// number of packets beeing sent (set on ACK only)
         /// </summary>
+        [MessageFieldMetadata(Name="packets", Type="uint16_t", Description="number of packets beeing sent (set on ACK only)")]
         public ushort Packets
         {
             get
@@ -164,6 +172,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// payload size per packet (normally 253 byte, see DATA field size in message ENCAPSULATED_DATA) (set on ACK only)
         /// </summary>
+        [MessageFieldMetadata(Name="payload", Type="uint8_t", Units="bytes", Description="payload size per packet (normally 253 byte, see DATA field size in message ENCAPS" +
+            "ULATED_DATA) (set on ACK only)")]
         public byte Payload
         {
             get
@@ -179,6 +189,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// JPEG quality out of [1,100]
         /// </summary>
+        [MessageFieldMetadata(Name="jpg_quality", Type="uint8_t", Units="%", Description="JPEG quality out of [1,100]")]
         public byte JpgQuality
         {
             get

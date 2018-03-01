@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// BATTERY_STATUS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.BatteryStatus, Name="BATTERY_STATUS", Description="Battery information")]
     public class BatteryStatusMessage : MavLink4Net.Messages.Message
     {
         
@@ -105,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Battery ID
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint8_t", Description="Battery ID")]
         public byte Id
         {
             get
@@ -120,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Function of the battery
         /// </summary>
+        [MessageFieldMetadata(Name="battery_function", Type="MAV_BATTERY_FUNCTION enum", Description="Function of the battery")]
         public BatteryFunction BatteryFunction
         {
             get
@@ -135,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type (chemistry) of the battery
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="MAV_BATTERY_TYPE enum", Description="Type (chemistry) of the battery")]
         public BatteryType Type
         {
             get
@@ -150,6 +155,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temperature.
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="int16_t", Units="cdegC", Description="Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temper" +
+            "ature.")]
         public short Temperature
         {
             get
@@ -165,6 +172,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Battery voltage of cells, in millivolts (1 = 1 millivolt). Cells above the valid cell count for this battery should have the UINT16_MAX value.
         /// </summary>
+        [MessageFieldMetadata(Name="voltages", Type="uint16_t[10]", Units="mV", Description="Battery voltage of cells, in millivolts (1 = 1 millivolt). Cells above the valid " +
+            "cell count for this battery should have the UINT16_MAX value.")]
         public ushort[] Voltages
         {
             get
@@ -180,6 +189,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
         /// </summary>
+        [MessageFieldMetadata(Name="current_battery", Type="int16_t", Units="cA", Description="Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not " +
+            "measure the current")]
         public short CurrentBattery
         {
             get
@@ -195,6 +206,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide mAh consumption estimate
         /// </summary>
+        [MessageFieldMetadata(Name="current_consumed", Type="int32_t", Units="mAh", Description="Consumed charge, in milliampere hours (1 = 1 mAh), -1: autopilot does not provide" +
+            " mAh consumption estimate")]
         public int CurrentConsumed
         {
             get
@@ -210,6 +223,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Consumed energy, in HectoJoules (intergrated U*I*dt)  (1 = 100 Joule), -1: autopilot does not provide energy consumption estimate
         /// </summary>
+        [MessageFieldMetadata(Name="energy_consumed", Type="int32_t", Units="hJ", Description="Consumed energy, in HectoJoules (intergrated U*I*dt)  (1 = 100 Joule), -1: autopi" +
+            "lot does not provide energy consumption estimate")]
         public int EnergyConsumed
         {
             get
@@ -225,6 +240,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot does not estimate the remaining battery
         /// </summary>
+        [MessageFieldMetadata(Name="battery_remaining", Type="int8_t", Units="%", Description="Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot does not estimate the" +
+            " remaining battery")]
         public sbyte BatteryRemaining
         {
             get

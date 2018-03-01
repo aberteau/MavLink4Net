@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SYS_STATUS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SysStatus, Name="SYS_STATUS", Description=@"The general system state. If the system is following the MAVLink standard, the system state is mainly defined by three orthogonal states/modes: The system mode, which is either LOCKED (motors shut down and locked), MANUAL (system under RC control), GUIDED (system with autonomous position control, position setpoint controlled manually) or AUTO (system guided by path/waypoint planner). The NAV_MODE defined the current flight state: LIFTOFF (often an open-loop maneuver), LANDING, WAYPOINTS or VECTOR. This represents the internal navigation state machine. The system status shows whether the system is currently active or not and if an emergency occured. During the CRITICAL and EMERGENCY states the MAV is still considered to be active, but should start emergency procedures autonomously. After a failure occured it should first move from active to critical to allow manual intervention and then move to emergency after a certain timeout.")]
     public class SysStatusMessage : MavLink4Net.Messages.Message
     {
         
@@ -137,6 +139,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bitmask showing which onboard controllers and sensors are present. Value of 0: not present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
         /// </summary>
+        [MessageFieldMetadata(Name="onboard_control_sensors_present", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are present. Value of 0: no" +
+            "t present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR")]
         public SysStatusSensor OnboardControlSensorsPresent
         {
             get
@@ -152,6 +156,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bitmask showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
         /// </summary>
+        [MessageFieldMetadata(Name="onboard_control_sensors_enabled", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are enabled:  Value of 0: n" +
+            "ot enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR")]
         public SysStatusSensor OnboardControlSensorsEnabled
         {
             get
@@ -167,6 +173,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bitmask showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
         /// </summary>
+        [MessageFieldMetadata(Name="onboard_control_sensors_health", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are operational or have an " +
+            "error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MA" +
+            "V_SYS_STATUS_SENSOR")]
         public SysStatusSensor OnboardControlSensorsHealth
         {
             get
@@ -182,6 +191,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000
         /// </summary>
+        [MessageFieldMetadata(Name="load", Type="uint16_t", Units="d%", Description="Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be alwa" +
+            "ys below 1000")]
         public ushort Load
         {
             get
@@ -197,6 +208,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Battery voltage, in millivolts (1 = 1 millivolt)
         /// </summary>
+        [MessageFieldMetadata(Name="voltage_battery", Type="uint16_t", Units="mV", Description="Battery voltage, in millivolts (1 = 1 millivolt)")]
         public ushort VoltageBattery
         {
             get
@@ -212,6 +224,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not measure the current
         /// </summary>
+        [MessageFieldMetadata(Name="current_battery", Type="int16_t", Units="cA", Description="Battery current, in 10*milliamperes (1 = 10 milliampere), -1: autopilot does not " +
+            "measure the current")]
         public short CurrentBattery
         {
             get
@@ -227,6 +241,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remaining battery
         /// </summary>
+        [MessageFieldMetadata(Name="battery_remaining", Type="int8_t", Units="%", Description="Remaining battery energy: (0%: 0, 100%: 100), -1: autopilot estimate the remainin" +
+            "g battery")]
         public sbyte BatteryRemaining
         {
             get
@@ -242,6 +258,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Communication drops in percent, (0%: 0, 100%: 10'000), (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
         /// </summary>
+        [MessageFieldMetadata(Name="drop_rate_comm", Type="uint16_t", Units="c%", Description="Communication drops in percent, (0%: 0, 100%: 10\'000), (UART, I2C, SPI, CAN), dro" +
+            "pped packets on all links (packets that were corrupted on reception on the MAV)")]
         public ushort DropRateComm
         {
             get
@@ -257,6 +275,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets that were corrupted on reception on the MAV)
         /// </summary>
+        [MessageFieldMetadata(Name="errors_comm", Type="uint16_t", Description="Communication errors (UART, I2C, SPI, CAN), dropped packets on all links (packets" +
+            " that were corrupted on reception on the MAV)")]
         public ushort ErrorsComm
         {
             get
@@ -272,6 +292,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot-specific errors
         /// </summary>
+        [MessageFieldMetadata(Name="errors_count1", Type="uint16_t", Description="Autopilot-specific errors")]
         public ushort ErrorsCount1
         {
             get
@@ -287,6 +308,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot-specific errors
         /// </summary>
+        [MessageFieldMetadata(Name="errors_count2", Type="uint16_t", Description="Autopilot-specific errors")]
         public ushort ErrorsCount2
         {
             get
@@ -302,6 +324,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot-specific errors
         /// </summary>
+        [MessageFieldMetadata(Name="errors_count3", Type="uint16_t", Description="Autopilot-specific errors")]
         public ushort ErrorsCount3
         {
             get
@@ -317,6 +340,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot-specific errors
         /// </summary>
+        [MessageFieldMetadata(Name="errors_count4", Type="uint16_t", Description="Autopilot-specific errors")]
         public ushort ErrorsCount4
         {
             get

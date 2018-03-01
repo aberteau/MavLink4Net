@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// OPTICAL_FLOW_RAD
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.OpticalFlowRad, Name="OPTICAL_FLOW_RAD", Description="Optical flow from an angular rate flow sensor (e.g. PX4FLOW or mouse sensor)")]
     public class OpticalFlowRadMessage : MavLink4Net.Messages.Message
     {
         
@@ -129,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds, synced to UNIX time or since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds, synced to UNIX time or since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -144,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Sensor ID
         /// </summary>
+        [MessageFieldMetadata(Name="sensor_id", Type="uint8_t", Description="Sensor ID")]
         public byte SensorId
         {
             get
@@ -159,6 +163,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Integration time in microseconds. Divide integrated_x and integrated_y by the integration time to obtain average flow. The integration time also indicates the.
         /// </summary>
+        [MessageFieldMetadata(Name="integration_time_us", Type="uint32_t", Units="us", Description="Integration time in microseconds. Divide integrated_x and integrated_y by the int" +
+            "egration time to obtain average flow. The integration time also indicates the.")]
         public uint IntegrationTimeUs
         {
             get
@@ -174,6 +180,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in radians around X axis (Sensor RH rotation about the X axis induces a positive flow. Sensor linear motion along the positive Y axis induces a negative flow.)
         /// </summary>
+        [MessageFieldMetadata(Name="integrated_x", Type="float", Units="rad", Description="Flow in radians around X axis (Sensor RH rotation about the X axis induces a posi" +
+            "tive flow. Sensor linear motion along the positive Y axis induces a negative flo" +
+            "w.)")]
         public float IntegratedX
         {
             get
@@ -189,6 +198,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a positive flow. Sensor linear motion along the positive X axis induces a positive flow.)
         /// </summary>
+        [MessageFieldMetadata(Name="integrated_y", Type="float", Units="rad", Description="Flow in radians around Y axis (Sensor RH rotation about the Y axis induces a posi" +
+            "tive flow. Sensor linear motion along the positive X axis induces a positive flo" +
+            "w.)")]
         public float IntegratedY
         {
             get
@@ -204,6 +216,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RH rotation around X axis (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="integrated_xgyro", Type="float", Units="rad", Description="RH rotation around X axis (rad)")]
         public float IntegratedXgyro
         {
             get
@@ -219,6 +232,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RH rotation around Y axis (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="integrated_ygyro", Type="float", Units="rad", Description="RH rotation around Y axis (rad)")]
         public float IntegratedYgyro
         {
             get
@@ -234,6 +248,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RH rotation around Z axis (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="integrated_zgyro", Type="float", Units="rad", Description="RH rotation around Z axis (rad)")]
         public float IntegratedZgyro
         {
             get
@@ -249,6 +264,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Temperature * 100 in centi-degrees Celsius
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="int16_t", Units="cdegC", Description="Temperature * 100 in centi-degrees Celsius")]
         public short Temperature
         {
             get
@@ -264,6 +280,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Optical flow quality / confidence. 0: no valid flow, 255: maximum quality
         /// </summary>
+        [MessageFieldMetadata(Name="quality", Type="uint8_t", Description="Optical flow quality / confidence. 0: no valid flow, 255: maximum quality")]
         public byte Quality
         {
             get
@@ -279,6 +296,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time in microseconds since the distance was sampled.
         /// </summary>
+        [MessageFieldMetadata(Name="time_delta_distance_us", Type="uint32_t", Units="us", Description="Time in microseconds since the distance was sampled.")]
         public uint TimeDeltaDistanceUs
         {
             get
@@ -294,6 +312,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Distance to the center of the flow field in meters. Positive value (including zero): distance known. Negative value: Unknown distance.
         /// </summary>
+        [MessageFieldMetadata(Name="distance", Type="float", Units="m", Description="Distance to the center of the flow field in meters. Positive value (including zer" +
+            "o): distance known. Negative value: Unknown distance.")]
         public float Distance
         {
             get

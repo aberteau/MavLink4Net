@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIL_CONTROLS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HilControls, Name="HIL_CONTROLS", Description="Sent from autopilot to simulation. Hardware in the loop control outputs")]
     public class HilControlsMessage : MavLink4Net.Messages.Message
     {
         
@@ -121,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -136,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Control output -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="roll_ailerons", Type="float", Description="Control output -1 .. 1")]
         public float RollAilerons
         {
             get
@@ -151,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Control output -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="pitch_elevator", Type="float", Description="Control output -1 .. 1")]
         public float PitchElevator
         {
             get
@@ -166,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Control output -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="yaw_rudder", Type="float", Description="Control output -1 .. 1")]
         public float YawRudder
         {
             get
@@ -181,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Throttle 0 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="throttle", Type="float", Description="Throttle 0 .. 1")]
         public float Throttle
         {
             get
@@ -196,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Aux 1, -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="aux1", Type="float", Description="Aux 1, -1 .. 1")]
         public float Aux1
         {
             get
@@ -211,6 +219,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Aux 2, -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="aux2", Type="float", Description="Aux 2, -1 .. 1")]
         public float Aux2
         {
             get
@@ -226,6 +235,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Aux 3, -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="aux3", Type="float", Description="Aux 3, -1 .. 1")]
         public float Aux3
         {
             get
@@ -241,6 +251,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Aux 4, -1 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="aux4", Type="float", Description="Aux 4, -1 .. 1")]
         public float Aux4
         {
             get
@@ -256,6 +267,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System mode (MAV_MODE)
         /// </summary>
+        [MessageFieldMetadata(Name="mode", Type="MAV_MODE enum", Description="System mode (MAV_MODE)")]
         public Mode Mode
         {
             get
@@ -271,6 +283,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Navigation mode (MAV_NAV_MODE)
         /// </summary>
+        [MessageFieldMetadata(Name="nav_mode", Type="uint8_t", Description="Navigation mode (MAV_NAV_MODE)")]
         public byte NavMode
         {
             get

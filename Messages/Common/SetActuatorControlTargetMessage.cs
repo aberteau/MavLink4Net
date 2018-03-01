@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SET_ACTUATOR_CONTROL_TARGET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SetActuatorControlTarget, Name="SET_ACTUATOR_CONTROL_TARGET", Description="Set the vehicle attitude and body angular rates.")]
     public class SetActuatorControlTargetMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -88,6 +91,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
         /// </summary>
+        [MessageFieldMetadata(Name="group_mlx", Type="uint8_t", Description="Actuator group. The \"_mlx\" indicates this is a multi-instance message and a MAVLi" +
+            "nk parser should use this field to difference between instances.")]
         public byte GroupMlx
         {
             get
@@ -103,6 +108,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -118,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -133,6 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
         /// </summary>
+        [MessageFieldMetadata(Name="controls", Type="float[8]", Description=@"Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.")]
         public float[] Controls
         {
             get

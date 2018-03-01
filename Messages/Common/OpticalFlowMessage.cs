@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// OPTICAL_FLOW
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.OpticalFlow, Name="OPTICAL_FLOW", Description="Optical flow from a flow sensor (e.g. optical mouse sensor)")]
     public class OpticalFlowMessage : MavLink4Net.Messages.Message
     {
         
@@ -113,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (UNIX)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (UNIX)")]
         public ulong TimeUsec
         {
             get
@@ -128,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Sensor ID
         /// </summary>
+        [MessageFieldMetadata(Name="sensor_id", Type="uint8_t", Description="Sensor ID")]
         public byte SensorId
         {
             get
@@ -143,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in pixels * 10 in x-sensor direction (dezi-pixels)
         /// </summary>
+        [MessageFieldMetadata(Name="flow_x", Type="int16_t", Units="dpixels", Description="Flow in pixels * 10 in x-sensor direction (dezi-pixels)")]
         public short FlowX
         {
             get
@@ -158,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in pixels * 10 in y-sensor direction (dezi-pixels)
         /// </summary>
+        [MessageFieldMetadata(Name="flow_y", Type="int16_t", Units="dpixels", Description="Flow in pixels * 10 in y-sensor direction (dezi-pixels)")]
         public short FlowY
         {
             get
@@ -173,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in meters in x-sensor direction, angular-speed compensated
         /// </summary>
+        [MessageFieldMetadata(Name="flow_comp_m_x", Type="float", Units="m", Description="Flow in meters in x-sensor direction, angular-speed compensated")]
         public float FlowCompMX
         {
             get
@@ -188,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow in meters in y-sensor direction, angular-speed compensated
         /// </summary>
+        [MessageFieldMetadata(Name="flow_comp_m_y", Type="float", Units="m", Description="Flow in meters in y-sensor direction, angular-speed compensated")]
         public float FlowCompMY
         {
             get
@@ -203,6 +211,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Optical flow quality / confidence. 0: bad, 255: maximum quality
         /// </summary>
+        [MessageFieldMetadata(Name="quality", Type="uint8_t", Description="Optical flow quality / confidence. 0: bad, 255: maximum quality")]
         public byte Quality
         {
             get
@@ -218,6 +227,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground distance in meters. Positive value: distance known. Negative value: Unknown distance
         /// </summary>
+        [MessageFieldMetadata(Name="ground_distance", Type="float", Units="m", Description="Ground distance in meters. Positive value: distance known. Negative value: Unknow" +
+            "n distance")]
         public float GroundDistance
         {
             get
@@ -233,6 +244,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow rate in radians/second about X axis
         /// </summary>
+        [MessageFieldMetadata(Name="flow_rate_x", Type="float", Units="rad/s", Description="Flow rate in radians/second about X axis")]
         public float FlowRateX
         {
             get
@@ -248,6 +260,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flow rate in radians/second about Y axis
         /// </summary>
+        [MessageFieldMetadata(Name="flow_rate_y", Type="float", Units="rad/s", Description="Flow rate in radians/second about Y axis")]
         public float FlowRateY
         {
             get

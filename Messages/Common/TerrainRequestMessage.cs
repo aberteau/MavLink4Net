@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// TERRAIN_REQUEST
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.TerrainRequest, Name="TERRAIN_REQUEST", Description="Request for terrain data and terrain status")]
     public class TerrainRequestMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude of SW corner of first grid (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude of SW corner of first grid (degrees *10^7)")]
         public int Lat
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude of SW corner of first grid (in degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude of SW corner of first grid (in degrees *10^7)")]
         public int Lon
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Grid spacing in meters
         /// </summary>
+        [MessageFieldMetadata(Name="grid_spacing", Type="uint16_t", Units="m", Description="Grid spacing in meters")]
         public ushort GridSpacing
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)
         /// </summary>
+        [MessageFieldMetadata(Name="mask", Type="uint64_t", Display="bitmask", Description="Bitmask of requested 4x4 grids (row major 8x7 array of grids, 56 bits)")]
         public ulong Mask
         {
             get

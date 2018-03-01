@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ENCAPSULATED_DATA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.EncapsulatedData, Name="ENCAPSULATED_DATA", Description=null)]
     public class EncapsulatedDataMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// sequence number (starting with 0 on every transmission)
         /// </summary>
+        [MessageFieldMetadata(Name="seqnr", Type="uint16_t", Description="sequence number (starting with 0 on every transmission)")]
         public ushort Seqnr
         {
             get
@@ -64,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// image data bytes
         /// </summary>
+        [MessageFieldMetadata(Name="data", Type="uint8_t[253]", Description="image data bytes")]
         public byte[] Data
         {
             get

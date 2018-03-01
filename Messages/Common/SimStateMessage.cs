@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SIM_STATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SimState, Name="SIM_STATE", Description="Status of simulation environment, if used")]
     public class SimStateMessage : MavLink4Net.Messages.Message
     {
         
@@ -201,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True attitude quaternion component 1, w (1 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q1", Type="float", Description="True attitude quaternion component 1, w (1 in null-rotation)")]
         public float Q1
         {
             get
@@ -216,6 +219,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True attitude quaternion component 2, x (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q2", Type="float", Description="True attitude quaternion component 2, x (0 in null-rotation)")]
         public float Q2
         {
             get
@@ -231,6 +235,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True attitude quaternion component 3, y (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q3", Type="float", Description="True attitude quaternion component 3, y (0 in null-rotation)")]
         public float Q3
         {
             get
@@ -246,6 +251,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True attitude quaternion component 4, z (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q4", Type="float", Description="True attitude quaternion component 4, z (0 in null-rotation)")]
         public float Q4
         {
             get
@@ -261,6 +267,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude roll expressed as Euler angles, not recommended except for human-readable outputs
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Description="Attitude roll expressed as Euler angles, not recommended except for human-readabl" +
+            "e outputs")]
         public float Roll
         {
             get
@@ -276,6 +284,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude pitch expressed as Euler angles, not recommended except for human-readable outputs
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Description="Attitude pitch expressed as Euler angles, not recommended except for human-readab" +
+            "le outputs")]
         public float Pitch
         {
             get
@@ -291,6 +301,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude yaw expressed as Euler angles, not recommended except for human-readable outputs
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Description="Attitude yaw expressed as Euler angles, not recommended except for human-readable" +
+            " outputs")]
         public float Yaw
         {
             get
@@ -306,6 +318,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X acceleration m/s/s
         /// </summary>
+        [MessageFieldMetadata(Name="xacc", Type="float", Units="m/s/s", Description="X acceleration m/s/s")]
         public float Xacc
         {
             get
@@ -321,6 +334,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y acceleration m/s/s
         /// </summary>
+        [MessageFieldMetadata(Name="yacc", Type="float", Units="m/s/s", Description="Y acceleration m/s/s")]
         public float Yacc
         {
             get
@@ -336,6 +350,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z acceleration m/s/s
         /// </summary>
+        [MessageFieldMetadata(Name="zacc", Type="float", Units="m/s/s", Description="Z acceleration m/s/s")]
         public float Zacc
         {
             get
@@ -351,6 +366,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around X axis rad/s
         /// </summary>
+        [MessageFieldMetadata(Name="xgyro", Type="float", Units="rad/s", Description="Angular speed around X axis rad/s")]
         public float Xgyro
         {
             get
@@ -366,6 +382,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Y axis rad/s
         /// </summary>
+        [MessageFieldMetadata(Name="ygyro", Type="float", Units="rad/s", Description="Angular speed around Y axis rad/s")]
         public float Ygyro
         {
             get
@@ -381,6 +398,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Z axis rad/s
         /// </summary>
+        [MessageFieldMetadata(Name="zgyro", Type="float", Units="rad/s", Description="Angular speed around Z axis rad/s")]
         public float Zgyro
         {
             get
@@ -396,6 +414,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="float", Units="deg", Description="Latitude in degrees")]
         public float Lat
         {
             get
@@ -411,6 +430,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="float", Units="deg", Description="Longitude in degrees")]
         public float Lon
         {
             get
@@ -426,6 +446,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude in meters
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="float", Units="m", Description="Altitude in meters")]
         public float Alt
         {
             get
@@ -441,6 +462,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Horizontal position standard deviation
         /// </summary>
+        [MessageFieldMetadata(Name="std_dev_horz", Type="float", Description="Horizontal position standard deviation")]
         public float StdDevHorz
         {
             get
@@ -456,6 +478,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vertical position standard deviation
         /// </summary>
+        [MessageFieldMetadata(Name="std_dev_vert", Type="float", Description="Vertical position standard deviation")]
         public float StdDevVert
         {
             get
@@ -471,6 +494,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True velocity in m/s in NORTH direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="vn", Type="float", Units="m/s", Description="True velocity in m/s in NORTH direction in earth-fixed NED frame")]
         public float Vn
         {
             get
@@ -486,6 +510,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True velocity in m/s in EAST direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="ve", Type="float", Units="m/s", Description="True velocity in m/s in EAST direction in earth-fixed NED frame")]
         public float Ve
         {
             get
@@ -501,6 +526,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// True velocity in m/s in DOWN direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="vd", Type="float", Units="m/s", Description="True velocity in m/s in DOWN direction in earth-fixed NED frame")]
         public float Vd
         {
             get

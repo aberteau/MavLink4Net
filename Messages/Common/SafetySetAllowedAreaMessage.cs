@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SAFETY_SET_ALLOWED_AREA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SafetySetAllowedArea, Name="SAFETY_SET_ALLOWED_AREA", Description="Set a safety zone (volume), which is defined by two corners of a cube. This messa" +
+        "ge can be used to tell the MAV which setpoints/waypoints to accept and which to " +
+        "reject. Safety areas are often enforced by national or competition regulations.")]
     public class SafetySetAllowedAreaMessage : MavLink4Net.Messages.Message
     {
         
@@ -105,6 +109,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -120,6 +125,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -135,6 +141,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either global, GPS, right-handed with Z axis up or local, right handed, Z axis down.
         /// </summary>
+        [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either " +
+            "global, GPS, right-handed with Z axis up or local, right handed, Z axis down.")]
         public Frame Frame
         {
             get
@@ -150,6 +158,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// x position 1 / Latitude 1
         /// </summary>
+        [MessageFieldMetadata(Name="p1x", Type="float", Units="m", Description="x position 1 / Latitude 1")]
         public float P1x
         {
             get
@@ -165,6 +174,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// y position 1 / Longitude 1
         /// </summary>
+        [MessageFieldMetadata(Name="p1y", Type="float", Units="m", Description="y position 1 / Longitude 1")]
         public float P1y
         {
             get
@@ -180,6 +190,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// z position 1 / Altitude 1
         /// </summary>
+        [MessageFieldMetadata(Name="p1z", Type="float", Units="m", Description="z position 1 / Altitude 1")]
         public float P1z
         {
             get
@@ -195,6 +206,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// x position 2 / Latitude 2
         /// </summary>
+        [MessageFieldMetadata(Name="p2x", Type="float", Units="m", Description="x position 2 / Latitude 2")]
         public float P2x
         {
             get
@@ -210,6 +222,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// y position 2 / Longitude 2
         /// </summary>
+        [MessageFieldMetadata(Name="p2y", Type="float", Units="m", Description="y position 2 / Longitude 2")]
         public float P2y
         {
             get
@@ -225,6 +238,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// z position 2 / Altitude 2
         /// </summary>
+        [MessageFieldMetadata(Name="p2z", Type="float", Units="m", Description="z position 2 / Altitude 2")]
         public float P2z
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// VFR_HUD
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.VfrHud, Name="VFR_HUD", Description="Metrics typically displayed on a HUD for fixed wing aircraft")]
     public class VfrHudMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current airspeed in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="airspeed", Type="float", Units="m/s", Description="Current airspeed in m/s")]
         public float Airspeed
         {
             get
@@ -96,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current ground speed in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="groundspeed", Type="float", Units="m/s", Description="Current ground speed in m/s")]
         public float Groundspeed
         {
             get
@@ -111,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current heading in degrees, in compass units (0..360, 0=north)
         /// </summary>
+        [MessageFieldMetadata(Name="heading", Type="int16_t", Units="deg", Description="Current heading in degrees, in compass units (0..360, 0=north)")]
         public short Heading
         {
             get
@@ -126,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current throttle setting in integer percent, 0 to 100
         /// </summary>
+        [MessageFieldMetadata(Name="throttle", Type="uint16_t", Units="%", Description="Current throttle setting in integer percent, 0 to 100")]
         public ushort Throttle
         {
             get
@@ -141,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current altitude (MSL), in meters
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="float", Units="m", Description="Current altitude (MSL), in meters")]
         public float Alt
         {
             get
@@ -156,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current climb rate in meters/second
         /// </summary>
+        [MessageFieldMetadata(Name="climb", Type="float", Units="m/s", Description="Current climb rate in meters/second")]
         public float Climb
         {
             get

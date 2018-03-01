@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// FOLLOW_TARGET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.FollowTarget, Name="FOLLOW_TARGET", Description="current motion information from a designated system")]
     public class FollowTargetMessage : MavLink4Net.Messages.Message
     {
         
@@ -121,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp in milliseconds since system boot
         /// </summary>
+        [MessageFieldMetadata(Name="timestamp", Type="uint64_t", Units="ms", Description="Timestamp in milliseconds since system boot")]
         public ulong Timestamp
         {
             get
@@ -136,6 +139,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, ATT + RATES = 3)
         /// </summary>
+        [MessageFieldMetadata(Name="est_capabilities", Type="uint8_t", Description="bit positions for tracker reporting capabilities (POS = 0, VEL = 1, ACCEL = 2, AT" +
+            "T + RATES = 3)")]
         public byte EstCapabilities
         {
             get
@@ -151,6 +156,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude (WGS84), in degrees * 1E7")]
         public int Lat
         {
             get
@@ -166,6 +172,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude (WGS84), in degrees * 1E7")]
         public int Lon
         {
             get
@@ -181,6 +188,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// AMSL, in meters
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="float", Units="m", Description="AMSL, in meters")]
         public float Alt
         {
             get
@@ -196,6 +204,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// target velocity (0,0,0) for unknown
         /// </summary>
+        [MessageFieldMetadata(Name="vel", Type="float[3]", Units="m/s", Description="target velocity (0,0,0) for unknown")]
         public float[] Vel
         {
             get
@@ -211,6 +220,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// linear target acceleration (0,0,0) for unknown
         /// </summary>
+        [MessageFieldMetadata(Name="acc", Type="float[3]", Units="m/s/s", Description="linear target acceleration (0,0,0) for unknown")]
         public float[] Acc
         {
             get
@@ -226,6 +236,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// (1 0 0 0 for unknown)
         /// </summary>
+        [MessageFieldMetadata(Name="attitude_q", Type="float[4]", Description="(1 0 0 0 for unknown)")]
         public float[] AttitudeQ
         {
             get
@@ -241,6 +252,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// (0 0 0 for unknown)
         /// </summary>
+        [MessageFieldMetadata(Name="rates", Type="float[3]", Description="(0 0 0 for unknown)")]
         public float[] Rates
         {
             get
@@ -256,6 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// eph epv
         /// </summary>
+        [MessageFieldMetadata(Name="position_cov", Type="float[3]", Description="eph epv")]
         public float[] PositionCov
         {
             get
@@ -271,6 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// button states or switches of a tracker device
         /// </summary>
+        [MessageFieldMetadata(Name="custom_state", Type="uint64_t", Description="button states or switches of a tracker device")]
         public ulong CustomState
         {
             get

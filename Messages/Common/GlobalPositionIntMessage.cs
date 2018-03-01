@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -23,6 +24,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GLOBAL_POSITION_INT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GlobalPositionInt, Name="GLOBAL_POSITION_INT", Description="The filtered global position (e.g. fused GPS and accelerometers). The position is" +
+        " in GPS-frame (right-handed, Z-up). It\r\n               is designed as scaled int" +
+        "eger message since the resolution of float is not sufficient.")]
     public class GlobalPositionIntMessage : MavLink4Net.Messages.Message
     {
         
@@ -106,6 +110,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -121,6 +126,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude, expressed as degrees * 1E7")]
         public int Lat
         {
             get
@@ -136,6 +142,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude, expressed as degrees * 1E7")]
         public int Lon
         {
             get
@@ -151,6 +158,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note that virtually all GPS modules provide the AMSL as well)
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="int32_t", Units="mm", Description="Altitude in meters, expressed as * 1000 (millimeters), AMSL (not WGS84 - note tha" +
+            "t virtually all GPS modules provide the AMSL as well)")]
         public int Alt
         {
             get
@@ -166,6 +175,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude above ground in meters, expressed as * 1000 (millimeters)
         /// </summary>
+        [MessageFieldMetadata(Name="relative_alt", Type="int32_t", Units="mm", Description="Altitude above ground in meters, expressed as * 1000 (millimeters)")]
         public int RelativeAlt
         {
             get
@@ -181,6 +191,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground X Speed (Latitude, positive north), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vx", Type="int16_t", Units="cm/s", Description="Ground X Speed (Latitude, positive north), expressed as m/s * 100")]
         public short Vx
         {
             get
@@ -196,6 +207,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Y Speed (Longitude, positive east), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vy", Type="int16_t", Units="cm/s", Description="Ground Y Speed (Longitude, positive east), expressed as m/s * 100")]
         public short Vy
         {
             get
@@ -211,6 +223,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Z Speed (Altitude, positive down), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vz", Type="int16_t", Units="cm/s", Description="Ground Z Speed (Altitude, positive down), expressed as m/s * 100")]
         public short Vz
         {
             get
@@ -226,6 +239,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
         /// </summary>
+        [MessageFieldMetadata(Name="hdg", Type="uint16_t", Units="cdeg", Description="Vehicle heading (yaw angle) in degrees * 100, 0.0..359.99 degrees. If unknown, se" +
+            "t to: UINT16_MAX")]
         public ushort Hdg
         {
             get

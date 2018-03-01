@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// TERRAIN_CHECK
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.TerrainCheck, Name="TERRAIN_CHECK", Description="Request that the vehicle report terrain height at the given location. Used by GCS" +
+        " to check if vehicle has all terrain data needed for a mission.")]
     public class TerrainCheckMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +52,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude (degrees *10^7)")]
         public int Lat
         {
             get
@@ -64,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude (degrees *10^7)")]
         public int Lon
         {
             get

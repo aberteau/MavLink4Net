@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ALTITUDE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Altitude, Name="ALTITUDE", Description="The current system altitude.")]
     public class AltitudeMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_monotonic", Type="float", Units="m", Description=@"This altitude measure is initialized on system boot and monotonic (it is never reset, but represents the local altitude change). The only guarantee on this field is that it will never be reset and is consistent within a flight. The recommended value for this field is the uncorrected barometric altitude at boot time. This altitude will also drift and vary between flights.")]
         public float AltitudeMonotonic
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_amsl", Type="float", Units="m", Description=@"This altitude measure is strictly above mean sea level and might be non-monotonic (it might reset on events like GPS lock or when a new QNH value is set). It should be the altitude to which global altitude waypoints are compared to. Note that it is *not* the GPS altitude, however, most GPS modules already output AMSL by default and not the WGS84 altitude.")]
         public float AltitudeAmsl
         {
             get
@@ -134,6 +139,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This is the local altitude in the local coordinate frame. It is not the altitude above home, but in reference to the coordinate origin (0, 0, 0). It is up-positive.
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_local", Type="float", Units="m", Description="This is the local altitude in the local coordinate frame. It is not the altitude " +
+            "above home, but in reference to the coordinate origin (0, 0, 0). It is up-positi" +
+            "ve.")]
         public float AltitudeLocal
         {
             get
@@ -149,6 +157,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This is the altitude above the home position. It resets on each change of the current home position.
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_relative", Type="float", Units="m", Description="This is the altitude above the home position. It resets on each change of the cur" +
+            "rent home position.")]
         public float AltitudeRelative
         {
             get
@@ -164,6 +174,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This is the altitude above terrain. It might be fed by a terrain database or an altimeter. Values smaller than -1000 should be interpreted as unknown.
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_terrain", Type="float", Units="m", Description="This is the altitude above terrain. It might be fed by a terrain database or an a" +
+            "ltimeter. Values smaller than -1000 should be interpreted as unknown.")]
         public float AltitudeTerrain
         {
             get
@@ -179,6 +191,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available.
         /// </summary>
+        [MessageFieldMetadata(Name="bottom_clearance", Type="float", Units="m", Description=@"This is not the altitude, but the clear space below the system according to the fused clearance estimate. It generally should max out at the maximum range of e.g. the laser altimeter. It is generally a moving target. A negative value indicates no measurement available.")]
         public float BottomClearance
         {
             get

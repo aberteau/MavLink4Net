@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ATTITUDE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Attitude, Name="ATTITUDE", Description="The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right).")]
     public class AttitudeMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angle (rad, -pi..+pi)
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Units="rad", Description="Roll angle (rad, -pi..+pi)")]
         public float Roll
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angle (rad, -pi..+pi)
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Units="rad", Description="Pitch angle (rad, -pi..+pi)")]
         public float Pitch
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angle (rad, -pi..+pi)
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Units="rad", Description="Yaw angle (rad, -pi..+pi)")]
         public float Yaw
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="rollspeed", Type="float", Units="rad/s", Description="Roll angular speed (rad/s)")]
         public float Rollspeed
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="pitchspeed", Type="float", Units="rad/s", Description="Pitch angular speed (rad/s)")]
         public float Pitchspeed
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="yawspeed", Type="float", Units="rad/s", Description="Yaw angular speed (rad/s)")]
         public float Yawspeed
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// COMMAND_LONG
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.CommandLong, Name="COMMAND_LONG", Description="Send a command with up to seven parameters to the MAV")]
     public class CommandLongMessage : MavLink4Net.Messages.Message
     {
         
@@ -121,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System which should execute the command
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System which should execute the command")]
         public byte TargetSystem
         {
             get
@@ -136,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component which should execute the command, 0 for all components
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component which should execute the command, 0 for all components")]
         public byte TargetComponent
         {
             get
@@ -151,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Command ID, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="Command ID, as defined by MAV_CMD enum.")]
         public Cmd Command
         {
             get
@@ -166,6 +171,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
         /// </summary>
+        [MessageFieldMetadata(Name="confirmation", Type="uint8_t", Description="0: First transmission of this command. 1-255: Confirmation transmissions (e.g. fo" +
+            "r kill command)")]
         public byte Confirmation
         {
             get
@@ -181,6 +188,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 1, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param1", Type="float", Description="Parameter 1, as defined by MAV_CMD enum.")]
         public float Param1
         {
             get
@@ -196,6 +204,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 2, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param2", Type="float", Description="Parameter 2, as defined by MAV_CMD enum.")]
         public float Param2
         {
             get
@@ -211,6 +220,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 3, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param3", Type="float", Description="Parameter 3, as defined by MAV_CMD enum.")]
         public float Param3
         {
             get
@@ -226,6 +236,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 4, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param4", Type="float", Description="Parameter 4, as defined by MAV_CMD enum.")]
         public float Param4
         {
             get
@@ -241,6 +252,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 5, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param5", Type="float", Description="Parameter 5, as defined by MAV_CMD enum.")]
         public float Param5
         {
             get
@@ -256,6 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 6, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param6", Type="float", Description="Parameter 6, as defined by MAV_CMD enum.")]
         public float Param6
         {
             get
@@ -271,6 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter 7, as defined by MAV_CMD enum.
         /// </summary>
+        [MessageFieldMetadata(Name="param7", Type="float", Description="Parameter 7, as defined by MAV_CMD enum.")]
         public float Param7
         {
             get

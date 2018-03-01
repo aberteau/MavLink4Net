@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOG_ENTRY
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LogEntry, Name="LOG_ENTRY", Description="Reply to LOG_REQUEST_LIST")]
     public class LogEntryMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Log id
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint16_t", Description="Log id")]
         public ushort Id
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Total number of logs
         /// </summary>
+        [MessageFieldMetadata(Name="num_logs", Type="uint16_t", Description="Total number of logs")]
         public ushort NumLogs
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// High log number
         /// </summary>
+        [MessageFieldMetadata(Name="last_log_num", Type="uint16_t", Description="High log number")]
         public ushort LastLogNum
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// UTC timestamp of log in seconds since 1970, or 0 if not available
         /// </summary>
+        [MessageFieldMetadata(Name="time_utc", Type="uint32_t", Units="s", Description="UTC timestamp of log in seconds since 1970, or 0 if not available")]
         public uint TimeUtc
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Size of the log (may be approximate) in bytes
         /// </summary>
+        [MessageFieldMetadata(Name="size", Type="uint32_t", Units="bytes", Description="Size of the log (may be approximate) in bytes")]
         public uint Size
         {
             get

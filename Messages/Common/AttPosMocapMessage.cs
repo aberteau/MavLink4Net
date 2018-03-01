@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ATT_POS_MOCAP
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AttPosMocap, Name="ATT_POS_MOCAP", Description="Motion capture attitude and position")]
     public class AttPosMocapMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)")]
         public float[] Q
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X position in meters (NED)
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="X position in meters (NED)")]
         public float X
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y position in meters (NED)
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Y position in meters (NED)")]
         public float Y
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z position in meters (NED)
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Z position in meters (NED)")]
         public float Z
         {
             get

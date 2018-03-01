@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MEMORY_VECT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MemoryVect, Name="MEMORY_VECT", Description="Send raw controller memory. The use of this message is discouraged for normal pac" +
+        "kets, but a quite efficient way for testing new messages and getting experimenta" +
+        "l debug output.")]
     public class MemoryVectMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +69,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Starting address of the debug variables
         /// </summary>
+        [MessageFieldMetadata(Name="address", Type="uint16_t", Description="Starting address of the debug variables")]
         public ushort Address
         {
             get
@@ -80,6 +85,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1=as below
         /// </summary>
+        [MessageFieldMetadata(Name="ver", Type="uint8_t", Description="Version code of the type variable. 0=unknown, type ignored and assumed int16_t. 1" +
+            "=as below")]
         public byte Ver
         {
             get
@@ -95,6 +102,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, 2=16 x Q15, 3=16 x 1Q14
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="uint8_t", Description="Type code of the memory variables. for ver = 1: 0=16 x int16_t, 1=16 x uint16_t, " +
+            "2=16 x Q15, 3=16 x 1Q14")]
         public byte Type
         {
             get
@@ -110,6 +119,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Memory contents at specified address
         /// </summary>
+        [MessageFieldMetadata(Name="value", Type="int8_t[32]", Description="Memory contents at specified address")]
         public sbyte[] Value
         {
             get

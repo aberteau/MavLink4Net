@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// CAMERA_TRIGGER
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.CameraTrigger, Name="CAMERA_TRIGGER", Description="Camera-IMU triggering and synchronisation message.")]
     public class CameraTriggerMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp for the image frame in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp for the image frame in microseconds")]
         public ulong TimeUsec
         {
             get
@@ -64,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Image frame sequence
         /// </summary>
+        [MessageFieldMetadata(Name="seq", Type="uint32_t", Description="Image frame sequence")]
         public uint Seq
         {
             get

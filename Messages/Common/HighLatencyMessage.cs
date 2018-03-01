@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIGH_LATENCY
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HighLatency, Name="HIGH_LATENCY", Description="Message appropriate for high latency connections like Iridium")]
     public class HighLatencyMessage : MavLink4Net.Messages.Message
     {
         
@@ -225,6 +227,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
         /// </summary>
+        [MessageFieldMetadata(Name="base_mode", Type="MAV_MODE_FLAG enum", Display="bitmask", Description="System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h")]
         public ModeFlag BaseMode
         {
             get
@@ -240,6 +243,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// A bitfield for use for autopilot-specific flags.
         /// </summary>
+        [MessageFieldMetadata(Name="custom_mode", Type="uint32_t", Display="bitmask", Description="A bitfield for use for autopilot-specific flags.")]
         public uint CustomMode
         {
             get
@@ -255,6 +259,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
         /// </summary>
+        [MessageFieldMetadata(Name="landed_state", Type="MAV_LANDED_STATE enum", Description="The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown" +
+            ".")]
         public LandedState LandedState
         {
             get
@@ -270,6 +276,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// roll (centidegrees)
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="int16_t", Units="cdeg", Description="roll (centidegrees)")]
         public short Roll
         {
             get
@@ -285,6 +292,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// pitch (centidegrees)
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="int16_t", Units="cdeg", Description="pitch (centidegrees)")]
         public short Pitch
         {
             get
@@ -300,6 +308,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// heading (centidegrees)
         /// </summary>
+        [MessageFieldMetadata(Name="heading", Type="uint16_t", Units="cdeg", Description="heading (centidegrees)")]
         public ushort Heading
         {
             get
@@ -315,6 +324,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// throttle (percentage)
         /// </summary>
+        [MessageFieldMetadata(Name="throttle", Type="int8_t", Units="%", Description="throttle (percentage)")]
         public sbyte Throttle
         {
             get
@@ -330,6 +340,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// heading setpoint (centidegrees)
         /// </summary>
+        [MessageFieldMetadata(Name="heading_sp", Type="int16_t", Units="cdeg", Description="heading setpoint (centidegrees)")]
         public short HeadingSp
         {
             get
@@ -345,6 +356,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="latitude", Type="int32_t", Units="degE7", Description="Latitude, expressed as degrees * 1E7")]
         public int Latitude
         {
             get
@@ -360,6 +372,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="longitude", Type="int32_t", Units="degE7", Description="Longitude, expressed as degrees * 1E7")]
         public int Longitude
         {
             get
@@ -375,6 +388,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude above mean sea level (meters)
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_amsl", Type="int16_t", Units="m", Description="Altitude above mean sea level (meters)")]
         public short AltitudeAmsl
         {
             get
@@ -390,6 +404,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude setpoint relative to the home position (meters)
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_sp", Type="int16_t", Units="m", Description="Altitude setpoint relative to the home position (meters)")]
         public short AltitudeSp
         {
             get
@@ -405,6 +420,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// airspeed (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="airspeed", Type="uint8_t", Units="m/s", Description="airspeed (m/s)")]
         public byte Airspeed
         {
             get
@@ -420,6 +436,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// airspeed setpoint (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="airspeed_sp", Type="uint8_t", Units="m/s", Description="airspeed setpoint (m/s)")]
         public byte AirspeedSp
         {
             get
@@ -435,6 +452,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// groundspeed (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="groundspeed", Type="uint8_t", Units="m/s", Description="groundspeed (m/s)")]
         public byte Groundspeed
         {
             get
@@ -450,6 +468,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// climb rate (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="climb_rate", Type="int8_t", Units="m/s", Description="climb rate (m/s)")]
         public sbyte ClimbRate
         {
             get
@@ -465,6 +484,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of satellites visible. If unknown, set to 255
         /// </summary>
+        [MessageFieldMetadata(Name="gps_nsat", Type="uint8_t", Description="Number of satellites visible. If unknown, set to 255")]
         public byte GpsNsat
         {
             get
@@ -480,6 +500,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See the GPS_FIX_TYPE enum.
         /// </summary>
+        [MessageFieldMetadata(Name="gps_fix_type", Type="GPS_FIX_TYPE enum", Description="See the GPS_FIX_TYPE enum.")]
         public GpsFixType GpsFixType
         {
             get
@@ -495,6 +516,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Remaining battery (percentage)
         /// </summary>
+        [MessageFieldMetadata(Name="battery_remaining", Type="uint8_t", Units="%", Description="Remaining battery (percentage)")]
         public byte BatteryRemaining
         {
             get
@@ -510,6 +532,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot temperature (degrees C)
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="int8_t", Units="degC", Description="Autopilot temperature (degrees C)")]
         public sbyte Temperature
         {
             get
@@ -525,6 +548,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Air temperature (degrees C) from airspeed sensor
         /// </summary>
+        [MessageFieldMetadata(Name="temperature_air", Type="int8_t", Units="degC", Description="Air temperature (degrees C) from airspeed sensor")]
         public sbyte TemperatureAir
         {
             get
@@ -540,6 +564,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)
         /// </summary>
+        [MessageFieldMetadata(Name="failsafe", Type="uint8_t", Description="failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, " +
+            "bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)")]
         public byte Failsafe
         {
             get
@@ -555,6 +581,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// current waypoint number
         /// </summary>
+        [MessageFieldMetadata(Name="wp_num", Type="uint8_t", Description="current waypoint number")]
         public byte WpNum
         {
             get
@@ -570,6 +597,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// distance to target (meters)
         /// </summary>
+        [MessageFieldMetadata(Name="wp_distance", Type="uint16_t", Units="m", Description="distance to target (meters)")]
         public ushort WpDistance
         {
             get

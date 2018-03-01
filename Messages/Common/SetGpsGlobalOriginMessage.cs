@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SET_GPS_GLOBAL_ORIGIN
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SetGpsGlobalOrigin, Name="SET_GPS_GLOBAL_ORIGIN", Description=@"As local waypoints exist, the global waypoint reference allows to transform between the local coordinate frame and the global (GPS) coordinate frame. This can be necessary when e.g. in- and outdoor settings are connected and the MAV should move from in- to outdoor.")]
     public class SetGpsGlobalOriginMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="latitude", Type="int32_t", Units="degE7", Description="Latitude (WGS84), in degrees * 1E7")]
         public int Latitude
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="longitude", Type="int32_t", Units="degE7", Description="Longitude (WGS84), in degrees * 1E7")]
         public int Longitude
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (AMSL), in meters * 1000 (positive for up)
         /// </summary>
+        [MessageFieldMetadata(Name="altitude", Type="int32_t", Units="mm", Description="Altitude (AMSL), in meters * 1000 (positive for up)")]
         public int Altitude
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get

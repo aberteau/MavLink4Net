@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIGHRES_IMU
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HighresImu, Name="HIGHRES_IMU", Description="The IMU readings in SI units in NED body frame")]
     public class HighresImuMessage : MavLink4Net.Messages.Message
     {
         
@@ -153,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds, synced to UNIX time or since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds, synced to UNIX time or since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -168,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="xacc", Type="float", Units="m/s/s", Description="X acceleration (m/s^2)")]
         public float Xacc
         {
             get
@@ -183,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="yacc", Type="float", Units="m/s/s", Description="Y acceleration (m/s^2)")]
         public float Yacc
         {
             get
@@ -198,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="zacc", Type="float", Units="m/s/s", Description="Z acceleration (m/s^2)")]
         public float Zacc
         {
             get
@@ -213,6 +219,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around X axis (rad / sec)
         /// </summary>
+        [MessageFieldMetadata(Name="xgyro", Type="float", Units="rad/s", Description="Angular speed around X axis (rad / sec)")]
         public float Xgyro
         {
             get
@@ -228,6 +235,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Y axis (rad / sec)
         /// </summary>
+        [MessageFieldMetadata(Name="ygyro", Type="float", Units="rad/s", Description="Angular speed around Y axis (rad / sec)")]
         public float Ygyro
         {
             get
@@ -243,6 +251,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Z axis (rad / sec)
         /// </summary>
+        [MessageFieldMetadata(Name="zgyro", Type="float", Units="rad/s", Description="Angular speed around Z axis (rad / sec)")]
         public float Zgyro
         {
             get
@@ -258,6 +267,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Magnetic field (Gauss)
         /// </summary>
+        [MessageFieldMetadata(Name="xmag", Type="float", Units="gauss", Description="X Magnetic field (Gauss)")]
         public float Xmag
         {
             get
@@ -273,6 +283,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Magnetic field (Gauss)
         /// </summary>
+        [MessageFieldMetadata(Name="ymag", Type="float", Units="gauss", Description="Y Magnetic field (Gauss)")]
         public float Ymag
         {
             get
@@ -288,6 +299,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Magnetic field (Gauss)
         /// </summary>
+        [MessageFieldMetadata(Name="zmag", Type="float", Units="gauss", Description="Z Magnetic field (Gauss)")]
         public float Zmag
         {
             get
@@ -303,6 +315,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Absolute pressure in millibar
         /// </summary>
+        [MessageFieldMetadata(Name="abs_pressure", Type="float", Units="mbar", Description="Absolute pressure in millibar")]
         public float AbsPressure
         {
             get
@@ -318,6 +331,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Differential pressure in millibar
         /// </summary>
+        [MessageFieldMetadata(Name="diff_pressure", Type="float", Units="mbar", Description="Differential pressure in millibar")]
         public float DiffPressure
         {
             get
@@ -333,6 +347,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude calculated from pressure
         /// </summary>
+        [MessageFieldMetadata(Name="pressure_alt", Type="float", Description="Altitude calculated from pressure")]
         public float PressureAlt
         {
             get
@@ -348,6 +363,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Temperature in degrees celsius
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="float", Units="degC", Description="Temperature in degrees celsius")]
         public float Temperature
         {
             get
@@ -363,6 +379,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: temperature
         /// </summary>
+        [MessageFieldMetadata(Name="fields_updated", Type="uint16_t", Display="bitmask", Description="Bitmask for fields that have updated since last message, bit 0 = xacc, bit 12: te" +
+            "mperature")]
         public ushort FieldsUpdated
         {
             get

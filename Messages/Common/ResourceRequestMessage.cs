@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// RESOURCE_REQUEST
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ResourceRequest, Name="RESOURCE_REQUEST", Description="The autopilot is requesting a resource (file, binary, other type of data)")]
     public class ResourceRequestMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Request ID. This ID should be re-used when sending back URI contents
         /// </summary>
+        [MessageFieldMetadata(Name="request_id", Type="uint8_t", Description="Request ID. This ID should be re-used when sending back URI contents")]
         public byte RequestId
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary
         /// </summary>
+        [MessageFieldMetadata(Name="uri_type", Type="uint8_t", Description="The type of requested URI. 0 = a file via URL. 1 = a UAVCAN binary")]
         public byte UriType
         {
             get
@@ -103,6 +107,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The requested unique resource identifier (URI). It is not necessarily a straight domain name (depends on the URI type enum)
         /// </summary>
+        [MessageFieldMetadata(Name="uri", Type="uint8_t[120]", Description="The requested unique resource identifier (URI). It is not necessarily a straight " +
+            "domain name (depends on the URI type enum)")]
         public byte[] Uri
         {
             get
@@ -118,6 +124,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary stream.
         /// </summary>
+        [MessageFieldMetadata(Name="transfer_type", Type="uint8_t", Description="The way the autopilot wants to receive the URI. 0 = MAVLink FTP. 1 = binary strea" +
+            "m.")]
         public byte TransferType
         {
             get
@@ -133,6 +141,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The storage path the autopilot wants the URI to be stored in. Will only be valid if the transfer_type has a storage associated (e.g. MAVLink FTP).
         /// </summary>
+        [MessageFieldMetadata(Name="storage", Type="uint8_t[120]", Description="The storage path the autopilot wants the URI to be stored in. Will only be valid " +
+            "if the transfer_type has a storage associated (e.g. MAVLink FTP).")]
         public byte[] Storage
         {
             get

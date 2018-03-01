@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HEARTBEAT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Heartbeat, Name="HEARTBEAT", Description=@"The heartbeat message shows that a system is present and responding. The type of the MAV and Autopilot hardware allow the receiving system to treat further messages from this system appropriate (e.g. by laying out the user interface based on the autopilot).")]
     public class HeartbeatMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +83,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE ENUM)
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="MAV_TYPE enum", Description="Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE" +
+            " ENUM)")]
         public Type Type
         {
             get
@@ -96,6 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Autopilot type / class. defined in MAV_AUTOPILOT ENUM
         /// </summary>
+        [MessageFieldMetadata(Name="autopilot", Type="MAV_AUTOPILOT enum", Description="Autopilot type / class. defined in MAV_AUTOPILOT ENUM")]
         public Autopilot Autopilot
         {
             get
@@ -111,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
         /// </summary>
+        [MessageFieldMetadata(Name="base_mode", Type="MAV_MODE_FLAG enum", Display="bitmask", Description="System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h")]
         public ModeFlag BaseMode
         {
             get
@@ -126,6 +132,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// A bitfield for use for autopilot-specific flags.
         /// </summary>
+        [MessageFieldMetadata(Name="custom_mode", Type="uint32_t", Description="A bitfield for use for autopilot-specific flags.")]
         public uint CustomMode
         {
             get
@@ -141,6 +148,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System status flag, see MAV_STATE ENUM
         /// </summary>
+        [MessageFieldMetadata(Name="system_status", Type="MAV_STATE enum", Description="System status flag, see MAV_STATE ENUM")]
         public State SystemStatus
         {
             get
@@ -156,6 +164,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version
         /// </summary>
+        [MessageFieldMetadata(Name="mavlink_version", Type="uint8_t", Description="MAVLink version, not writable by user, gets added by protocol because of magic da" +
+            "ta type: uint8_t_mavlink_version")]
         public byte MavlinkVersion
         {
             get

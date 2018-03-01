@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOG_REQUEST_DATA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LogRequestData, Name="LOG_REQUEST_DATA", Description="Request a chunk of a log")]
     public class LogRequestDataMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Log id (from LOG_ENTRY reply)
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint16_t", Description="Log id (from LOG_ENTRY reply)")]
         public ushort Id
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Offset into the log
         /// </summary>
+        [MessageFieldMetadata(Name="ofs", Type="uint32_t", Description="Offset into the log")]
         public uint Ofs
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of bytes
         /// </summary>
+        [MessageFieldMetadata(Name="count", Type="uint32_t", Units="bytes", Description="Number of bytes")]
         public uint Count
         {
             get

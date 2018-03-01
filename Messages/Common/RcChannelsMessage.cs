@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// RC_CHANNELS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.RcChannels, Name="RC_CHANNELS", Description="The PPM values of the RC channels received. The standard PPM modulation is as fol" +
+        "lows: 1000 microseconds: 0%, 2000 microseconds: 100%. Individual receivers/trans" +
+        "mitters might violate this specification.")]
     public class RcChannelsMessage : MavLink4Net.Messages.Message
     {
         
@@ -201,6 +205,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -216,6 +221,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Total number of RC channels being received. This can be larger than 18, indicating that more channels are available but not given in this message. This value should be 0 when no RC channels are available.
         /// </summary>
+        [MessageFieldMetadata(Name="chancount", Type="uint8_t", Description="Total number of RC channels being received. This can be larger than 18, indicatin" +
+            "g that more channels are available but not given in this message. This value sho" +
+            "uld be 0 when no RC channels are available.")]
         public byte Chancount
         {
             get
@@ -231,6 +239,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan1_raw", Type="uint16_t", Units="us", Description="RC channel 1 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan1Raw
         {
             get
@@ -246,6 +256,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan2_raw", Type="uint16_t", Units="us", Description="RC channel 2 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan2Raw
         {
             get
@@ -261,6 +273,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan3_raw", Type="uint16_t", Units="us", Description="RC channel 3 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan3Raw
         {
             get
@@ -276,6 +290,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan4_raw", Type="uint16_t", Units="us", Description="RC channel 4 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan4Raw
         {
             get
@@ -291,6 +307,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan5_raw", Type="uint16_t", Units="us", Description="RC channel 5 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan5Raw
         {
             get
@@ -306,6 +324,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan6_raw", Type="uint16_t", Units="us", Description="RC channel 6 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan6Raw
         {
             get
@@ -321,6 +341,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan7_raw", Type="uint16_t", Units="us", Description="RC channel 7 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan7Raw
         {
             get
@@ -336,6 +358,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan8_raw", Type="uint16_t", Units="us", Description="RC channel 8 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan8Raw
         {
             get
@@ -351,6 +375,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 9 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan9_raw", Type="uint16_t", Units="us", Description="RC channel 9 value, in microseconds. A value of UINT16_MAX implies the channel is" +
+            " unused.")]
         public ushort Chan9Raw
         {
             get
@@ -366,6 +392,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 10 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan10_raw", Type="uint16_t", Units="us", Description="RC channel 10 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan10Raw
         {
             get
@@ -381,6 +409,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 11 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan11_raw", Type="uint16_t", Units="us", Description="RC channel 11 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan11Raw
         {
             get
@@ -396,6 +426,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 12 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan12_raw", Type="uint16_t", Units="us", Description="RC channel 12 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan12Raw
         {
             get
@@ -411,6 +443,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 13 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan13_raw", Type="uint16_t", Units="us", Description="RC channel 13 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan13Raw
         {
             get
@@ -426,6 +460,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 14 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan14_raw", Type="uint16_t", Units="us", Description="RC channel 14 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan14Raw
         {
             get
@@ -441,6 +477,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 15 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan15_raw", Type="uint16_t", Units="us", Description="RC channel 15 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan15Raw
         {
             get
@@ -456,6 +494,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 16 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan16_raw", Type="uint16_t", Units="us", Description="RC channel 16 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan16Raw
         {
             get
@@ -471,6 +511,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 17 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan17_raw", Type="uint16_t", Units="us", Description="RC channel 17 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan17Raw
         {
             get
@@ -486,6 +528,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 18 value, in microseconds. A value of UINT16_MAX implies the channel is unused.
         /// </summary>
+        [MessageFieldMetadata(Name="chan18_raw", Type="uint16_t", Units="us", Description="RC channel 18 value, in microseconds. A value of UINT16_MAX implies the channel i" +
+            "s unused.")]
         public ushort Chan18Raw
         {
             get
@@ -501,6 +545,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.
         /// </summary>
+        [MessageFieldMetadata(Name="rssi", Type="uint8_t", Units="%", Description="Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.")]
         public byte Rssi
         {
             get

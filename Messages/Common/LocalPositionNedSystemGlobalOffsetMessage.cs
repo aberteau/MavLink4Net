@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LocalPositionNedSystemGlobalOffset, Name="LOCAL_POSITION_NED_SYSTEM_GLOBAL_OFFSET", Description="The offset in X, Y, Z and yaw between the LOCAL_POSITION_NED messages of MAV X an" +
+        "d the global coordinate frame in NED coordinates. Coordinate frame is right-hand" +
+        "ed, Z-axis down (aeronautical frame, NED / north-east-down convention)")]
     public class LocalPositionNedSystemGlobalOffsetMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -104,6 +109,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Position
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="X Position")]
         public float X
         {
             get
@@ -119,6 +125,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Position
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Y Position")]
         public float Y
         {
             get
@@ -134,6 +141,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Position
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Z Position")]
         public float Z
         {
             get
@@ -149,6 +157,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Units="rad", Description="Roll")]
         public float Roll
         {
             get
@@ -164,6 +173,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Units="rad", Description="Pitch")]
         public float Pitch
         {
             get
@@ -179,6 +189,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Units="rad", Description="Yaw")]
         public float Yaw
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GPS_RTK
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GpsRtk, Name="GPS_RTK", Description="RTK GPS data. Gives information on the relative baseline calculation the GPS is r" +
+        "eporting")]
     public class GpsRtkMessage : MavLink4Net.Messages.Message
     {
         
@@ -137,6 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time since boot of last baseline message received in ms.
         /// </summary>
+        [MessageFieldMetadata(Name="time_last_baseline_ms", Type="uint32_t", Units="ms", Description="Time since boot of last baseline message received in ms.")]
         public uint TimeLastBaselineMs
         {
             get
@@ -152,6 +156,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Identification of connected RTK receiver.
         /// </summary>
+        [MessageFieldMetadata(Name="rtk_receiver_id", Type="uint8_t", Description="Identification of connected RTK receiver.")]
         public byte RtkReceiverId
         {
             get
@@ -167,6 +172,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS Week Number of last baseline
         /// </summary>
+        [MessageFieldMetadata(Name="wn", Type="uint16_t", Description="GPS Week Number of last baseline")]
         public ushort Wn
         {
             get
@@ -182,6 +188,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS Time of Week of last baseline
         /// </summary>
+        [MessageFieldMetadata(Name="tow", Type="uint32_t", Units="ms", Description="GPS Time of Week of last baseline")]
         public uint Tow
         {
             get
@@ -197,6 +204,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS-specific health report for RTK data.
         /// </summary>
+        [MessageFieldMetadata(Name="rtk_health", Type="uint8_t", Description="GPS-specific health report for RTK data.")]
         public byte RtkHealth
         {
             get
@@ -212,6 +220,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Rate of baseline messages being received by GPS, in HZ
         /// </summary>
+        [MessageFieldMetadata(Name="rtk_rate", Type="uint8_t", Units="Hz", Description="Rate of baseline messages being received by GPS, in HZ")]
         public byte RtkRate
         {
             get
@@ -227,6 +236,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current number of sats used for RTK calculation.
         /// </summary>
+        [MessageFieldMetadata(Name="nsats", Type="uint8_t", Description="Current number of sats used for RTK calculation.")]
         public byte Nsats
         {
             get
@@ -242,6 +252,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Coordinate system of baseline
         /// </summary>
+        [MessageFieldMetadata(Name="baseline_coords_type", Type="RTK_BASELINE_COORDINATE_SYSTEM enum", Description="Coordinate system of baseline")]
         public RtkBaselineCoordinateSystem BaselineCoordsType
         {
             get
@@ -257,6 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current baseline in ECEF x or NED north component in mm.
         /// </summary>
+        [MessageFieldMetadata(Name="baseline_a_mm", Type="int32_t", Units="mm", Description="Current baseline in ECEF x or NED north component in mm.")]
         public int BaselineAMm
         {
             get
@@ -272,6 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current baseline in ECEF y or NED east component in mm.
         /// </summary>
+        [MessageFieldMetadata(Name="baseline_b_mm", Type="int32_t", Units="mm", Description="Current baseline in ECEF y or NED east component in mm.")]
         public int BaselineBMm
         {
             get
@@ -287,6 +300,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current baseline in ECEF z or NED down component in mm.
         /// </summary>
+        [MessageFieldMetadata(Name="baseline_c_mm", Type="int32_t", Units="mm", Description="Current baseline in ECEF z or NED down component in mm.")]
         public int BaselineCMm
         {
             get
@@ -302,6 +316,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current estimate of baseline accuracy.
         /// </summary>
+        [MessageFieldMetadata(Name="accuracy", Type="uint32_t", Description="Current estimate of baseline accuracy.")]
         public uint Accuracy
         {
             get
@@ -317,6 +332,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current number of integer ambiguity hypotheses.
         /// </summary>
+        [MessageFieldMetadata(Name="iar_num_hypotheses", Type="int32_t", Description="Current number of integer ambiguity hypotheses.")]
         public int IarNumHypotheses
         {
             get

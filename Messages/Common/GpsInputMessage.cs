@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GPS_INPUT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GpsInput, Name="GPS_INPUT", Description="GPS sensor input message.  This is a raw sensor value sent by the GPS. This is NO" +
+        "T the global position estimate of the sytem.")]
     public class GpsInputMessage : MavLink4Net.Messages.Message
     {
         
@@ -177,6 +180,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -192,6 +196,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// ID of the GPS for multiple GPS inputs
         /// </summary>
+        [MessageFieldMetadata(Name="gps_id", Type="uint8_t", Description="ID of the GPS for multiple GPS inputs")]
         public byte GpsId
         {
             get
@@ -207,6 +212,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flags indicating which fields to ignore (see GPS_INPUT_IGNORE_FLAGS enum).  All other fields must be provided.
         /// </summary>
+        [MessageFieldMetadata(Name="ignore_flags", Type="GPS_INPUT_IGNORE_FLAGS enum", Display="bitmask", Description="Flags indicating which fields to ignore (see GPS_INPUT_IGNORE_FLAGS enum).  All o" +
+            "ther fields must be provided.")]
         public GpsInputIgnoreFlags IgnoreFlags
         {
             get
@@ -222,6 +229,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS time (milliseconds from start of GPS week)
         /// </summary>
+        [MessageFieldMetadata(Name="time_week_ms", Type="uint32_t", Units="ms", Description="GPS time (milliseconds from start of GPS week)")]
         public uint TimeWeekMs
         {
             get
@@ -237,6 +245,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS week number
         /// </summary>
+        [MessageFieldMetadata(Name="time_week", Type="uint16_t", Description="GPS week number")]
         public ushort TimeWeek
         {
             get
@@ -252,6 +261,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK
         /// </summary>
+        [MessageFieldMetadata(Name="fix_type", Type="uint8_t", Description="0-1: no fix, 2: 2D fix, 3: 3D fix. 4: 3D with DGPS. 5: 3D with RTK")]
         public byte FixType
         {
             get
@@ -267,6 +277,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude (WGS84), in degrees * 1E7")]
         public int Lat
         {
             get
@@ -282,6 +293,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude (WGS84), in degrees * 1E7")]
         public int Lon
         {
             get
@@ -297,6 +309,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (AMSL, not WGS84), in m (positive for up)
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="float", Units="m", Description="Altitude (AMSL, not WGS84), in m (positive for up)")]
         public float Alt
         {
             get
@@ -312,6 +325,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS HDOP horizontal dilution of position in m
         /// </summary>
+        [MessageFieldMetadata(Name="hdop", Type="float", Units="m", Description="GPS HDOP horizontal dilution of position in m")]
         public float Hdop
         {
             get
@@ -327,6 +341,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS VDOP vertical dilution of position in m
         /// </summary>
+        [MessageFieldMetadata(Name="vdop", Type="float", Units="m", Description="GPS VDOP vertical dilution of position in m")]
         public float Vdop
         {
             get
@@ -342,6 +357,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS velocity in m/s in NORTH direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="vn", Type="float", Units="m/s", Description="GPS velocity in m/s in NORTH direction in earth-fixed NED frame")]
         public float Vn
         {
             get
@@ -357,6 +373,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS velocity in m/s in EAST direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="ve", Type="float", Units="m/s", Description="GPS velocity in m/s in EAST direction in earth-fixed NED frame")]
         public float Ve
         {
             get
@@ -372,6 +389,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS velocity in m/s in DOWN direction in earth-fixed NED frame
         /// </summary>
+        [MessageFieldMetadata(Name="vd", Type="float", Units="m/s", Description="GPS velocity in m/s in DOWN direction in earth-fixed NED frame")]
         public float Vd
         {
             get
@@ -387,6 +405,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS speed accuracy in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="speed_accuracy", Type="float", Units="m/s", Description="GPS speed accuracy in m/s")]
         public float SpeedAccuracy
         {
             get
@@ -402,6 +421,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS horizontal accuracy in m
         /// </summary>
+        [MessageFieldMetadata(Name="horiz_accuracy", Type="float", Units="m", Description="GPS horizontal accuracy in m")]
         public float HorizAccuracy
         {
             get
@@ -417,6 +437,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS vertical accuracy in m
         /// </summary>
+        [MessageFieldMetadata(Name="vert_accuracy", Type="float", Units="m", Description="GPS vertical accuracy in m")]
         public float VertAccuracy
         {
             get
@@ -432,6 +453,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of satellites visible.
         /// </summary>
+        [MessageFieldMetadata(Name="satellites_visible", Type="uint8_t", Description="Number of satellites visible.")]
         public byte SatellitesVisible
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SERIAL_CONTROL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SerialControl, Name="SERIAL_CONTROL", Description=@"Control a serial port. This can be used for raw access to an onboard serial peripheral such as a GPS or telemetry radio. It is designed to make it possible to update the devices firmware via MAVLink messages or change the devices settings. A message with zero bytes can be used to change just the baudrate.")]
     public class SerialControlMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See SERIAL_CONTROL_DEV enum
         /// </summary>
+        [MessageFieldMetadata(Name="device", Type="SERIAL_CONTROL_DEV enum", Description="See SERIAL_CONTROL_DEV enum")]
         public SerialControlDev Device
         {
             get
@@ -96,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See SERIAL_CONTROL_FLAG enum
         /// </summary>
+        [MessageFieldMetadata(Name="flags", Type="SERIAL_CONTROL_FLAG enum", Display="bitmask", Description="See SERIAL_CONTROL_FLAG enum")]
         public SerialControlFlag Flags
         {
             get
@@ -111,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timeout for reply data in milliseconds
         /// </summary>
+        [MessageFieldMetadata(Name="timeout", Type="uint16_t", Units="ms", Description="Timeout for reply data in milliseconds")]
         public ushort Timeout
         {
             get
@@ -126,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Baudrate of transfer. Zero means no change.
         /// </summary>
+        [MessageFieldMetadata(Name="baudrate", Type="uint32_t", Units="bits/s", Description="Baudrate of transfer. Zero means no change.")]
         public uint Baudrate
         {
             get
@@ -141,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// how many bytes in this transfer
         /// </summary>
+        [MessageFieldMetadata(Name="count", Type="uint8_t", Units="bytes", Description="how many bytes in this transfer")]
         public byte Count
         {
             get
@@ -156,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// serial data
         /// </summary>
+        [MessageFieldMetadata(Name="data", Type="uint8_t[70]", Description="serial data")]
         public byte[] Data
         {
             get

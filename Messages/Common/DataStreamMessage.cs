@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// DATA_STREAM
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.DataStream, Name="DATA_STREAM", Description="THIS INTERFACE IS DEPRECATED. USE MESSAGE_INTERVAL INSTEAD.")]
     public class DataStreamMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The ID of the requested data stream
         /// </summary>
+        [MessageFieldMetadata(Name="stream_id", Type="uint8_t", Description="The ID of the requested data stream")]
         public byte StreamId
         {
             get
@@ -72,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The message rate
         /// </summary>
+        [MessageFieldMetadata(Name="message_rate", Type="uint16_t", Units="Hz", Description="The message rate")]
         public ushort MessageRate
         {
             get
@@ -87,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 1 stream is enabled, 0 stream is stopped.
         /// </summary>
+        [MessageFieldMetadata(Name="on_off", Type="uint8_t", Description="1 stream is enabled, 0 stream is stopped.")]
         public byte OnOff
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// TIMESYNC
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Timesync, Name="TIMESYNC", Description="Time synchronization message.")]
     public class TimesyncMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time sync timestamp 1
         /// </summary>
+        [MessageFieldMetadata(Name="tc1", Type="int64_t", Description="Time sync timestamp 1")]
         public long Tc1
         {
             get
@@ -64,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time sync timestamp 2
         /// </summary>
+        [MessageFieldMetadata(Name="ts1", Type="int64_t", Description="Time sync timestamp 2")]
         public long Ts1
         {
             get

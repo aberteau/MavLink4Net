@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// CHANGE_OPERATOR_CONTROL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ChangeOperatorControl, Name="CHANGE_OPERATOR_CONTROL", Description="Request to control this MAV")]
     public class ChangeOperatorControlMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System the GCS requests control for
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System the GCS requests control for")]
         public byte TargetSystem
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: request control of this MAV, 1: Release control of this MAV
         /// </summary>
+        [MessageFieldMetadata(Name="control_request", Type="uint8_t", Description="0: request control of this MAV, 1: Release control of this MAV")]
         public byte ControlRequest
         {
             get
@@ -95,6 +99,10 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: key as plaintext, 1-255: future, different hashing/encryption variants. The GCS should in general use the safest mode possible initially and then gradually move down the encryption level if it gets a NACK message indicating an encryption mismatch.
         /// </summary>
+        [MessageFieldMetadata(Name="version", Type="uint8_t", Units="rad", Description="0: key as plaintext, 1-255: future, different hashing/encryption variants. The GC" +
+            "S should in general use the safest mode possible initially and then gradually mo" +
+            "ve down the encryption level if it gets a NACK message indicating an encryption " +
+            "mismatch.")]
         public byte Version
         {
             get
@@ -110,6 +118,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Password / Key, depending on version plaintext or encrypted. 25 or less characters, NULL terminated. The characters may involve A-Z, a-z, 0-9, and "!?,.-"
         /// </summary>
+        [MessageFieldMetadata(Name="passkey", Type="char[25]", Description="Password / Key, depending on version plaintext or encrypted. 25 or less character" +
+            "s, NULL terminated. The characters may involve A-Z, a-z, 0-9, and \"!?,.-\"")]
         public char[] Passkey
         {
             get

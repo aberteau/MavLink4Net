@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,10 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SET_MODE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.SetMode, Name="SET_MODE", Description="THIS INTERFACE IS DEPRECATED. USE COMMAND_LONG with MAV_CMD_DO_SET_MODE INSTEAD. " +
+        "Set the system mode, as defined by enum MAV_MODE. There is no target component i" +
+        "d as the mode is by definition for the overall aircraft, not only for one compon" +
+        "ent.")]
     public class SetModeMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +62,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The system setting the mode
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="The system setting the mode")]
         public byte TargetSystem
         {
             get
@@ -72,6 +78,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The new base mode
         /// </summary>
+        [MessageFieldMetadata(Name="base_mode", Type="MAV_MODE enum", Description="The new base mode")]
         public Mode BaseMode
         {
             get
@@ -87,6 +94,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The new autopilot-specific mode. This field can be ignored by an autopilot.
         /// </summary>
+        [MessageFieldMetadata(Name="custom_mode", Type="uint32_t", Description="The new autopilot-specific mode. This field can be ignored by an autopilot.")]
         public uint CustomMode
         {
             get

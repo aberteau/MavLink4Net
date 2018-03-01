@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOG_REQUEST_LIST
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LogRequestList, Name="LOG_REQUEST_LIST", Description="Request a list of available logs. On some systems calling this may stop on-board " +
+        "logging until LOG_REQUEST_END is called.")]
     public class LogRequestListMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -80,6 +84,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -95,6 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// First log id (0 for first available)
         /// </summary>
+        [MessageFieldMetadata(Name="start", Type="uint16_t", Description="First log id (0 for first available)")]
         public ushort Start
         {
             get
@@ -110,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Last log id (0xffff for last available)
         /// </summary>
+        [MessageFieldMetadata(Name="end", Type="uint16_t", Description="Last log id (0xffff for last available)")]
         public ushort End
         {
             get

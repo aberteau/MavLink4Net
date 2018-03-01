@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOG_DATA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LogData, Name="LOG_DATA", Description="Reply to LOG_REQUEST_DATA")]
     public class LogDataMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Log id (from LOG_ENTRY reply)
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint16_t", Description="Log id (from LOG_ENTRY reply)")]
         public ushort Id
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Offset into the log
         /// </summary>
+        [MessageFieldMetadata(Name="ofs", Type="uint32_t", Description="Offset into the log")]
         public uint Ofs
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of bytes (zero for end of log)
         /// </summary>
+        [MessageFieldMetadata(Name="count", Type="uint8_t", Units="bytes", Description="Number of bytes (zero for end of log)")]
         public byte Count
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// log data
         /// </summary>
+        [MessageFieldMetadata(Name="data", Type="uint8_t[90]", Description="log data")]
         public byte[] Data
         {
             get

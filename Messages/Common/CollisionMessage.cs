@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// COLLISION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Collision, Name="COLLISION", Description="Information about a potential collision")]
     public class CollisionMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Collision data source
         /// </summary>
+        [MessageFieldMetadata(Name="src", Type="MAV_COLLISION_SRC enum", Description="Collision data source")]
         public CollisionSrc Src
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Unique identifier, domain based on src field
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint32_t", Description="Unique identifier, domain based on src field")]
         public uint Id
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Action that is being taken to avoid this collision
         /// </summary>
+        [MessageFieldMetadata(Name="action", Type="MAV_COLLISION_ACTION enum", Description="Action that is being taken to avoid this collision")]
         public CollisionAction Action
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// How concerned the aircraft is about this collision
         /// </summary>
+        [MessageFieldMetadata(Name="threat_level", Type="MAV_COLLISION_THREAT_LEVEL enum", Description="How concerned the aircraft is about this collision")]
         public CollisionThreatLevel ThreatLevel
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Estimated time until collision occurs (seconds)
         /// </summary>
+        [MessageFieldMetadata(Name="time_to_minimum_delta", Type="float", Units="s", Description="Estimated time until collision occurs (seconds)")]
         public float TimeToMinimumDelta
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Closest vertical distance in meters between vehicle and object
         /// </summary>
+        [MessageFieldMetadata(Name="altitude_minimum_delta", Type="float", Units="m", Description="Closest vertical distance in meters between vehicle and object")]
         public float AltitudeMinimumDelta
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Closest horizontal distance in meteres between vehicle and object
         /// </summary>
+        [MessageFieldMetadata(Name="horizontal_minimum_delta", Type="float", Units="m", Description="Closest horizontal distance in meteres between vehicle and object")]
         public float HorizontalMinimumDelta
         {
             get

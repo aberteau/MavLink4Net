@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIL_ACTUATOR_CONTROLS
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HilActuatorControls, Name="HIL_ACTUATOR_CONTROLS", Description="Sent from autopilot to simulation. Hardware in the loop control outputs (replacem" +
+        "ent for HIL_CONTROLS)")]
     public class HilActuatorControlsMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -80,6 +84,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.
         /// </summary>
+        [MessageFieldMetadata(Name="controls", Type="float[16]", Description="Control outputs -1 .. 1. Channel assignment depends on the simulated hardware.")]
         public float[] Controls
         {
             get
@@ -95,6 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System mode (MAV_MODE), includes arming state.
         /// </summary>
+        [MessageFieldMetadata(Name="mode", Type="MAV_MODE enum", Description="System mode (MAV_MODE), includes arming state.")]
         public Mode Mode
         {
             get
@@ -110,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flags as bitfield, reserved for future use.
         /// </summary>
+        [MessageFieldMetadata(Name="flags", Type="uint64_t", Display="bitmask", Description="Flags as bitfield, reserved for future use.")]
         public ulong Flags
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -23,6 +24,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GPS_RAW_INT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GpsRawInt, Name="GPS_RAW_INT", Description=@"The global position, as returned by the Global Positioning System (GPS). This is
+                NOT the global position estimate of the system, but rather a RAW sensor value. See message GLOBAL_POSITION for the global position estimate. Coordinate frame is right-handed, Z-axis up (GPS frame).")]
     public class GpsRawIntMessage : MavLink4Net.Messages.Message
     {
         
@@ -154,6 +157,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -169,6 +173,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See the GPS_FIX_TYPE enum.
         /// </summary>
+        [MessageFieldMetadata(Name="fix_type", Type="GPS_FIX_TYPE enum", Description="See the GPS_FIX_TYPE enum.")]
         public GpsFixType FixType
         {
             get
@@ -184,6 +189,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (WGS84, EGM96 ellipsoid), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude (WGS84, EGM96 ellipsoid), in degrees * 1E7")]
         public int Lat
         {
             get
@@ -199,6 +205,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (WGS84, EGM96 ellipsoid), in degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude (WGS84, EGM96 ellipsoid), in degrees * 1E7")]
         public int Lon
         {
             get
@@ -214,6 +221,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (AMSL, NOT WGS84), in meters * 1000 (positive for up). Note that virtually all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="int32_t", Units="mm", Description="Altitude (AMSL, NOT WGS84), in meters * 1000 (positive for up). Note that virtual" +
+            "ly all GPS modules provide the AMSL altitude in addition to the WGS84 altitude.")]
         public int Alt
         {
             get
@@ -229,6 +238,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_MAX
         /// </summary>
+        [MessageFieldMetadata(Name="eph", Type="uint16_t", Description="GPS HDOP horizontal dilution of position (unitless). If unknown, set to: UINT16_M" +
+            "AX")]
         public ushort Eph
         {
             get
@@ -244,6 +255,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX
         /// </summary>
+        [MessageFieldMetadata(Name="epv", Type="uint16_t", Description="GPS VDOP vertical dilution of position (unitless). If unknown, set to: UINT16_MAX" +
+            "")]
         public ushort Epv
         {
             get
@@ -259,6 +272,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX
         /// </summary>
+        [MessageFieldMetadata(Name="vel", Type="uint16_t", Units="cm/s", Description="GPS ground speed (m/s * 100). If unknown, set to: UINT16_MAX")]
         public ushort Vel
         {
             get
@@ -274,6 +288,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0..359.99 degrees. If unknown, set to: UINT16_MAX
         /// </summary>
+        [MessageFieldMetadata(Name="cog", Type="uint16_t", Units="cdeg", Description="Course over ground (NOT heading, but direction of movement) in degrees * 100, 0.0" +
+            "..359.99 degrees. If unknown, set to: UINT16_MAX")]
         public ushort Cog
         {
             get
@@ -289,6 +305,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of satellites visible. If unknown, set to 255
         /// </summary>
+        [MessageFieldMetadata(Name="satellites_visible", Type="uint8_t", Description="Number of satellites visible. If unknown, set to 255")]
         public byte SatellitesVisible
         {
             get
@@ -304,6 +321,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up).
         /// </summary>
+        [MessageFieldMetadata(Name="alt_ellipsoid", Type="int32_t", Units="mm", Description="Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up).")]
         public int AltEllipsoid
         {
             get
@@ -319,6 +337,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Position uncertainty in meters * 1000 (positive for up).
         /// </summary>
+        [MessageFieldMetadata(Name="h_acc", Type="uint32_t", Units="mm", Description="Position uncertainty in meters * 1000 (positive for up).")]
         public uint HAcc
         {
             get
@@ -334,6 +353,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude uncertainty in meters * 1000 (positive for up).
         /// </summary>
+        [MessageFieldMetadata(Name="v_acc", Type="uint32_t", Units="mm", Description="Altitude uncertainty in meters * 1000 (positive for up).")]
         public uint VAcc
         {
             get
@@ -349,6 +369,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Speed uncertainty in meters * 1000 (positive for up).
         /// </summary>
+        [MessageFieldMetadata(Name="vel_acc", Type="uint32_t", Units="mm", Description="Speed uncertainty in meters * 1000 (positive for up).")]
         public uint VelAcc
         {
             get
@@ -364,6 +385,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Heading / track uncertainty in degrees * 1e5.
         /// </summary>
+        [MessageFieldMetadata(Name="hdg_acc", Type="uint32_t", Units="degE5", Description="Heading / track uncertainty in degrees * 1e5.")]
         public uint HdgAcc
         {
             get

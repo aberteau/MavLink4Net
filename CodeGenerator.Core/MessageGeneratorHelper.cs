@@ -23,6 +23,7 @@ namespace MavLink4Net.CodeGenerator.Core
             // using
             globalNamespace.Imports.Add(new CodeNamespaceImport("System"));
             globalNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
+            globalNamespace.Imports.Add(new CodeNamespaceImport("MavLink4Net.Messages.Metadata"));
 
             // Generate the namespace
             CodeNamespace codeNamespace = new CodeNamespace(ns);
@@ -44,6 +45,11 @@ namespace MavLink4Net.CodeGenerator.Core
                 Name = className,
                 IsClass = true
             };
+
+            // Add metadata attribute
+            var metadataName = translationMap == null ? message.Name : translationMap.MessageMap[message].Name;
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, metadataName, message.Description);
+            codeTypeDeclaration.CustomAttributes.Add(metadataAttributeDeclaration);
 
             codeTypeDeclaration.BaseTypes.Add(baseClassName);
             AddConstructor(codeTypeDeclaration, messageTypeEnumValue, message.CrcExtra);
@@ -69,11 +75,20 @@ namespace MavLink4Net.CodeGenerator.Core
             // Add properties
             foreach (MessageField messageField in message.Fields)
             {
-                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField);
+                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField, translationMap);
                 codeTypeDeclaration.Members.Add(codeMemberProperty);
             }
 
             return codeTypeDeclaration;
+        }
+
+        private static CodeAttributeDeclaration CreateMessageMetadataAttributeDeclaration(string messageTypeEnumValue, string name, string description)
+        {
+            CodeAttributeDeclaration codeAttributeDeclaration = new CodeAttributeDeclaration("MessageMetadata",
+                new CodeAttributeArgument("Type", new CodeArgumentReferenceExpression(messageTypeEnumValue)),
+                new CodeAttributeArgument("Name", new CodePrimitiveExpression(name)),
+                new CodeAttributeArgument("Description", new CodePrimitiveExpression(description)));
+            return codeAttributeDeclaration;
         }
 
         private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageTypeEnumValue, byte crc)
@@ -147,13 +162,19 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeReference;
         }
 
-        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField)
+        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField, TranslationMap translationMap)
         {
             CodeMemberProperty codeMemberProperty = new CodeMemberProperty();
             codeMemberProperty.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             codeMemberProperty.Name = messageField.Name;
             codeMemberProperty.HasGet = true;
-            
+
+            // Add metadata attribute
+            var metadataName = translationMap == null ? messageField.Name : translationMap.MessageFieldMap[messageField].Name;
+            String rawType = GetRawType(messageField, translationMap);
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageFieldMetadataAttributeDeclaration(metadataName, rawType, messageField.Units, messageField.Display, messageField.Text);
+            codeMemberProperty.CustomAttributes.Add(metadataAttributeDeclaration);
+
             // Type
             Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
             CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
@@ -176,6 +197,51 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberProperty.Comments.AddRange(summaryCommentStatements);
 
             return codeMemberProperty;
+        }
+
+        private static string GetRawType(MessageField messageField, TranslationMap translationMap)
+        {
+            if (messageField.Type.FieldType == FieldType.Array)
+            {
+                string rawType = MessageFieldTypeMapper.ToArrayRawType(messageField.Type);
+                return rawType;
+            }
+
+            if (messageField.Type.FieldType == FieldType.Enum)
+            {
+                MessageDefinitions.Data.Enum vEnum = translationMap == null
+                    ? messageField.Type.Enum
+                    : translationMap.EnumMap[messageField.Type.Enum];
+                string rawType = MessageFieldTypeMapper.ToEnumRawType(vEnum);
+                return rawType;
+            }
+
+            if (messageField.Type.FieldType == FieldType.Primitive)
+            {
+                string rawType = MessageFieldTypeMapper.ToPrimitiveRawType(messageField.Type);
+                return rawType;
+            }
+
+            return null;
+        }
+
+        private static CodeAttributeDeclaration CreateMessageFieldMetadataAttributeDeclaration(string name, string type, string units, string display, string description)
+        {
+            CodeAttributeDeclaration codeAttributeDeclaration = new CodeAttributeDeclaration("MessageFieldMetadata");
+
+            codeAttributeDeclaration.Arguments.Add(new CodeAttributeArgument("Name", new CodePrimitiveExpression(name)));
+            codeAttributeDeclaration.Arguments.Add(new CodeAttributeArgument("Type", new CodePrimitiveExpression(type)));
+
+            if (!String.IsNullOrWhiteSpace(units))
+                codeAttributeDeclaration.Arguments.Add(new CodeAttributeArgument("Units", new CodePrimitiveExpression(units)));
+
+            if (!String.IsNullOrWhiteSpace(display))
+                codeAttributeDeclaration.Arguments.Add(new CodeAttributeArgument("Display", new CodePrimitiveExpression(display)));
+
+            if (!String.IsNullOrWhiteSpace(description))
+                codeAttributeDeclaration.Arguments.Add(new CodeAttributeArgument("Description", new CodePrimitiveExpression(description)));
+
+            return codeAttributeDeclaration;
         }
     }
 }

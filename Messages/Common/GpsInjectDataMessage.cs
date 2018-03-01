@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GPS_INJECT_DATA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GpsInjectData, Name="GPS_INJECT_DATA", Description="data for injecting into the onboard GPS (used for DGPS)")]
     public class GpsInjectDataMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// data length
         /// </summary>
+        [MessageFieldMetadata(Name="len", Type="uint8_t", Units="bytes", Description="data length")]
         public byte Len
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// raw data (110 is enough for 12 satellites of RTCMv2)
         /// </summary>
+        [MessageFieldMetadata(Name="data", Type="uint8_t[110]", Description="raw data (110 is enough for 12 satellites of RTCMv2)")]
         public byte[] Data
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MANUAL_CONTROL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ManualControl, Name="MANUAL_CONTROL", Description="This message provides an API for manually controlling the vehicle using standard " +
+        "joystick axes nomenclature, along with a joystick-like input device. Unused axes" +
+        " can be disabled an buttons are also transmit as boolean values of their")]
     public class ManualControlMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +85,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The system to be controlled.
         /// </summary>
+        [MessageFieldMetadata(Name="target", Type="uint8_t", Description="The system to be controlled.")]
         public byte Target
         {
             get
@@ -96,6 +101,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle.
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="int16_t", Description="X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that" +
+            " this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) mo" +
+            "vement on a joystick and the pitch of a vehicle.")]
         public short X
         {
             get
@@ -111,6 +119,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle.
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="int16_t", Description="Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that" +
+            " this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement" +
+            " on a joystick and the roll of a vehicle.")]
         public short Y
         {
             get
@@ -126,6 +137,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="int16_t", Description=@"Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.")]
         public short Z
         {
             get
@@ -141,6 +153,10 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with counter-clockwise being 1000 and clockwise being -1000, and the yaw of a vehicle.
         /// </summary>
+        [MessageFieldMetadata(Name="r", Type="int16_t", Description="R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that" +
+            " this axis is invalid. Generally corresponds to a twisting of the joystick, with" +
+            " counter-clockwise being 1000 and clockwise being -1000, and the yaw of a vehicl" +
+            "e.")]
         public short R
         {
             get
@@ -156,6 +172,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// A bitfield corresponding to the joystick buttons' current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1.
         /// </summary>
+        [MessageFieldMetadata(Name="buttons", Type="uint16_t", Description="A bitfield corresponding to the joystick buttons\' current state, 1 for pressed, 0" +
+            " for released. The lowest bit corresponds to Button 1.")]
         public ushort Buttons
         {
             get

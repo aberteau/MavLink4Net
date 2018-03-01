@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// VISION_SPEED_ESTIMATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.VisionSpeedEstimate, Name="VISION_SPEED_ESTIMATE", Description=null)]
     public class VisionSpeedEstimateMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds, synced to UNIX time or since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds, synced to UNIX time or since system boot)")]
         public ulong Usec
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global X speed
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m/s", Description="Global X speed")]
         public float X
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global Y speed
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m/s", Description="Global Y speed")]
         public float Y
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Global Z speed
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m/s", Description="Global Z speed")]
         public float Z
         {
             get

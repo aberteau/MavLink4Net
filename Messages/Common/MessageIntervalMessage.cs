@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MESSAGE_INTERVAL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MessageInterval, Name="MESSAGE_INTERVAL", Description="This interface replaces DATA_STREAM")]
     public class MessageIntervalMessage : MavLink4Net.Messages.Message
     {
         
@@ -49,6 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The ID of the requested MAVLink message. v1.0 is limited to 254 messages.
         /// </summary>
+        [MessageFieldMetadata(Name="message_id", Type="uint16_t", Description="The ID of the requested MAVLink message. v1.0 is limited to 254 messages.")]
         public ushort MessageId
         {
             get
@@ -64,6 +67,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The interval between two messages, in microseconds. A value of -1 indicates this stream is disabled, 0 indicates it is not available, > 0 indicates the interval at which it is sent.
         /// </summary>
+        [MessageFieldMetadata(Name="interval_us", Type="int32_t", Units="us", Description="The interval between two messages, in microseconds. A value of -1 indicates this " +
+            "stream is disabled, 0 indicates it is not available, > 0 indicates the interval " +
+            "at which it is sent.")]
         public int IntervalUs
         {
             get

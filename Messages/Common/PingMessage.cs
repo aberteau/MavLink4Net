@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// PING
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Ping, Name="PING", Description="A ping message either requesting or responding to a ping. This allows to measure " +
+        "the system latencies, including serial port, radio modem and UDP connections.")]
     public class PingMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +68,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch (1.1.2009)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Unix timestamp in microseconds or since system boot if smaller than MAVLink epoch" +
+            " (1.1.2009)")]
         public ulong TimeUsec
         {
             get
@@ -80,6 +85,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PING sequence
         /// </summary>
+        [MessageFieldMetadata(Name="seq", Type="uint32_t", Description="PING sequence")]
         public uint Seq
         {
             get
@@ -95,6 +101,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: request ping from all receiving systems, if greater than 0: message is a ping response and number is the system id of the requesting system
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="0: request ping from all receiving systems, if greater than 0: message is a ping " +
+            "response and number is the system id of the requesting system")]
         public byte TargetSystem
         {
             get
@@ -110,6 +118,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: request ping from all receiving components, if greater than 0: message is a ping response and number is the system id of the requesting system
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="0: request ping from all receiving components, if greater than 0: message is a pi" +
+            "ng response and number is the system id of the requesting system")]
         public byte TargetComponent
         {
             get

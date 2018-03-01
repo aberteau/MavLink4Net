@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ATTITUDE_QUATERNION_COV
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AttitudeQuaternionCov, Name="ATTITUDE_QUATERNION_COV", Description="The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), " +
+        "expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation woul" +
+        "d be expressed as (1 0 0 0).")]
     public class AttitudeQuaternionCovMessage : MavLink4Net.Messages.Message
     {
         
@@ -81,6 +85,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since system boot or since UNIX epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since system boot or since UNIX epoch)")]
         public ulong TimeUsec
         {
             get
@@ -96,6 +101,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="Quaternion components, w, x, y, z (1 0 0 0 is the null-rotation)")]
         public float[] Q
         {
             get
@@ -111,6 +117,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="rollspeed", Type="float", Units="rad/s", Description="Roll angular speed (rad/s)")]
         public float Rollspeed
         {
             get
@@ -126,6 +133,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="pitchspeed", Type="float", Units="rad/s", Description="Pitch angular speed (rad/s)")]
         public float Pitchspeed
         {
             get
@@ -141,6 +149,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="yawspeed", Type="float", Units="rad/s", Description="Yaw angular speed (rad/s)")]
         public float Yawspeed
         {
             get
@@ -156,6 +165,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude covariance
         /// </summary>
+        [MessageFieldMetadata(Name="covariance", Type="float[9]", Description="Attitude covariance")]
         public float[] Covariance
         {
             get

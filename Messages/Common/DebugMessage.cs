@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// DEBUG
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Debug, Name="DEBUG", Description="Send a debug value. The index is used to discriminate between values. These value" +
+        "s show up in the plot of QGroundControl as DEBUG N.")]
     public class DebugMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +60,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -72,6 +76,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// index of debug variable
         /// </summary>
+        [MessageFieldMetadata(Name="ind", Type="uint8_t", Description="index of debug variable")]
         public byte Ind
         {
             get
@@ -87,6 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// DEBUG value
         /// </summary>
+        [MessageFieldMetadata(Name="value", Type="float", Description="DEBUG value")]
         public float Value
         {
             get

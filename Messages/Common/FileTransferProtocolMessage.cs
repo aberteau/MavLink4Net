@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// FILE_TRANSFER_PROTOCOL
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.FileTransferProtocol, Name="FILE_TRANSFER_PROTOCOL", Description="File transfer message")]
     public class FileTransferProtocolMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Network ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_network", Type="uint8_t", Description="Network ID (0 for broadcast)")]
         public byte TargetNetwork
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID (0 for broadcast)")]
         public byte TargetSystem
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID (0 for broadcast)
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID (0 for broadcast)")]
         public byte TargetComponent
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.
         /// </summary>
+        [MessageFieldMetadata(Name="payload", Type="uint8_t[251]", Description=@"Variable length payload. The length is defined by the remaining message length when subtracting the header and other fields.  The entire content of this block is opaque unless you understand any the encoding message_type.  The particular encoding used can be extension specific and might not always be documented as part of the mavlink specification.")]
         public byte[] Payload
         {
             get

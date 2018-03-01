@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// VIBRATION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.Vibration, Name="VIBRATION", Description="Vibration levels and accelerometer clipping")]
     public class VibrationMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vibration levels on X-axis
         /// </summary>
+        [MessageFieldMetadata(Name="vibration_x", Type="float", Description="Vibration levels on X-axis")]
         public float VibrationX
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vibration levels on Y-axis
         /// </summary>
+        [MessageFieldMetadata(Name="vibration_y", Type="float", Description="Vibration levels on Y-axis")]
         public float VibrationY
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vibration levels on Z-axis
         /// </summary>
+        [MessageFieldMetadata(Name="vibration_z", Type="float", Description="Vibration levels on Z-axis")]
         public float VibrationZ
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// first accelerometer clipping count
         /// </summary>
+        [MessageFieldMetadata(Name="clipping_0", Type="uint32_t", Description="first accelerometer clipping count")]
         public uint Clipping0
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// second accelerometer clipping count
         /// </summary>
+        [MessageFieldMetadata(Name="clipping_1", Type="uint32_t", Description="second accelerometer clipping count")]
         public uint Clipping1
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// third accelerometer clipping count
         /// </summary>
+        [MessageFieldMetadata(Name="clipping_2", Type="uint32_t", Description="third accelerometer clipping count")]
         public uint Clipping2
         {
             get

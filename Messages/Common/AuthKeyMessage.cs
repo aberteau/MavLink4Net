@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// AUTH_KEY
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AuthKey, Name="AUTH_KEY", Description="Emit an encrypted signature / key identifying this system. PLEASE NOTE: This prot" +
+        "ocol has been kept simple, so transmitting the key requires an encrypted channel" +
+        " for true safety.")]
     public class AuthKeyMessage : MavLink4Net.Messages.Message
     {
         
@@ -41,6 +45,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// key
         /// </summary>
+        [MessageFieldMetadata(Name="key", Type="char[32]", Description="key")]
         public char[] Key
         {
             get

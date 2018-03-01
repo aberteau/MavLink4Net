@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// PARAM_REQUEST_READ
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ParamRequestRead, Name="PARAM_REQUEST_READ", Description=@"Request to read the onboard parameter with the param_id string id. Onboard parameters are stored as key[const char*] -> value[float]. This allows to send a parameter to any other component (such as the GCS) without the need of previous knowledge of possible parameter names. Thus the same GCS can store different parameters for different autopilots. See also https://mavlink.io/en/protocol/parameter.html for a full documentation of QGroundControl and IMU code.")]
     public class ParamRequestReadMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -95,6 +99,10 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
         /// </summary>
+        [MessageFieldMetadata(Name="param_id", Type="char[16]", Description="Onboard parameter id, terminated by NULL if the length is less than 16 human-read" +
+            "able chars and WITHOUT null termination (NULL) byte if the length is exactly 16 " +
+            "chars - applications have to provide 16+1 bytes storage if the ID is stored as s" +
+            "tring")]
         public char[] ParamId
         {
             get
@@ -110,6 +118,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored)
         /// </summary>
+        [MessageFieldMetadata(Name="param_index", Type="int16_t", Description="Parameter index. Send -1 to use the param ID field as identifier (else the param " +
+            "id will be ignored)")]
         public short ParamIndex
         {
             get

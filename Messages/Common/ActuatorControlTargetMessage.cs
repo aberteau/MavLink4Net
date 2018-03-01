@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ACTUATOR_CONTROL_TARGET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ActuatorControlTarget, Name="ACTUATOR_CONTROL_TARGET", Description="Set the vehicle attitude and body angular rates.")]
     public class ActuatorControlTargetMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -72,6 +75,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Actuator group. The "_mlx" indicates this is a multi-instance message and a MAVLink parser should use this field to difference between instances.
         /// </summary>
+        [MessageFieldMetadata(Name="group_mlx", Type="uint8_t", Description="Actuator group. The \"_mlx\" indicates this is a multi-instance message and a MAVLi" +
+            "nk parser should use this field to difference between instances.")]
         public byte GroupMlx
         {
             get
@@ -87,6 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.
         /// </summary>
+        [MessageFieldMetadata(Name="controls", Type="float[8]", Description=@"Actuator controls. Normed to -1..+1 where 0 is neutral position. Throttle for single rotation direction motors is 0..1, negative range for reverse direction. Standard mapping for attitude controls (group 0): (index 0-7): roll, pitch, yaw, throttle, flaps, spoilers, airbrakes, landing gear. Load a pass-through mixer to repurpose them as generic outputs.")]
         public float[] Controls
         {
             get

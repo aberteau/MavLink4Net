@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_ACK
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionAck, Name="MISSION_ACK", Description="Ack message during waypoint handling. The type field states if this message is a " +
+        "positive ack (type=0) or if an error happened (type=non-zero).")]
     public class MissionAckMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -80,6 +84,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -95,6 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// See MAV_MISSION_RESULT enum
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="MAV_MISSION_RESULT enum", Description="See MAV_MISSION_RESULT enum")]
         public MissionResult Type
         {
             get
@@ -110,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mission type, see MAV_MISSION_TYPE
         /// </summary>
+        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
         public MissionType MissionType
         {
             get

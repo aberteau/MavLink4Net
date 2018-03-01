@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -23,6 +24,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_ITEM_INT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionItemInt, Name="MISSION_ITEM_INT", Description=@"Message encoding a mission item. This message is emitted to announce
+                the presence of a mission item and to set a mission item on the system. The mission item can be either in x, y, z meters (type: LOCAL) or x:lat, y:lon, z:altitude. Local frame is Z-down, right handed (NED), global frame is Z-up, right handed (ENU). See also https://mavlink.io/en/protocol/mission.html.")]
     public class MissionItemIntMessage : MavLink4Net.Messages.Message
     {
         
@@ -154,6 +157,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -169,6 +173,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -184,6 +189,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Waypoint ID (sequence number). Starts at zero. Increases monotonically for each waypoint, no gaps in the sequence (0,1,2,3,4).
         /// </summary>
+        [MessageFieldMetadata(Name="seq", Type="uint16_t", Description="Waypoint ID (sequence number). Starts at zero. Increases monotonically for each w" +
+            "aypoint, no gaps in the sequence (0,1,2,3,4).")]
         public ushort Seq
         {
             get
@@ -199,6 +206,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h
         /// </summary>
+        [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="The coordinate system of the waypoint. see MAV_FRAME in mavlink_types.h")]
         public Frame Frame
         {
             get
@@ -214,6 +222,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs
         /// </summary>
+        [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="The scheduled action for the waypoint. see MAV_CMD in common.xml MAVLink specs")]
         public Cmd Command
         {
             get
@@ -229,6 +238,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// false:0, true:1
         /// </summary>
+        [MessageFieldMetadata(Name="current", Type="uint8_t", Description="false:0, true:1")]
         public byte Current
         {
             get
@@ -244,6 +254,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// autocontinue to next wp
         /// </summary>
+        [MessageFieldMetadata(Name="autocontinue", Type="uint8_t", Description="autocontinue to next wp")]
         public byte Autocontinue
         {
             get
@@ -259,6 +270,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM1, see MAV_CMD enum
         /// </summary>
+        [MessageFieldMetadata(Name="param1", Type="float", Description="PARAM1, see MAV_CMD enum")]
         public float Param1
         {
             get
@@ -274,6 +286,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM2, see MAV_CMD enum
         /// </summary>
+        [MessageFieldMetadata(Name="param2", Type="float", Description="PARAM2, see MAV_CMD enum")]
         public float Param2
         {
             get
@@ -289,6 +302,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM3, see MAV_CMD enum
         /// </summary>
+        [MessageFieldMetadata(Name="param3", Type="float", Description="PARAM3, see MAV_CMD enum")]
         public float Param3
         {
             get
@@ -304,6 +318,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM4, see MAV_CMD enum
         /// </summary>
+        [MessageFieldMetadata(Name="param4", Type="float", Description="PARAM4, see MAV_CMD enum")]
         public float Param4
         {
             get
@@ -319,6 +334,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="int32_t", Description="PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7")]
         public int X
         {
             get
@@ -334,6 +350,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degrees *10^7
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="int32_t", Description="PARAM6 / y position: local: x position in meters * 1e4, global: longitude in degr" +
+            "ees *10^7")]
         public int Y
         {
             get
@@ -349,6 +367,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame.
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Description="PARAM7 / z position: global: altitude in meters (relative or absolute, depending " +
+            "on frame.")]
         public float Z
         {
             get
@@ -364,6 +384,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mission type, see MAV_MISSION_TYPE
         /// </summary>
+        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
         public MissionType MissionType
         {
             get

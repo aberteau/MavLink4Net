@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// NAMED_VALUE_FLOAT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.NamedValueFloat, Name="NAMED_VALUE_FLOAT", Description="Send a key-value pair as float. The use of this message is discouraged for normal" +
+        " packets, but a quite efficient way for testing new messages and getting experim" +
+        "ental debug output.")]
     public class NamedValueFloatMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +61,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -72,6 +77,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Name of the debug variable
         /// </summary>
+        [MessageFieldMetadata(Name="name", Type="char[10]", Description="Name of the debug variable")]
         public char[] Name
         {
             get
@@ -87,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Floating point value
         /// </summary>
+        [MessageFieldMetadata(Name="value", Type="float", Description="Floating point value")]
         public float Value
         {
             get

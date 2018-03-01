@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// HIL_STATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.HilState, Name="HIL_STATE", Description=@"DEPRECATED PACKET! Suffers from missing airspeed fields and singularities due to Euler angles. Please use HIL_STATE_QUATERNION instead. Sent from simulation to autopilot. This packet is useful for high throughput applications such as hardware in the loop simulations.")]
     public class HilStateMessage : MavLink4Net.Messages.Message
     {
         
@@ -161,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
         public ulong TimeUsec
         {
             get
@@ -176,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angle (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Units="rad", Description="Roll angle (rad)")]
         public float Roll
         {
             get
@@ -191,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angle (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Units="rad", Description="Pitch angle (rad)")]
         public float Pitch
         {
             get
@@ -206,6 +211,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angle (rad)
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Units="rad", Description="Yaw angle (rad)")]
         public float Yaw
         {
             get
@@ -221,6 +227,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body frame roll / phi angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="rollspeed", Type="float", Units="rad/s", Description="Body frame roll / phi angular speed (rad/s)")]
         public float Rollspeed
         {
             get
@@ -236,6 +243,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body frame pitch / theta angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="pitchspeed", Type="float", Units="rad/s", Description="Body frame pitch / theta angular speed (rad/s)")]
         public float Pitchspeed
         {
             get
@@ -251,6 +259,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body frame yaw / psi angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="yawspeed", Type="float", Units="rad/s", Description="Body frame yaw / psi angular speed (rad/s)")]
         public float Yawspeed
         {
             get
@@ -266,6 +275,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude, expressed as degrees * 1E7")]
         public int Lat
         {
             get
@@ -281,6 +291,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude, expressed as degrees * 1E7")]
         public int Lon
         {
             get
@@ -296,6 +307,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude in meters, expressed as * 1000 (millimeters)
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="int32_t", Units="mm", Description="Altitude in meters, expressed as * 1000 (millimeters)")]
         public int Alt
         {
             get
@@ -311,6 +323,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground X Speed (Latitude), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vx", Type="int16_t", Units="cm/s", Description="Ground X Speed (Latitude), expressed as m/s * 100")]
         public short Vx
         {
             get
@@ -326,6 +339,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Y Speed (Longitude), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vy", Type="int16_t", Units="cm/s", Description="Ground Y Speed (Longitude), expressed as m/s * 100")]
         public short Vy
         {
             get
@@ -341,6 +355,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Z Speed (Altitude), expressed as m/s * 100
         /// </summary>
+        [MessageFieldMetadata(Name="vz", Type="int16_t", Units="cm/s", Description="Ground Z Speed (Altitude), expressed as m/s * 100")]
         public short Vz
         {
             get
@@ -356,6 +371,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="xacc", Type="int16_t", Units="mG", Description="X acceleration (mg)")]
         public short Xacc
         {
             get
@@ -371,6 +387,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="yacc", Type="int16_t", Units="mG", Description="Y acceleration (mg)")]
         public short Yacc
         {
             get
@@ -386,6 +403,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="zacc", Type="int16_t", Units="mG", Description="Z acceleration (mg)")]
         public short Zacc
         {
             get

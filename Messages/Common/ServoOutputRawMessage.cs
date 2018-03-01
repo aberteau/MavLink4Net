@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SERVO_OUTPUT_RAW
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ServoOutputRaw, Name="SERVO_OUTPUT_RAW", Description="The RAW values of the servo outputs (for RC input from the remote, use the RC_CHA" +
+        "NNELS messages). The standard PPM modulation is as follows: 1000 microseconds: 0" +
+        "%, 2000 microseconds: 100%.")]
     public class ServoOutputRawMessage : MavLink4Net.Messages.Message
     {
         
@@ -177,6 +181,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint32_t", Units="us", Description="Timestamp (microseconds since system boot)")]
         public uint TimeUsec
         {
             get
@@ -192,6 +197,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows to encode more than 8 servos.
         /// </summary>
+        [MessageFieldMetadata(Name="port", Type="uint8_t", Description="Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but t" +
+            "his allows to encode more than 8 servos.")]
         public byte Port
         {
             get
@@ -207,6 +214,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 1 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo1_raw", Type="uint16_t", Units="us", Description="Servo output 1 value, in microseconds")]
         public ushort Servo1Raw
         {
             get
@@ -222,6 +230,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 2 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo2_raw", Type="uint16_t", Units="us", Description="Servo output 2 value, in microseconds")]
         public ushort Servo2Raw
         {
             get
@@ -237,6 +246,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 3 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo3_raw", Type="uint16_t", Units="us", Description="Servo output 3 value, in microseconds")]
         public ushort Servo3Raw
         {
             get
@@ -252,6 +262,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 4 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo4_raw", Type="uint16_t", Units="us", Description="Servo output 4 value, in microseconds")]
         public ushort Servo4Raw
         {
             get
@@ -267,6 +278,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 5 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo5_raw", Type="uint16_t", Units="us", Description="Servo output 5 value, in microseconds")]
         public ushort Servo5Raw
         {
             get
@@ -282,6 +294,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 6 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo6_raw", Type="uint16_t", Units="us", Description="Servo output 6 value, in microseconds")]
         public ushort Servo6Raw
         {
             get
@@ -297,6 +310,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 7 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo7_raw", Type="uint16_t", Units="us", Description="Servo output 7 value, in microseconds")]
         public ushort Servo7Raw
         {
             get
@@ -312,6 +326,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 8 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo8_raw", Type="uint16_t", Units="us", Description="Servo output 8 value, in microseconds")]
         public ushort Servo8Raw
         {
             get
@@ -327,6 +342,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 9 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo9_raw", Type="uint16_t", Units="us", Description="Servo output 9 value, in microseconds")]
         public ushort Servo9Raw
         {
             get
@@ -342,6 +358,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 10 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo10_raw", Type="uint16_t", Units="us", Description="Servo output 10 value, in microseconds")]
         public ushort Servo10Raw
         {
             get
@@ -357,6 +374,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 11 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo11_raw", Type="uint16_t", Units="us", Description="Servo output 11 value, in microseconds")]
         public ushort Servo11Raw
         {
             get
@@ -372,6 +390,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 12 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo12_raw", Type="uint16_t", Units="us", Description="Servo output 12 value, in microseconds")]
         public ushort Servo12Raw
         {
             get
@@ -387,6 +406,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 13 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo13_raw", Type="uint16_t", Units="us", Description="Servo output 13 value, in microseconds")]
         public ushort Servo13Raw
         {
             get
@@ -402,6 +422,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 14 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo14_raw", Type="uint16_t", Units="us", Description="Servo output 14 value, in microseconds")]
         public ushort Servo14Raw
         {
             get
@@ -417,6 +438,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 15 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo15_raw", Type="uint16_t", Units="us", Description="Servo output 15 value, in microseconds")]
         public ushort Servo15Raw
         {
             get
@@ -432,6 +454,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output 16 value, in microseconds
         /// </summary>
+        [MessageFieldMetadata(Name="servo16_raw", Type="uint16_t", Units="us", Description="Servo output 16 value, in microseconds")]
         public ushort Servo16Raw
         {
             get

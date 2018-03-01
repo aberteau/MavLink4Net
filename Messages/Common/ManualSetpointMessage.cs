@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MANUAL_SETPOINT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ManualSetpoint, Name="MANUAL_SETPOINT", Description="Setpoint in roll, pitch, yaw and thrust from the operator")]
     public class ManualSetpointMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp in milliseconds since system boot
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp in milliseconds since system boot")]
         public uint TimeBootMs
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Desired roll rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="roll", Type="float", Units="rad/s", Description="Desired roll rate in radians per second")]
         public float Roll
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Desired pitch rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="pitch", Type="float", Units="rad/s", Description="Desired pitch rate in radians per second")]
         public float Pitch
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Desired yaw rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="yaw", Type="float", Units="rad/s", Description="Desired yaw rate in radians per second")]
         public float Yaw
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Collective thrust, normalized to 0 .. 1
         /// </summary>
+        [MessageFieldMetadata(Name="thrust", Type="float", Description="Collective thrust, normalized to 0 .. 1")]
         public float Thrust
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Flight mode switch position, 0.. 255
         /// </summary>
+        [MessageFieldMetadata(Name="mode_switch", Type="uint8_t", Description="Flight mode switch position, 0.. 255")]
         public byte ModeSwitch
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Override mode switch position, 0.. 255
         /// </summary>
+        [MessageFieldMetadata(Name="manual_override_switch", Type="uint8_t", Description="Override mode switch position, 0.. 255")]
         public byte ManualOverrideSwitch
         {
             get

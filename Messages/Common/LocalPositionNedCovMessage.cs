@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LOCAL_POSITION_NED_COV
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LocalPositionNedCov, Name="LOCAL_POSITION_NED_COV", Description="The filtered local position (e.g. fused computer vision and accelerometers). Coor" +
+        "dinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-" +
+        "down convention)")]
     public class LocalPositionNedCovMessage : MavLink4Net.Messages.Message
     {
         
@@ -129,6 +133,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since system boot or since UNIX epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since system boot or since UNIX epoch)")]
         public ulong TimeUsec
         {
             get
@@ -144,6 +149,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Class id of the estimator this estimate originated from.
         /// </summary>
+        [MessageFieldMetadata(Name="estimator_type", Type="MAV_ESTIMATOR_TYPE enum", Description="Class id of the estimator this estimate originated from.")]
         public EstimatorType EstimatorType
         {
             get
@@ -159,6 +165,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Position
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="X Position")]
         public float X
         {
             get
@@ -174,6 +181,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Position
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Y Position")]
         public float Y
         {
             get
@@ -189,6 +197,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Position
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Z Position")]
         public float Z
         {
             get
@@ -204,6 +213,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Speed (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="vx", Type="float", Units="m/s", Description="X Speed (m/s)")]
         public float Vx
         {
             get
@@ -219,6 +229,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Speed (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="vy", Type="float", Units="m/s", Description="Y Speed (m/s)")]
         public float Vy
         {
             get
@@ -234,6 +245,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Speed (m/s)
         /// </summary>
+        [MessageFieldMetadata(Name="vz", Type="float", Units="m/s", Description="Z Speed (m/s)")]
         public float Vz
         {
             get
@@ -249,6 +261,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="ax", Type="float", Units="m/s/s", Description="X Acceleration (m/s^2)")]
         public float Ax
         {
             get
@@ -264,6 +277,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="ay", Type="float", Units="m/s/s", Description="Y Acceleration (m/s^2)")]
         public float Ay
         {
             get
@@ -279,6 +293,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Acceleration (m/s^2)
         /// </summary>
+        [MessageFieldMetadata(Name="az", Type="float", Units="m/s/s", Description="Z Acceleration (m/s^2)")]
         public float Az
         {
             get
@@ -294,6 +309,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Covariance matrix upper right triangular (first nine entries are the first ROW, next eight entries are the second row, etc.)
         /// </summary>
+        [MessageFieldMetadata(Name="covariance", Type="float[45]", Description="Covariance matrix upper right triangular (first nine entries are the first ROW, n" +
+            "ext eight entries are the second row, etc.)")]
         public float[] Covariance
         {
             get

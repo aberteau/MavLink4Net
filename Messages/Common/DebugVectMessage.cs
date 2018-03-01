@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// DEBUG_VECT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.DebugVect, Name="DEBUG_VECT", Description=null)]
     public class DebugVectMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Name
         /// </summary>
+        [MessageFieldMetadata(Name="name", Type="char[10]", Description="Name")]
         public char[] Name
         {
             get
@@ -88,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp")]
         public ulong TimeUsec
         {
             get
@@ -103,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// x
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Description="x")]
         public float X
         {
             get
@@ -118,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// y
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Description="y")]
         public float Y
         {
             get
@@ -133,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// z
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Description="z")]
         public float Z
         {
             get

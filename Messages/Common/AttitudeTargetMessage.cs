@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ATTITUDE_TARGET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AttitudeTarget, Name="ATTITUDE_TARGET", Description="Reports the current commanded attitude of the vehicle as specified by the autopil" +
+        "ot. This should match the commands sent in a SET_ATTITUDE_TARGET message if the " +
+        "vehicle is being controlled this way.")]
     public class AttitudeTargetMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp in milliseconds since system boot
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp in milliseconds since system boot")]
         public uint TimeBootMs
         {
             get
@@ -104,6 +109,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mappings: If any of these bits are set, the corresponding input should be ignored: bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit 7: reserved, bit 8: attitude
         /// </summary>
+        [MessageFieldMetadata(Name="type_mask", Type="uint8_t", Display="bitmask", Description="Mappings: If any of these bits are set, the corresponding input should be ignored" +
+            ": bit 1: body roll rate, bit 2: body pitch rate, bit 3: body yaw rate. bit 4-bit" +
+            " 7: reserved, bit 8: attitude")]
         public byte TypeMask
         {
             get
@@ -119,6 +127,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="Attitude quaternion (w, x, y, z order, zero-rotation is 1, 0, 0, 0)")]
         public float[] Q
         {
             get
@@ -134,6 +143,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body roll rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="body_roll_rate", Type="float", Units="rad/s", Description="Body roll rate in radians per second")]
         public float BodyRollRate
         {
             get
@@ -149,6 +159,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body pitch rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="body_pitch_rate", Type="float", Units="rad/s", Description="Body pitch rate in radians per second")]
         public float BodyPitchRate
         {
             get
@@ -164,6 +175,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Body yaw rate in radians per second
         /// </summary>
+        [MessageFieldMetadata(Name="body_yaw_rate", Type="float", Units="rad/s", Description="Body yaw rate in radians per second")]
         public float BodyYawRate
         {
             get
@@ -179,6 +191,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse trust)
         /// </summary>
+        [MessageFieldMetadata(Name="thrust", Type="float", Description="Collective thrust, normalized to 0 .. 1 (-1 .. 1 for vehicles capable of reverse " +
+            "trust)")]
         public float Thrust
         {
             get

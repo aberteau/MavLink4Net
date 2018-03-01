@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SCALED_PRESSURE2
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ScaledPressure2, Name="SCALED_PRESSURE2", Description="Barometer readings for 2nd barometer")]
     public class ScaledPressure2Message : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +67,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -80,6 +83,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Absolute pressure (hectopascal)
         /// </summary>
+        [MessageFieldMetadata(Name="press_abs", Type="float", Units="hPa", Description="Absolute pressure (hectopascal)")]
         public float PressAbs
         {
             get
@@ -95,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Differential pressure 1 (hectopascal)
         /// </summary>
+        [MessageFieldMetadata(Name="press_diff", Type="float", Units="hPa", Description="Differential pressure 1 (hectopascal)")]
         public float PressDiff
         {
             get
@@ -110,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Temperature measurement (0.01 degrees celsius)
         /// </summary>
+        [MessageFieldMetadata(Name="temperature", Type="int16_t", Units="cdegC", Description="Temperature measurement (0.01 degrees celsius)")]
         public short Temperature
         {
             get

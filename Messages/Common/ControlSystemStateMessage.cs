@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// CONTROL_SYSTEM_STATE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ControlSystemState, Name="CONTROL_SYSTEM_STATE", Description="The smoothed, monotonic system state used to feed the control loops of the system" +
+        ".")]
     public class ControlSystemStateMessage : MavLink4Net.Messages.Message
     {
         
@@ -169,6 +172,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -184,6 +188,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X acceleration in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="x_acc", Type="float", Units="m/s/s", Description="X acceleration in body frame")]
         public float XAcc
         {
             get
@@ -199,6 +204,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y acceleration in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="y_acc", Type="float", Units="m/s/s", Description="Y acceleration in body frame")]
         public float YAcc
         {
             get
@@ -214,6 +220,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z acceleration in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="z_acc", Type="float", Units="m/s/s", Description="Z acceleration in body frame")]
         public float ZAcc
         {
             get
@@ -229,6 +236,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X velocity in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="x_vel", Type="float", Units="m/s", Description="X velocity in body frame")]
         public float XVel
         {
             get
@@ -244,6 +252,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y velocity in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="y_vel", Type="float", Units="m/s", Description="Y velocity in body frame")]
         public float YVel
         {
             get
@@ -259,6 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z velocity in body frame
         /// </summary>
+        [MessageFieldMetadata(Name="z_vel", Type="float", Units="m/s", Description="Z velocity in body frame")]
         public float ZVel
         {
             get
@@ -274,6 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X position in local frame
         /// </summary>
+        [MessageFieldMetadata(Name="x_pos", Type="float", Units="m", Description="X position in local frame")]
         public float XPos
         {
             get
@@ -289,6 +300,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y position in local frame
         /// </summary>
+        [MessageFieldMetadata(Name="y_pos", Type="float", Units="m", Description="Y position in local frame")]
         public float YPos
         {
             get
@@ -304,6 +316,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z position in local frame
         /// </summary>
+        [MessageFieldMetadata(Name="z_pos", Type="float", Units="m", Description="Z position in local frame")]
         public float ZPos
         {
             get
@@ -319,6 +332,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Airspeed, set to -1 if unknown
         /// </summary>
+        [MessageFieldMetadata(Name="airspeed", Type="float", Units="m/s", Description="Airspeed, set to -1 if unknown")]
         public float Airspeed
         {
             get
@@ -334,6 +348,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variance of body velocity estimate
         /// </summary>
+        [MessageFieldMetadata(Name="vel_variance", Type="float[3]", Description="Variance of body velocity estimate")]
         public float[] VelVariance
         {
             get
@@ -349,6 +364,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variance in local position
         /// </summary>
+        [MessageFieldMetadata(Name="pos_variance", Type="float[3]", Description="Variance in local position")]
         public float[] PosVariance
         {
             get
@@ -364,6 +380,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The attitude, represented as Quaternion
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="The attitude, represented as Quaternion")]
         public float[] Q
         {
             get
@@ -379,6 +396,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular rate in roll axis
         /// </summary>
+        [MessageFieldMetadata(Name="roll_rate", Type="float", Units="rad/s", Description="Angular rate in roll axis")]
         public float RollRate
         {
             get
@@ -394,6 +412,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular rate in pitch axis
         /// </summary>
+        [MessageFieldMetadata(Name="pitch_rate", Type="float", Units="rad/s", Description="Angular rate in pitch axis")]
         public float PitchRate
         {
             get
@@ -409,6 +428,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular rate in yaw axis
         /// </summary>
+        [MessageFieldMetadata(Name="yaw_rate", Type="float", Units="rad/s", Description="Angular rate in yaw axis")]
         public float YawRate
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// NAV_CONTROLLER_OUTPUT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.NavControllerOutput, Name="NAV_CONTROLLER_OUTPUT", Description="The state of the fixed wing navigation and position controller.")]
     public class NavControllerOutputMessage : MavLink4Net.Messages.Message
     {
         
@@ -97,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current desired roll in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="nav_roll", Type="float", Units="deg", Description="Current desired roll in degrees")]
         public float NavRoll
         {
             get
@@ -112,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current desired pitch in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="nav_pitch", Type="float", Units="deg", Description="Current desired pitch in degrees")]
         public float NavPitch
         {
             get
@@ -127,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current desired heading in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="nav_bearing", Type="int16_t", Units="deg", Description="Current desired heading in degrees")]
         public short NavBearing
         {
             get
@@ -142,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Bearing to current waypoint/target in degrees
         /// </summary>
+        [MessageFieldMetadata(Name="target_bearing", Type="int16_t", Units="deg", Description="Bearing to current waypoint/target in degrees")]
         public short TargetBearing
         {
             get
@@ -157,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Distance to active waypoint in meters
         /// </summary>
+        [MessageFieldMetadata(Name="wp_dist", Type="uint16_t", Units="m", Description="Distance to active waypoint in meters")]
         public ushort WpDist
         {
             get
@@ -172,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current altitude error in meters
         /// </summary>
+        [MessageFieldMetadata(Name="alt_error", Type="float", Units="m", Description="Current altitude error in meters")]
         public float AltError
         {
             get
@@ -187,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current airspeed error in meters/second
         /// </summary>
+        [MessageFieldMetadata(Name="aspd_error", Type="float", Units="m/s", Description="Current airspeed error in meters/second")]
         public float AspdError
         {
             get
@@ -202,6 +211,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current crosstrack error on x-y plane in meters
         /// </summary>
+        [MessageFieldMetadata(Name="xtrack_error", Type="float", Units="m", Description="Current crosstrack error on x-y plane in meters")]
         public float XtrackError
         {
             get

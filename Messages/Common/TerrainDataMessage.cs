@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// TERRAIN_DATA
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.TerrainData, Name="TERRAIN_DATA", Description="Terrain data sent from GCS. The lat/lon and grid_spacing must be the same as a la" +
+        "t/lon from a TERRAIN_REQUEST")]
     public class TerrainDataMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +76,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude of SW corner of first grid (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude of SW corner of first grid (degrees *10^7)")]
         public int Lat
         {
             get
@@ -88,6 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude of SW corner of first grid (in degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude of SW corner of first grid (in degrees *10^7)")]
         public int Lon
         {
             get
@@ -103,6 +108,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Grid spacing in meters
         /// </summary>
+        [MessageFieldMetadata(Name="grid_spacing", Type="uint16_t", Units="m", Description="Grid spacing in meters")]
         public ushort GridSpacing
         {
             get
@@ -118,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// bit within the terrain request mask
         /// </summary>
+        [MessageFieldMetadata(Name="gridbit", Type="uint8_t", Description="bit within the terrain request mask")]
         public byte Gridbit
         {
             get
@@ -133,6 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Terrain data in meters AMSL
         /// </summary>
+        [MessageFieldMetadata(Name="data", Type="int16_t[16]", Units="m", Description="Terrain data in meters AMSL")]
         public short[] Data
         {
             get

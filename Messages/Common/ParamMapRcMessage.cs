@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// PARAM_MAP_RC
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ParamMapRc, Name="PARAM_MAP_RC", Description="Bind a RC channel to a parameter. The parameter should change accoding to the RC " +
+        "channel value.")]
     public class ParamMapRcMessage : MavLink4Net.Messages.Message
     {
         
@@ -105,6 +108,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -120,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -135,6 +140,10 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
         /// </summary>
+        [MessageFieldMetadata(Name="param_id", Type="char[16]", Description="Onboard parameter id, terminated by NULL if the length is less than 16 human-read" +
+            "able chars and WITHOUT null termination (NULL) byte if the length is exactly 16 " +
+            "chars - applications have to provide 16+1 bytes storage if the ID is stored as s" +
+            "tring")]
         public char[] ParamId
         {
             get
@@ -150,6 +159,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Parameter index. Send -1 to use the param ID field as identifier (else the param id will be ignored), send -2 to disable any existing map for this rc_channel_index.
         /// </summary>
+        [MessageFieldMetadata(Name="param_index", Type="int16_t", Description="Parameter index. Send -1 to use the param ID field as identifier (else the param " +
+            "id will be ignored), send -2 to disable any existing map for this rc_channel_ind" +
+            "ex.")]
         public short ParamIndex
         {
             get
@@ -165,6 +177,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Index of parameter RC channel. Not equal to the RC channel id. Typically correpsonds to a potentiometer-knob on the RC.
         /// </summary>
+        [MessageFieldMetadata(Name="parameter_rc_channel_index", Type="uint8_t", Description="Index of parameter RC channel. Not equal to the RC channel id. Typically correpso" +
+            "nds to a potentiometer-knob on the RC.")]
         public byte ParameterRcChannelIndex
         {
             get
@@ -180,6 +194,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Initial parameter value
         /// </summary>
+        [MessageFieldMetadata(Name="param_value0", Type="float", Description="Initial parameter value")]
         public float ParamValue0
         {
             get
@@ -195,6 +210,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Scale, maps the RC range [-1, 1] to a parameter value
         /// </summary>
+        [MessageFieldMetadata(Name="scale", Type="float", Description="Scale, maps the RC range [-1, 1] to a parameter value")]
         public float Scale
         {
             get
@@ -210,6 +226,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Minimum param value. The protocol does not define if this overwrites an onboard minimum value. (Depends on implementation)
         /// </summary>
+        [MessageFieldMetadata(Name="param_value_min", Type="float", Description="Minimum param value. The protocol does not define if this overwrites an onboard m" +
+            "inimum value. (Depends on implementation)")]
         public float ParamValueMin
         {
             get
@@ -225,6 +243,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Maximum param value. The protocol does not define if this overwrites an onboard maximum value. (Depends on implementation)
         /// </summary>
+        [MessageFieldMetadata(Name="param_value_max", Type="float", Description="Maximum param value. The protocol does not define if this overwrites an onboard m" +
+            "aximum value. (Depends on implementation)")]
         public float ParamValueMax
         {
             get

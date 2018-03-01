@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// AUTOPILOT_VERSION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AutopilotVersion, Name="AUTOPILOT_VERSION", Description="Version and capability of autopilot software")]
     public class AutopilotVersionMessage : MavLink4Net.Messages.Message
     {
         
@@ -129,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
         /// </summary>
+        [MessageFieldMetadata(Name="capabilities", Type="MAV_PROTOCOL_CAPABILITY enum", Display="bitmask", Description="bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)")]
         public ProtocolCapability Capabilities
         {
             get
@@ -144,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Firmware version number
         /// </summary>
+        [MessageFieldMetadata(Name="flight_sw_version", Type="uint32_t", Description="Firmware version number")]
         public uint FlightSwVersion
         {
             get
@@ -159,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Middleware version number
         /// </summary>
+        [MessageFieldMetadata(Name="middleware_sw_version", Type="uint32_t", Description="Middleware version number")]
         public uint MiddlewareSwVersion
         {
             get
@@ -174,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Operating system version number
         /// </summary>
+        [MessageFieldMetadata(Name="os_sw_version", Type="uint32_t", Description="Operating system version number")]
         public uint OsSwVersion
         {
             get
@@ -189,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// HW / board version (last 8 bytes should be silicon ID, if any)
         /// </summary>
+        [MessageFieldMetadata(Name="board_version", Type="uint32_t", Description="HW / board version (last 8 bytes should be silicon ID, if any)")]
         public uint BoardVersion
         {
             get
@@ -204,6 +211,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
         /// </summary>
+        [MessageFieldMetadata(Name="flight_custom_version", Type="uint8_t[8]", Description="Custom version field, commonly the first 8 bytes of the git hash. This is not an " +
+            "unique identifier, but should allow to identify the commit using the main versio" +
+            "n number even for very large code bases.")]
         public byte[] FlightCustomVersion
         {
             get
@@ -219,6 +229,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
         /// </summary>
+        [MessageFieldMetadata(Name="middleware_custom_version", Type="uint8_t[8]", Description="Custom version field, commonly the first 8 bytes of the git hash. This is not an " +
+            "unique identifier, but should allow to identify the commit using the main versio" +
+            "n number even for very large code bases.")]
         public byte[] MiddlewareCustomVersion
         {
             get
@@ -234,6 +247,9 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Custom version field, commonly the first 8 bytes of the git hash. This is not an unique identifier, but should allow to identify the commit using the main version number even for very large code bases.
         /// </summary>
+        [MessageFieldMetadata(Name="os_custom_version", Type="uint8_t[8]", Description="Custom version field, commonly the first 8 bytes of the git hash. This is not an " +
+            "unique identifier, but should allow to identify the commit using the main versio" +
+            "n number even for very large code bases.")]
         public byte[] OsCustomVersion
         {
             get
@@ -249,6 +265,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// ID of the board vendor
         /// </summary>
+        [MessageFieldMetadata(Name="vendor_id", Type="uint16_t", Description="ID of the board vendor")]
         public ushort VendorId
         {
             get
@@ -264,6 +281,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// ID of the product
         /// </summary>
+        [MessageFieldMetadata(Name="product_id", Type="uint16_t", Description="ID of the product")]
         public ushort ProductId
         {
             get
@@ -279,6 +297,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// UID if provided by hardware (see uid2)
         /// </summary>
+        [MessageFieldMetadata(Name="uid", Type="uint64_t", Description="UID if provided by hardware (see uid2)")]
         public ulong Uid
         {
             get
@@ -294,6 +313,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
         /// </summary>
+        [MessageFieldMetadata(Name="uid2", Type="uint8_t[18]", Description="UID if provided by hardware (supersedes the uid field. If this is non-zero, use t" +
+            "his field, otherwise use uid)")]
         public byte[] Uid2
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// LANDING_TARGET
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.LandingTarget, Name="LANDING_TARGET", Description="The location of a landing area captured from a downward facing camera")]
     public class LandingTargetMessage : MavLink4Net.Messages.Message
     {
         
@@ -145,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -160,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// The ID of the target if multiple targets are present
         /// </summary>
+        [MessageFieldMetadata(Name="target_num", Type="uint8_t", Description="The ID of the target if multiple targets are present")]
         public byte TargetNum
         {
             get
@@ -175,6 +179,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// MAV_FRAME enum specifying the whether the following feilds are earth-frame, body-frame, etc.
         /// </summary>
+        [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="MAV_FRAME enum specifying the whether the following feilds are earth-frame, body-" +
+            "frame, etc.")]
         public Frame Frame
         {
             get
@@ -190,6 +196,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X-axis angular offset (in radians) of the target from the center of the image
         /// </summary>
+        [MessageFieldMetadata(Name="angle_x", Type="float", Units="rad", Description="X-axis angular offset (in radians) of the target from the center of the image")]
         public float AngleX
         {
             get
@@ -205,6 +212,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y-axis angular offset (in radians) of the target from the center of the image
         /// </summary>
+        [MessageFieldMetadata(Name="angle_y", Type="float", Units="rad", Description="Y-axis angular offset (in radians) of the target from the center of the image")]
         public float AngleY
         {
             get
@@ -220,6 +228,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Distance to the target from the vehicle in meters
         /// </summary>
+        [MessageFieldMetadata(Name="distance", Type="float", Units="m", Description="Distance to the target from the vehicle in meters")]
         public float Distance
         {
             get
@@ -235,6 +244,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Size in radians of target along x-axis
         /// </summary>
+        [MessageFieldMetadata(Name="size_x", Type="float", Units="rad", Description="Size in radians of target along x-axis")]
         public float SizeX
         {
             get
@@ -250,6 +260,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Size in radians of target along y-axis
         /// </summary>
+        [MessageFieldMetadata(Name="size_y", Type="float", Units="rad", Description="Size in radians of target along y-axis")]
         public float SizeY
         {
             get
@@ -265,6 +276,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Position of the landing target on MAV_FRAME
         /// </summary>
+        [MessageFieldMetadata(Name="x", Type="float", Units="m", Description="X Position of the landing target on MAV_FRAME")]
         public float X
         {
             get
@@ -280,6 +292,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Position of the landing target on MAV_FRAME
         /// </summary>
+        [MessageFieldMetadata(Name="y", Type="float", Units="m", Description="Y Position of the landing target on MAV_FRAME")]
         public float Y
         {
             get
@@ -295,6 +308,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Position of the landing target on MAV_FRAME
         /// </summary>
+        [MessageFieldMetadata(Name="z", Type="float", Units="m", Description="Z Position of the landing target on MAV_FRAME")]
         public float Z
         {
             get
@@ -310,6 +324,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0, 0, 0)
         /// </summary>
+        [MessageFieldMetadata(Name="q", Type="float[4]", Description="Quaternion of landing target orientation (w, x, y, z order, zero-rotation is 1, 0" +
+            ", 0, 0)")]
         public float[] Q
         {
             get
@@ -325,6 +341,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// LANDING_TARGET_TYPE enum specifying the type of landing target
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="LANDING_TARGET_TYPE enum", Description="LANDING_TARGET_TYPE enum specifying the type of landing target")]
         public LandingTargetType Type
         {
             get
@@ -340,6 +357,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Boolean indicating known position (1) or default unkown position (0), for validation of positioning of the landing target
         /// </summary>
+        [MessageFieldMetadata(Name="position_valid", Type="uint8_t", Description="Boolean indicating known position (1) or default unkown position (0), for validat" +
+            "ion of positioning of the landing target")]
         public byte PositionValid
         {
             get

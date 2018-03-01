@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// WIND_COV
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.WindCov, Name="WIND_COV", Description=null)]
     public class WindCovMessage : MavLink4Net.Messages.Message
     {
         
@@ -105,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (micros since boot or Unix epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (micros since boot or Unix epoch)")]
         public ulong TimeUsec
         {
             get
@@ -120,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Wind in X (NED) direction in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="wind_x", Type="float", Units="m/s", Description="Wind in X (NED) direction in m/s")]
         public float WindX
         {
             get
@@ -135,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Wind in Y (NED) direction in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="wind_y", Type="float", Units="m/s", Description="Wind in Y (NED) direction in m/s")]
         public float WindY
         {
             get
@@ -150,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Wind in Z (NED) direction in m/s
         /// </summary>
+        [MessageFieldMetadata(Name="wind_z", Type="float", Units="m/s", Description="Wind in Z (NED) direction in m/s")]
         public float WindZ
         {
             get
@@ -165,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.
         /// </summary>
+        [MessageFieldMetadata(Name="var_horiz", Type="float", Units="m/s", Description="Variability of the wind in XY. RMS of a 1 Hz lowpassed wind estimate.")]
         public float VarHoriz
         {
             get
@@ -180,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.
         /// </summary>
+        [MessageFieldMetadata(Name="var_vert", Type="float", Units="m/s", Description="Variability of the wind in Z. RMS of a 1 Hz lowpassed wind estimate.")]
         public float VarVert
         {
             get
@@ -195,6 +203,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// AMSL altitude (m) this measurement was taken at
         /// </summary>
+        [MessageFieldMetadata(Name="wind_alt", Type="float", Units="m", Description="AMSL altitude (m) this measurement was taken at")]
         public float WindAlt
         {
             get
@@ -210,6 +219,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Horizontal speed 1-STD accuracy
         /// </summary>
+        [MessageFieldMetadata(Name="horiz_accuracy", Type="float", Units="m", Description="Horizontal speed 1-STD accuracy")]
         public float HorizAccuracy
         {
             get
@@ -225,6 +235,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Vertical speed 1-STD accuracy
         /// </summary>
+        [MessageFieldMetadata(Name="vert_accuracy", Type="float", Units="m", Description="Vertical speed 1-STD accuracy")]
         public float VertAccuracy
         {
             get

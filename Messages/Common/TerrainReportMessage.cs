@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// TERRAIN_REPORT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.TerrainReport, Name="TERRAIN_REPORT", Description="Response from a TERRAIN_CHECK request")]
     public class TerrainReportMessage : MavLink4Net.Messages.Message
     {
         
@@ -89,6 +91,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude (degrees *10^7)")]
         public int Lat
         {
             get
@@ -104,6 +107,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude (degrees *10^7)
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude (degrees *10^7)")]
         public int Lon
         {
             get
@@ -119,6 +123,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// grid spacing (zero if terrain at this location unavailable)
         /// </summary>
+        [MessageFieldMetadata(Name="spacing", Type="uint16_t", Description="grid spacing (zero if terrain at this location unavailable)")]
         public ushort Spacing
         {
             get
@@ -134,6 +139,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Terrain height in meters AMSL
         /// </summary>
+        [MessageFieldMetadata(Name="terrain_height", Type="float", Units="m", Description="Terrain height in meters AMSL")]
         public float TerrainHeight
         {
             get
@@ -149,6 +155,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current vehicle height above lat/lon terrain height (meters)
         /// </summary>
+        [MessageFieldMetadata(Name="current_height", Type="float", Units="m", Description="Current vehicle height above lat/lon terrain height (meters)")]
         public float CurrentHeight
         {
             get
@@ -164,6 +171,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of 4x4 terrain blocks waiting to be received or read from disk
         /// </summary>
+        [MessageFieldMetadata(Name="pending", Type="uint16_t", Description="Number of 4x4 terrain blocks waiting to be received or read from disk")]
         public ushort Pending
         {
             get
@@ -179,6 +187,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of 4x4 terrain blocks in memory
         /// </summary>
+        [MessageFieldMetadata(Name="loaded", Type="uint16_t", Description="Number of 4x4 terrain blocks in memory")]
         public ushort Loaded
         {
             get

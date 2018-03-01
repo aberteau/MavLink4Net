@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// PARAM_VALUE
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ParamValue, Name="PARAM_VALUE", Description="Emit the value of a onboard parameter. The inclusion of param_count and param_ind" +
+        "ex in the message allows the recipient to keep track of received parameters and " +
+        "allows him to re-request missing parameters after a loss or timeout.")]
     public class ParamValueMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +77,10 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard parameter id, terminated by NULL if the length is less than 16 human-readable chars and WITHOUT null termination (NULL) byte if the length is exactly 16 chars - applications have to provide 16+1 bytes storage if the ID is stored as string
         /// </summary>
+        [MessageFieldMetadata(Name="param_id", Type="char[16]", Description="Onboard parameter id, terminated by NULL if the length is less than 16 human-read" +
+            "able chars and WITHOUT null termination (NULL) byte if the length is exactly 16 " +
+            "chars - applications have to provide 16+1 bytes storage if the ID is stored as s" +
+            "tring")]
         public char[] ParamId
         {
             get
@@ -88,6 +96,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard parameter value
         /// </summary>
+        [MessageFieldMetadata(Name="param_value", Type="float", Description="Onboard parameter value")]
         public float ParamValue
         {
             get
@@ -103,6 +112,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
         /// </summary>
+        [MessageFieldMetadata(Name="param_type", Type="MAV_PARAM_TYPE enum", Description="Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.")]
         public ParamType ParamType
         {
             get
@@ -118,6 +128,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Total number of onboard parameters
         /// </summary>
+        [MessageFieldMetadata(Name="param_count", Type="uint16_t", Description="Total number of onboard parameters")]
         public ushort ParamCount
         {
             get
@@ -133,6 +144,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Index of this onboard parameter
         /// </summary>
+        [MessageFieldMetadata(Name="param_index", Type="uint16_t", Description="Index of this onboard parameter")]
         public ushort ParamIndex
         {
             get

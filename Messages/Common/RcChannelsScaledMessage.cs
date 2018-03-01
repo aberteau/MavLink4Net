@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// RC_CHANNELS_SCALED
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.RcChannelsScaled, Name="RC_CHANNELS_SCALED", Description="The scaled values of the RC channels received. (-100%) -10000, (0%) 0, (100%) 100" +
+        "00. Channels that are inactive should be set to UINT16_MAX.")]
     public class RcChannelsScaledMessage : MavLink4Net.Messages.Message
     {
         
@@ -121,6 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -136,6 +140,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but this allows for more than 8 servos.
         /// </summary>
+        [MessageFieldMetadata(Name="port", Type="uint8_t", Description="Servo output port (set of 8 outputs = 1 port). Most MAVs will just use one, but t" +
+            "his allows for more than 8 servos.")]
         public byte Port
         {
             get
@@ -151,6 +157,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan1_scaled", Type="int16_t", Description="RC channel 1 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan1Scaled
         {
             get
@@ -166,6 +174,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan2_scaled", Type="int16_t", Description="RC channel 2 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan2Scaled
         {
             get
@@ -181,6 +191,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan3_scaled", Type="int16_t", Description="RC channel 3 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan3Scaled
         {
             get
@@ -196,6 +208,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan4_scaled", Type="int16_t", Description="RC channel 4 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan4Scaled
         {
             get
@@ -211,6 +225,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan5_scaled", Type="int16_t", Description="RC channel 5 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan5Scaled
         {
             get
@@ -226,6 +242,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan6_scaled", Type="int16_t", Description="RC channel 6 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan6Scaled
         {
             get
@@ -241,6 +259,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan7_scaled", Type="int16_t", Description="RC channel 7 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan7Scaled
         {
             get
@@ -256,6 +276,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_MAX.
         /// </summary>
+        [MessageFieldMetadata(Name="chan8_scaled", Type="int16_t", Description="RC channel 8 value scaled, (-100%) -10000, (0%) 0, (100%) 10000, (invalid) INT16_" +
+            "MAX.")]
         public short Chan8Scaled
         {
             get
@@ -271,6 +293,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.
         /// </summary>
+        [MessageFieldMetadata(Name="rssi", Type="uint8_t", Units="%", Description="Receive signal strength indicator, 0: 0%, 100: 100%, 255: invalid/unknown.")]
         public byte Rssi
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// DISTANCE_SENSOR
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.DistanceSensor, Name="DISTANCE_SENSOR", Description=null)]
     public class DistanceSensorMessage : MavLink4Net.Messages.Message
     {
         
@@ -97,6 +99,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Time since system boot
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Time since system boot")]
         public uint TimeBootMs
         {
             get
@@ -112,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Minimum distance the sensor can measure in centimeters
         /// </summary>
+        [MessageFieldMetadata(Name="min_distance", Type="uint16_t", Units="cm", Description="Minimum distance the sensor can measure in centimeters")]
         public ushort MinDistance
         {
             get
@@ -127,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Maximum distance the sensor can measure in centimeters
         /// </summary>
+        [MessageFieldMetadata(Name="max_distance", Type="uint16_t", Units="cm", Description="Maximum distance the sensor can measure in centimeters")]
         public ushort MaxDistance
         {
             get
@@ -142,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Current distance reading
         /// </summary>
+        [MessageFieldMetadata(Name="current_distance", Type="uint16_t", Units="cm", Description="Current distance reading")]
         public ushort CurrentDistance
         {
             get
@@ -157,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Type from MAV_DISTANCE_SENSOR enum.
         /// </summary>
+        [MessageFieldMetadata(Name="type", Type="MAV_DISTANCE_SENSOR enum", Description="Type from MAV_DISTANCE_SENSOR enum.")]
         public DistanceSensor Type
         {
             get
@@ -172,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Onboard ID of the sensor
         /// </summary>
+        [MessageFieldMetadata(Name="id", Type="uint8_t", Description="Onboard ID of the sensor")]
         public byte Id
         {
             get
@@ -187,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270
         /// </summary>
+        [MessageFieldMetadata(Name="orientation", Type="MAV_SENSOR_ORIENTATION enum", Description=@"Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270")]
         public SensorOrientation Orientation
         {
             get
@@ -202,6 +211,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Measurement covariance in centimeters, 0 for unknown / invalid readings
         /// </summary>
+        [MessageFieldMetadata(Name="covariance", Type="uint8_t", Units="cm", Description="Measurement covariance in centimeters, 0 for unknown / invalid readings")]
         public byte Covariance
         {
             get

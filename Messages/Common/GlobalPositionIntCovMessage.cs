@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// GLOBAL_POSITION_INT_COV
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.GlobalPositionIntCov, Name="GLOBAL_POSITION_INT_COV", Description=@"The filtered global position (e.g. fused GPS and accelerometers). The position is in GPS-frame (right-handed, Z-up). It  is designed as scaled integer message since the resolution of float is not sufficient. NOTE: This message is intended for onboard networks / companion computers and higher-bandwidth links and optimized for accuracy and completeness. Please use the GLOBAL_POSITION_INT message for a minimal subset.")]
     public class GlobalPositionIntCovMessage : MavLink4Net.Messages.Message
     {
         
@@ -113,6 +115,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (microseconds since system boot or since UNIX epoch)
         /// </summary>
+        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since system boot or since UNIX epoch)")]
         public ulong TimeUsec
         {
             get
@@ -128,6 +131,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Class id of the estimator this estimate originated from.
         /// </summary>
+        [MessageFieldMetadata(Name="estimator_type", Type="MAV_ESTIMATOR_TYPE enum", Description="Class id of the estimator this estimate originated from.")]
         public EstimatorType EstimatorType
         {
             get
@@ -143,6 +147,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Latitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lat", Type="int32_t", Units="degE7", Description="Latitude, expressed as degrees * 1E7")]
         public int Lat
         {
             get
@@ -158,6 +163,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Longitude, expressed as degrees * 1E7
         /// </summary>
+        [MessageFieldMetadata(Name="lon", Type="int32_t", Units="degE7", Description="Longitude, expressed as degrees * 1E7")]
         public int Lon
         {
             get
@@ -173,6 +179,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude in meters, expressed as * 1000 (millimeters), above MSL
         /// </summary>
+        [MessageFieldMetadata(Name="alt", Type="int32_t", Units="mm", Description="Altitude in meters, expressed as * 1000 (millimeters), above MSL")]
         public int Alt
         {
             get
@@ -188,6 +195,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Altitude above ground in meters, expressed as * 1000 (millimeters)
         /// </summary>
+        [MessageFieldMetadata(Name="relative_alt", Type="int32_t", Units="mm", Description="Altitude above ground in meters, expressed as * 1000 (millimeters)")]
         public int RelativeAlt
         {
             get
@@ -203,6 +211,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground X Speed (Latitude), expressed as m/s
         /// </summary>
+        [MessageFieldMetadata(Name="vx", Type="float", Units="m/s", Description="Ground X Speed (Latitude), expressed as m/s")]
         public float Vx
         {
             get
@@ -218,6 +227,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Y Speed (Longitude), expressed as m/s
         /// </summary>
+        [MessageFieldMetadata(Name="vy", Type="float", Units="m/s", Description="Ground Y Speed (Longitude), expressed as m/s")]
         public float Vy
         {
             get
@@ -233,6 +243,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Ground Z Speed (Altitude), expressed as m/s
         /// </summary>
+        [MessageFieldMetadata(Name="vz", Type="float", Units="m/s", Description="Ground Z Speed (Altitude), expressed as m/s")]
         public float Vz
         {
             get
@@ -248,6 +259,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Covariance matrix (first six entries are the first ROW, next six entries are the second row, etc.)
         /// </summary>
+        [MessageFieldMetadata(Name="covariance", Type="float[36]", Description="Covariance matrix (first six entries are the first ROW, next six entries are the " +
+            "second row, etc.)")]
         public float[] Covariance
         {
             get

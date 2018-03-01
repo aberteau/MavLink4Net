@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_ITEM_REACHED
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionItemReached, Name="MISSION_ITEM_REACHED", Description="A certain mission item has been reached. The system will either hold this positio" +
+        "n (or circle on the orbit) or (if the autocontinue on the WP was set) continue t" +
+        "o the next waypoint.")]
     public class MissionItemReachedMessage : MavLink4Net.Messages.Message
     {
         
@@ -41,6 +45,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Sequence
         /// </summary>
+        [MessageFieldMetadata(Name="seq", Type="uint16_t", Description="Sequence")]
         public ushort Seq
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// ATTITUDE_QUATERNION
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.AttitudeQuaternion, Name="ATTITUDE_QUATERNION", Description="The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), " +
+        "expressed as quaternion. Quaternion order is w, x, y, z and a zero rotation woul" +
+        "d be expressed as (1 0 0 0).")]
     public class AttitudeQuaternionMessage : MavLink4Net.Messages.Message
     {
         
@@ -97,6 +101,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -112,6 +117,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion component 1, w (1 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q1", Type="float", Description="Quaternion component 1, w (1 in null-rotation)")]
         public float Q1
         {
             get
@@ -127,6 +133,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion component 2, x (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q2", Type="float", Description="Quaternion component 2, x (0 in null-rotation)")]
         public float Q2
         {
             get
@@ -142,6 +149,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion component 3, y (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q3", Type="float", Description="Quaternion component 3, y (0 in null-rotation)")]
         public float Q3
         {
             get
@@ -157,6 +165,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Quaternion component 4, z (0 in null-rotation)
         /// </summary>
+        [MessageFieldMetadata(Name="q4", Type="float", Description="Quaternion component 4, z (0 in null-rotation)")]
         public float Q4
         {
             get
@@ -172,6 +181,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Roll angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="rollspeed", Type="float", Units="rad/s", Description="Roll angular speed (rad/s)")]
         public float Rollspeed
         {
             get
@@ -187,6 +197,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Pitch angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="pitchspeed", Type="float", Units="rad/s", Description="Pitch angular speed (rad/s)")]
         public float Pitchspeed
         {
             get
@@ -202,6 +213,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Yaw angular speed (rad/s)
         /// </summary>
+        [MessageFieldMetadata(Name="yawspeed", Type="float", Units="rad/s", Description="Yaw angular speed (rad/s)")]
         public float Yawspeed
         {
             get

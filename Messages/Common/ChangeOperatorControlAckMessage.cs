@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,7 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// CHANGE_OPERATOR_CONTROL_ACK
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ChangeOperatorControlAck, Name="CHANGE_OPERATOR_CONTROL_ACK", Description="Accept / deny control of this MAV")]
     public class ChangeOperatorControlAckMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// ID of the GCS this message
         /// </summary>
+        [MessageFieldMetadata(Name="gcs_system_id", Type="uint8_t", Description="ID of the GCS this message")]
         public byte GcsSystemId
         {
             get
@@ -72,6 +75,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: request control of this MAV, 1: Release control of this MAV
         /// </summary>
+        [MessageFieldMetadata(Name="control_request", Type="uint8_t", Description="0: request control of this MAV, 1: Release control of this MAV")]
         public byte ControlRequest
         {
             get
@@ -87,6 +91,8 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// 0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3: NACK: Already under control
         /// </summary>
+        [MessageFieldMetadata(Name="ack", Type="uint8_t", Description="0: ACK, 1: NACK: Wrong passkey, 2: NACK: Unsupported passkey encryption method, 3" +
+            ": NACK: Already under control")]
         public byte Ack
         {
             get

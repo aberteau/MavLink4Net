@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_SET_CURRENT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionSetCurrent, Name="MISSION_SET_CURRENT", Description="Set the mission item with sequence number seq as current item. This means that th" +
+        "e MAV will continue to this mission item on the shortest path (not following the" +
+        " mission items in-between).")]
     public class MissionSetCurrentMessage : MavLink4Net.Messages.Message
     {
         
@@ -57,6 +61,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -72,6 +77,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -87,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Sequence
         /// </summary>
+        [MessageFieldMetadata(Name="seq", Type="uint16_t", Description="Sequence")]
         public ushort Seq
         {
             get

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,8 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// SCALED_IMU
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.ScaledImu, Name="SCALED_IMU", Description="The RAW IMU readings for the usual 9DOF sensor setup. This message should contain" +
+        " the scaled values to the described units")]
     public class ScaledImuMessage : MavLink4Net.Messages.Message
     {
         
@@ -113,6 +116,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Timestamp (milliseconds since system boot)
         /// </summary>
+        [MessageFieldMetadata(Name="time_boot_ms", Type="uint32_t", Units="ms", Description="Timestamp (milliseconds since system boot)")]
         public uint TimeBootMs
         {
             get
@@ -128,6 +132,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="xacc", Type="int16_t", Units="mG", Description="X acceleration (mg)")]
         public short Xacc
         {
             get
@@ -143,6 +148,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="yacc", Type="int16_t", Units="mG", Description="Y acceleration (mg)")]
         public short Yacc
         {
             get
@@ -158,6 +164,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z acceleration (mg)
         /// </summary>
+        [MessageFieldMetadata(Name="zacc", Type="int16_t", Units="mG", Description="Z acceleration (mg)")]
         public short Zacc
         {
             get
@@ -173,6 +180,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around X axis (millirad /sec)
         /// </summary>
+        [MessageFieldMetadata(Name="xgyro", Type="int16_t", Units="mrad/s", Description="Angular speed around X axis (millirad /sec)")]
         public short Xgyro
         {
             get
@@ -188,6 +196,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Y axis (millirad /sec)
         /// </summary>
+        [MessageFieldMetadata(Name="ygyro", Type="int16_t", Units="mrad/s", Description="Angular speed around Y axis (millirad /sec)")]
         public short Ygyro
         {
             get
@@ -203,6 +212,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Angular speed around Z axis (millirad /sec)
         /// </summary>
+        [MessageFieldMetadata(Name="zgyro", Type="int16_t", Units="mrad/s", Description="Angular speed around Z axis (millirad /sec)")]
         public short Zgyro
         {
             get
@@ -218,6 +228,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// X Magnetic field (milli tesla)
         /// </summary>
+        [MessageFieldMetadata(Name="xmag", Type="int16_t", Units="mT", Description="X Magnetic field (milli tesla)")]
         public short Xmag
         {
             get
@@ -233,6 +244,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Y Magnetic field (milli tesla)
         /// </summary>
+        [MessageFieldMetadata(Name="ymag", Type="int16_t", Units="mT", Description="Y Magnetic field (milli tesla)")]
         public short Ymag
         {
             get
@@ -248,6 +260,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Z Magnetic field (milli tesla)
         /// </summary>
+        [MessageFieldMetadata(Name="zmag", Type="int16_t", Units="mT", Description="Z Magnetic field (milli tesla)")]
         public short Zmag
         {
             get

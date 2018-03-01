@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_COUNT
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionCount, Name="MISSION_COUNT", Description="This message is emitted as response to MISSION_REQUEST_LIST by the MAV and to ini" +
+        "tiate a write transaction. The GCS can then request the individual mission item " +
+        "based on the knowledge of the total number of waypoints.")]
     public class MissionCountMessage : MavLink4Net.Messages.Message
     {
         
@@ -65,6 +69,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -80,6 +85,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -95,6 +101,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Number of mission items in the sequence
         /// </summary>
+        [MessageFieldMetadata(Name="count", Type="uint16_t", Description="Number of mission items in the sequence")]
         public ushort Count
         {
             get
@@ -110,6 +117,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mission type, see MAV_MISSION_TYPE
         /// </summary>
+        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
         public MissionType MissionType
         {
             get

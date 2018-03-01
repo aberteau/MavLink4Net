@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using MavLink4Net.Messages.Metadata;
 using System;
 using System.ComponentModel;
 
@@ -22,6 +23,9 @@ namespace MavLink4Net.Messages.Common
     /// <remarks>
     /// MISSION_REQUEST_PARTIAL_LIST
     /// </remarks>
+    [MessageMetadata(Type=MavLink4Net.Messages.MavMessageType.MissionRequestPartialList, Name="MISSION_REQUEST_PARTIAL_LIST", Description="Request a partial list of mission items from the system/component. https://mavlin" +
+        "k.io/en/protocol/mission.html. If start and end index are the same, just send on" +
+        "e waypoint.")]
     public class MissionRequestPartialListMessage : MavLink4Net.Messages.Message
     {
         
@@ -73,6 +77,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// System ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="System ID")]
         public byte TargetSystem
         {
             get
@@ -88,6 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Component ID
         /// </summary>
+        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="Component ID")]
         public byte TargetComponent
         {
             get
@@ -103,6 +109,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Start index, 0 by default
         /// </summary>
+        [MessageFieldMetadata(Name="start_index", Type="int16_t", Description="Start index, 0 by default")]
         public short StartIndex
         {
             get
@@ -118,6 +125,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// End index, -1 by default (-1: send list to end). Else a valid index of the list
         /// </summary>
+        [MessageFieldMetadata(Name="end_index", Type="int16_t", Description="End index, -1 by default (-1: send list to end). Else a valid index of the list")]
         public short EndIndex
         {
             get
@@ -133,6 +141,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// Mission type, see MAV_MISSION_TYPE
         /// </summary>
+        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
         public MissionType MissionType
         {
             get
