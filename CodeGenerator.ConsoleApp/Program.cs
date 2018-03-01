@@ -29,6 +29,9 @@ namespace MavLink4Net.CodeGenerator.ConsoleApp
             {
                 optionSet.Parse(args);
 
+                if (String.IsNullOrWhiteSpace(messageDefinitionPath))
+                    throw new Exception("defPath must be provided");
+
                 if (String.IsNullOrWhiteSpace(outputPath))
                     throw new Exception("outputPath must be provided");
             }
