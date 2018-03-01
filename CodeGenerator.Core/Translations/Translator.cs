@@ -8,6 +8,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
 {
     public class Translator
     {
+        private readonly IMessageFilter _messageFilter;
         private readonly IMessageNameTranslation _messageNameTranslation;
         private readonly IMessageFieldNameTranslation _messageFieldNameTranslation;
         private readonly IEnumNameTranslation _enumNameTranslation;
@@ -15,12 +16,13 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
 
         private readonly TranslationMap _translationMap = new TranslationMap();
 
-        public Translator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation)
+        public Translator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation, IMessageFilter messageFilter)
         {
             _messageNameTranslation = messageNameTranslation;
             _messageFieldNameTranslation = messageFieldNameTranslation;
             _enumNameTranslation = enumNameTranslation;
             _enumEntryNameTranslation = enumEntryNameTranslation;
+            _messageFilter = messageFilter;
         }
 
         public TranslationResult Translate(MavLink xMavLink)
@@ -39,16 +41,9 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
 
             dMavLink.Enums = Translate(xMavLink.Enums);
 
-            IEnumerable<Message> xMessages = Filter(xMavLink.Messages).ToList();
+            IEnumerable<Message> xMessages = _messageFilter != null ? _messageFilter.Filter(xMavLink.Messages).ToList() : xMavLink.Messages;
             dMavLink.Messages = Translate(xMessages);
             return dMavLink;
-        }
-
-        private IEnumerable<Message> Filter(IEnumerable<Message> xMessages)
-        {
-            // discard anything beyond 255
-            IEnumerable<Message> filteredMessages = xMessages.Where(m => m.Id < 256);
-            return filteredMessages;
         }
 
         #region Message

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MavLink4Net.CodeGenerator.Core.Translations.Interfaces;
 using MavLink4Net.MessageDefinitions.Data;
@@ -8,7 +9,7 @@ using MavLink4Net.MessageDefinitions.Mappers;
 namespace MavLink4Net.CodeGenerator.Core.Translations
 {
     public class DefaultTranslation
-        : IMessageNameTranslation, IMessageFieldNameTranslation, IEnumNameTranslation, IEnumEntryNameTranslation
+        : IMessageNameTranslation, IMessageFieldNameTranslation, IEnumNameTranslation, IEnumEntryNameTranslation, IMessageFilter
     {
         private readonly EnumValuePrefixRemovalStrategy _strategy;
         private string _enumValuePrefix;
@@ -46,6 +47,13 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             String shortName = StringHelper.RemoveAtStart(pEnumEntry.Name, _enumValuePrefix);
             string name = NamingConventionHelper.GetPascalStyleString(shortName);
             return name;
+        }
+
+        public IEnumerable<Message> Filter(IEnumerable<Message> xMessages)
+        {
+            // discard anything beyond 255
+            IEnumerable<Message> filteredMessages = xMessages.Where(m => m.Id < 256);
+            return filteredMessages;
         }
     }
 }
