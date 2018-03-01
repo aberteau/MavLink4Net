@@ -11,5 +11,7 @@ namespace MavLink4Net.MessageDefinitions.Data
         public string Description { get; set; }
 
         public IEnumerable<MessageField> Fields { get; set; }
+
+        public byte CrcExtra { get; set; }
     }
 }

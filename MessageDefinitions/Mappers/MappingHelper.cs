@@ -41,6 +41,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             dMessage.Name = xMessage.Name;
             dMessage.Description = StringHelper.TrimAndNormalizeCarriageReturn(xMessage.Description);
             dMessage.Fields = ToModels(xMessage.Fields, enumByName);
+            dMessage.CrcExtra = CrcHelper.GetExtraCrc(dMessage);
             return dMessage;
         }
 
@@ -97,7 +98,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             Data.MessageFieldType fieldType = new Data.MessageFieldType();
             fieldType.ArrayLength = GetArraySize(xMessageField.Type);
-            MessageFieldPrimitiveType primitiveType = ToFieldPrimitiveType(xMessageField.Type);
+            MessageFieldPrimitiveType primitiveType = MessageFieldTypeMapper.ToFieldPrimitiveType(xMessageField.Type);
             fieldType.PrimitiveType = primitiveType;
             fieldType.TypeLength = TypeLengthHelper.GetTypeLength(primitiveType);
             fieldType.Enum = String.IsNullOrWhiteSpace(xMessageField.Enum) ? null : enumByName[xMessageField.Enum];
@@ -121,56 +122,9 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             return defaultValue;
         }
 
-        private static MessageFieldPrimitiveType ToFieldPrimitiveType(string type)
-        {
-            string basicType = GetBasicFieldTypeFromString(type);
-
-            switch (basicType)
-            {
-                case "float":
-                    return MessageFieldPrimitiveType.Float32;
-                case "int8_t":
-                    return MessageFieldPrimitiveType.Int8;
-                case "uint8_t":
-                case "uint8_t_mavlink_version":
-                    return MessageFieldPrimitiveType.UInt8;
-                case "int16_t":
-                    return MessageFieldPrimitiveType.Int16;
-                case "uint16_t":
-                    return MessageFieldPrimitiveType.UInt16;
-                case "int32_t":
-                    return MessageFieldPrimitiveType.Int32;
-                case "uint32_t":
-                    return MessageFieldPrimitiveType.UInt32;
-                case "int64_t":
-                    return MessageFieldPrimitiveType.Int64;
-                case "uint64_t":
-                    return MessageFieldPrimitiveType.UInt64;
-                case "char":
-                    return MessageFieldPrimitiveType.Char;
-                case "double":
-                    return MessageFieldPrimitiveType.Double;
-                default:
-                    return MessageFieldPrimitiveType.None;
-            }
-        }
-
-        public static string GetBasicFieldTypeFromString(string t)
-        {
-            string[] tt = t.Split('[', ']');
-
-            if (tt.Length == 0)
-                return "";
-
-            string result = tt[0];
-            return result;
-        }
-
         #endregion
 
         #region EnumEntry
-
-
 
         private static IEnumerable<Data.EnumEntry> ToModels(IEnumerable<Xml.EnumEntry> xEnumEntries)
         {

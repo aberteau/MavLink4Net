@@ -60,6 +60,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             dMessage.Name = _messageNameTranslation.TranslateName(xMessage);
             dMessage.Description = xMessage.Description;
             dMessage.Fields = Translate(xMessage.Fields);
+            dMessage.CrcExtra = xMessage.CrcExtra;
 
             _translationMap.MessageMap.Add(dMessage, xMessage);
 
