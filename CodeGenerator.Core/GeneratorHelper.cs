@@ -39,9 +39,16 @@ namespace MavLink4Net.CodeGenerator.Core
         public static void GenerateFiles(string messageDefinitionPath, string outputPath, string language, MavLink mavLink, TranslationMap translationMap)
         {
             String messagesPath = Path.Combine(outputPath, ConstantHelper.MessagesFolderName);
+            System.IO.Directory.CreateDirectory(messagesPath);
+
             string serializationOutputPath = Path.Combine(outputPath, ConstantHelper.MessagesSerializationFolderName);
+            System.IO.Directory.CreateDirectory(serializationOutputPath);
+
             string messagesCommonPath = Path.Combine(messagesPath, ConstantHelper.CommonName);
+            System.IO.Directory.CreateDirectory(messagesCommonPath);
+
             string serializerCommonOutputPath = Path.Combine(serializationOutputPath, ConstantHelper.CommonName);
+            System.IO.Directory.CreateDirectory(serializerCommonOutputPath);
 
             TypeInfo messageBaseClassTypeInfo = TypeInfoHelper.GetMessageTypeInfo();
             TypeInfo messageTypeEnumTypeInfo = TypeInfoHelper.GetMavMessageTypeTypeInfo();
