@@ -11,7 +11,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     public class GeneratorHelper
     {
-        public static void Generate(MavLink mavLink, string language, string outputPath, string mavLinkMessagesNamespace, string messageBaseClassName, string commonName, string mavMessageTypeEnumName, string serializationNamespace, string serializationOutputPath, string serializerInterfaceName, string serializerFactoryClassName, string messagesCommonNamespace, string messagesCommonPath, string messageBaseClassFullName, string messageTypeEnumFullName, string serializerCommonOutputPath, string serializationCommonNamespace, MavLinkTranslationMap translationMap = null)
+        public static void Generate(MavLink mavLink, string language, string outputPath, string mavLinkMessagesNamespace, string messageBaseClassName, string commonName, string mavMessageTypeEnumName, string serializationNamespace, string serializationOutputPath, string serializerInterfaceName, string serializerFactoryClassName, string messagesCommonNamespace, string messagesCommonPath, string messageBaseClassFullName, string messageTypeEnumFullName, string serializerCommonOutputPath, string serializationCommonNamespace, TranslationMap translationMap = null)
         {
             CodeGeneratorOptions options = new CodeGeneratorOptions() { BracingStyle = "C" };
             CodeDomProvider codeProvider = CreateCodeDomProvider(language);
@@ -36,7 +36,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region MessageType
 
-        private static void GenerateMessageTypeEnum(string outputPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string className, MavLinkTranslationMap translationMap)
+        private static void GenerateMessageTypeEnum(string outputPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string className, TranslationMap translationMap)
         {
             string filename = $"{className}.cs";
             String filePath = Path.Combine(outputPath, filename);
@@ -48,7 +48,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region Message
 
-        private static void GenerateMessageClassFiles(string folderPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageTypeEnumFullName, MavLinkTranslationMap translationMap)
+        private static void GenerateMessageClassFiles(string folderPath, IEnumerable<Message> messages, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageTypeEnumFullName, TranslationMap translationMap)
         {
             foreach (MessageDefinitions.Data.Message message in messages)
             {
@@ -57,7 +57,7 @@ namespace MavLink4Net.CodeGenerator.Core
             }
         }
 
-        private static void GenerateMessageClassFile(string folderPath, MessageDefinitions.Data.Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
+        private static void GenerateMessageClassFile(string folderPath, MessageDefinitions.Data.Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, string baseClassName, string messageTypeEnumValue, TranslationMap translationMap)
         {
             string messageName = NameHelper.GetMessageClassName(message);
             string filename = $"{messageName}.cs";
@@ -70,7 +70,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region Enum
 
-        private static void GenerateEnumFiles(string folderPath, IEnumerable<MessageDefinitions.Data.Enum> enums, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, MavLinkTranslationMap translationMap)
+        private static void GenerateEnumFiles(string folderPath, IEnumerable<MessageDefinitions.Data.Enum> enums, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, TranslationMap translationMap)
         {
             foreach (MessageDefinitions.Data.Enum enumeration in enums)
             {
@@ -82,7 +82,7 @@ namespace MavLink4Net.CodeGenerator.Core
             }
         }
 
-        private static void GenerateEnumFile(string folderPath, MessageDefinitions.Data.Enum enumeration, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, MavLinkTranslationMap translationMap)
+        private static void GenerateEnumFile(string folderPath, MessageDefinitions.Data.Enum enumeration, CodeGeneratorOptions options, CodeDomProvider codeProvider, string ns, TranslationMap translationMap)
         {
             string enumerationName = enumeration.Name;
             string filename = $"{enumerationName}.cs";

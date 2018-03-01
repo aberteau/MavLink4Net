@@ -6,7 +6,7 @@ using MavLink4Net.MessageDefinitions.Data;
 
 namespace MavLink4Net.CodeGenerator.Core.Translations
 {
-    public class MavLinkTranslator
+    public class Translator
     {
         private readonly IMessageNameTranslation _messageNameTranslation;
         private readonly IMessageFieldNameTranslation _messageFieldNameTranslation;
@@ -18,7 +18,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
         private readonly IDictionary<MessageDefinitions.Data.Message, MessageDefinitions.Data.Message> _messageMap;
         private readonly IDictionary<MessageDefinitions.Data.MessageField, MessageDefinitions.Data.MessageField> _messageFieldMap;
 
-        public MavLinkTranslator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation)
+        public Translator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation)
         {
             _messageNameTranslation = messageNameTranslation;
             _messageFieldNameTranslation = messageFieldNameTranslation;
@@ -30,17 +30,17 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             _messageFieldMap = new Dictionary<MessageDefinitions.Data.MessageField, MessageDefinitions.Data.MessageField>();
         }
 
-        public MavLinkTranslationResult Translate(MavLink xMavLink)
+        public TranslationResult Translate(MavLink xMavLink)
         {
-            MavLinkTranslationResult result = new MavLinkTranslationResult();
+            TranslationResult result = new TranslationResult();
             result.MavLink = TranslateMavLink(xMavLink);
             result.TranslationMap = GetTranslationMap();
             return result;
         }
 
-        private MavLinkTranslationMap GetTranslationMap()
+        private TranslationMap GetTranslationMap()
         {
-            MavLinkTranslationMap translationMap = new MavLinkTranslationMap();
+            TranslationMap translationMap = new TranslationMap();
             translationMap.EnumMap = _enumMap;
             translationMap.EnumEntryMap = _enumEntryMap;
             translationMap.MessageMap = _messageMap;

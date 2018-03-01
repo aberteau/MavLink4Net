@@ -9,7 +9,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class EnumGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Enum enumeration, string ns, MavLinkTranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Enum enumeration, string ns, TranslationMap translationMap)
         {
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
 
@@ -32,7 +32,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Enum enumeration, MavLinkTranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Enum enumeration, TranslationMap translationMap)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -62,7 +62,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberField ToCodeMemberField(EnumEntry enumEntry, MavLinkTranslationMap translationMap)
+        private static CodeMemberField ToCodeMemberField(EnumEntry enumEntry, TranslationMap translationMap)
         {
             CodeMemberField field = new CodeMemberField();
             field.Name = enumEntry.Name;

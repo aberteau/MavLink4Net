@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MavLink4Net.CodeGenerator.Core.Translations
 {
-    public class MavLinkTranslationMap
+    public class TranslationMap
     {
         public IDictionary<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum> EnumMap { get; set; }
 

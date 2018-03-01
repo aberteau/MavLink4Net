@@ -12,7 +12,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MessageGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string baseClassName, string messageTypeEnumValue, TranslationMap translationMap)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -37,7 +37,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string baseClassName, string messageTypeEnumValue, MavLinkTranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string baseClassName, string messageTypeEnumValue, TranslationMap translationMap)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -88,7 +88,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeTypeDeclaration.Members.Add(constructor);
         }
 
-        private static CodeMemberField ToCodeMemberField(MessageField messageField, MavLinkTranslationMap translationMap)
+        private static CodeMemberField ToCodeMemberField(MessageField messageField, TranslationMap translationMap)
         {
             CodeMemberField codeMemberField = new CodeMemberField();
             codeMemberField.Attributes = MemberAttributes.Private;
