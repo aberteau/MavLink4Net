@@ -10,7 +10,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class SerializerGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string interfaceName, string messageBaseClassName, string commonNamespace)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo serializerInterfaceTypeInfo, TypeInfo messageBaseClassTypeInfo, String messagesNamespace)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -23,11 +23,11 @@ namespace MavLink4Net.CodeGenerator.Core
             globalNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
 
             // Generate the namespace
-            CodeNamespace codeNamespace = new CodeNamespace(ns);
+            CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, interfaceName, messageBaseClassName, commonNamespace);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, typeInfo.Name, serializerInterfaceTypeInfo, messageBaseClassTypeInfo, messagesNamespace);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -35,7 +35,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string interfaceName, string messageBaseClassName, string commonNamespace)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, TypeInfo serializerInterfaceTypeInfo, TypeInfo messageBaseClassTypeInfo, String messagesNamespace)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -43,18 +43,18 @@ namespace MavLink4Net.CodeGenerator.Core
                 IsClass = true
             };
 
-            codeTypeDeclaration.BaseTypes.Add(interfaceName);
+            codeTypeDeclaration.BaseTypes.Add(serializerInterfaceTypeInfo.FullName);
 
-            CodeMemberMethod serializeCodeMemberMethod = CreateSerializeCodeMemberMethod(messageBaseClassName, message, commonNamespace);
+            CodeMemberMethod serializeCodeMemberMethod = CreateSerializeCodeMemberMethod(messageBaseClassTypeInfo, message, messagesNamespace);
             codeTypeDeclaration.Members.Add(serializeCodeMemberMethod);
 
-            CodeMemberMethod deserializeCodeMemberMethod = CreateDeserializeCodeMemberMethod(messageBaseClassName, message);
+            CodeMemberMethod deserializeCodeMemberMethod = CreateDeserializeCodeMemberMethod(messageBaseClassTypeInfo, message);
             codeTypeDeclaration.Members.Add(deserializeCodeMemberMethod);
 
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberMethod CreateSerializeCodeMemberMethod(string messageBaseClassName, Message message, string commonNamespace)
+        private static CodeMemberMethod CreateSerializeCodeMemberMethod(TypeInfo messageBaseClass, Message message, string messagesNamespace)
         {
             string writerParamName = "writer";
             string messageParamName = "message";
@@ -64,16 +64,15 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberMethod.Name = "Serialize";
 
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(BinaryWriter), writerParamName));
-            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageBaseClassName, messageParamName));
-
-            string messageClassName = NameHelper.GetMessageClassName(message);
-            string messageClassFullName = NamespaceHelper.GetFullname(commonNamespace, messageClassName);
+            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageBaseClass.FullName, messageParamName));
 
             string messageVariableName = "tMessage";
 
+            TypeInfo messageTypeInfo = TypeInfoHelper.GetTypeInfo(messagesNamespace, message);
+
             codeMemberMethod.Statements.Add(new CodeVariableDeclarationStatement(
-                new CodeTypeReference(messageClassFullName), messageVariableName,
-                new CodeSnippetExpression($"{messageParamName} as {messageClassFullName}")));
+                new CodeTypeReference(messageTypeInfo.FullName), messageVariableName,
+                new CodeSnippetExpression($"{messageParamName} as {messageTypeInfo.FullName}")));
 
             AddWritePropertyStatements(codeMemberMethod, message, writerParamName, messageVariableName);
 
@@ -145,22 +144,21 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #endregion
 
-        private static CodeMemberMethod CreateDeserializeCodeMemberMethod(string messageBaseClassName, Message message)
+        private static CodeMemberMethod CreateDeserializeCodeMemberMethod(TypeInfo messageBaseClass, Message message)
         {
             string readerParamName = "reader";
             string messageVariableName = "message";
 
-            string messageClassName = NameHelper.GetMessageClassName(message);
             string ns = "MavLink4Net.Messages.Common";
-            string messageClassFullName = NamespaceHelper.GetFullname(ns, messageClassName);
+            TypeInfo typeInfo = TypeInfoHelper.GetTypeInfo(ns, message);
 
             CodeMemberMethod codeMemberMethod = new CodeMemberMethod();
             codeMemberMethod.Attributes = MemberAttributes.Public | MemberAttributes.Final;
             codeMemberMethod.Name = "Deserialize";
-            codeMemberMethod.ReturnType = new CodeTypeReference(messageBaseClassName);
+            codeMemberMethod.ReturnType = new CodeTypeReference(messageBaseClass.FullName);
             codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(BinaryReader), readerParamName));
 
-            CodeTypeReference classTypeReference = new CodeTypeReference(messageClassFullName);
+            CodeTypeReference classTypeReference = new CodeTypeReference(typeInfo.FullName);
             codeMemberMethod.Statements.Add(new CodeVariableDeclarationStatement(
                 classTypeReference, messageVariableName,
                 new CodeObjectCreateExpression(classTypeReference)));

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.CodeDom;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MavLink4Net.CodeGenerator.Core.Translations;
-using MavLink4Net.MessageDefinitions;
 using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Mappers;
 
@@ -12,7 +9,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MessageGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(MessageDefinitions.Data.Message message, string className, string ns, string baseClassName, string messageTypeEnumValue, TranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, TranslationMap translationMap)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -26,11 +23,13 @@ namespace MavLink4Net.CodeGenerator.Core
             globalNamespace.Imports.Add(new CodeNamespaceImport("MavLink4Net.Messages.Metadata"));
 
             // Generate the namespace
-            CodeNamespace codeNamespace = new CodeNamespace(ns);
+            CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
+            string messageTypeEnumValue = NamespaceHelper.GetFullname(messageTypeEnumTypeInfo.FullName, message.Name);
+
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(message, className, baseClassName, messageTypeEnumValue, translationMap);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, message, messageBaseClassTypeInfo, messageTypeEnumValue, translationMap);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -38,11 +37,11 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Message message, string className, string baseClassName, string messageTypeEnumValue, TranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, MessageDefinitions.Data.Message message, TypeInfo messageBaseClassTypeInfo, string messageTypeEnumValue, TranslationMap translationMap)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
-                Name = className,
+                Name = typeInfo.Name,
                 IsClass = true
             };
 
@@ -51,7 +50,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, metadataName, message.Description);
             codeTypeDeclaration.CustomAttributes.Add(metadataAttributeDeclaration);
 
-            codeTypeDeclaration.BaseTypes.Add(baseClassName);
+            codeTypeDeclaration.BaseTypes.Add(messageBaseClassTypeInfo.FullName);
             AddConstructor(codeTypeDeclaration, messageTypeEnumValue, message.CrcExtra);
 
             // Add summary comments

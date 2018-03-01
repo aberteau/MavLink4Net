@@ -10,7 +10,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class SerializerFactoryGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(string factoryClassName, IEnumerable<Message> messages, string ns, string serializerNamespace, string messageTypeEnumFullName, string serializerInterfaceName)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, IEnumerable<Message> messages, string serializersNamespace, TypeInfo messageTypeEnumTypeInfo, TypeInfo serializerInterfaceTypeInfo)
         {
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
 
@@ -22,11 +22,11 @@ namespace MavLink4Net.CodeGenerator.Core
             globalNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
 
             // Generate the namespace
-            CodeNamespace codeNamespace = new CodeNamespace(ns);
+            CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
             
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(factoryClassName, messages, serializerNamespace, messageTypeEnumFullName, serializerInterfaceName);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, messages, serializersNamespace, messageTypeEnumTypeInfo, serializerInterfaceTypeInfo);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -34,39 +34,39 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(string className, IEnumerable<Message> messages, string serializerNamespace, string messageTypeEnumFullName, string serializerInterfaceName)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, IEnumerable<Message> messages, string serializersNamespace, TypeInfo messageTypeEnumTypeInfo, TypeInfo serializerInterfaceTypeInfo)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
-                Name = className,
+                Name = typeInfo.Name,
                 IsClass = true
             };
 
-            CodeMemberMethod createSerializerCodeMemberMethod = CreateSerializeCodeMemberMethod(messages, serializerNamespace, messageTypeEnumFullName, serializerInterfaceName);
+            CodeMemberMethod createSerializerCodeMemberMethod = CreateSerializeCodeMemberMethod(messages, serializersNamespace, messageTypeEnumTypeInfo, serializerInterfaceTypeInfo);
             codeTypeDeclaration.Members.Add(createSerializerCodeMemberMethod);
 
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberMethod CreateSerializeCodeMemberMethod(IEnumerable<Message> messages, string serializerNamespace, string messageTypeEnumFullName, string serializerInterfaceName)
+        private static CodeMemberMethod CreateSerializeCodeMemberMethod(IEnumerable<Message> messages, string serializersNamespace, TypeInfo messageTypeEnumTypeInfo, TypeInfo serializerInterfaceTypeInfo)
         {
             string mavTypeParamName = "mavType";
 
             CodeMemberMethod codeMemberMethod = new CodeMemberMethod();
             codeMemberMethod.Attributes = MemberAttributes.Public | MemberAttributes.Final | MemberAttributes.Static;
             codeMemberMethod.Name = "CreateSerializer";
-            codeMemberMethod.ReturnType = new CodeTypeReference(serializerInterfaceName);
-            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageTypeEnumFullName, mavTypeParamName));
+            codeMemberMethod.ReturnType = new CodeTypeReference(serializerInterfaceTypeInfo.Name);
+            codeMemberMethod.Parameters.Add(new CodeParameterDeclarationExpression(messageTypeEnumTypeInfo.FullName, mavTypeParamName));
 
             foreach (Message message in messages)
             {
                 string serializerClassName = NameHelper.GetSerializerClassName(message);
-                string serializerClassFullname = NamespaceHelper.GetFullname(serializerNamespace, serializerClassName);
+                string serializerClassFullname = NamespaceHelper.GetFullname(serializersNamespace, serializerClassName);
 
                 CodeBinaryOperatorExpression equalsExpression = new CodeBinaryOperatorExpression(
                     new CodeVariableReferenceExpression(mavTypeParamName),
                     CodeBinaryOperatorType.IdentityEquality,
-                    new CodeTypeReferenceExpression(NamespaceHelper.GetFullname(messageTypeEnumFullName, message.Name)));
+                    new CodeTypeReferenceExpression(NamespaceHelper.GetFullname(messageTypeEnumTypeInfo.FullName, message.Name)));
 
                 CodeConditionStatement conditionalStatement = new CodeConditionStatement(
                     equalsExpression,

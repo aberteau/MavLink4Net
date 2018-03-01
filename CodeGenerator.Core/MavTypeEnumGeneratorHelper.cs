@@ -7,7 +7,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MavTypeEnumGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(string enumName, IEnumerable<MessageDefinitions.Data.Message> messages, string ns, TranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, IEnumerable<MessageDefinitions.Data.Message> messages, TranslationMap translationMap)
         {
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
 
@@ -19,10 +19,10 @@ namespace MavLink4Net.CodeGenerator.Core
             globalNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
 
             // Generate the namespace
-            CodeNamespace codeNamespace = new CodeNamespace(ns);
+            CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
-            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(enumName, messages, translationMap);
+            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(typeInfo.Name, messages, translationMap);
 
             // Add enum to the namespace
             codeNamespace.Types.Add(enumTypeDeclaration);
