@@ -13,10 +13,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
         private readonly IEnumNameTranslation _enumNameTranslation;
         private readonly IEnumEntryNameTranslation _enumEntryNameTranslation;
 
-        private readonly IDictionary<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum> _enumMap;
-        private readonly IDictionary<MessageDefinitions.Data.EnumEntry, MessageDefinitions.Data.EnumEntry> _enumEntryMap;
-        private readonly IDictionary<MessageDefinitions.Data.Message, MessageDefinitions.Data.Message> _messageMap;
-        private readonly IDictionary<MessageDefinitions.Data.MessageField, MessageDefinitions.Data.MessageField> _messageFieldMap;
+        private readonly TranslationMap _translationMap = new TranslationMap();
 
         public Translator(IMessageNameTranslation messageNameTranslation, IMessageFieldNameTranslation messageFieldNameTranslation, IEnumNameTranslation enumNameTranslation, IEnumEntryNameTranslation enumEntryNameTranslation)
         {
@@ -24,28 +21,14 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             _messageFieldNameTranslation = messageFieldNameTranslation;
             _enumNameTranslation = enumNameTranslation;
             _enumEntryNameTranslation = enumEntryNameTranslation;
-            _enumMap = new Dictionary<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum>();
-            _enumEntryMap = new Dictionary<MessageDefinitions.Data.EnumEntry, MessageDefinitions.Data.EnumEntry>();
-            _messageMap = new Dictionary<MessageDefinitions.Data.Message, MessageDefinitions.Data.Message> ();
-            _messageFieldMap = new Dictionary<MessageDefinitions.Data.MessageField, MessageDefinitions.Data.MessageField>();
         }
 
         public TranslationResult Translate(MavLink xMavLink)
         {
             TranslationResult result = new TranslationResult();
             result.MavLink = TranslateMavLink(xMavLink);
-            result.TranslationMap = GetTranslationMap();
+            result.TranslationMap = _translationMap;
             return result;
-        }
-
-        private TranslationMap GetTranslationMap()
-        {
-            TranslationMap translationMap = new TranslationMap();
-            translationMap.EnumMap = _enumMap;
-            translationMap.EnumEntryMap = _enumEntryMap;
-            translationMap.MessageMap = _messageMap;
-            translationMap.MessageFieldMap = _messageFieldMap;
-            return translationMap;
         }
 
         private MavLink TranslateMavLink(MavLink xMavLink)
@@ -83,7 +66,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             dMessage.Description = xMessage.Description;
             dMessage.Fields = Translate(xMessage.Fields);
 
-            _messageMap.Add(dMessage, xMessage);
+            _translationMap.MessageMap.Add(dMessage, xMessage);
 
             return dMessage;
         }
@@ -105,7 +88,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             dEnum.Description = xEnum.Description;
             dEnum.Entries = Translate(xEnum.Entries, enumName);
 
-            _enumMap.Add(dEnum, xEnum);
+            _translationMap.EnumMap.Add(dEnum, xEnum);
 
             return dEnum;
         }
@@ -129,7 +112,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             dMessageField.Display = xMessageField.Display;
             dMessageField.Text = xMessageField.Text;
 
-            _messageFieldMap.Add(dMessageField, xMessageField);
+            _translationMap.MessageFieldMap.Add(dMessageField, xMessageField);
 
             return dMessageField;
         }
@@ -149,7 +132,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             if (pEnum == null)
                 return null;
 
-            IEnumerable<KeyValuePair<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum>> keyValuePairs = _enumMap.Where(kvp => kvp.Value.Name.Equals(pEnum.Name));
+            IEnumerable<KeyValuePair<MessageDefinitions.Data.Enum, MessageDefinitions.Data.Enum>> keyValuePairs = _translationMap.EnumMap.Where(kvp => kvp.Value.Name.Equals(pEnum.Name));
             MessageDefinitions.Data.Enum translatedEnum = keyValuePairs.Select(kvp => kvp.Key).FirstOrDefault();
             return translatedEnum;
         }
@@ -172,7 +155,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             dEnumEntry.Description = xEnumEntry.Description;
             dEnumEntry.Parameters = xEnumEntry.Parameters;
 
-            _enumEntryMap.Add(dEnumEntry, xEnumEntry);
+            _translationMap.EnumEntryMap.Add(dEnumEntry, xEnumEntry);
 
             return dEnumEntry;
         }
