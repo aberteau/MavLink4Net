@@ -15,7 +15,7 @@ namespace MavLink4Net.MessageDefinitions
 
             foreach (MessageField f in m.Fields.OrderForSerialization().ToList())
             {
-                string rawDataType = MessageFieldDataTypeMapper.ToRawDataType(f.Type.DataType);
+                string rawDataType = TypeHelper.ToRawDataType(f.Type.RawString);
                 crc = GetCrc(rawDataType + ' ', crc);
                 crc = GetCrc(f.Name + ' ', crc);
 

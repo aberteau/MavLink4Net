@@ -200,28 +200,16 @@ namespace MavLink4Net.CodeGenerator.Core
 
         private static string GetRawType(MessageField messageField, TranslationMap translationMap)
         {
-            if (messageField.Type.FieldType == FieldType.Array)
-            {
-                string rawType = MessageFieldTypeMapper.ToArrayRawType(messageField.Type);
-                return rawType;
-            }
-
             if (messageField.Type.FieldType == FieldType.Enum)
             {
                 MessageDefinitions.Data.Enum vEnum = translationMap == null
                     ? messageField.Type.Enum
                     : translationMap.EnumMap[messageField.Type.Enum];
-                string rawType = MessageFieldTypeMapper.ToEnumRawType(vEnum);
+                string rawType = TypeHelper.ToEnumRawType(vEnum);
                 return rawType;
             }
 
-            if (messageField.Type.FieldType == FieldType.Primitive)
-            {
-                string rawType = MessageFieldTypeMapper.ToPrimitiveRawType(messageField.Type);
-                return rawType;
-            }
-
-            return null;
+            return messageField.Type.RawString;
         }
 
         private static CodeAttributeDeclaration CreateMessageFieldMetadataAttributeDeclaration(string name, string type, string units, string display, string description)

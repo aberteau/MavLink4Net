@@ -113,19 +113,19 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
             return dMessageField;
         }
 
-        private MessageFieldType Translate(MessageFieldType xMessageField)
+        private MessageFieldType Translate(MessageFieldType xMessageFieldType)
         {
-            switch (xMessageField.FieldType)
+            switch (xMessageFieldType.FieldType)
             {
                 case FieldType.Array:
-                    return new MessageDefinitions.Data.MessageFieldType(xMessageField.DataType, xMessageField.TypeLength, xMessageField.ArrayLength);
+                    return new MessageDefinitions.Data.MessageFieldType(xMessageFieldType.RawString, xMessageFieldType.DataType, xMessageFieldType.TypeLength, xMessageFieldType.ArrayLength);
 
                 case FieldType.Enum:
-                    MessageDefinitions.Data.Enum e = GetTranslatedEnum(xMessageField.Enum);
-                    return new MessageDefinitions.Data.MessageFieldType(xMessageField.DataType, xMessageField.TypeLength, e);
+                    MessageDefinitions.Data.Enum e = GetTranslatedEnum(xMessageFieldType.Enum);
+                    return new MessageDefinitions.Data.MessageFieldType(xMessageFieldType.RawString, xMessageFieldType.DataType, xMessageFieldType.TypeLength, e);
 
                 default:
-                    return new MessageDefinitions.Data.MessageFieldType(xMessageField.DataType, xMessageField.TypeLength);
+                    return new MessageDefinitions.Data.MessageFieldType(xMessageFieldType.RawString, xMessageFieldType.DataType, xMessageFieldType.TypeLength);
             }
         }
 

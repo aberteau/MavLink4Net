@@ -5,8 +5,16 @@ using MavLink4Net.MessageDefinitions.Data;
 
 namespace MavLink4Net.MessageDefinitions.Mappers
 {
-    class MessageFieldDataTypeMapper
+    public class TypeHelper
     {
+        public static string TranslatePrimitiveRawType(String type)
+        {
+            if (type.Equals("uint8_t_mavlink_version"))
+                return "uint8_t";
+
+            return type;
+        }
+
         public static MessageFieldDataType ToDataType(string type)
         {
             string basicType = ToRawDataType(type);
@@ -15,6 +23,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             {
                 case "float":
                     return MessageFieldDataType.Float32;
+                case "array":
                 case "int8_t":
                     return MessageFieldDataType.Int8;
                 case "uint8_t":
@@ -41,37 +50,6 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             }
         }
 
-        public static String ToRawDataType(MessageFieldDataType dataType)
-        {
-            switch (dataType)
-            {
-                case MessageFieldDataType.Float32:
-                    return "float";
-                case MessageFieldDataType.Int8:
-                    return "int8_t";
-                case MessageFieldDataType.UInt8:
-                    return "uint8_t";
-                case MessageFieldDataType.Int16:
-                    return "int16_t";
-                case MessageFieldDataType.UInt16:
-                    return "uint16_t";
-                case MessageFieldDataType.Int32:
-                    return "int32_t";
-                case MessageFieldDataType.UInt32:
-                    return "uint32_t";
-                case MessageFieldDataType.Int64:
-                    return "int64_t";
-                case MessageFieldDataType.UInt64:
-                    return "uint64_t";
-                case MessageFieldDataType.Char:
-                    return "char";
-                case MessageFieldDataType.Double:
-                    return "double";
-                default:
-                    return null;
-            }
-        }
-
         public static string ToRawDataType(string rawFieldType)
         {
             string[] tt = rawFieldType.Split('[', ']');
@@ -87,6 +65,42 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             bool isArray = rawFieldType.Contains("[");
             return isArray;
+        }
+
+        public static Int32 GetTypeLength(MessageFieldDataType type)
+        {
+            switch (type)
+            {
+                case MessageFieldDataType.Float32:
+                    return 4;
+                case MessageFieldDataType.Int8:
+                    return 1;
+                case MessageFieldDataType.UInt8:
+                    return 1;
+                case MessageFieldDataType.Int16:
+                    return 2;
+                case MessageFieldDataType.UInt16:
+                    return 2;
+                case MessageFieldDataType.Int32:
+                    return 4;
+                case MessageFieldDataType.UInt32:
+                    return 4;
+                case MessageFieldDataType.Int64:
+                    return 8;
+                case MessageFieldDataType.UInt64:
+                    return 8;
+                case MessageFieldDataType.Char:
+                    return 1;
+                case MessageFieldDataType.Double:
+                    return 8;
+                default:
+                    return 4;
+            }
+        }
+
+        public static string ToEnumRawType(Data.Enum pEnum)
+        {
+            return $"{pEnum.Name} enum"; ;
         }
     }
 }

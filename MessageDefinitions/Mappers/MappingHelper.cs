@@ -96,24 +96,25 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         private static Data.MessageFieldType GetFieldType(Xml.MessageField xMessageField, IDictionary<String, Data.Enum> enumByName)
         {
-            MessageFieldDataType dataType = MessageFieldDataTypeMapper.ToDataType(xMessageField.Type);
-            int typeLength = TypeLengthHelper.GetTypeLength(dataType);
+            MessageFieldDataType dataType = TypeHelper.ToDataType(xMessageField.Type);
+            int typeLength = TypeHelper.GetTypeLength(dataType);
 
-            bool isArray = MessageFieldDataTypeMapper.IsArray(xMessageField.Type);
+            bool isArray = TypeHelper.IsArray(xMessageField.Type);
             if (isArray)
             {
                 Int32 arrayLength = GetArraySize(xMessageField.Type);
-                return new Data.MessageFieldType(dataType, typeLength, arrayLength);
+                return new Data.MessageFieldType(xMessageField.Type, dataType, typeLength, arrayLength);
             }
 
             bool isNotNullEnum = !String.IsNullOrWhiteSpace(xMessageField.Enum);
             if (isNotNullEnum)
             {
                 Data.Enum vEnum = enumByName[xMessageField.Enum];
-                return new Data.MessageFieldType(dataType, typeLength, vEnum);
+                return new Data.MessageFieldType(xMessageField.Type, dataType, typeLength, vEnum);
             }
 
-            return new Data.MessageFieldType(dataType, typeLength);
+            string translatedRawType = TypeHelper.TranslatePrimitiveRawType(xMessageField.Type);
+            return new Data.MessageFieldType(translatedRawType, dataType, typeLength);
         }
 
         private static int GetArraySize(string t)
