@@ -94,7 +94,7 @@ namespace MavLink4Net.CodeGenerator.Core
                 {
                     if (messageField.Type.IsEnum)
                     {
-                        Type type = SystemTypeHelper.GetType(messageField.Type.PrimitiveType);
+                        Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
                         CodeCastExpression castExpression = new CodeCastExpression(type, propertyExpression);
 
                         CodeMethodInvokeExpression writeInvoke =
@@ -166,7 +166,7 @@ namespace MavLink4Net.CodeGenerator.Core
                     new CodePropertyReferenceExpression(new CodeVariableReferenceExpression(messageVariableName),
                         messageField.Name);
 
-                String readMethodName = GetReadMethodName(messageField.Type.PrimitiveType);
+                String readMethodName = GetReadMethodName(messageField.Type.DataType);
 
                 if (!messageField.Type.IsArray)
                 {
@@ -206,21 +206,21 @@ namespace MavLink4Net.CodeGenerator.Core
             }
         }
 
-        private static string GetReadMethodName(MessageFieldPrimitiveType t)
+        private static string GetReadMethodName(MessageFieldDataType dataType)
         {
-            switch (t)
+            switch (dataType)
             {
-                case MessageFieldPrimitiveType.Float32: return "ReadSingle";
-                case MessageFieldPrimitiveType.Int8: return "ReadSByte";
-                case MessageFieldPrimitiveType.UInt8: return "ReadByte";
-                case MessageFieldPrimitiveType.Int16: return "ReadInt16";
-                case MessageFieldPrimitiveType.UInt16: return "ReadUInt16";
-                case MessageFieldPrimitiveType.Int32: return "ReadInt32";
-                case MessageFieldPrimitiveType.UInt32: return "ReadUInt32";
-                case MessageFieldPrimitiveType.Int64: return "ReadInt64";
-                case MessageFieldPrimitiveType.UInt64: return "ReadUInt64";
-                case MessageFieldPrimitiveType.Char: return "ReadChar";
-                case MessageFieldPrimitiveType.Double: return "ReadDouble";
+                case MessageFieldDataType.Float32: return "ReadSingle";
+                case MessageFieldDataType.Int8: return "ReadSByte";
+                case MessageFieldDataType.UInt8: return "ReadByte";
+                case MessageFieldDataType.Int16: return "ReadInt16";
+                case MessageFieldDataType.UInt16: return "ReadUInt16";
+                case MessageFieldDataType.Int32: return "ReadInt32";
+                case MessageFieldDataType.UInt32: return "ReadUInt32";
+                case MessageFieldDataType.Int64: return "ReadInt64";
+                case MessageFieldDataType.UInt64: return "ReadUInt64";
+                case MessageFieldDataType.Char: return "ReadChar";
+                case MessageFieldDataType.Double: return "ReadDouble";
                 default:
                     return null;
             }

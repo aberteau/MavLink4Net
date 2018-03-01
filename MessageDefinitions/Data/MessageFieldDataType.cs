@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MavLink4Net.MessageDefinitions.Data
 {
-    public enum MessageFieldPrimitiveType
+    public enum MessageFieldDataType
     {
         None,
         Int8,

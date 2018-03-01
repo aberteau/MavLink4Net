@@ -98,9 +98,9 @@ namespace MavLink4Net.MessageDefinitions.Mappers
         {
             Data.MessageFieldType fieldType = new Data.MessageFieldType();
             fieldType.ArrayLength = GetArraySize(xMessageField.Type);
-            MessageFieldPrimitiveType primitiveType = MessageFieldTypeMapper.ToFieldPrimitiveType(xMessageField.Type);
-            fieldType.PrimitiveType = primitiveType;
-            fieldType.TypeLength = TypeLengthHelper.GetTypeLength(primitiveType);
+            MessageFieldDataType dataType = MessageFieldTypeMapper.ToDataType(xMessageField.Type);
+            fieldType.DataType = dataType;
+            fieldType.TypeLength = TypeLengthHelper.GetTypeLength(dataType);
             fieldType.Enum = String.IsNullOrWhiteSpace(xMessageField.Enum) ? null : enumByName[xMessageField.Enum];
             return fieldType;
         }

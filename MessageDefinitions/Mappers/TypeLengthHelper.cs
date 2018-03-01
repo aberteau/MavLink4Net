@@ -7,31 +7,31 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 {
     class TypeLengthHelper
     {
-        public static Int32 GetTypeLength(MessageFieldPrimitiveType type)
+        public static Int32 GetTypeLength(MessageFieldDataType type)
         {
             switch (type)
             {
-                case MessageFieldPrimitiveType.Float32:
+                case MessageFieldDataType.Float32:
                     return 4;
-                case MessageFieldPrimitiveType.Int8:
+                case MessageFieldDataType.Int8:
                     return 1;
-                case MessageFieldPrimitiveType.UInt8:
+                case MessageFieldDataType.UInt8:
                     return 1;
-                case MessageFieldPrimitiveType.Int16:
+                case MessageFieldDataType.Int16:
                     return 2;
-                case MessageFieldPrimitiveType.UInt16:
+                case MessageFieldDataType.UInt16:
                     return 2;
-                case MessageFieldPrimitiveType.Int32:
+                case MessageFieldDataType.Int32:
                     return 4;
-                case MessageFieldPrimitiveType.UInt32:
+                case MessageFieldDataType.UInt32:
                     return 4;
-                case MessageFieldPrimitiveType.Int64:
+                case MessageFieldDataType.Int64:
                     return 8;
-                case MessageFieldPrimitiveType.UInt64:
+                case MessageFieldDataType.UInt64:
                     return 8;
-                case MessageFieldPrimitiveType.Char:
+                case MessageFieldDataType.Char:
                     return 1;
-                case MessageFieldPrimitiveType.Double:
+                case MessageFieldDataType.Double:
                     return 8;
                 default:
                     return 4;

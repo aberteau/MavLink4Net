@@ -6,7 +6,7 @@ namespace MavLink4Net.MessageDefinitions.Data
 {
     public class MessageFieldType
     {
-        public MessageFieldPrimitiveType PrimitiveType { get; set; }
+        public MessageFieldDataType DataType { get; set; }
 
         public Int32 ArrayLength { get; set; }
 

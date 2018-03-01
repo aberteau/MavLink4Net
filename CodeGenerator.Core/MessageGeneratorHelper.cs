@@ -95,7 +95,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberField.Name = GetFieldName(messageField.Name);
 
             // Type
-            Type type = SystemTypeHelper.GetType(messageField.Type.PrimitiveType);
+            Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
             CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
             codeMemberField.Type = codeTypeReference;
 
@@ -155,8 +155,8 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberProperty.HasGet = true;
             
             // Type
-            MessageFieldType fieldType = messageField.Type;
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(fieldType, SystemTypeHelper.GetType(fieldType.PrimitiveType));
+            Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
+            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
             codeMemberProperty.Type = codeTypeReference;
 
             string fieldName = GetFieldName(messageField.Name);

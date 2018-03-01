@@ -5,31 +5,31 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     public class SystemTypeHelper
     {
-        public static Type GetType(MessageFieldPrimitiveType t)
+        public static Type GetType(MessageFieldDataType dataType)
         {
-            switch (t)
+            switch (dataType)
             {
-                case MessageFieldPrimitiveType.Float32:
+                case MessageFieldDataType.Float32:
                     return typeof(float);
-                case MessageFieldPrimitiveType.Int8:
+                case MessageFieldDataType.Int8:
                     return typeof(SByte);
-                case MessageFieldPrimitiveType.UInt8:
+                case MessageFieldDataType.UInt8:
                     return typeof(byte);
-                case MessageFieldPrimitiveType.Int16:
+                case MessageFieldDataType.Int16:
                     return typeof(Int16);
-                case MessageFieldPrimitiveType.UInt16:
+                case MessageFieldDataType.UInt16:
                     return typeof(UInt16);
-                case MessageFieldPrimitiveType.Int32:
+                case MessageFieldDataType.Int32:
                     return typeof(Int32);
-                case MessageFieldPrimitiveType.UInt32:
+                case MessageFieldDataType.UInt32:
                     return typeof(UInt32);
-                case MessageFieldPrimitiveType.Int64:
+                case MessageFieldDataType.Int64:
                     return typeof(Int64);
-                case MessageFieldPrimitiveType.UInt64:
+                case MessageFieldDataType.UInt64:
                     return typeof(UInt64);
-                case MessageFieldPrimitiveType.Char:
+                case MessageFieldDataType.Char:
                     return typeof(char);
-                case MessageFieldPrimitiveType.Double:
+                case MessageFieldDataType.Double:
                     return typeof(double);
                 default:
                     return null;

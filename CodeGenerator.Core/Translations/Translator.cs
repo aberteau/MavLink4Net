@@ -117,7 +117,7 @@ namespace MavLink4Net.CodeGenerator.Core.Translations
         {
             MessageFieldType fieldType = new MessageFieldType();
             fieldType.ArrayLength = xMessageField.ArrayLength;
-            fieldType.PrimitiveType = xMessageField.PrimitiveType;
+            fieldType.DataType = xMessageField.DataType;
             fieldType.TypeLength = xMessageField.TypeLength;
             fieldType.Enum = GetTranslatedEnum(xMessageField.Enum);
             return fieldType;
