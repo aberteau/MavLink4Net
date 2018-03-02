@@ -51,7 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// param_type
         /// </remarks>
-        private ParamType _paramType;
+        private MavLink4Net.Messages.Common.ParamType _paramType;
         
         /// <summary>
         /// Total number of onboard parameters
@@ -113,7 +113,7 @@ namespace MavLink4Net.Messages.Common
         /// Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.
         /// </summary>
         [MessageFieldMetadata(Name="param_type", Type="MAV_PARAM_TYPE enum", Description="Onboard parameter type: see the MAV_PARAM_TYPE enum for supported data types.")]
-        public ParamType ParamType
+        public MavLink4Net.Messages.Common.ParamType ParamType
         {
             get
             {

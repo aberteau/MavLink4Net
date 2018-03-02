@@ -50,7 +50,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// mode
         /// </remarks>
-        private Mode _mode;
+        private MavLink4Net.Messages.Common.Mode _mode;
         
         /// <summary>
         /// Flags as bitfield, reserved for future use.
@@ -101,7 +101,7 @@ namespace MavLink4Net.Messages.Common
         /// System mode (MAV_MODE), includes arming state.
         /// </summary>
         [MessageFieldMetadata(Name="mode", Type="MAV_MODE enum", Description="System mode (MAV_MODE), includes arming state.")]
-        public Mode Mode
+        public MavLink4Net.Messages.Common.Mode Mode
         {
             get
             {

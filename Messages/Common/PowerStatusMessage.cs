@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// flags
         /// </remarks>
-        private PowerStatus _flags;
+        private MavLink4Net.Messages.Common.PowerStatus _flags;
         
         public PowerStatusMessage() : 
                 base(MavLink4Net.Messages.MavMessageType.PowerStatus, 203)
@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// power supply status flags (see MAV_POWER_STATUS enum)
         /// </summary>
         [MessageFieldMetadata(Name="flags", Type="MAV_POWER_STATUS enum", Display="bitmask", Description="power supply status flags (see MAV_POWER_STATUS enum)")]
-        public PowerStatus Flags
+        public MavLink4Net.Messages.Common.PowerStatus Flags
         {
             get
             {

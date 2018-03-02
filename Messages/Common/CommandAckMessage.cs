@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// command
         /// </remarks>
-        private Cmd _command;
+        private MavLink4Net.Messages.Common.Cmd _command;
         
         /// <summary>
         /// See MAV_RESULT enum
@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// result
         /// </remarks>
-        private Result _result;
+        private MavLink4Net.Messages.Common.Result _result;
         
         public CommandAckMessage() : 
                 base(MavLink4Net.Messages.MavMessageType.CommandAck, 143)
@@ -52,7 +52,7 @@ namespace MavLink4Net.Messages.Common
         /// Command ID, as defined by MAV_CMD enum.
         /// </summary>
         [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="Command ID, as defined by MAV_CMD enum.")]
-        public Cmd Command
+        public MavLink4Net.Messages.Common.Cmd Command
         {
             get
             {
@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         /// See MAV_RESULT enum
         /// </summary>
         [MessageFieldMetadata(Name="result", Type="MAV_RESULT enum", Description="See MAV_RESULT enum")]
-        public Result Result
+        public MavLink4Net.Messages.Common.Result Result
         {
             get
             {

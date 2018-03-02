@@ -50,7 +50,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// type
         /// </remarks>
-        private MissionResult _type;
+        private MavLink4Net.Messages.Common.MissionResult _type;
         
         public MissionAckMessage() : 
                 base(MavLink4Net.Messages.MavMessageType.MissionAck, 153)
@@ -93,7 +93,7 @@ namespace MavLink4Net.Messages.Common
         /// See MAV_MISSION_RESULT enum
         /// </summary>
         [MessageFieldMetadata(Name="type", Type="MAV_MISSION_RESULT enum", Description="See MAV_MISSION_RESULT enum")]
-        public MissionResult Type
+        public MavLink4Net.Messages.Common.MissionResult Type
         {
             get
             {

@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// capabilities
         /// </remarks>
-        private ProtocolCapability _capabilities;
+        private MavLink4Net.Messages.Common.ProtocolCapability _capabilities;
         
         /// <summary>
         /// Firmware version number
@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)
         /// </summary>
         [MessageFieldMetadata(Name="capabilities", Type="MAV_PROTOCOL_CAPABILITY enum", Display="bitmask", Description="bitmask of capabilities (see MAV_PROTOCOL_CAPABILITY enum)")]
-        public ProtocolCapability Capabilities
+        public MavLink4Net.Messages.Common.ProtocolCapability Capabilities
         {
             get
             {

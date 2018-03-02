@@ -50,7 +50,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// frame
         /// </remarks>
-        private Frame _frame;
+        private MavLink4Net.Messages.Common.Frame _frame;
         
         /// <summary>
         /// The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink specs
@@ -58,7 +58,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// command
         /// </remarks>
-        private Cmd _command;
+        private MavLink4Net.Messages.Common.Cmd _command;
         
         /// <summary>
         /// false:0, true:1
@@ -173,7 +173,7 @@ namespace MavLink4Net.Messages.Common
         /// The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h
         /// </summary>
         [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="The coordinate system of the COMMAND. see MAV_FRAME in mavlink_types.h")]
-        public Frame Frame
+        public MavLink4Net.Messages.Common.Frame Frame
         {
             get
             {
@@ -190,7 +190,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="The scheduled action for the mission item. see MAV_CMD in common.xml MAVLink spec" +
             "s")]
-        public Cmd Command
+        public MavLink4Net.Messages.Common.Cmd Command
         {
             get
             {

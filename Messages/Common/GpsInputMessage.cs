@@ -50,7 +50,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// ignore_flags
         /// </remarks>
-        private GpsInputIgnoreFlags _ignoreFlags;
+        private MavLink4Net.Messages.Common.GpsInputIgnoreFlags _ignoreFlags;
         
         /// <summary>
         /// GPS time (milliseconds from start of GPS week)
@@ -214,7 +214,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="ignore_flags", Type="GPS_INPUT_IGNORE_FLAGS enum", Display="bitmask", Description="Flags indicating which fields to ignore (see GPS_INPUT_IGNORE_FLAGS enum).  All o" +
             "ther fields must be provided.")]
-        public GpsInputIgnoreFlags IgnoreFlags
+        public MavLink4Net.Messages.Common.GpsInputIgnoreFlags IgnoreFlags
         {
             get
             {

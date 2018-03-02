@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// onboard_control_sensors_present
         /// </remarks>
-        private SysStatusSensor _onboardControlSensorsPresent;
+        private MavLink4Net.Messages.Common.SysStatusSensor _onboardControlSensorsPresent;
         
         /// <summary>
         /// Bitmask showing which onboard controllers and sensors are enabled:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// onboard_control_sensors_enabled
         /// </remarks>
-        private SysStatusSensor _onboardControlSensorsEnabled;
+        private MavLink4Net.Messages.Common.SysStatusSensor _onboardControlSensorsEnabled;
         
         /// <summary>
         /// Bitmask showing which onboard controllers and sensors are operational or have an error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR
@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// onboard_control_sensors_health
         /// </remarks>
-        private SysStatusSensor _onboardControlSensorsHealth;
+        private MavLink4Net.Messages.Common.SysStatusSensor _onboardControlSensorsHealth;
         
         /// <summary>
         /// Maximum usage in percent of the mainloop time, (0%: 0, 100%: 1000) should be always below 1000
@@ -141,7 +141,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="onboard_control_sensors_present", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are present. Value of 0: no" +
             "t present. Value of 1: present. Indices defined by ENUM MAV_SYS_STATUS_SENSOR")]
-        public SysStatusSensor OnboardControlSensorsPresent
+        public MavLink4Net.Messages.Common.SysStatusSensor OnboardControlSensorsPresent
         {
             get
             {
@@ -158,7 +158,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="onboard_control_sensors_enabled", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are enabled:  Value of 0: n" +
             "ot enabled. Value of 1: enabled. Indices defined by ENUM MAV_SYS_STATUS_SENSOR")]
-        public SysStatusSensor OnboardControlSensorsEnabled
+        public MavLink4Net.Messages.Common.SysStatusSensor OnboardControlSensorsEnabled
         {
             get
             {
@@ -176,7 +176,7 @@ namespace MavLink4Net.Messages.Common
         [MessageFieldMetadata(Name="onboard_control_sensors_health", Type="MAV_SYS_STATUS_SENSOR enum", Display="bitmask", Description="Bitmask showing which onboard controllers and sensors are operational or have an " +
             "error:  Value of 0: not enabled. Value of 1: enabled. Indices defined by ENUM MA" +
             "V_SYS_STATUS_SENSOR")]
-        public SysStatusSensor OnboardControlSensorsHealth
+        public MavLink4Net.Messages.Common.SysStatusSensor OnboardControlSensorsHealth
         {
             get
             {

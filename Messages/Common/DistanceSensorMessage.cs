@@ -65,7 +65,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// type
         /// </remarks>
-        private DistanceSensor _type;
+        private MavLink4Net.Messages.Common.DistanceSensor _type;
         
         /// <summary>
         /// Onboard ID of the sensor
@@ -81,7 +81,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// orientation
         /// </remarks>
-        private SensorOrientation _orientation;
+        private MavLink4Net.Messages.Common.SensorOrientation _orientation;
         
         /// <summary>
         /// Measurement covariance in centimeters, 0 for unknown / invalid readings
@@ -164,7 +164,7 @@ namespace MavLink4Net.Messages.Common
         /// Type from MAV_DISTANCE_SENSOR enum.
         /// </summary>
         [MessageFieldMetadata(Name="type", Type="MAV_DISTANCE_SENSOR enum", Description="Type from MAV_DISTANCE_SENSOR enum.")]
-        public DistanceSensor Type
+        public MavLink4Net.Messages.Common.DistanceSensor Type
         {
             get
             {
@@ -196,7 +196,7 @@ namespace MavLink4Net.Messages.Common
         /// Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270
         /// </summary>
         [MessageFieldMetadata(Name="orientation", Type="MAV_SENSOR_ORIENTATION enum", Description=@"Direction the sensor faces from MAV_SENSOR_ORIENTATION enum. downward-facing: ROTATION_PITCH_270, upward-facing: ROTATION_PITCH_90, backward-facing: ROTATION_PITCH_180, forward-facing: ROTATION_NONE, left-facing: ROTATION_YAW_90, right-facing: ROTATION_YAW_270")]
-        public SensorOrientation Orientation
+        public MavLink4Net.Messages.Common.SensorOrientation Orientation
         {
             get
             {

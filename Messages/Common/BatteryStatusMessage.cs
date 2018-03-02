@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// battery_function
         /// </remarks>
-        private BatteryFunction _batteryFunction;
+        private MavLink4Net.Messages.Common.BatteryFunction _batteryFunction;
         
         /// <summary>
         /// Type (chemistry) of the battery
@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// type
         /// </remarks>
-        private BatteryType _type;
+        private MavLink4Net.Messages.Common.BatteryType _type;
         
         /// <summary>
         /// Temperature of the battery in centi-degrees celsius. INT16_MAX for unknown temperature.
@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// Function of the battery
         /// </summary>
         [MessageFieldMetadata(Name="battery_function", Type="MAV_BATTERY_FUNCTION enum", Description="Function of the battery")]
-        public BatteryFunction BatteryFunction
+        public MavLink4Net.Messages.Common.BatteryFunction BatteryFunction
         {
             get
             {
@@ -140,7 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// Type (chemistry) of the battery
         /// </summary>
         [MessageFieldMetadata(Name="type", Type="MAV_BATTERY_TYPE enum", Description="Type (chemistry) of the battery")]
-        public BatteryType Type
+        public MavLink4Net.Messages.Common.BatteryType Type
         {
             get
             {

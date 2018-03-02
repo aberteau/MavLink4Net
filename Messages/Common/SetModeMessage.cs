@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// base_mode
         /// </remarks>
-        private Mode _baseMode;
+        private MavLink4Net.Messages.Common.Mode _baseMode;
         
         /// <summary>
         /// The new autopilot-specific mode. This field can be ignored by an autopilot.
@@ -79,7 +79,7 @@ namespace MavLink4Net.Messages.Common
         /// The new base mode
         /// </summary>
         [MessageFieldMetadata(Name="base_mode", Type="MAV_MODE enum", Description="The new base mode")]
-        public Mode BaseMode
+        public MavLink4Net.Messages.Common.Mode BaseMode
         {
             get
             {

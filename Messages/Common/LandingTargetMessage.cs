@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// frame
         /// </remarks>
-        private Frame _frame;
+        private MavLink4Net.Messages.Common.Frame _frame;
         
         /// <summary>
         /// X-axis angular offset (in radians) of the target from the center of the image
@@ -133,7 +133,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="MAV_FRAME enum specifying the whether the following feilds are earth-frame, body-" +
             "frame, etc.")]
-        public Frame Frame
+        public MavLink4Net.Messages.Common.Frame Frame
         {
             get
             {

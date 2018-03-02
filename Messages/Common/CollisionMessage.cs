@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// src
         /// </remarks>
-        private CollisionSrc _src;
+        private MavLink4Net.Messages.Common.CollisionSrc _src;
         
         /// <summary>
         /// Unique identifier, domain based on src field
@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// action
         /// </remarks>
-        private CollisionAction _action;
+        private MavLink4Net.Messages.Common.CollisionAction _action;
         
         /// <summary>
         /// How concerned the aircraft is about this collision
@@ -57,7 +57,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// threat_level
         /// </remarks>
-        private CollisionThreatLevel _threatLevel;
+        private MavLink4Net.Messages.Common.CollisionThreatLevel _threatLevel;
         
         /// <summary>
         /// Estimated time until collision occurs (seconds)
@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         /// Collision data source
         /// </summary>
         [MessageFieldMetadata(Name="src", Type="MAV_COLLISION_SRC enum", Description="Collision data source")]
-        public CollisionSrc Src
+        public MavLink4Net.Messages.Common.CollisionSrc Src
         {
             get
             {
@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         /// Action that is being taken to avoid this collision
         /// </summary>
         [MessageFieldMetadata(Name="action", Type="MAV_COLLISION_ACTION enum", Description="Action that is being taken to avoid this collision")]
-        public CollisionAction Action
+        public MavLink4Net.Messages.Common.CollisionAction Action
         {
             get
             {
@@ -140,7 +140,7 @@ namespace MavLink4Net.Messages.Common
         /// How concerned the aircraft is about this collision
         /// </summary>
         [MessageFieldMetadata(Name="threat_level", Type="MAV_COLLISION_THREAT_LEVEL enum", Description="How concerned the aircraft is about this collision")]
-        public CollisionThreatLevel ThreatLevel
+        public MavLink4Net.Messages.Common.CollisionThreatLevel ThreatLevel
         {
             get
             {

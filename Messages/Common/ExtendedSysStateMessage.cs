@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// vtol_state
         /// </remarks>
-        private VtolState _vtolState;
+        private MavLink4Net.Messages.Common.VtolState _vtolState;
         
         /// <summary>
         /// The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown.
@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// landed_state
         /// </remarks>
-        private LandedState _landedState;
+        private MavLink4Net.Messages.Common.LandedState _landedState;
         
         public ExtendedSysStateMessage() : 
                 base(MavLink4Net.Messages.MavMessageType.ExtendedSysState, 130)
@@ -53,7 +53,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="vtol_state", Type="MAV_VTOL_STATE enum", Description="The VTOL state if applicable. Is set to MAV_VTOL_STATE_UNDEFINED if UAV is not in" +
             " VTOL configuration.")]
-        public VtolState VtolState
+        public MavLink4Net.Messages.Common.VtolState VtolState
         {
             get
             {
@@ -70,7 +70,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="landed_state", Type="MAV_LANDED_STATE enum", Description="The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown" +
             ".")]
-        public LandedState LandedState
+        public MavLink4Net.Messages.Common.LandedState LandedState
         {
             get
             {

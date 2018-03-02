@@ -90,7 +90,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// baseline_coords_type
         /// </remarks>
-        private RtkBaselineCoordinateSystem _baselineCoordsType;
+        private MavLink4Net.Messages.Common.RtkBaselineCoordinateSystem _baselineCoordsType;
         
         /// <summary>
         /// Current baseline in ECEF x or NED north component in mm.
@@ -253,7 +253,7 @@ namespace MavLink4Net.Messages.Common
         /// Coordinate system of baseline
         /// </summary>
         [MessageFieldMetadata(Name="baseline_coords_type", Type="RTK_BASELINE_COORDINATE_SYSTEM enum", Description="Coordinate system of baseline")]
-        public RtkBaselineCoordinateSystem BaselineCoordsType
+        public MavLink4Net.Messages.Common.RtkBaselineCoordinateSystem BaselineCoordsType
         {
             get
             {

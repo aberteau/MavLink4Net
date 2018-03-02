@@ -51,7 +51,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// frame
         /// </remarks>
-        private Frame _frame;
+        private MavLink4Net.Messages.Common.Frame _frame;
         
         /// <summary>
         /// x position 1 / Latitude 1
@@ -143,7 +143,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="frame", Type="MAV_FRAME enum", Description="Coordinate frame, as defined by MAV_FRAME enum in mavlink_types.h. Can be either " +
             "global, GPS, right-handed with Z axis up or local, right handed, Z axis down.")]
-        public Frame Frame
+        public MavLink4Net.Messages.Common.Frame Frame
         {
             get
             {

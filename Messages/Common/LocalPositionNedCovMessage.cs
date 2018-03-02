@@ -43,7 +43,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// estimator_type
         /// </remarks>
-        private EstimatorType _estimatorType;
+        private MavLink4Net.Messages.Common.EstimatorType _estimatorType;
         
         /// <summary>
         /// X Position
@@ -150,7 +150,7 @@ namespace MavLink4Net.Messages.Common
         /// Class id of the estimator this estimate originated from.
         /// </summary>
         [MessageFieldMetadata(Name="estimator_type", Type="MAV_ESTIMATOR_TYPE enum", Description="Class id of the estimator this estimate originated from.")]
-        public EstimatorType EstimatorType
+        public MavLink4Net.Messages.Common.EstimatorType EstimatorType
         {
             get
             {

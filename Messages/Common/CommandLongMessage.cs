@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// command
         /// </remarks>
-        private Cmd _command;
+        private MavLink4Net.Messages.Common.Cmd _command;
         
         /// <summary>
         /// 0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)
@@ -156,7 +156,7 @@ namespace MavLink4Net.Messages.Common
         /// Command ID, as defined by MAV_CMD enum.
         /// </summary>
         [MessageFieldMetadata(Name="command", Type="MAV_CMD enum", Description="Command ID, as defined by MAV_CMD enum.")]
-        public Cmd Command
+        public MavLink4Net.Messages.Common.Cmd Command
         {
             get
             {

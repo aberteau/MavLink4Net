@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// device
         /// </remarks>
-        private SerialControlDev _device;
+        private MavLink4Net.Messages.Common.SerialControlDev _device;
         
         /// <summary>
         /// See SERIAL_CONTROL_FLAG enum
@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// flags
         /// </remarks>
-        private SerialControlFlag _flags;
+        private MavLink4Net.Messages.Common.SerialControlFlag _flags;
         
         /// <summary>
         /// Timeout for reply data in milliseconds
@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         /// See SERIAL_CONTROL_DEV enum
         /// </summary>
         [MessageFieldMetadata(Name="device", Type="SERIAL_CONTROL_DEV enum", Description="See SERIAL_CONTROL_DEV enum")]
-        public SerialControlDev Device
+        public MavLink4Net.Messages.Common.SerialControlDev Device
         {
             get
             {
@@ -100,7 +100,7 @@ namespace MavLink4Net.Messages.Common
         /// See SERIAL_CONTROL_FLAG enum
         /// </summary>
         [MessageFieldMetadata(Name="flags", Type="SERIAL_CONTROL_FLAG enum", Display="bitmask", Description="See SERIAL_CONTROL_FLAG enum")]
-        public SerialControlFlag Flags
+        public MavLink4Net.Messages.Common.SerialControlFlag Flags
         {
             get
             {

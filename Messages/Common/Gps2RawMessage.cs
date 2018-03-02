@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// fix_type
         /// </remarks>
-        private GpsFixType _fixType;
+        private MavLink4Net.Messages.Common.GpsFixType _fixType;
         
         /// <summary>
         /// Latitude (WGS84), in degrees * 1E7
@@ -148,7 +148,7 @@ namespace MavLink4Net.Messages.Common
         /// See the GPS_FIX_TYPE enum.
         /// </summary>
         [MessageFieldMetadata(Name="fix_type", Type="GPS_FIX_TYPE enum", Description="See the GPS_FIX_TYPE enum.")]
-        public GpsFixType FixType
+        public MavLink4Net.Messages.Common.GpsFixType FixType
         {
             get
             {

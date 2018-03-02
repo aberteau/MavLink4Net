@@ -59,7 +59,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// coordinate_frame
         /// </remarks>
-        private Frame _coordinateFrame;
+        private MavLink4Net.Messages.Common.Frame _coordinateFrame;
         
         /// <summary>
         /// Bitmask to indicate which dimensions should be ignored by the vehicle: a value of 0b0000000000000000 or 0b0000001000000000 indicates that none of the setpoint dimensions should be ignored. If bit 10 is set the floats afx afy afz should be interpreted as force instead of acceleration. Mapping: bit 1: x, bit 2: y, bit 3: z, bit 4: vx, bit 5: vy, bit 6: vz, bit 7: ax, bit 8: ay, bit 9: az, bit 10: is force setpoint, bit 11: yaw, bit 12: yaw rate
@@ -217,7 +217,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="coordinate_frame", Type="MAV_FRAME enum", Description="Valid options are: MAV_FRAME_GLOBAL_INT = 5, MAV_FRAME_GLOBAL_RELATIVE_ALT_INT = " +
             "6, MAV_FRAME_GLOBAL_TERRAIN_ALT_INT = 11")]
-        public Frame CoordinateFrame
+        public MavLink4Net.Messages.Common.Frame CoordinateFrame
         {
             get
             {

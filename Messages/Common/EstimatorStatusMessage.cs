@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// flags
         /// </remarks>
-        private EstimatorStatusFlags _flags;
+        private MavLink4Net.Messages.Common.EstimatorStatusFlags _flags;
         
         /// <summary>
         /// Velocity innovation test ratio
@@ -133,7 +133,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="flags", Type="ESTIMATOR_STATUS_FLAGS enum", Display="bitmask", Description="Integer bitmask indicating which EKF outputs are valid. See definition for ESTIMA" +
             "TOR_STATUS_FLAGS.")]
-        public EstimatorStatusFlags Flags
+        public MavLink4Net.Messages.Common.EstimatorStatusFlags Flags
         {
             get
             {

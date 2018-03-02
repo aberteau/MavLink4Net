@@ -57,7 +57,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// altitude_type
         /// </remarks>
-        private AdsbAltitudeType _altitudeType;
+        private MavLink4Net.Messages.Common.AdsbAltitudeType _altitudeType;
         
         /// <summary>
         /// Altitude(ASL) in millimeters
@@ -105,7 +105,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// emitter_type
         /// </remarks>
-        private AdsbEmitterType _emitterType;
+        private MavLink4Net.Messages.Common.AdsbEmitterType _emitterType;
         
         /// <summary>
         /// Time since last communication in seconds
@@ -121,7 +121,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// flags
         /// </remarks>
-        private AdsbFlags _flags;
+        private MavLink4Net.Messages.Common.AdsbFlags _flags;
         
         /// <summary>
         /// Squawk code
@@ -188,7 +188,7 @@ namespace MavLink4Net.Messages.Common
         /// Type from ADSB_ALTITUDE_TYPE enum
         /// </summary>
         [MessageFieldMetadata(Name="altitude_type", Type="ADSB_ALTITUDE_TYPE enum", Description="Type from ADSB_ALTITUDE_TYPE enum")]
-        public AdsbAltitudeType AltitudeType
+        public MavLink4Net.Messages.Common.AdsbAltitudeType AltitudeType
         {
             get
             {
@@ -284,7 +284,7 @@ namespace MavLink4Net.Messages.Common
         /// Type from ADSB_EMITTER_TYPE enum
         /// </summary>
         [MessageFieldMetadata(Name="emitter_type", Type="ADSB_EMITTER_TYPE enum", Description="Type from ADSB_EMITTER_TYPE enum")]
-        public AdsbEmitterType EmitterType
+        public MavLink4Net.Messages.Common.AdsbEmitterType EmitterType
         {
             get
             {
@@ -316,7 +316,7 @@ namespace MavLink4Net.Messages.Common
         /// Flags to indicate various statuses including valid data fields
         /// </summary>
         [MessageFieldMetadata(Name="flags", Type="ADSB_FLAGS enum", Display="bitmask", Description="Flags to indicate various statuses including valid data fields")]
-        public AdsbFlags Flags
+        public MavLink4Net.Messages.Common.AdsbFlags Flags
         {
             get
             {

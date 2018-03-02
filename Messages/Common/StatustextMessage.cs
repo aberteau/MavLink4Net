@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// severity
         /// </remarks>
-        private Severity _severity;
+        private MavLink4Net.Messages.Common.Severity _severity;
         
         /// <summary>
         /// Status text message, without null termination character
@@ -53,7 +53,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="severity", Type="MAV_SEVERITY enum", Description="Severity of status. Relies on the definitions within RFC-5424. See enum MAV_SEVER" +
             "ITY.")]
-        public Severity Severity
+        public MavLink4Net.Messages.Common.Severity Severity
         {
             get
             {

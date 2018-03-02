@@ -41,7 +41,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// type
         /// </remarks>
-        private Type _type;
+        private MavLink4Net.Messages.Common.Type _type;
         
         /// <summary>
         /// Autopilot type / class. defined in MAV_AUTOPILOT ENUM
@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// autopilot
         /// </remarks>
-        private Autopilot _autopilot;
+        private MavLink4Net.Messages.Common.Autopilot _autopilot;
         
         /// <summary>
         /// A bitfield for use for autopilot-specific flags (2 byte version).
@@ -217,7 +217,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// failure_flags
         /// </remarks>
-        private HlFailureFlag _failureFlags;
+        private MavLink4Net.Messages.Common.HlFailureFlag _failureFlags;
         
         /// <summary>
         /// Field for custom payload.
@@ -269,7 +269,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="type", Type="MAV_TYPE enum", Description="Type of the MAV (quadrotor, helicopter, etc., up to 15 types, defined in MAV_TYPE" +
             " ENUM)")]
-        public Type Type
+        public MavLink4Net.Messages.Common.Type Type
         {
             get
             {
@@ -285,7 +285,7 @@ namespace MavLink4Net.Messages.Common
         /// Autopilot type / class. defined in MAV_AUTOPILOT ENUM
         /// </summary>
         [MessageFieldMetadata(Name="autopilot", Type="MAV_AUTOPILOT enum", Description="Autopilot type / class. defined in MAV_AUTOPILOT ENUM")]
-        public Autopilot Autopilot
+        public MavLink4Net.Messages.Common.Autopilot Autopilot
         {
             get
             {
@@ -621,7 +621,7 @@ namespace MavLink4Net.Messages.Common
         /// Indicates failures as defined in HL_FAILURE_FLAG ENUM.
         /// </summary>
         [MessageFieldMetadata(Name="failure_flags", Type="HL_FAILURE_FLAG enum", Display="bitmask", Description="Indicates failures as defined in HL_FAILURE_FLAG ENUM.")]
-        public HlFailureFlag FailureFlags
+        public MavLink4Net.Messages.Common.HlFailureFlag FailureFlags
         {
             get
             {

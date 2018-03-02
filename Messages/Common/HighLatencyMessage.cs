@@ -33,7 +33,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// base_mode
         /// </remarks>
-        private ModeFlag _baseMode;
+        private MavLink4Net.Messages.Common.ModeFlag _baseMode;
         
         /// <summary>
         /// A bitfield for use for autopilot-specific flags.
@@ -49,7 +49,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// landed_state
         /// </remarks>
-        private LandedState _landedState;
+        private MavLink4Net.Messages.Common.LandedState _landedState;
         
         /// <summary>
         /// roll (centidegrees)
@@ -169,7 +169,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// gps_fix_type
         /// </remarks>
-        private GpsFixType _gpsFixType;
+        private MavLink4Net.Messages.Common.GpsFixType _gpsFixType;
         
         /// <summary>
         /// Remaining battery (percentage)
@@ -228,7 +228,7 @@ namespace MavLink4Net.Messages.Common
         /// System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h
         /// </summary>
         [MessageFieldMetadata(Name="base_mode", Type="MAV_MODE_FLAG enum", Display="bitmask", Description="System mode bitfield, see MAV_MODE_FLAG ENUM in mavlink/include/mavlink_types.h")]
-        public ModeFlag BaseMode
+        public MavLink4Net.Messages.Common.ModeFlag BaseMode
         {
             get
             {
@@ -261,7 +261,7 @@ namespace MavLink4Net.Messages.Common
         /// </summary>
         [MessageFieldMetadata(Name="landed_state", Type="MAV_LANDED_STATE enum", Description="The landed state. Is set to MAV_LANDED_STATE_UNDEFINED if landed state is unknown" +
             ".")]
-        public LandedState LandedState
+        public MavLink4Net.Messages.Common.LandedState LandedState
         {
             get
             {
@@ -501,7 +501,7 @@ namespace MavLink4Net.Messages.Common
         /// See the GPS_FIX_TYPE enum.
         /// </summary>
         [MessageFieldMetadata(Name="gps_fix_type", Type="GPS_FIX_TYPE enum", Description="See the GPS_FIX_TYPE enum.")]
-        public GpsFixType GpsFixType
+        public MavLink4Net.Messages.Common.GpsFixType GpsFixType
         {
             get
             {

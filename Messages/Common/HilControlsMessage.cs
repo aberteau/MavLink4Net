@@ -105,7 +105,7 @@ namespace MavLink4Net.Messages.Common
         /// <remarks>
         /// mode
         /// </remarks>
-        private Mode _mode;
+        private MavLink4Net.Messages.Common.Mode _mode;
         
         /// <summary>
         /// Navigation mode (MAV_NAV_MODE)
@@ -268,7 +268,7 @@ namespace MavLink4Net.Messages.Common
         /// System mode (MAV_MODE)
         /// </summary>
         [MessageFieldMetadata(Name="mode", Type="MAV_MODE enum", Description="System mode (MAV_MODE)")]
-        public Mode Mode
+        public MavLink4Net.Messages.Common.Mode Mode
         {
             get
             {
