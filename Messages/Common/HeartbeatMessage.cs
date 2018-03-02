@@ -164,7 +164,7 @@ namespace MavLink4Net.Messages.Common
         /// <summary>
         /// MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version
         /// </summary>
-        [MessageFieldMetadata(Name="mavlink_version", Type="uint8_t", Description="MAVLink version, not writable by user, gets added by protocol because of magic da" +
+        [MessageFieldMetadata(Name="mavlink_version", Type="uint8_t_mavlink_version", Description="MAVLink version, not writable by user, gets added by protocol because of magic da" +
             "ta type: uint8_t_mavlink_version")]
         public byte MavlinkVersion
         {
