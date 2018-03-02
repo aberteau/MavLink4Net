@@ -1,0 +1,2 @@
+dotnet pack "F:\Developpement\MavLink4Net\Messages" --configuration Release --output "F:\Temp\MavLink4Net\packages"
+dotnet pack "F:\Developpement\MavLink4Net\Messages.Serialization" --configuration Release --output "F:\Temp\MavLink4Net\packages"
