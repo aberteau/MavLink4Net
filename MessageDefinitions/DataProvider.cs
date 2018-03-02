@@ -226,7 +226,6 @@ namespace MavLink4Net.MessageDefinitions
             dMavLink.Enums = enums;
 
             dMavLink.Messages = ToModels(xMavLink.Messages).ToList();
-            dMavLink.EnumByXmlName = _enumByXmlEnum;
 
             return dMavLink;
         }

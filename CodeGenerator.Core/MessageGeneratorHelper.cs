@@ -9,7 +9,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MessageGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -29,7 +29,7 @@ namespace MavLink4Net.CodeGenerator.Core
             string messageTypeEnumValue = NamespaceHelper.GetFullname(messageTypeEnumTypeInfo.FullName, message.Name);
 
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, message, messageBaseClassTypeInfo, messageTypeEnumValue, enumByXmlEnum);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, message, messageBaseClassTypeInfo, messageTypeEnumValue, typeInfoByEnum);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -37,7 +37,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, MessageDefinitions.Data.Message message, TypeInfo messageBaseClassTypeInfo, string messageTypeEnumValue, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, MessageDefinitions.Data.Message message, TypeInfo messageBaseClassTypeInfo, string messageTypeEnumValue, IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -65,14 +65,14 @@ namespace MavLink4Net.CodeGenerator.Core
             // Add fields
             foreach (MessageField messageField in message.Fields)
             {
-                CodeMemberField codeMemberField = ToCodeMemberField(messageField, enumByXmlEnum);
+                CodeMemberField codeMemberField = ToCodeMemberField(messageField, typeInfoByEnum);
                 codeTypeDeclaration.Members.Add(codeMemberField);
             }
 
             // Add properties
             foreach (MessageField messageField in message.Fields)
             {
-                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField, enumByXmlEnum);
+                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField, typeInfoByEnum);
                 codeTypeDeclaration.Members.Add(codeMemberProperty);
             }
 
@@ -100,7 +100,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeTypeDeclaration.Members.Add(constructor);
         }
 
-        private static CodeMemberField ToCodeMemberField(MessageField messageField, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
+        private static CodeMemberField ToCodeMemberField(MessageField messageField, IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum)
         {
             CodeMemberField codeMemberField = new CodeMemberField();
             codeMemberField.Attributes = MemberAttributes.Private;
@@ -108,7 +108,8 @@ namespace MavLink4Net.CodeGenerator.Core
 
             // Type
             Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
+
+            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type, typeInfoByEnum);
             codeMemberField.Type = codeTypeReference;
 
             if (messageField.Type.FieldType == FieldType.Array)
@@ -139,11 +140,12 @@ namespace MavLink4Net.CodeGenerator.Core
             return pascalStyleWord;
         }
 
-        private static CodeTypeReference GetCodeTypeReference(MessageFieldType fieldType, Type type)
+        private static CodeTypeReference GetCodeTypeReference(MessageFieldType fieldType, Type type, IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum)
         {
             if (fieldType.FieldType == FieldType.Enum)
             {
-                return new CodeTypeReference(fieldType.Enum.Name);
+                TypeInfo enumTypeInfo = typeInfoByEnum[fieldType.Enum];
+                return new CodeTypeReference(enumTypeInfo.FullName);
             }
 
             CodeTypeReference codeTypeReference = new CodeTypeReference(type);
@@ -154,7 +156,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeReference;
         }
 
-        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
+        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField, IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum)
         {
             CodeMemberProperty codeMemberProperty = new CodeMemberProperty();
             codeMemberProperty.Attributes = MemberAttributes.Public | MemberAttributes.Final;
@@ -168,7 +170,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             // Type
             Type type = SystemTypeHelper.GetType(messageField.Type.DataType);
-            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type);
+            CodeTypeReference codeTypeReference = GetCodeTypeReference(messageField.Type, type, typeInfoByEnum);
             codeMemberProperty.Type = codeTypeReference;
 
             string fieldName = GetFieldName(messageField.Name);
