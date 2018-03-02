@@ -46,7 +46,7 @@ namespace MavLink4Net.MessageDefinitions
         private Data.Enum ToModel(Xml.Enum xEnum)
         {
             Data.Enum dEnum = new Data.Enum();
-            dEnum.XmlItem = xEnum;
+            dEnum.XmlDefinition = xEnum;
             string xEnumName = GetName(xEnum);
             dEnum.Name = xEnumName;
             dEnum.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnum.Description);
@@ -76,7 +76,7 @@ namespace MavLink4Net.MessageDefinitions
         private Data.EnumEntry ToModel(Xml.EnumEntry xEnumEntry)
         {
             Data.EnumEntry dEnumEntry = new Data.EnumEntry();
-            dEnumEntry.XmlItem = xEnumEntry;
+            dEnumEntry.XmlDefinition = xEnumEntry;
             dEnumEntry.Name = GetName(xEnumEntry);
             dEnumEntry.Value = GetNullableInt(xEnumEntry.Value);
             dEnumEntry.Description = StringHelper.TrimAndNormalizeCarriageReturn(xEnumEntry.Description);
@@ -128,7 +128,7 @@ namespace MavLink4Net.MessageDefinitions
         private Data.Message ToModel(Xml.Message xMessage)
         {
             Data.Message dMessage = new Data.Message();
-            dMessage.XmlItem = xMessage;
+            dMessage.XmlDefinition = xMessage;
             dMessage.Id = xMessage.Id;
             dMessage.Name = GetName(xMessage);
             dMessage.Description = StringHelper.TrimAndNormalizeCarriageReturn(xMessage.Description);
@@ -174,7 +174,7 @@ namespace MavLink4Net.MessageDefinitions
         private Data.MessageField ToModel(Xml.MessageField xMessageField, Int32 definitionIndex)
         {
             Data.MessageField dMessageField = new Data.MessageField();
-            dMessageField.XmlItem = xMessageField;
+            dMessageField.XmlDefinition = xMessageField;
             dMessageField.DefinitionIndex = definitionIndex;
             dMessageField.Type = GetFieldType(xMessageField);
             dMessageField.Name = GetName(xMessageField);

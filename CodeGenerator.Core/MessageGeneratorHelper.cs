@@ -46,7 +46,7 @@ namespace MavLink4Net.CodeGenerator.Core
             };
 
             // Add metadata attribute
-            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, message.XmlItem.Name, message.Description);
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, message.XmlDefinition.Name, message.Description);
             codeTypeDeclaration.CustomAttributes.Add(metadataAttributeDeclaration);
 
             codeTypeDeclaration.BaseTypes.Add(messageBaseClassTypeInfo.FullName);
@@ -58,7 +58,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             if (message.IsNameTransformed)
             {
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.XmlItem.Name);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.XmlDefinition.Name);
                 codeTypeDeclaration.Comments.AddRange(remarksCommentStatements);
             }
 
@@ -121,7 +121,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(messageField.Text);
             codeMemberField.Comments.AddRange(summaryCommentStatements);
 
-            CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(messageField.XmlItem.Name);
+            CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(messageField.XmlDefinition.Name);
             codeMemberField.Comments.AddRange(remarksCommentStatements);
 
             return codeMemberField;
@@ -163,7 +163,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             // Add metadata attribute
             String rawType = GetRawType(messageField);
-            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageFieldMetadataAttributeDeclaration(messageField.XmlItem.Name, rawType, messageField.Units, messageField.Display, messageField.Text);
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageFieldMetadataAttributeDeclaration(messageField.XmlDefinition.Name, rawType, messageField.Units, messageField.Display, messageField.Text);
             codeMemberProperty.CustomAttributes.Add(metadataAttributeDeclaration);
 
             // Type
@@ -198,7 +198,7 @@ namespace MavLink4Net.CodeGenerator.Core
                 return rawType;
             }
 
-            return messageField.XmlItem.Type;
+            return messageField.XmlDefinition.Type;
         }
 
         private static CodeAttributeDeclaration CreateMessageFieldMetadataAttributeDeclaration(string name, string type, string units, string display, string description)

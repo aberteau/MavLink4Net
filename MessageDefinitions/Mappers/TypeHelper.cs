@@ -124,7 +124,7 @@ namespace MavLink4Net.MessageDefinitions.Mappers
 
         public static string ToEnumRawType(Data.MessageField pEnum)
         {
-            return $"{pEnum.XmlItem.Enum} enum"; ;
+            return $"{pEnum.XmlDefinition.Enum} enum"; ;
         }
     }
 }

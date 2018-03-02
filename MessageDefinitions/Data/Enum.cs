@@ -4,7 +4,7 @@ namespace MavLink4Net.MessageDefinitions.Data
 {
     public class Enum
     {
-        public Xml.Enum XmlItem { get; set; }
+        public Xml.Enum XmlDefinition { get; set; }
 
         public string Name { get; set; }
 
@@ -12,6 +12,6 @@ namespace MavLink4Net.MessageDefinitions.Data
 
         public IEnumerable<EnumEntry> Entries { get; set; }
 
-        public bool IsNameTransformed => !XmlItem.Name.Equals(Name);
+        public bool IsNameTransformed => !XmlDefinition.Name.Equals(Name);
     }
 }

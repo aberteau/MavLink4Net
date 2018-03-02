@@ -46,7 +46,7 @@ namespace MavLink4Net.CodeGenerator.Core
             if (enumeration.IsNameTransformed)
             {
                 // Add remarks comments
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumeration.XmlItem.Name);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumeration.XmlDefinition.Name);
                 codeTypeDeclaration.Comments.AddRange(remarksCommentStatements);
             }
 
@@ -77,7 +77,7 @@ namespace MavLink4Net.CodeGenerator.Core
             if (enumEntry.IsNameTransformed)
             {
                 // Add remarks comments
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumEntry.XmlItem.Name);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumEntry.XmlDefinition.Name);
                 field.Comments.AddRange(remarksCommentStatements);
             }
 

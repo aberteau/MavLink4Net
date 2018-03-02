@@ -4,7 +4,7 @@ namespace MavLink4Net.MessageDefinitions.Data
 {
     public class MessageField
     {
-        public Xml.MessageField XmlItem { get; set; }
+        public Xml.MessageField XmlDefinition { get; set; }
 
         public Int32 DefinitionIndex { get; set; }
 
@@ -18,6 +18,6 @@ namespace MavLink4Net.MessageDefinitions.Data
 
         public string Text { get; set; }
 
-        public bool IsNameTransformed => !XmlItem.Name.Equals(Name);
+        public bool IsNameTransformed => !XmlDefinition.Name.Equals(Name);
     }
 }

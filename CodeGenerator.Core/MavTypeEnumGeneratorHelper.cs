@@ -64,7 +64,7 @@ namespace MavLink4Net.CodeGenerator.Core
             if (message.IsNameTransformed)
             {
                 // Add remarks comments
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.XmlItem.Name);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.XmlDefinition.Name);
                 field.Comments.AddRange(remarksCommentStatements);
             }
 
