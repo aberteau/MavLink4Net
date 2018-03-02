@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Mappers;
 using MavLink4Net.MessageDefinitions.Transformations.Interfaces;
