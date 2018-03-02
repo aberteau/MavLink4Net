@@ -30,9 +30,11 @@ namespace MavLink4Net.MessageDefinitions
             return mavLink;
         }
 
+        #region MavLink
+
         private static MavLink ToMavLink(XElement xElement)
         {
-            Xml.MavLink mavLink = new Xml.MavLink();
+            MavLink mavLink = new MavLink();
 
             mavLink.Version = Int32.Parse(xElement.Element(XName.Get("version")).Value);
             mavLink.Dialect = xElement.Element(XName.Get("dialect"))?.Value;
@@ -49,6 +51,8 @@ namespace MavLink4Net.MessageDefinitions
 
             return mavLink;
         }
+
+        #endregion
 
         #region Enum
 
@@ -163,15 +167,15 @@ namespace MavLink4Net.MessageDefinitions
 
         private static Xml.MessageField ToField(XElement xElement, Int32 index)
         {
-            Xml.MessageField dMessageField = new Xml.MessageField();
-            dMessageField.Index = index;
-            dMessageField.Type = xElement.Attribute("type").Value;
-            dMessageField.Name = xElement.Attribute("name").Value;
-            dMessageField.Enum = xElement.Attribute("enum")?.Value;
-            dMessageField.Units = xElement.Attribute("units")?.Value;
-            dMessageField.Display = xElement.Attribute("display")?.Value;
-            dMessageField.Text = xElement.Value;
-            return dMessageField;
+            Xml.MessageField messageField = new Xml.MessageField();
+            messageField.Index = index;
+            messageField.Type = xElement.Attribute("type").Value;
+            messageField.Name = xElement.Attribute("name").Value;
+            messageField.Enum = xElement.Attribute("enum")?.Value;
+            messageField.Units = xElement.Attribute("units")?.Value;
+            messageField.Display = xElement.Attribute("display")?.Value;
+            messageField.Text = xElement.Value;
+            return messageField;
         }
 
         #endregion
