@@ -215,7 +215,7 @@ namespace MavLink4Net.MessageDefinitions
 
         #endregion
 
-        public Data.MavLink LoadMavLink(string path)
+        public Data.MavLink GetMavLink(string path)
         {
             Xml.MavLink xMavLink = XmlSerializer.Deserialize(path);
 

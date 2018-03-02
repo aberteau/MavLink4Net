@@ -12,7 +12,7 @@ namespace MavLink4Net.MessageDefinitions
             DefaultTransformation transformation = new DefaultTransformation(EnumValuePrefixRemovalStrategy.RemoveLongestCommonString);
             MavLink1MessageFilter messageFilter = new MavLink1MessageFilter();
             DataProvider dataProvider = new DataProvider(false, transformation, transformation, transformation, transformation, messageFilter);
-            Data.MavLink mavLink = dataProvider.LoadMavLink(messageDefinitionPath);
+            Data.MavLink mavLink = dataProvider.GetMavLink(messageDefinitionPath);
             return mavLink;
         }
 
