@@ -1,58 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MavLink4Net.CodeGenerator.Core.Translations.Interfaces;
-using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Mappers;
+using MavLink4Net.MessageDefinitions.Transformations.Interfaces;
 
-namespace MavLink4Net.CodeGenerator.Core.Translations
+namespace MavLink4Net.MessageDefinitions.Transformations
 {
-    public class DefaultTranslation
-        : IMessageNameTranslation, IMessageFieldNameTranslation, IEnumNameTranslation, IEnumEntryNameTranslation, IMessageFilter
+    public class DefaultTransformation
+        : IMessageNameTransformation, IMessageFieldNameTransformation, IEnumNameTransformation, IEnumEntryNameTransformation, IMessageFilter
     {
         private readonly EnumValuePrefixRemovalStrategy _strategy;
         private string _enumValuePrefix;
 
-        public DefaultTranslation(EnumValuePrefixRemovalStrategy strategy)
+        public DefaultTransformation(EnumValuePrefixRemovalStrategy strategy)
         {
             _strategy = strategy;
         }
 
-        public string TranslateName(Message pMessage)
+        public string Transform(Xml.Message pMessage)
         {
             string name = NamingConventionHelper.GetPascalStyleString(pMessage.Name);
             return name;
         }
 
-        public string TranslateName(MessageField pMessageField)
+        public string Transform(Xml.MessageField pMessageField)
         {
             string name = NamingConventionHelper.GetPascalStyleString(pMessageField.Name);
             return name;
         }
 
-        public string TranslateName(MessageDefinitions.Data.Enum pEnum)
+        public string Transform(Xml.Enum pEnum)
         {
             string name = NamingConventionHelper.GetEnumName(pEnum.Name);
             return name;
         }
 
-        public void SetContext(IEnumerable<EnumEntry> xEnumEntries, string xEnumName)
+        public void SetContext(IEnumerable<Xml.EnumEntry> xEnumEntries, string xEnumName)
         {
             _enumValuePrefix = EnumHelper.GetEnumValuePrefix(xEnumEntries, xEnumName, _strategy);
         }
 
-        public string TranslateName(EnumEntry pEnumEntry)
+        public string Transform(Xml.EnumEntry pEnumEntry)
         {
             String shortName = StringHelper.RemoveAtStart(pEnumEntry.Name, _enumValuePrefix);
             string name = NamingConventionHelper.GetPascalStyleString(shortName);
             return name;
         }
 
-        public IEnumerable<Message> Filter(IEnumerable<Message> xMessages)
+        public IEnumerable<Xml.Message> Filter(IEnumerable<Xml.Message> xMessages)
         {
             // discard anything beyond 255
-            IEnumerable<Message> filteredMessages = xMessages.Where(m => m.Id < 256);
+            IEnumerable<Xml.Message> filteredMessages = xMessages.Where(m => m.Id < 256);
             return filteredMessages;
         }
     }

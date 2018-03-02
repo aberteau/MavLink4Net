@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Mappers;
 
-namespace MavLink4Net.CodeGenerator.Core.Translations
+namespace MavLink4Net.MessageDefinitions.Transformations
 {
     class EnumHelper
     {
-        public static string GetEnumValuePrefix(IEnumerable<EnumEntry> xEnumEntries, String xEnumName, EnumValuePrefixRemovalStrategy strategy)
+        public static string GetEnumValuePrefix(IEnumerable<Xml.EnumEntry> xEnumEntries, String xEnumName, EnumValuePrefixRemovalStrategy strategy)
         {
             switch (strategy)
             {

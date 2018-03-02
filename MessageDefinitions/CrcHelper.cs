@@ -1,30 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MavLink4Net.MessageDefinitions.Data;
-using MavLink4Net.MessageDefinitions.Data.Extensions;
 using MavLink4Net.MessageDefinitions.Mappers;
 
 namespace MavLink4Net.MessageDefinitions
 {
     public class CrcHelper
     {
-        public static byte GetExtraCrc(Message m)
+        public static byte GetExtraCrc(Xml.Message xMessage)
         {
-            UInt16 crc = GetCrc(m.Name + ' ');
+            UInt16 crc = GetCrc(xMessage.Name + ' ');
 
-            foreach (MessageField f in m.Fields.OrderForSerialization().ToList())
+            IList<MessageFieldCrcData> fieldCrcDatas = ToMessageFieldCrcDatas(xMessage);
+
+            foreach (MessageFieldCrcData fieldCrcData in fieldCrcDatas.OrderByDescending(t => t.TypeLength).ThenBy(t => t.DefinitionIndex).ToList())
             {
-                string rawDataType = TypeHelper.ToRawDataType(f.Type.RawString);
+                String translatedRawType = TypeHelper.TranslatePrimitiveRawType(fieldCrcData.Field.Type);
+                string rawDataType = TypeHelper.ToRawDataType(translatedRawType);
                 crc = GetCrc(rawDataType + ' ', crc);
-                crc = GetCrc(f.Name + ' ', crc);
+                crc = GetCrc(fieldCrcData.Field.Name + ' ', crc);
 
-                if (f.Type.ArrayLength > 1)
-                    crc = GetCrc((byte)f.Type.ArrayLength, crc);
+                if (fieldCrcData.ArrayLength > 1)
+                    crc = GetCrc((byte)fieldCrcData.ArrayLength, crc);
             }
 
             byte result = (byte)((crc & 0xFF) ^ (crc >> 8));
             return result;
+        }
+
+        private static IList<MessageFieldCrcData> ToMessageFieldCrcDatas(Xml.Message xMessage)
+        {
+            IList<MessageFieldCrcData> fieldCrcDatas = new List<MessageFieldCrcData>();
+            Int32 definitionIndex = 0;
+            foreach (Xml.MessageField messageField in xMessage.Fields)
+            {
+                MessageFieldCrcData fieldCrcData = new MessageFieldCrcData()
+                {
+                    DefinitionIndex = definitionIndex,
+                    TypeLength = TypeHelper.GetTypeLength(messageField),
+                    ArrayLength = TypeHelper.GetArraySize(messageField.Type),
+                    Field = messageField
+                };
+
+                fieldCrcDatas.Add(fieldCrcData);
+                definitionIndex++;
+            }
+            return fieldCrcDatas;
         }
 
         // Crc code copied/adapted from ardumega planner code / Mavlink C# generator (https://github.com/mavlink/mavlink)

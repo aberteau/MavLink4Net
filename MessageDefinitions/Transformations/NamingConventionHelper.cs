@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using MavLink4Net.MessageDefinitions.Mappers;
 
-namespace MavLink4Net.CodeGenerator.Core
+namespace MavLink4Net.MessageDefinitions.Transformations
 {
     class NamingConventionHelper
     {

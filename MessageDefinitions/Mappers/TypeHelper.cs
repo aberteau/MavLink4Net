@@ -67,6 +67,30 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             return isArray;
         }
 
+        public static int GetArraySize(string t)
+        {
+            string[] tt = t.Split('[', ']');
+            if (tt.Length > 1)
+                return ParseToInt(tt[1]);
+
+            return 0;
+        }
+
+        private static int ParseToInt(string str, int defaultValue = -1)
+        {
+            if (int.TryParse(str, out var result))
+                return result;
+
+            return defaultValue;
+        }
+
+        public static Int32 GetTypeLength(Xml.MessageField xMessageField)
+        {
+            MessageFieldDataType dataType = ToDataType(xMessageField.Type);
+            int typeLength = GetTypeLength(dataType);
+            return typeLength;
+        }
+
         public static Int32 GetTypeLength(MessageFieldDataType type)
         {
             switch (type)
@@ -98,9 +122,9 @@ namespace MavLink4Net.MessageDefinitions.Mappers
             }
         }
 
-        public static string ToEnumRawType(Data.Enum pEnum)
+        public static string ToEnumRawType(Data.MessageField pEnum)
         {
-            return $"{pEnum.Name} enum"; ;
+            return $"{pEnum.XmlItem.Enum} enum"; ;
         }
     }
 }

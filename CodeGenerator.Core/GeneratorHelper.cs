@@ -4,39 +4,21 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using MavLink4Net.CodeGenerator.Core.Params;
-using MavLink4Net.CodeGenerator.Core.Translations;
 using MavLink4Net.MessageDefinitions;
 using MavLink4Net.MessageDefinitions.Data;
-using MavLink4Net.MessageDefinitions.Mappers;
 using Microsoft.CSharp;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
     public class GeneratorHelper
     {
-        private static TranslationResult LoadMavLink(string messageDefinitionPath)
-        {
-            MessageDefinitions.Data.MavLink mavLink = DataProvider.LoadMavLink(messageDefinitionPath);
-
-            DefaultTranslation dTranslation = new DefaultTranslation(EnumValuePrefixRemovalStrategy.RemoveLongestCommonString);
-
-            Translator translator = new Translator(dTranslation, dTranslation, dTranslation, dTranslation, dTranslation);
-            TranslationResult translationResult = translator.Translate(mavLink);
-            return translationResult;
-        }
-
         public static void GenerateFiles(string messageDefinitionPath, string outputPath, string language)
         {
-            TranslationResult result = LoadMavLink(messageDefinitionPath);
+            MessageDefinitions.Data.MavLink result = MavLinkHelper.LoadMavLink(messageDefinitionPath);
             GenerateFiles(messageDefinitionPath, outputPath, language, result);
         }
 
-        public static void GenerateFiles(string messageDefinitionPath, string outputPath, string language, TranslationResult result)
-        {
-            GenerateFiles(messageDefinitionPath, outputPath, language, result.MavLink, result.TranslationMap);
-        }
-
-        public static void GenerateFiles(string messageDefinitionPath, string outputPath, string language, MavLink mavLink, TranslationMap translationMap)
+        public static void GenerateFiles(string messageDefinitionPath, string outputPath, string language, MessageDefinitions.Data.MavLink mavLink)
         {
             String messagesPath = Path.Combine(outputPath, ConstantHelper.MessagesFolderName);
             System.IO.Directory.CreateDirectory(messagesPath);
@@ -58,11 +40,11 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeGeneratorOptions options = new CodeGeneratorOptions() { BracingStyle = "C" };
             CodeDomProvider codeProvider = CreateCodeDomProvider(language);
 
-            GenerateMessageTypeEnum(codeProvider, options, messageTypeEnumTypeInfo, messagesPath, mavLink.Messages, translationMap);
+            GenerateMessageTypeEnum(codeProvider, options, messageTypeEnumTypeInfo, messagesPath, mavLink.Messages);
 
-            GenerateEnumFiles(codeProvider, options, messagesCommonPath, mavLink.Enums, translationMap);
+            GenerateEnumFiles(codeProvider, options, messagesCommonPath, mavLink.Enums);
 
-            GenerateMessageClassFiles(codeProvider, options, messagesCommonPath, messageBaseClassTypeInfo, messageTypeEnumTypeInfo, mavLink.Messages, translationMap);
+            GenerateMessageClassFiles(codeProvider, options, messagesCommonPath, messageBaseClassTypeInfo, messageTypeEnumTypeInfo, mavLink.Messages, mavLink.EnumByXmlName);
 
             GenerateSerializerClassFiles(codeProvider, options, serializerCommonOutputPath, mavLink.Messages, serializerInterfaceTypeInfo, messageBaseClassTypeInfo);
 
@@ -77,19 +59,19 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region MessageType
 
-        private static void GenerateMessageTypeEnum(CodeDomProvider codeProvider, CodeGeneratorOptions options, TypeInfo messageTypeEnumTypeInfo, string outputPath, IEnumerable<Message> messages, TranslationMap translationMap)
+        private static void GenerateMessageTypeEnum(CodeDomProvider codeProvider, CodeGeneratorOptions options, TypeInfo messageTypeEnumTypeInfo, string outputPath, IEnumerable<Message> messages)
         {
             MessageTypeEnumGenerationParams typeEnumGenerationParams = new MessageTypeEnumGenerationParams();
             string messageTypeEnumFilename = TypeInfoHelper.GetFilename(messageTypeEnumTypeInfo);
             typeEnumGenerationParams.OutputFilePath = Path.Combine(outputPath, messageTypeEnumFilename);
             typeEnumGenerationParams.TypeInfo = messageTypeEnumTypeInfo;
 
-            GenerateMessageTypeEnum(codeProvider, options, typeEnumGenerationParams, messages, translationMap);
+            GenerateMessageTypeEnum(codeProvider, options, typeEnumGenerationParams, messages);
         }
 
-        private static void GenerateMessageTypeEnum(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageTypeEnumGenerationParams typeEnumGenerationParams, IEnumerable<Message> messages, TranslationMap translationMap)
+        private static void GenerateMessageTypeEnum(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageTypeEnumGenerationParams typeEnumGenerationParams, IEnumerable<Message> messages)
         {
-            CodeCompileUnit unit = MavTypeEnumGeneratorHelper.CreateCodeCompileUnit(typeEnumGenerationParams.TypeInfo, messages, translationMap);
+            CodeCompileUnit unit = MavTypeEnumGeneratorHelper.CreateCodeCompileUnit(typeEnumGenerationParams.TypeInfo, messages);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, typeEnumGenerationParams.OutputFilePath);
         }
 
@@ -97,7 +79,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region Message
 
-        private static void GenerateMessageClassFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, string outputPath, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, IEnumerable<Message> messages, TranslationMap translationMap)
+        private static void GenerateMessageClassFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, string outputPath, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, IEnumerable<Message> messages, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             MessageGenerationParams messageGenerationParams = new MessageGenerationParams();
             messageGenerationParams.OutputPath = outputPath;
@@ -105,23 +87,23 @@ namespace MavLink4Net.CodeGenerator.Core
             messageGenerationParams.MessageTypeEnumTypeInfo = messageTypeEnumTypeInfo;
             messageGenerationParams.Namespace = ConstantHelper.Namespaces.Root_Messages_Common;
 
-            GenerateMessageClassFiles(codeProvider, options, messageGenerationParams, messages, translationMap);
+            GenerateMessageClassFiles(codeProvider, options, messageGenerationParams, messages, enumByXmlEnum);
         }
 
-        private static void GenerateMessageClassFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageGenerationParams pParams, IEnumerable<Message> messages, TranslationMap translationMap)
+        private static void GenerateMessageClassFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageGenerationParams pParams, IEnumerable<Message> messages, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             foreach (MessageDefinitions.Data.Message message in messages)
             {
-                GenerateMessageClassFile(pParams, message, options, codeProvider, translationMap);
+                GenerateMessageClassFile(pParams, message, options, codeProvider, enumByXmlEnum);
             }
         }
 
-        private static void GenerateMessageClassFile(MessageGenerationParams pParams, MessageDefinitions.Data.Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, TranslationMap translationMap)
+        private static void GenerateMessageClassFile(MessageGenerationParams pParams, MessageDefinitions.Data.Message message, CodeGeneratorOptions options, CodeDomProvider codeProvider, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             TypeInfo typeInfo = TypeInfoHelper.GetTypeInfo(pParams.Namespace, message);
             string filename = TypeInfoHelper.GetFilename(typeInfo);
             String filePath = Path.Combine(pParams.OutputPath, filename);
-            CodeCompileUnit unit = MessageGeneratorHelper.CreateCodeCompileUnit(typeInfo, message, pParams.BaseClassTypeInfo, pParams.MessageTypeEnumTypeInfo, translationMap);
+            CodeCompileUnit unit = MessageGeneratorHelper.CreateCodeCompileUnit(typeInfo, message, pParams.BaseClassTypeInfo, pParams.MessageTypeEnumTypeInfo, enumByXmlEnum);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 
@@ -129,24 +111,24 @@ namespace MavLink4Net.CodeGenerator.Core
 
         #region Enum
 
-        private static void GenerateEnumFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, string outputPath, IEnumerable<MessageDefinitions.Data.Enum> enums, TranslationMap translationMap)
+        private static void GenerateEnumFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, string outputPath, IEnumerable<MessageDefinitions.Data.Enum> enums)
         {
             EnumGenerationParams enumGenerationParams = new EnumGenerationParams();
             enumGenerationParams.OutputPath = outputPath;
             enumGenerationParams.Namespace = ConstantHelper.Namespaces.Root_Messages_Common;
 
-            GenerateEnumFiles(codeProvider, options, enumGenerationParams, enums, translationMap);
+            GenerateEnumFiles(codeProvider, options, enumGenerationParams, enums);
         }
 
-        private static void GenerateEnumFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, EnumGenerationParams pParams, IEnumerable<MessageDefinitions.Data.Enum> enums, TranslationMap translationMap)
+        private static void GenerateEnumFiles(CodeDomProvider codeProvider, CodeGeneratorOptions options, EnumGenerationParams pParams, IEnumerable<MessageDefinitions.Data.Enum> enums)
         {
             foreach (MessageDefinitions.Data.Enum enumeration in enums)
             {
-                GenerateEnumFile(pParams, enumeration, options, codeProvider, translationMap);
+                GenerateEnumFile(pParams, enumeration, options, codeProvider);
             }
         }
 
-        private static void GenerateEnumFile(EnumGenerationParams pParams, MessageDefinitions.Data.Enum enumeration, CodeGeneratorOptions options, CodeDomProvider codeProvider, TranslationMap translationMap)
+        private static void GenerateEnumFile(EnumGenerationParams pParams, MessageDefinitions.Data.Enum enumeration, CodeGeneratorOptions options, CodeDomProvider codeProvider)
         {
             string enumerationName = enumeration.Name;
 
@@ -158,7 +140,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             string filename = TypeInfoHelper.GetFilename(typeInfo);
             String filePath = Path.Combine(pParams.OutputPath, filename);
-            CodeCompileUnit unit = EnumGeneratorHelper.CreateCodeCompileUnit(typeInfo, enumeration, translationMap);
+            CodeCompileUnit unit = EnumGeneratorHelper.CreateCodeCompileUnit(typeInfo, enumeration);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, filePath);
         }
 

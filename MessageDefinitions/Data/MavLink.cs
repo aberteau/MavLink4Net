@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MavLink4Net.MessageDefinitions.Data
 {
@@ -11,5 +12,7 @@ namespace MavLink4Net.MessageDefinitions.Data
         public IEnumerable<Enum> Enums { get; set; }
 
         public IEnumerable<Message> Messages { get; set; }
+
+        public IDictionary<String, Data.Enum> EnumByXmlName { get; set; }
     }
 }

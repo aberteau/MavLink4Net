@@ -2,14 +2,13 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using MavLink4Net.CodeGenerator.Core.Translations;
 using MavLink4Net.MessageDefinitions.Data;
 
 namespace MavLink4Net.CodeGenerator.Core
 {
     class EnumGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, MessageDefinitions.Data.Enum enumeration, TranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, MessageDefinitions.Data.Enum enumeration)
         {
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
 
@@ -24,7 +23,7 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
 
-            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(enumeration, translationMap);
+            CodeTypeDeclaration enumTypeDeclaration = ToCodeTypeDeclaration(enumeration);
 
             // Add enum to the namespace
             codeNamespace.Types.Add(enumTypeDeclaration);
@@ -32,7 +31,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Enum enumeration, TranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(MessageDefinitions.Data.Enum enumeration)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -44,25 +43,24 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(enumeration.Description);
             codeTypeDeclaration.Comments.AddRange(summaryCommentStatements);
 
-            if (translationMap?.EnumMap != null && translationMap.EnumMap.ContainsKey(enumeration))
+            if (enumeration.IsNameTransformed)
             {
                 // Add remarks comments
-                string originalName = translationMap.EnumMap[enumeration].Name;
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(originalName);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumeration.XmlItem.Name);
                 codeTypeDeclaration.Comments.AddRange(remarksCommentStatements);
             }
 
             // Add values
             foreach (EnumEntry enumEntry in enumeration.Entries)
             {
-                CodeMemberField field = ToCodeMemberField(enumEntry, translationMap);
+                CodeMemberField field = ToCodeMemberField(enumEntry);
                 codeTypeDeclaration.Members.Add(field);
             }
 
             return codeTypeDeclaration;
         }
 
-        private static CodeMemberField ToCodeMemberField(EnumEntry enumEntry, TranslationMap translationMap)
+        private static CodeMemberField ToCodeMemberField(EnumEntry enumEntry)
         {
             CodeMemberField field = new CodeMemberField();
             field.Name = enumEntry.Name;
@@ -76,11 +74,10 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(lines);
             field.Comments.AddRange(summaryCommentStatements);
 
-            if (translationMap?.EnumEntryMap != null && translationMap.EnumEntryMap.ContainsKey(enumEntry))
+            if (enumEntry.IsNameTransformed)
             {
                 // Add remarks comments
-                string originalName = translationMap.EnumEntryMap[enumEntry].Name;
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(originalName);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(enumEntry.XmlItem.Name);
                 field.Comments.AddRange(remarksCommentStatements);
             }
 

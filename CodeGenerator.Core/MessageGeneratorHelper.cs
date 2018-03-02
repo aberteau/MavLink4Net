@@ -1,7 +1,7 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
-using MavLink4Net.CodeGenerator.Core.Translations;
 using MavLink4Net.MessageDefinitions.Data;
 using MavLink4Net.MessageDefinitions.Mappers;
 
@@ -9,7 +9,7 @@ namespace MavLink4Net.CodeGenerator.Core
 {
     class MessageGeneratorHelper
     {
-        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, TranslationMap translationMap)
+        public static CodeCompileUnit CreateCodeCompileUnit(TypeInfo typeInfo, Message message, TypeInfo messageBaseClassTypeInfo, TypeInfo messageTypeEnumTypeInfo, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             // Generate the container unit
             CodeCompileUnit codeCompileUnit = new CodeCompileUnit();
@@ -29,7 +29,7 @@ namespace MavLink4Net.CodeGenerator.Core
             string messageTypeEnumValue = NamespaceHelper.GetFullname(messageTypeEnumTypeInfo.FullName, message.Name);
 
             // Declare the class
-            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, message, messageBaseClassTypeInfo, messageTypeEnumValue, translationMap);
+            CodeTypeDeclaration classDeclaration = ToCodeTypeDeclaration(typeInfo, message, messageBaseClassTypeInfo, messageTypeEnumValue, enumByXmlEnum);
 
             // Add class to the namespace
             codeNamespace.Types.Add(classDeclaration);
@@ -37,7 +37,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeCompileUnit;
         }
 
-        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, MessageDefinitions.Data.Message message, TypeInfo messageBaseClassTypeInfo, string messageTypeEnumValue, TranslationMap translationMap)
+        private static CodeTypeDeclaration ToCodeTypeDeclaration(TypeInfo typeInfo, MessageDefinitions.Data.Message message, TypeInfo messageBaseClassTypeInfo, string messageTypeEnumValue, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             CodeTypeDeclaration codeTypeDeclaration = new CodeTypeDeclaration()
             {
@@ -46,8 +46,7 @@ namespace MavLink4Net.CodeGenerator.Core
             };
 
             // Add metadata attribute
-            var metadataName = translationMap == null ? message.Name : translationMap.MessageMap[message].Name;
-            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, metadataName, message.Description);
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageMetadataAttributeDeclaration(messageTypeEnumValue, message.XmlItem.Name, message.Description);
             codeTypeDeclaration.CustomAttributes.Add(metadataAttributeDeclaration);
 
             codeTypeDeclaration.BaseTypes.Add(messageBaseClassTypeInfo.FullName);
@@ -57,24 +56,23 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(message.Description);
             codeTypeDeclaration.Comments.AddRange(summaryCommentStatements);
 
-            if (translationMap?.MessageMap != null && translationMap.MessageMap.ContainsKey(message))
+            if (message.IsNameTransformed)
             {
-                // Add remarks comments
-                String originalName = translationMap.MessageMap[message].Name;
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(originalName);
+                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(message.XmlItem.Name);
                 codeTypeDeclaration.Comments.AddRange(remarksCommentStatements);
             }
+
             // Add fields
             foreach (MessageField messageField in message.Fields)
             {
-                CodeMemberField codeMemberField = ToCodeMemberField(messageField, translationMap);
+                CodeMemberField codeMemberField = ToCodeMemberField(messageField, enumByXmlEnum);
                 codeTypeDeclaration.Members.Add(codeMemberField);
             }
 
             // Add properties
             foreach (MessageField messageField in message.Fields)
             {
-                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField, translationMap);
+                CodeMemberProperty codeMemberProperty = ToCodeMemberProperty(messageField, enumByXmlEnum);
                 codeTypeDeclaration.Members.Add(codeMemberProperty);
             }
 
@@ -102,7 +100,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeTypeDeclaration.Members.Add(constructor);
         }
 
-        private static CodeMemberField ToCodeMemberField(MessageField messageField, TranslationMap translationMap)
+        private static CodeMemberField ToCodeMemberField(MessageField messageField, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             CodeMemberField codeMemberField = new CodeMemberField();
             codeMemberField.Attributes = MemberAttributes.Private;
@@ -123,13 +121,8 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(messageField.Text);
             codeMemberField.Comments.AddRange(summaryCommentStatements);
 
-            if (translationMap?.MessageFieldMap != null && translationMap.MessageFieldMap.ContainsKey(messageField))
-            {
-                // Add remarks comments
-                String originalName = translationMap.MessageFieldMap[messageField].Name;
-                CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(originalName);
-                codeMemberField.Comments.AddRange(remarksCommentStatements);
-            }
+            CodeCommentStatement[] remarksCommentStatements = CodeCommentStatementHelper.GetRemarksCodeCommentStatements(messageField.XmlItem.Name);
+            codeMemberField.Comments.AddRange(remarksCommentStatements);
 
             return codeMemberField;
         }
@@ -161,7 +154,7 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeTypeReference;
         }
 
-        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField, TranslationMap translationMap)
+        private static CodeMemberProperty ToCodeMemberProperty(MessageField messageField, IDictionary<String, MessageDefinitions.Data.Enum> enumByXmlEnum)
         {
             CodeMemberProperty codeMemberProperty = new CodeMemberProperty();
             codeMemberProperty.Attributes = MemberAttributes.Public | MemberAttributes.Final;
@@ -169,9 +162,8 @@ namespace MavLink4Net.CodeGenerator.Core
             codeMemberProperty.HasGet = true;
 
             // Add metadata attribute
-            var metadataName = translationMap == null ? messageField.Name : translationMap.MessageFieldMap[messageField].Name;
-            String rawType = GetRawType(messageField, translationMap);
-            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageFieldMetadataAttributeDeclaration(metadataName, rawType, messageField.Units, messageField.Display, messageField.Text);
+            String rawType = GetRawType(messageField);
+            CodeAttributeDeclaration metadataAttributeDeclaration = CreateMessageFieldMetadataAttributeDeclaration(messageField.XmlItem.Name, rawType, messageField.Units, messageField.Display, messageField.Text);
             codeMemberProperty.CustomAttributes.Add(metadataAttributeDeclaration);
 
             // Type
@@ -198,18 +190,15 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeMemberProperty;
         }
 
-        private static string GetRawType(MessageField messageField, TranslationMap translationMap)
+        private static string GetRawType(MessageField messageField)
         {
             if (messageField.Type.FieldType == FieldType.Enum)
             {
-                MessageDefinitions.Data.Enum vEnum = translationMap == null
-                    ? messageField.Type.Enum
-                    : translationMap.EnumMap[messageField.Type.Enum];
-                string rawType = TypeHelper.ToEnumRawType(vEnum);
+                string rawType = TypeHelper.ToEnumRawType(messageField);
                 return rawType;
             }
 
-            return messageField.Type.RawString;
+            return messageField.XmlItem.Type;
         }
 
         private static CodeAttributeDeclaration CreateMessageFieldMetadataAttributeDeclaration(string name, string type, string units, string display, string description)
