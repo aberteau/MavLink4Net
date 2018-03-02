@@ -36,7 +36,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(((byte)(tMessage.Frame)));
             writer.Write(tMessage.Current);
             writer.Write(tMessage.Autocontinue);
-            writer.Write(((byte)(tMessage.MissionType)));
         }
         
         public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
@@ -56,7 +55,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.Frame = ((MavLink4Net.Messages.Common.Frame)(reader.ReadByte()));
             message.Current = reader.ReadByte();
             message.Autocontinue = reader.ReadByte();
-            message.MissionType = ((MavLink4Net.Messages.Common.MissionType)(reader.ReadByte()));
             return message;
         }
     }

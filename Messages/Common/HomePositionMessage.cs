@@ -107,16 +107,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private float _approachZ;
         
-        /// <summary>
-        /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
-        /// </summary>
-        /// <remarks>
-        /// time_usec
-        /// </remarks>
-        private ulong _timeUsec;
-        
         public HomePositionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HomePosition, 1)
+                base(MavLink4Net.Messages.MavMessageType.HomePosition, 104)
         {
         }
         
@@ -278,22 +270,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._approachZ = value;
-            }
-        }
-        
-        /// <summary>
-        /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
-        /// </summary>
-        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
-        public ulong TimeUsec
-        {
-            get
-            {
-                return this._timeUsec;
-            }
-            set
-            {
-                this._timeUsec = value;
             }
         }
     }

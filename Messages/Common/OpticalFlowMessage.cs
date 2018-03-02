@@ -91,24 +91,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private float _groundDistance;
         
-        /// <summary>
-        /// Flow rate in radians/second about X axis
-        /// </summary>
-        /// <remarks>
-        /// flow_rate_x
-        /// </remarks>
-        private float _flowRateX;
-        
-        /// <summary>
-        /// Flow rate in radians/second about Y axis
-        /// </summary>
-        /// <remarks>
-        /// flow_rate_y
-        /// </remarks>
-        private float _flowRateY;
-        
         public OpticalFlowMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.OpticalFlow, 145)
+                base(MavLink4Net.Messages.MavMessageType.OpticalFlow, 175)
         {
         }
         
@@ -238,38 +222,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._groundDistance = value;
-            }
-        }
-        
-        /// <summary>
-        /// Flow rate in radians/second about X axis
-        /// </summary>
-        [MessageFieldMetadata(Name="flow_rate_x", Type="float", Units="rad/s", Description="Flow rate in radians/second about X axis")]
-        public float FlowRateX
-        {
-            get
-            {
-                return this._flowRateX;
-            }
-            set
-            {
-                this._flowRateX = value;
-            }
-        }
-        
-        /// <summary>
-        /// Flow rate in radians/second about Y axis
-        /// </summary>
-        [MessageFieldMetadata(Name="flow_rate_y", Type="float", Units="rad/s", Description="Flow rate in radians/second about Y axis")]
-        public float FlowRateY
-        {
-            get
-            {
-                return this._flowRateY;
-            }
-            set
-            {
-                this._flowRateY = value;
             }
         }
     }

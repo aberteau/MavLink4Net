@@ -52,16 +52,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private MissionResult _type;
         
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        /// <remarks>
-        /// mission_type
-        /// </remarks>
-        private MissionType _missionType;
-        
         public MissionAckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionAck, 146)
+                base(MavLink4Net.Messages.MavMessageType.MissionAck, 153)
         {
         }
         
@@ -110,22 +102,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._type = value;
-            }
-        }
-        
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
-        public MissionType MissionType
-        {
-            get
-            {
-                return this._missionType;
-            }
-            set
-            {
-                this._missionType = value;
             }
         }
     }

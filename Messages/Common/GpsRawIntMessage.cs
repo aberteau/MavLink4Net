@@ -109,48 +109,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private byte _satellitesVisible;
         
-        /// <summary>
-        /// Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up).
-        /// </summary>
-        /// <remarks>
-        /// alt_ellipsoid
-        /// </remarks>
-        private int _altEllipsoid;
-        
-        /// <summary>
-        /// Position uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        /// <remarks>
-        /// h_acc
-        /// </remarks>
-        private uint _hAcc;
-        
-        /// <summary>
-        /// Altitude uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        /// <remarks>
-        /// v_acc
-        /// </remarks>
-        private uint _vAcc;
-        
-        /// <summary>
-        /// Speed uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        /// <remarks>
-        /// vel_acc
-        /// </remarks>
-        private uint _velAcc;
-        
-        /// <summary>
-        /// Heading / track uncertainty in degrees * 1e5.
-        /// </summary>
-        /// <remarks>
-        /// hdg_acc
-        /// </remarks>
-        private uint _hdgAcc;
-        
         public GpsRawIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsRawInt, 111)
+                base(MavLink4Net.Messages.MavMessageType.GpsRawInt, 24)
         {
         }
         
@@ -315,86 +275,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._satellitesVisible = value;
-            }
-        }
-        
-        /// <summary>
-        /// Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up).
-        /// </summary>
-        [MessageFieldMetadata(Name="alt_ellipsoid", Type="int32_t", Units="mm", Description="Altitude (above WGS84, EGM96 ellipsoid), in meters * 1000 (positive for up).")]
-        public int AltEllipsoid
-        {
-            get
-            {
-                return this._altEllipsoid;
-            }
-            set
-            {
-                this._altEllipsoid = value;
-            }
-        }
-        
-        /// <summary>
-        /// Position uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        [MessageFieldMetadata(Name="h_acc", Type="uint32_t", Units="mm", Description="Position uncertainty in meters * 1000 (positive for up).")]
-        public uint HAcc
-        {
-            get
-            {
-                return this._hAcc;
-            }
-            set
-            {
-                this._hAcc = value;
-            }
-        }
-        
-        /// <summary>
-        /// Altitude uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        [MessageFieldMetadata(Name="v_acc", Type="uint32_t", Units="mm", Description="Altitude uncertainty in meters * 1000 (positive for up).")]
-        public uint VAcc
-        {
-            get
-            {
-                return this._vAcc;
-            }
-            set
-            {
-                this._vAcc = value;
-            }
-        }
-        
-        /// <summary>
-        /// Speed uncertainty in meters * 1000 (positive for up).
-        /// </summary>
-        [MessageFieldMetadata(Name="vel_acc", Type="uint32_t", Units="mm", Description="Speed uncertainty in meters * 1000 (positive for up).")]
-        public uint VelAcc
-        {
-            get
-            {
-                return this._velAcc;
-            }
-            set
-            {
-                this._velAcc = value;
-            }
-        }
-        
-        /// <summary>
-        /// Heading / track uncertainty in degrees * 1e5.
-        /// </summary>
-        [MessageFieldMetadata(Name="hdg_acc", Type="uint32_t", Units="degE5", Description="Heading / track uncertainty in degrees * 1e5.")]
-        public uint HdgAcc
-        {
-            get
-            {
-                return this._hdgAcc;
-            }
-            set
-            {
-                this._hdgAcc = value;
             }
         }
     }

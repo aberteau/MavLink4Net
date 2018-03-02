@@ -43,16 +43,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private byte _targetComponent;
         
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        /// <remarks>
-        /// mission_type
-        /// </remarks>
-        private MissionType _missionType;
-        
         public MissionRequestListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionRequestList, 148)
+                base(MavLink4Net.Messages.MavMessageType.MissionRequestList, 132)
         {
         }
         
@@ -85,22 +77,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._targetComponent = value;
-            }
-        }
-        
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
-        public MissionType MissionType
-        {
-            get
-            {
-                return this._missionType;
-            }
-            set
-            {
-                this._missionType = value;
             }
         }
     }

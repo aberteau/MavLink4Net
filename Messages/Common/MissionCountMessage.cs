@@ -53,16 +53,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private ushort _count;
         
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        /// <remarks>
-        /// mission_type
-        /// </remarks>
-        private MissionType _missionType;
-        
         public MissionCountMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionCount, 52)
+                base(MavLink4Net.Messages.MavMessageType.MissionCount, 221)
         {
         }
         
@@ -111,22 +103,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._count = value;
-            }
-        }
-        
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
-        public MissionType MissionType
-        {
-            get
-            {
-                return this._missionType;
-            }
-            set
-            {
-                this._missionType = value;
             }
         }
     }

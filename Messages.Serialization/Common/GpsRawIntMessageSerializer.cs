@@ -26,11 +26,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Lat);
             writer.Write(tMessage.Lon);
             writer.Write(tMessage.Alt);
-            writer.Write(tMessage.AltEllipsoid);
-            writer.Write(tMessage.HAcc);
-            writer.Write(tMessage.VAcc);
-            writer.Write(tMessage.VelAcc);
-            writer.Write(tMessage.HdgAcc);
             writer.Write(tMessage.Eph);
             writer.Write(tMessage.Epv);
             writer.Write(tMessage.Vel);
@@ -46,11 +41,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.Lat = reader.ReadInt32();
             message.Lon = reader.ReadInt32();
             message.Alt = reader.ReadInt32();
-            message.AltEllipsoid = reader.ReadInt32();
-            message.HAcc = reader.ReadUInt32();
-            message.VAcc = reader.ReadUInt32();
-            message.VelAcc = reader.ReadUInt32();
-            message.HdgAcc = reader.ReadUInt32();
             message.Eph = reader.ReadUInt16();
             message.Epv = reader.ReadUInt16();
             message.Vel = reader.ReadUInt16();

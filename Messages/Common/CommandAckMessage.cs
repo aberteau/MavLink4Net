@@ -43,40 +43,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private Result _result;
         
-        /// <summary>
-        /// WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
-        /// </summary>
-        /// <remarks>
-        /// progress
-        /// </remarks>
-        private byte _progress;
-        
-        /// <summary>
-        /// WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
-        /// </summary>
-        /// <remarks>
-        /// result_param2
-        /// </remarks>
-        private int _resultParam2;
-        
-        /// <summary>
-        /// WIP: System which requested the command to be executed
-        /// </summary>
-        /// <remarks>
-        /// target_system
-        /// </remarks>
-        private byte _targetSystem;
-        
-        /// <summary>
-        /// WIP: Component which requested the command to be executed
-        /// </summary>
-        /// <remarks>
-        /// target_component
-        /// </remarks>
-        private byte _targetComponent;
-        
         public CommandAckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.CommandAck, 205)
+                base(MavLink4Net.Messages.MavMessageType.CommandAck, 143)
         {
         }
         
@@ -109,73 +77,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._result = value;
-            }
-        }
-        
-        /// <summary>
-        /// WIP: Also used as result_param1, it can be set with a enum containing the errors reasons of why the command was denied or the progress percentage or 255 if unknown the progress when result is MAV_RESULT_IN_PROGRESS.
-        /// </summary>
-        [MessageFieldMetadata(Name="progress", Type="uint8_t", Description="WIP: Also used as result_param1, it can be set with a enum containing the errors " +
-            "reasons of why the command was denied or the progress percentage or 255 if unkno" +
-            "wn the progress when result is MAV_RESULT_IN_PROGRESS.")]
-        public byte Progress
-        {
-            get
-            {
-                return this._progress;
-            }
-            set
-            {
-                this._progress = value;
-            }
-        }
-        
-        /// <summary>
-        /// WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
-        /// </summary>
-        [MessageFieldMetadata(Name="result_param2", Type="int32_t", Description="WIP: Additional parameter of the result, example: which parameter of MAV_CMD_NAV_" +
-            "WAYPOINT caused it to be denied.")]
-        public int ResultParam2
-        {
-            get
-            {
-                return this._resultParam2;
-            }
-            set
-            {
-                this._resultParam2 = value;
-            }
-        }
-        
-        /// <summary>
-        /// WIP: System which requested the command to be executed
-        /// </summary>
-        [MessageFieldMetadata(Name="target_system", Type="uint8_t", Description="WIP: System which requested the command to be executed")]
-        public byte TargetSystem
-        {
-            get
-            {
-                return this._targetSystem;
-            }
-            set
-            {
-                this._targetSystem = value;
-            }
-        }
-        
-        /// <summary>
-        /// WIP: Component which requested the command to be executed
-        /// </summary>
-        [MessageFieldMetadata(Name="target_component", Type="uint8_t", Description="WIP: Component which requested the command to be executed")]
-        public byte TargetComponent
-        {
-            get
-            {
-                return this._targetComponent;
-            }
-            set
-            {
-                this._targetComponent = value;
             }
         }
     }

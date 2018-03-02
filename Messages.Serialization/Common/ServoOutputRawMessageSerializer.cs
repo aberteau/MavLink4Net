@@ -31,14 +31,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Servo6Raw);
             writer.Write(tMessage.Servo7Raw);
             writer.Write(tMessage.Servo8Raw);
-            writer.Write(tMessage.Servo9Raw);
-            writer.Write(tMessage.Servo10Raw);
-            writer.Write(tMessage.Servo11Raw);
-            writer.Write(tMessage.Servo12Raw);
-            writer.Write(tMessage.Servo13Raw);
-            writer.Write(tMessage.Servo14Raw);
-            writer.Write(tMessage.Servo15Raw);
-            writer.Write(tMessage.Servo16Raw);
             writer.Write(tMessage.Port);
         }
         
@@ -54,14 +46,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.Servo6Raw = reader.ReadUInt16();
             message.Servo7Raw = reader.ReadUInt16();
             message.Servo8Raw = reader.ReadUInt16();
-            message.Servo9Raw = reader.ReadUInt16();
-            message.Servo10Raw = reader.ReadUInt16();
-            message.Servo11Raw = reader.ReadUInt16();
-            message.Servo12Raw = reader.ReadUInt16();
-            message.Servo13Raw = reader.ReadUInt16();
-            message.Servo14Raw = reader.ReadUInt16();
-            message.Servo15Raw = reader.ReadUInt16();
-            message.Servo16Raw = reader.ReadUInt16();
             message.Port = reader.ReadByte();
             return message;
         }

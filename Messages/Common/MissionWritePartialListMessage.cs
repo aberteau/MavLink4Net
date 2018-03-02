@@ -61,16 +61,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private short _endIndex;
         
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        /// <remarks>
-        /// mission_type
-        /// </remarks>
-        private MissionType _missionType;
-        
         public MissionWritePartialListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionWritePartialList, 168)
+                base(MavLink4Net.Messages.MavMessageType.MissionWritePartialList, 9)
         {
         }
         
@@ -136,22 +128,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._endIndex = value;
-            }
-        }
-        
-        /// <summary>
-        /// Mission type, see MAV_MISSION_TYPE
-        /// </summary>
-        [MessageFieldMetadata(Name="mission_type", Type="MAV_MISSION_TYPE enum", Description="Mission type, see MAV_MISSION_TYPE")]
-        public MissionType MissionType
-        {
-            get
-            {
-                return this._missionType;
-            }
-            set
-            {
-                this._missionType = value;
             }
         }
     }

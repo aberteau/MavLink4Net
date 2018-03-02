@@ -25,7 +25,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.TargetSystem);
             writer.Write(tMessage.TargetComponent);
             writer.Write(((byte)(tMessage.Type)));
-            writer.Write(((byte)(tMessage.MissionType)));
         }
         
         public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
@@ -34,7 +33,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.TargetSystem = reader.ReadByte();
             message.TargetComponent = reader.ReadByte();
             message.Type = ((MavLink4Net.Messages.Common.MissionResult)(reader.ReadByte()));
-            message.MissionType = ((MavLink4Net.Messages.Common.MissionType)(reader.ReadByte()));
             return message;
         }
     }

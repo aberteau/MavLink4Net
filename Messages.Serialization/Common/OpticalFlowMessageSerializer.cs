@@ -26,8 +26,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.FlowCompMX);
             writer.Write(tMessage.FlowCompMY);
             writer.Write(tMessage.GroundDistance);
-            writer.Write(tMessage.FlowRateX);
-            writer.Write(tMessage.FlowRateY);
             writer.Write(tMessage.FlowX);
             writer.Write(tMessage.FlowY);
             writer.Write(tMessage.SensorId);
@@ -41,8 +39,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.FlowCompMX = reader.ReadSingle();
             message.FlowCompMY = reader.ReadSingle();
             message.GroundDistance = reader.ReadSingle();
-            message.FlowRateX = reader.ReadSingle();
-            message.FlowRateY = reader.ReadSingle();
             message.FlowX = reader.ReadInt16();
             message.FlowY = reader.ReadInt16();
             message.SensorId = reader.ReadByte();

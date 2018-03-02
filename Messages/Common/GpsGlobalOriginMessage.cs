@@ -52,16 +52,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private int _altitude;
         
-        /// <summary>
-        /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
-        /// </summary>
-        /// <remarks>
-        /// time_usec
-        /// </remarks>
-        private ulong _timeUsec;
-        
         public GpsGlobalOriginMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsGlobalOrigin, 95)
+                base(MavLink4Net.Messages.MavMessageType.GpsGlobalOrigin, 39)
         {
         }
         
@@ -110,22 +102,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._altitude = value;
-            }
-        }
-        
-        /// <summary>
-        /// Timestamp (microseconds since UNIX epoch or microseconds since system boot)
-        /// </summary>
-        [MessageFieldMetadata(Name="time_usec", Type="uint64_t", Units="us", Description="Timestamp (microseconds since UNIX epoch or microseconds since system boot)")]
-        public ulong TimeUsec
-        {
-            get
-            {
-                return this._timeUsec;
-            }
-            set
-            {
-                this._timeUsec = value;
             }
         }
     }

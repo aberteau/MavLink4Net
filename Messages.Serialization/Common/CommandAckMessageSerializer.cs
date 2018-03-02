@@ -22,23 +22,15 @@ namespace MavLink4Net.Messages.Serialization.Common
         public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
         {
             MavLink4Net.Messages.Common.CommandAckMessage tMessage = message as MavLink4Net.Messages.Common.CommandAckMessage;
-            writer.Write(tMessage.ResultParam2);
             writer.Write(((ushort)(tMessage.Command)));
             writer.Write(((byte)(tMessage.Result)));
-            writer.Write(tMessage.Progress);
-            writer.Write(tMessage.TargetSystem);
-            writer.Write(tMessage.TargetComponent);
         }
         
         public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.CommandAckMessage message = new MavLink4Net.Messages.Common.CommandAckMessage();
-            message.ResultParam2 = reader.ReadInt32();
             message.Command = ((MavLink4Net.Messages.Common.Cmd)(reader.ReadUInt16()));
             message.Result = ((MavLink4Net.Messages.Common.Result)(reader.ReadByte()));
-            message.Progress = reader.ReadByte();
-            message.TargetSystem = reader.ReadByte();
-            message.TargetComponent = reader.ReadByte();
             return message;
         }
     }

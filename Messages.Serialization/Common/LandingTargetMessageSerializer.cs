@@ -28,17 +28,8 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Distance);
             writer.Write(tMessage.SizeX);
             writer.Write(tMessage.SizeY);
-            writer.Write(tMessage.X);
-            writer.Write(tMessage.Y);
-            writer.Write(tMessage.Z);
-            writer.Write(tMessage.Q[0]);
-            writer.Write(tMessage.Q[1]);
-            writer.Write(tMessage.Q[2]);
-            writer.Write(tMessage.Q[3]);
             writer.Write(tMessage.TargetNum);
             writer.Write(((byte)(tMessage.Frame)));
-            writer.Write(((byte)(tMessage.Type)));
-            writer.Write(tMessage.PositionValid);
         }
         
         public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
@@ -50,17 +41,8 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.Distance = reader.ReadSingle();
             message.SizeX = reader.ReadSingle();
             message.SizeY = reader.ReadSingle();
-            message.X = reader.ReadSingle();
-            message.Y = reader.ReadSingle();
-            message.Z = reader.ReadSingle();
-            message.Q[0] = reader.ReadSingle();
-            message.Q[1] = reader.ReadSingle();
-            message.Q[2] = reader.ReadSingle();
-            message.Q[3] = reader.ReadSingle();
             message.TargetNum = reader.ReadByte();
             message.Frame = ((MavLink4Net.Messages.Common.Frame)(reader.ReadByte()));
-            message.Type = ((MavLink4Net.Messages.Common.LandingTargetType)(reader.ReadByte()));
-            message.PositionValid = reader.ReadByte();
             return message;
         }
     }

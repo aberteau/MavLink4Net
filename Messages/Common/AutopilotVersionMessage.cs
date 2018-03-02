@@ -115,16 +115,8 @@ namespace MavLink4Net.Messages.Common
         /// </remarks>
         private ulong _uid;
         
-        /// <summary>
-        /// UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
-        /// </summary>
-        /// <remarks>
-        /// uid2
-        /// </remarks>
-        private byte[] _uid2 = new byte[18];
-        
         public AutopilotVersionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AutopilotVersion, 39)
+                base(MavLink4Net.Messages.MavMessageType.AutopilotVersion, 178)
         {
         }
         
@@ -307,23 +299,6 @@ namespace MavLink4Net.Messages.Common
             set
             {
                 this._uid = value;
-            }
-        }
-        
-        /// <summary>
-        /// UID if provided by hardware (supersedes the uid field. If this is non-zero, use this field, otherwise use uid)
-        /// </summary>
-        [MessageFieldMetadata(Name="uid2", Type="uint8_t[18]", Description="UID if provided by hardware (supersedes the uid field. If this is non-zero, use t" +
-            "his field, otherwise use uid)")]
-        public byte[] Uid2
-        {
-            get
-            {
-                return this._uid2;
-            }
-            set
-            {
-                this._uid2 = value;
             }
         }
     }

@@ -54,24 +54,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.OsCustomVersion[5]);
             writer.Write(tMessage.OsCustomVersion[6]);
             writer.Write(tMessage.OsCustomVersion[7]);
-            writer.Write(tMessage.Uid2[0]);
-            writer.Write(tMessage.Uid2[1]);
-            writer.Write(tMessage.Uid2[2]);
-            writer.Write(tMessage.Uid2[3]);
-            writer.Write(tMessage.Uid2[4]);
-            writer.Write(tMessage.Uid2[5]);
-            writer.Write(tMessage.Uid2[6]);
-            writer.Write(tMessage.Uid2[7]);
-            writer.Write(tMessage.Uid2[8]);
-            writer.Write(tMessage.Uid2[9]);
-            writer.Write(tMessage.Uid2[10]);
-            writer.Write(tMessage.Uid2[11]);
-            writer.Write(tMessage.Uid2[12]);
-            writer.Write(tMessage.Uid2[13]);
-            writer.Write(tMessage.Uid2[14]);
-            writer.Write(tMessage.Uid2[15]);
-            writer.Write(tMessage.Uid2[16]);
-            writer.Write(tMessage.Uid2[17]);
         }
         
         public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
@@ -109,24 +91,6 @@ namespace MavLink4Net.Messages.Serialization.Common
             message.OsCustomVersion[5] = reader.ReadByte();
             message.OsCustomVersion[6] = reader.ReadByte();
             message.OsCustomVersion[7] = reader.ReadByte();
-            message.Uid2[0] = reader.ReadByte();
-            message.Uid2[1] = reader.ReadByte();
-            message.Uid2[2] = reader.ReadByte();
-            message.Uid2[3] = reader.ReadByte();
-            message.Uid2[4] = reader.ReadByte();
-            message.Uid2[5] = reader.ReadByte();
-            message.Uid2[6] = reader.ReadByte();
-            message.Uid2[7] = reader.ReadByte();
-            message.Uid2[8] = reader.ReadByte();
-            message.Uid2[9] = reader.ReadByte();
-            message.Uid2[10] = reader.ReadByte();
-            message.Uid2[11] = reader.ReadByte();
-            message.Uid2[12] = reader.ReadByte();
-            message.Uid2[13] = reader.ReadByte();
-            message.Uid2[14] = reader.ReadByte();
-            message.Uid2[15] = reader.ReadByte();
-            message.Uid2[16] = reader.ReadByte();
-            message.Uid2[17] = reader.ReadByte();
             return message;
         }
     }
