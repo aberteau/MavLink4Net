@@ -14,7 +14,7 @@ Inspired by / Based on :
 ### Improvements
 * Target Platform .Net Standard
 * Options for generation (naming conventions, path, ...)
-* Reading MAVLink definition files using XML Serializer
+* Reading MAVLink definition files using LINQ-to-XML
 * Code generation using CodeDOM
 * .Net Attribute for Metadata
 * NuGet Package
