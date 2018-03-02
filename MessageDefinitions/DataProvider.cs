@@ -16,7 +16,7 @@ namespace MavLink4Net.MessageDefinitions
         private readonly IMessageFieldNameTransformation _messageFieldNameTransformation;
         private readonly IEnumNameTransformation _enumNameTransformation;
         private readonly IEnumEntryNameTransformation _enumEntryNameTransformation;
-        private readonly IDictionary<String, Data.Enum> _enumByXmlEnum;
+        private readonly IDictionary<String, Data.Enum> _enumByXmlEnumName;
 
         public DataProvider(bool includeExtensionFields, IMessageNameTransformation messageNameTransformation, IMessageFieldNameTransformation messageFieldNameTransformation, IEnumNameTransformation enumNameTransformation, IEnumEntryNameTransformation enumEntryNameTransformation, IMessageFilter messageFilter)
         {
@@ -27,7 +27,7 @@ namespace MavLink4Net.MessageDefinitions
             _enumEntryNameTransformation = enumEntryNameTransformation;
             _messageFilter = messageFilter;
 
-            _enumByXmlEnum = new Dictionary<String, Data.Enum>();
+            _enumByXmlEnumName = new Dictionary<String, Data.Enum>();
         }
 
         #region Enum
@@ -40,7 +40,7 @@ namespace MavLink4Net.MessageDefinitions
                 Data.Enum dEnum = ToModel(xEnum);
                 dEnums.Add(dEnum);
 
-                _enumByXmlEnum.Add(xEnum.Name, dEnum);
+                _enumByXmlEnumName.Add(xEnum.Name, dEnum);
             }
 
             return dEnums;
@@ -206,7 +206,7 @@ namespace MavLink4Net.MessageDefinitions
             bool isNotNullEnum = !String.IsNullOrWhiteSpace(xMessageField.Enum);
             if (isNotNullEnum)
             {
-                Data.Enum vEnum = _enumByXmlEnum[xMessageField.Enum];
+                Data.Enum vEnum = _enumByXmlEnumName[xMessageField.Enum];
                 return new Data.MessageFieldType(dataType, typeLength, vEnum);
             }
 
