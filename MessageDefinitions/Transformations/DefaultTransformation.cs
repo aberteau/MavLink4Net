@@ -7,7 +7,7 @@ using MavLink4Net.MessageDefinitions.Transformations.Interfaces;
 namespace MavLink4Net.MessageDefinitions.Transformations
 {
     public class DefaultTransformation
-        : IMessageNameTransformation, IMessageFieldNameTransformation, IEnumNameTransformation, IEnumEntryNameTransformation, IMessageFilter
+        : IMessageNameTransformation, IMessageFieldNameTransformation, IEnumNameTransformation, IEnumEntryNameTransformation
     {
         private readonly EnumValuePrefixRemovalStrategy _strategy;
         private string _enumValuePrefix;
@@ -45,13 +45,6 @@ namespace MavLink4Net.MessageDefinitions.Transformations
             String shortName = StringHelper.RemoveAtStart(pEnumEntry.Name, _enumValuePrefix);
             string name = NamingConventionHelper.GetPascalStyleString(shortName);
             return name;
-        }
-
-        public IEnumerable<Xml.Message> Filter(IEnumerable<Xml.Message> xMessages)
-        {
-            // discard anything beyond 255
-            IEnumerable<Xml.Message> filteredMessages = xMessages.Where(m => m.Id < 256);
-            return filteredMessages;
         }
     }
 }
