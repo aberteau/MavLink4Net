@@ -23,27 +23,27 @@ namespace MavLink4Net.MessageDefinitions
             return mavLink;
         }
 
-        private static MavLink Deserialize(XDocument mavLinkDocument)
+        private static MavLink Deserialize(XDocument xDocument)
         {
-            XElement mavLinkElement = mavLinkDocument.Element(XName.Get("mavlink"));
+            XElement mavLinkElement = xDocument.Element(XName.Get("mavlink"));
             Xml.MavLink mavLink = ToMavLink(mavLinkElement);
             return mavLink;
         }
 
-        private static MavLink ToMavLink(XElement mavLinkElement)
+        private static MavLink ToMavLink(XElement xElement)
         {
             Xml.MavLink mavLink = new Xml.MavLink();
 
-            mavLink.Version = Int32.Parse(mavLinkElement.Element(XName.Get("version")).Value);
-            mavLink.Dialect = mavLinkElement.Element(XName.Get("dialect"))?.Value;
+            mavLink.Version = Int32.Parse(xElement.Element(XName.Get("version")).Value);
+            mavLink.Dialect = xElement.Element(XName.Get("dialect"))?.Value;
 
             // enums
-            XElement enumsElement = mavLinkElement.Element(XName.Get("enums"));
+            XElement enumsElement = xElement.Element(XName.Get("enums"));
             IEnumerable<XElement> enumElements = enumsElement.Elements(XName.Get("enum"));
             mavLink.Enums = ToEnums(enumElements);
 
             // messages
-            XElement messagesElement = mavLinkElement.Element(XName.Get("messages"));
+            XElement messagesElement = xElement.Element(XName.Get("messages"));
             IEnumerable<XElement> messageElements = messagesElement.Elements(XName.Get("message"));
             mavLink.Messages = ToMessages(messageElements);
 
