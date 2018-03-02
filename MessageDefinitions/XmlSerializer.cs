@@ -141,8 +141,8 @@ namespace MavLink4Net.MessageDefinitions
             message.Name = xElement.Attribute("name")?.Value;
             message.Description = xElement.Element(XName.Get("description"))?.Value;
 
-            IEnumerable<XElement> fieldElements = xElement.Elements(XName.Get("field"));
-            message.Fields = ToFields(fieldElements);
+            IEnumerable<MessageField> fields = GetMessageFields(xElement);
+            message.Fields = fields;
 
             return message;
         }
@@ -151,21 +151,31 @@ namespace MavLink4Net.MessageDefinitions
 
         #region MessageField
 
-        private static IEnumerable<Xml.MessageField> ToFields(IEnumerable<XElement> xElements)
+        private static IEnumerable<MessageField> GetMessageFields(XElement xElement)
         {
+            IEnumerable<XElement> elements = xElement.Elements();
             IList<Xml.MessageField> messageFields = new List<MessageField>();
             Int32 index = 0;
-            foreach (XElement messageFieldXElement in xElements)
+
+            bool isExtension = false;
+
+            foreach (XElement e in elements)
             {
-                Xml.MessageField dMessageField = ToField(messageFieldXElement, index);
-                messageFields.Add(dMessageField);
-                index++;
+                if (e.Name.LocalName.Equals("field"))
+                {
+                    Xml.MessageField dMessageField = ToField(e, index, isExtension);
+                    messageFields.Add(dMessageField);
+                    index++;
+                }
+
+                if (e.Name.LocalName.Equals("extensions"))
+                    isExtension = true;
             }
 
             return messageFields;
         }
 
-        private static Xml.MessageField ToField(XElement xElement, Int32 index)
+        private static Xml.MessageField ToField(XElement xElement, Int32 index, bool isExtension)
         {
             Xml.MessageField messageField = new Xml.MessageField();
             messageField.Index = index;
@@ -175,6 +185,7 @@ namespace MavLink4Net.MessageDefinitions
             messageField.Units = xElement.Attribute("units")?.Value;
             messageField.Display = xElement.Attribute("display")?.Value;
             messageField.Text = xElement.Value;
+            messageField.IsExtension = isExtension;
             return messageField;
         }
 

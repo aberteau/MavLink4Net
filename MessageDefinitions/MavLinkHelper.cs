@@ -10,7 +10,7 @@ namespace MavLink4Net.MessageDefinitions
         public static Data.MavLink LoadMavLink(string messageDefinitionPath)
         {
             DefaultTransformation dTranslation = new DefaultTransformation(EnumValuePrefixRemovalStrategy.RemoveLongestCommonString);
-            DataProvider dataProvider = new DataProvider(dTranslation, dTranslation, dTranslation, dTranslation, dTranslation);
+            DataProvider dataProvider = new DataProvider(false, dTranslation, dTranslation, dTranslation, dTranslation, dTranslation);
             Data.MavLink mavLink = dataProvider.LoadMavLink(messageDefinitionPath);
             return mavLink;
         }

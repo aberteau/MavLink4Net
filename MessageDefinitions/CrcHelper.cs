@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MavLink4Net.MessageDefinitions.Mappers;
+using MavLink4Net.MessageDefinitions.Xml;
 
 namespace MavLink4Net.MessageDefinitions
 {
     public class CrcHelper
     {
-        public static byte GetExtraCrc(Xml.Message xMessage)
+        public static byte GetExtraCrc(string xMessageName, IEnumerable<MessageField> xMessageFields)
         {
-            UInt16 crc = GetCrc(xMessage.Name + ' ');
+            UInt16 crc = GetCrc(xMessageName + ' ');
 
-            IList<MessageFieldCrcData> fieldCrcDatas = ToMessageFieldCrcDatas(xMessage);
+            IList<MessageFieldCrcData> fieldCrcDatas = ToMessageFieldCrcDatas(xMessageFields);
 
             foreach (MessageFieldCrcData fieldCrcData in fieldCrcDatas.OrderByDescending(t => t.TypeLength).ThenBy(t => t.DefinitionIndex).ToList())
             {
@@ -29,11 +30,11 @@ namespace MavLink4Net.MessageDefinitions
             return result;
         }
 
-        private static IList<MessageFieldCrcData> ToMessageFieldCrcDatas(Xml.Message xMessage)
+        private static IList<MessageFieldCrcData> ToMessageFieldCrcDatas(IEnumerable<MessageField> xMessageFields)
         {
             IList<MessageFieldCrcData> fieldCrcDatas = new List<MessageFieldCrcData>();
             Int32 definitionIndex = 0;
-            foreach (Xml.MessageField messageField in xMessage.Fields)
+            foreach (Xml.MessageField messageField in xMessageFields)
             {
                 MessageFieldCrcData fieldCrcData = new MessageFieldCrcData()
                 {

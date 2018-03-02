@@ -10,6 +10,7 @@ namespace MavLink4Net.MessageDefinitions
 {
     public class DataProvider
     {
+        private readonly bool _includeExtensionFields;
         private readonly IMessageFilter _messageFilter;
         private readonly IMessageNameTransformation _messageNameTransformation;
         private readonly IMessageFieldNameTransformation _messageFieldNameTransformation;
@@ -17,8 +18,9 @@ namespace MavLink4Net.MessageDefinitions
         private readonly IEnumEntryNameTransformation _enumEntryNameTransformation;
         private readonly IDictionary<String, Data.Enum> _enumByXmlEnum;
 
-        public DataProvider(IMessageNameTransformation messageNameTransformation, IMessageFieldNameTransformation messageFieldNameTransformation, IEnumNameTransformation enumNameTransformation, IEnumEntryNameTransformation enumEntryNameTransformation, IMessageFilter messageFilter)
+        public DataProvider(bool includeExtensionFields, IMessageNameTransformation messageNameTransformation, IMessageFieldNameTransformation messageFieldNameTransformation, IEnumNameTransformation enumNameTransformation, IEnumEntryNameTransformation enumEntryNameTransformation, IMessageFilter messageFilter)
         {
+            _includeExtensionFields = includeExtensionFields;
             _messageNameTransformation = messageNameTransformation;
             _messageFieldNameTransformation = messageFieldNameTransformation;
             _enumNameTransformation = enumNameTransformation;
@@ -105,7 +107,7 @@ namespace MavLink4Net.MessageDefinitions
 
         private static IEnumerable<EnumEntryParameter> ToModels(IEnumerable<Xml.EnumEntryParameter> xEnumEntries)
         {
-            return xEnumEntries.Select(m => ToModel(m));
+            return xEnumEntries.Select(m => ToModel(m)).ToList();
         }
 
         private static EnumEntryParameter ToModel(Xml.EnumEntryParameter xEnumEntry)
@@ -133,8 +135,11 @@ namespace MavLink4Net.MessageDefinitions
             dMessage.Id = xMessage.Id;
             dMessage.Name = GetName(xMessage);
             dMessage.Description = StringHelper.TrimAndNormalizeCarriageReturn(xMessage.Description);
-            dMessage.Fields = ToModels(xMessage.Fields);
-            dMessage.CrcExtra = CrcHelper.GetExtraCrc(xMessage);
+
+            IEnumerable<Xml.MessageField> filteredMessageFields = _includeExtensionFields ? xMessage.Fields : xMessage.Fields.Where(f => !f.IsExtension);
+
+            dMessage.Fields = ToModels(filteredMessageFields);
+            dMessage.CrcExtra = CrcHelper.GetExtraCrc(xMessage.Name, filteredMessageFields);
             return dMessage;
         }
 
@@ -162,6 +167,7 @@ namespace MavLink4Net.MessageDefinitions
         {
             IList<Data.MessageField> messageFields = new List<MessageField>();
             Int32 definitionIndex = 0;
+
             foreach (Xml.MessageField xMessageField in xMessageFields)
             {
                 Data.MessageField dMessageField = ToModel(xMessageField, definitionIndex);
@@ -216,10 +222,10 @@ namespace MavLink4Net.MessageDefinitions
             Data.MavLink dMavLink = new Data.MavLink();
             dMavLink.Version = xMavLink.Version;
             dMavLink.Dialect = xMavLink.Dialect;
-            IEnumerable<Data.Enum> enums = ToModels(xMavLink.Enums);
+            IEnumerable<Data.Enum> enums = ToModels(xMavLink.Enums).ToList();
             dMavLink.Enums = enums;
 
-            dMavLink.Messages = ToModels(xMavLink.Messages);
+            dMavLink.Messages = ToModels(xMavLink.Messages).ToList();
             dMavLink.EnumByXmlName = _enumByXmlEnum;
 
             return dMavLink;
