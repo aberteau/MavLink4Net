@@ -18,10 +18,6 @@ namespace MavLink4Net.CodeGenerator.Core
             CodeNamespace globalNamespace = new CodeNamespace(String.Empty);
             codeCompileUnit.Namespaces.Add(globalNamespace);
 
-            // using
-            globalNamespace.Imports.Add(new CodeNamespaceImport("System"));
-            globalNamespace.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
-
             // Generate the namespace
             CodeNamespace codeNamespace = new CodeNamespace(typeInfo.Namespace);
             codeCompileUnit.Namespaces.Add(codeNamespace);
