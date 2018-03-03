@@ -23,6 +23,17 @@ namespace MavLink4Net.CodeGenerator.Core
             return typeInfo;
         }
 
+        public static TypeInfo GetMessageFactoryTypeInfo()
+        {
+            string className = "MessageFactory";
+            TypeInfo typeInfo = new Core.TypeInfo()
+            {
+                Name = className,
+                Namespace = ConstantHelper.Namespaces.Root_Messages
+            };
+            return typeInfo;
+        }
+
         public static TypeInfo GetSerializerInterfaceTypeInfo()
         {
             string serializerInterfaceName = "IMessageSerializer";

@@ -38,6 +38,7 @@ namespace MavLink4Net.CodeGenerator.Core
             TypeInfo messageTypeEnumTypeInfo = TypeInfoHelper.GetMavMessageTypeTypeInfo();
             TypeInfo serializerInterfaceTypeInfo = TypeInfoHelper.GetSerializerInterfaceTypeInfo();
             TypeInfo serializerFactoryClassTypeInfo = TypeInfoHelper.GetSerializerFactoryTypeInfo();
+            TypeInfo messageFactoryClassTypeInfo = TypeInfoHelper.GetMessageFactoryTypeInfo();
 
             CodeGeneratorOptions options = new CodeGeneratorOptions() { BracingStyle = "C" };
             CodeDomProvider codeProvider = CreateCodeDomProvider(language);
@@ -53,6 +54,8 @@ namespace MavLink4Net.CodeGenerator.Core
             GenerateSerializerClassFiles(codeProvider, options, serializerCommonOutputPath, mavLink.Messages, serializerInterfaceTypeInfo, messageInterfaceTypeInfo);
 
             GenerateSerializerFactory(codeProvider, options, serializerFactoryClassTypeInfo, mavLink.Messages, serializationOutputPath, messageTypeEnumTypeInfo, serializerInterfaceTypeInfo);
+
+            GenerateMessageFactory(codeProvider, options, messageFactoryClassTypeInfo, mavLink.Messages, messagesPath, messageTypeEnumTypeInfo, messageInterfaceTypeInfo);
         }
 
         private static CodeDomProvider CreateCodeDomProvider(string language)
@@ -210,6 +213,29 @@ namespace MavLink4Net.CodeGenerator.Core
         private static void GenerateSerializerFactory(CodeDomProvider codeProvider, CodeGeneratorOptions options, SerializerFactoryGenerationParams pParams, IEnumerable<Message> messages)
         {
             CodeCompileUnit unit = SerializerFactoryGeneratorHelper.CreateCodeCompileUnit(pParams.TypeInfo, messages, pParams.SerializerNamespace, pParams.MessageTypeEnumTypeInfo, pParams.SerializerInterfaceTypeInfo);
+            codeProvider.GenerateCodeFromCompileUnit(unit, options, pParams.OutputFilePath);
+        }
+
+        #endregion
+
+        #region MessageFactory
+
+        private static void GenerateMessageFactory(CodeDomProvider codeProvider, CodeGeneratorOptions options, TypeInfo serializerFactoryClassTypeInfo, IEnumerable<Message> messages, string outputPath, TypeInfo messageTypeEnumTypeInfo, TypeInfo messageInterfaceTypeInfo)
+        {
+            MessageFactoryGenerationParams messageFactoryGenerationParams = new MessageFactoryGenerationParams();
+            string factoryFilename = TypeInfoHelper.GetFilename(serializerFactoryClassTypeInfo);
+            messageFactoryGenerationParams.OutputFilePath = Path.Combine(outputPath, factoryFilename);
+            messageFactoryGenerationParams.TypeInfo = serializerFactoryClassTypeInfo;
+            messageFactoryGenerationParams.CommonMessagesNamespace = ConstantHelper.Namespaces.Root_Messages_Common;
+            messageFactoryGenerationParams.MessageTypeEnumTypeInfo = messageTypeEnumTypeInfo;
+            messageFactoryGenerationParams.MessageInterfaceTypeInfo = messageInterfaceTypeInfo;
+
+            GenerateMessageFactory(codeProvider, options, messageFactoryGenerationParams, messages);
+        }
+
+        private static void GenerateMessageFactory(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageFactoryGenerationParams pParams, IEnumerable<Message> messages)
+        {
+            CodeCompileUnit unit = MessageFactoryGeneratorHelper.CreateCodeCompileUnit(pParams.TypeInfo, messages, pParams.CommonMessagesNamespace, pParams.MessageTypeEnumTypeInfo, pParams.MessageInterfaceTypeInfo);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, pParams.OutputFilePath);
         }
 
