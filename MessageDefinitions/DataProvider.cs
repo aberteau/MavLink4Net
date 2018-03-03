@@ -139,7 +139,7 @@ namespace MavLink4Net.MessageDefinitions
             IEnumerable<Xml.MessageField> filteredMessageFields = _includeExtensionFields ? xMessage.Fields : xMessage.Fields.Where(f => !f.IsExtension);
 
             dMessage.Fields = ToModels(filteredMessageFields);
-            dMessage.CrcExtra = CrcHelper.GetExtraCrc(xMessage.Name, filteredMessageFields);
+            dMessage.CrcExtra = MessageCrcHelper.GetExtraCrc(xMessage.Name, filteredMessageFields);
             return dMessage;
         }
 

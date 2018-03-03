@@ -6,4 +6,8 @@
     <RootNamespace>MavLink4Net.MessageDefinitions</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
 </Project>
