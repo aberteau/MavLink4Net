@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ScaledImu3MessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ScaledImu3Message tMessage = message as MavLink4Net.Messages.Common.ScaledImu3Message;
             writer.Write(tMessage.TimeBootMs);
@@ -34,7 +34,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Zmag);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ScaledImu3Message message = new MavLink4Net.Messages.Common.ScaledImu3Message();
             message.TimeBootMs = reader.ReadUInt32();

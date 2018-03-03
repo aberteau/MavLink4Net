@@ -19,14 +19,14 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ExtendedSysStateMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ExtendedSysStateMessage tMessage = message as MavLink4Net.Messages.Common.ExtendedSysStateMessage;
             writer.Write(((byte)(tMessage.VtolState)));
             writer.Write(((byte)(tMessage.LandedState)));
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ExtendedSysStateMessage message = new MavLink4Net.Messages.Common.ExtendedSysStateMessage();
             message.VtolState = ((MavLink4Net.Messages.Common.VtolState)(reader.ReadByte()));

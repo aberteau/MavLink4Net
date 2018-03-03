@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ParamValueMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ParamValueMessage tMessage = message as MavLink4Net.Messages.Common.ParamValueMessage;
             writer.Write(tMessage.ParamValue);
@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(((byte)(tMessage.ParamType)));
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ParamValueMessage message = new MavLink4Net.Messages.Common.ParamValueMessage();
             message.ParamValue = reader.ReadSingle();

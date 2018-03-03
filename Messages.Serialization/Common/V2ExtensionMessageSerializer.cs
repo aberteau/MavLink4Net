@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class V2ExtensionMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.V2ExtensionMessage tMessage = message as MavLink4Net.Messages.Common.V2ExtensionMessage;
             writer.Write(tMessage.MessageType);
@@ -277,7 +277,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Payload[248]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.V2ExtensionMessage message = new MavLink4Net.Messages.Common.V2ExtensionMessage();
             message.MessageType = reader.ReadUInt16();

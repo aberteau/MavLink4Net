@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class LogDataMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.LogDataMessage tMessage = message as MavLink4Net.Messages.Common.LogDataMessage;
             writer.Write(tMessage.Ofs);
@@ -117,7 +117,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Data[89]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.LogDataMessage message = new MavLink4Net.Messages.Common.LogDataMessage();
             message.Ofs = reader.ReadUInt32();

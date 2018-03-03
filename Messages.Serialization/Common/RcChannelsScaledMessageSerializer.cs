@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class RcChannelsScaledMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.RcChannelsScaledMessage tMessage = message as MavLink4Net.Messages.Common.RcChannelsScaledMessage;
             writer.Write(tMessage.TimeBootMs);
@@ -35,7 +35,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Rssi);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.RcChannelsScaledMessage message = new MavLink4Net.Messages.Common.RcChannelsScaledMessage();
             message.TimeBootMs = reader.ReadUInt32();

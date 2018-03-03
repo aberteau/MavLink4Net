@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class StatustextMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.StatustextMessage tMessage = message as MavLink4Net.Messages.Common.StatustextMessage;
             writer.Write(((byte)(tMessage.Severity)));
@@ -75,7 +75,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Text[49]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.StatustextMessage message = new MavLink4Net.Messages.Common.StatustextMessage();
             message.Severity = ((MavLink4Net.Messages.Common.Severity)(reader.ReadByte()));

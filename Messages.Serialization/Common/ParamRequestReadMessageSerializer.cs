@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ParamRequestReadMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ParamRequestReadMessage tMessage = message as MavLink4Net.Messages.Common.ParamRequestReadMessage;
             writer.Write(tMessage.ParamIndex);
@@ -43,7 +43,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.ParamId[15]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ParamRequestReadMessage message = new MavLink4Net.Messages.Common.ParamRequestReadMessage();
             message.ParamIndex = reader.ReadInt16();

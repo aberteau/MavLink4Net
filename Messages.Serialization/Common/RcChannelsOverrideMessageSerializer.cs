@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class RcChannelsOverrideMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.RcChannelsOverrideMessage tMessage = message as MavLink4Net.Messages.Common.RcChannelsOverrideMessage;
             writer.Write(tMessage.Chan1Raw);
@@ -34,7 +34,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.TargetComponent);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.RcChannelsOverrideMessage message = new MavLink4Net.Messages.Common.RcChannelsOverrideMessage();
             message.Chan1Raw = reader.ReadUInt16();

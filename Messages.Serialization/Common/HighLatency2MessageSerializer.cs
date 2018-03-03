@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class HighLatency2MessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.HighLatency2Message tMessage = message as MavLink4Net.Messages.Common.HighLatency2Message;
             writer.Write(tMessage.Timestamp);
@@ -51,7 +51,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Custom2);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.HighLatency2Message message = new MavLink4Net.Messages.Common.HighLatency2Message();
             message.Timestamp = reader.ReadUInt32();

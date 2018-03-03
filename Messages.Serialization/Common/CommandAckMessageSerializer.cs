@@ -19,14 +19,14 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class CommandAckMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.CommandAckMessage tMessage = message as MavLink4Net.Messages.Common.CommandAckMessage;
             writer.Write(((ushort)(tMessage.Command)));
             writer.Write(((byte)(tMessage.Result)));
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.CommandAckMessage message = new MavLink4Net.Messages.Common.CommandAckMessage();
             message.Command = ((MavLink4Net.Messages.Common.Cmd)(reader.ReadUInt16()));

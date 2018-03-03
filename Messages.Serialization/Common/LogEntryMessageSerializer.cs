@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class LogEntryMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.LogEntryMessage tMessage = message as MavLink4Net.Messages.Common.LogEntryMessage;
             writer.Write(tMessage.TimeUtc);
@@ -29,7 +29,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.LastLogNum);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.LogEntryMessage message = new MavLink4Net.Messages.Common.LogEntryMessage();
             message.TimeUtc = reader.ReadUInt32();

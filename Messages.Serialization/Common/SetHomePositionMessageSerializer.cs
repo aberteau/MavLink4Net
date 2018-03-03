@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class SetHomePositionMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.SetHomePositionMessage tMessage = message as MavLink4Net.Messages.Common.SetHomePositionMessage;
             writer.Write(tMessage.Latitude);
@@ -38,7 +38,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.TargetSystem);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.SetHomePositionMessage message = new MavLink4Net.Messages.Common.SetHomePositionMessage();
             message.Latitude = reader.ReadInt32();

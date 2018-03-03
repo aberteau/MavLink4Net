@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ViconPositionEstimateMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ViconPositionEstimateMessage tMessage = message as MavLink4Net.Messages.Common.ViconPositionEstimateMessage;
             writer.Write(tMessage.Usec);
@@ -31,7 +31,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Yaw);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ViconPositionEstimateMessage message = new MavLink4Net.Messages.Common.ViconPositionEstimateMessage();
             message.Usec = reader.ReadUInt64();

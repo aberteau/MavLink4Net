@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class VisionSpeedEstimateMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.VisionSpeedEstimateMessage tMessage = message as MavLink4Net.Messages.Common.VisionSpeedEstimateMessage;
             writer.Write(tMessage.Usec);
@@ -28,7 +28,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Z);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.VisionSpeedEstimateMessage message = new MavLink4Net.Messages.Common.VisionSpeedEstimateMessage();
             message.Usec = reader.ReadUInt64();

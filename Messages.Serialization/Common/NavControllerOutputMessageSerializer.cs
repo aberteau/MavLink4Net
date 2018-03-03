@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class NavControllerOutputMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.NavControllerOutputMessage tMessage = message as MavLink4Net.Messages.Common.NavControllerOutputMessage;
             writer.Write(tMessage.NavRoll);
@@ -32,7 +32,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.WpDist);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.NavControllerOutputMessage message = new MavLink4Net.Messages.Common.NavControllerOutputMessage();
             message.NavRoll = reader.ReadSingle();

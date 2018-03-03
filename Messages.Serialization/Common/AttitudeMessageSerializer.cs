@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class AttitudeMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.AttitudeMessage tMessage = message as MavLink4Net.Messages.Common.AttitudeMessage;
             writer.Write(tMessage.TimeBootMs);
@@ -31,7 +31,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Yawspeed);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.AttitudeMessage message = new MavLink4Net.Messages.Common.AttitudeMessage();
             message.TimeBootMs = reader.ReadUInt32();

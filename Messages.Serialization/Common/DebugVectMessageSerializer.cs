@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class DebugVectMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.DebugVectMessage tMessage = message as MavLink4Net.Messages.Common.DebugVectMessage;
             writer.Write(tMessage.TimeUsec);
@@ -38,7 +38,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Name[9]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.DebugVectMessage message = new MavLink4Net.Messages.Common.DebugVectMessage();
             message.TimeUsec = reader.ReadUInt64();

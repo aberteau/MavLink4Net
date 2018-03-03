@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class FileTransferProtocolMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.FileTransferProtocolMessage tMessage = message as MavLink4Net.Messages.Common.FileTransferProtocolMessage;
             writer.Write(tMessage.TargetNetwork);
@@ -278,7 +278,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Payload[250]);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.FileTransferProtocolMessage message = new MavLink4Net.Messages.Common.FileTransferProtocolMessage();
             message.TargetNetwork = reader.ReadByte();

@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class GpsRtkMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.GpsRtkMessage tMessage = message as MavLink4Net.Messages.Common.GpsRtkMessage;
             writer.Write(tMessage.TimeLastBaselineMs);
@@ -37,7 +37,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(((byte)(tMessage.BaselineCoordsType)));
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.GpsRtkMessage message = new MavLink4Net.Messages.Common.GpsRtkMessage();
             message.TimeLastBaselineMs = reader.ReadUInt32();

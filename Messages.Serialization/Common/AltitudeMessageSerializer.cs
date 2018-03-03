@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class AltitudeMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.AltitudeMessage tMessage = message as MavLink4Net.Messages.Common.AltitudeMessage;
             writer.Write(tMessage.TimeUsec);
@@ -31,7 +31,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.BottomClearance);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.AltitudeMessage message = new MavLink4Net.Messages.Common.AltitudeMessage();
             message.TimeUsec = reader.ReadUInt64();

@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ManualSetpointMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ManualSetpointMessage tMessage = message as MavLink4Net.Messages.Common.ManualSetpointMessage;
             writer.Write(tMessage.TimeBootMs);
@@ -31,7 +31,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.ManualOverrideSwitch);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ManualSetpointMessage message = new MavLink4Net.Messages.Common.ManualSetpointMessage();
             message.TimeBootMs = reader.ReadUInt32();

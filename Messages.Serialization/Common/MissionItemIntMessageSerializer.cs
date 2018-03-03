@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class MissionItemIntMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.MissionItemIntMessage tMessage = message as MavLink4Net.Messages.Common.MissionItemIntMessage;
             writer.Write(tMessage.Param1);
@@ -38,7 +38,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Autocontinue);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.MissionItemIntMessage message = new MavLink4Net.Messages.Common.MissionItemIntMessage();
             message.Param1 = reader.ReadSingle();

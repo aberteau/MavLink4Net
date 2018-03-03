@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class FollowTargetMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.FollowTargetMessage tMessage = message as MavLink4Net.Messages.Common.FollowTargetMessage;
             writer.Write(tMessage.Timestamp);
@@ -46,7 +46,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.EstCapabilities);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.FollowTargetMessage message = new MavLink4Net.Messages.Common.FollowTargetMessage();
             message.Timestamp = reader.ReadUInt64();

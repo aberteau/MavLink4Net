@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class RequestDataStreamMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.RequestDataStreamMessage tMessage = message as MavLink4Net.Messages.Common.RequestDataStreamMessage;
             writer.Write(tMessage.ReqMessageRate);
@@ -29,7 +29,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.StartStop);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.RequestDataStreamMessage message = new MavLink4Net.Messages.Common.RequestDataStreamMessage();
             message.ReqMessageRate = reader.ReadUInt16();

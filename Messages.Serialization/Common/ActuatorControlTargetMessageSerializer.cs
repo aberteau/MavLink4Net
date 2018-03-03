@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ActuatorControlTargetMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ActuatorControlTargetMessage tMessage = message as MavLink4Net.Messages.Common.ActuatorControlTargetMessage;
             writer.Write(tMessage.TimeUsec);
@@ -34,7 +34,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.GroupMlx);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ActuatorControlTargetMessage message = new MavLink4Net.Messages.Common.ActuatorControlTargetMessage();
             message.TimeUsec = reader.ReadUInt64();

@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class CollisionMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.CollisionMessage tMessage = message as MavLink4Net.Messages.Common.CollisionMessage;
             writer.Write(tMessage.Id);
@@ -31,7 +31,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(((byte)(tMessage.ThreatLevel)));
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.CollisionMessage message = new MavLink4Net.Messages.Common.CollisionMessage();
             message.Id = reader.ReadUInt32();

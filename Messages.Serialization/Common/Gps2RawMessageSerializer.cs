@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class Gps2RawMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.Gps2RawMessage tMessage = message as MavLink4Net.Messages.Common.Gps2RawMessage;
             writer.Write(tMessage.TimeUsec);
@@ -36,7 +36,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.DgpsNumch);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.Gps2RawMessage message = new MavLink4Net.Messages.Common.Gps2RawMessage();
             message.TimeUsec = reader.ReadUInt64();

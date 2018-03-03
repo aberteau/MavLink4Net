@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class MissionSetCurrentMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.MissionSetCurrentMessage tMessage = message as MavLink4Net.Messages.Common.MissionSetCurrentMessage;
             writer.Write(tMessage.Seq);
@@ -27,7 +27,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.TargetComponent);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.MissionSetCurrentMessage message = new MavLink4Net.Messages.Common.MissionSetCurrentMessage();
             message.Seq = reader.ReadUInt16();

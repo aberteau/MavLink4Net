@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class ParamMapRcMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.ParamMapRcMessage tMessage = message as MavLink4Net.Messages.Common.ParamMapRcMessage;
             writer.Write(tMessage.ParamValue0);
@@ -48,7 +48,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.ParameterRcChannelIndex);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.ParamMapRcMessage message = new MavLink4Net.Messages.Common.ParamMapRcMessage();
             message.ParamValue0 = reader.ReadSingle();

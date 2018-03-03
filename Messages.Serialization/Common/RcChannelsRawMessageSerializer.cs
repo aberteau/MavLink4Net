@@ -19,7 +19,7 @@ namespace MavLink4Net.Messages.Serialization.Common
     public class RcChannelsRawMessageSerializer : MavLink4Net.Messages.Serialization.IMessageSerializer
     {
         
-        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.Message message)
+        public void Serialize(System.IO.BinaryWriter writer, MavLink4Net.Messages.IMessage message)
         {
             MavLink4Net.Messages.Common.RcChannelsRawMessage tMessage = message as MavLink4Net.Messages.Common.RcChannelsRawMessage;
             writer.Write(tMessage.TimeBootMs);
@@ -35,7 +35,7 @@ namespace MavLink4Net.Messages.Serialization.Common
             writer.Write(tMessage.Rssi);
         }
         
-        public MavLink4Net.Messages.Message Deserialize(System.IO.BinaryReader reader)
+        public MavLink4Net.Messages.IMessage Deserialize(System.IO.BinaryReader reader)
         {
             MavLink4Net.Messages.Common.RcChannelsRawMessage message = new MavLink4Net.Messages.Common.RcChannelsRawMessage();
             message.TimeBootMs = reader.ReadUInt32();
