@@ -126,7 +126,7 @@ namespace MavLink4Net.Messages.Common
         private float[] _covariance = new float[45];
         
         public LocalPositionNedCovMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LocalPositionNedCov, 191)
+                base(MavLink4Net.Messages.MavMessageType.LocalPositionNedCov)
         {
         }
         

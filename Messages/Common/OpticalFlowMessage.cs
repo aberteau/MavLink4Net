@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         private float _groundDistance;
         
         public OpticalFlowMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.OpticalFlow, 175)
+                base(MavLink4Net.Messages.MavMessageType.OpticalFlow)
         {
         }
         

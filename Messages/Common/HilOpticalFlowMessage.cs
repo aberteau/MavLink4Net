@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         private float _distance;
         
         public HilOpticalFlowMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilOpticalFlow, 237)
+                base(MavLink4Net.Messages.MavMessageType.HilOpticalFlow)
         {
         }
         

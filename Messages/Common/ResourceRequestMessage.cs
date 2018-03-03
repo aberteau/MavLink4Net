@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _storage = new byte[120];
         
         public ResourceRequestMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ResourceRequest, 72)
+                base(MavLink4Net.Messages.MavMessageType.ResourceRequest)
         {
         }
         

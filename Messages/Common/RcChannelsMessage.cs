@@ -198,7 +198,7 @@ namespace MavLink4Net.Messages.Common
         private byte _rssi;
         
         public RcChannelsMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RcChannels, 118)
+                base(MavLink4Net.Messages.MavMessageType.RcChannels)
         {
         }
         

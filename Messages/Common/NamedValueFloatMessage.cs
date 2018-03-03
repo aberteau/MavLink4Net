@@ -54,7 +54,7 @@ namespace MavLink4Net.Messages.Common
         private float _value;
         
         public NamedValueFloatMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.NamedValueFloat, 170)
+                base(MavLink4Net.Messages.MavMessageType.NamedValueFloat)
         {
         }
         

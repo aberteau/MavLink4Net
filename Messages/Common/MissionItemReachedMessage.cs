@@ -38,7 +38,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _seq;
         
         public MissionItemReachedMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionItemReached, 11)
+                base(MavLink4Net.Messages.MavMessageType.MissionItemReached)
         {
         }
         

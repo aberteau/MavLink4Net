@@ -173,7 +173,7 @@ namespace MavLink4Net.Messages.Common
         private byte _satellitesVisible;
         
         public GpsInputMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsInput, 151)
+                base(MavLink4Net.Messages.MavMessageType.GpsInput)
         {
         }
         

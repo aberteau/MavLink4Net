@@ -76,7 +76,7 @@ namespace MavLink4Net.Messages.Common
         private byte _mavlinkVersion;
         
         public HeartbeatMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Heartbeat, 50)
+                base(MavLink4Net.Messages.MavMessageType.Heartbeat)
         {
         }
         

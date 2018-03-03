@@ -158,7 +158,7 @@ namespace MavLink4Net.Messages.Common
         private short _zacc;
         
         public HilStateQuaternionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilStateQuaternion, 4)
+                base(MavLink4Net.Messages.MavMessageType.HilStateQuaternion)
         {
         }
         

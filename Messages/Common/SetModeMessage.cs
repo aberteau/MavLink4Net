@@ -55,7 +55,7 @@ namespace MavLink4Net.Messages.Common
         private uint _customMode;
         
         public SetModeMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SetMode, 89)
+                base(MavLink4Net.Messages.MavMessageType.SetMode)
         {
         }
         

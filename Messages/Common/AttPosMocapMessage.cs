@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private float _z;
         
         public AttPosMocapMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AttPosMocap, 109)
+                base(MavLink4Net.Messages.MavMessageType.AttPosMocap)
         {
         }
         

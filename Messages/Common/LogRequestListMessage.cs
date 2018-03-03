@@ -61,7 +61,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _end;
         
         public LogRequestListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogRequestList, 128)
+                base(MavLink4Net.Messages.MavMessageType.LogRequestList)
         {
         }
         

@@ -70,7 +70,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _paramIndex;
         
         public ParamValueMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ParamValue, 220)
+                base(MavLink4Net.Messages.MavMessageType.ParamValue)
         {
         }
         

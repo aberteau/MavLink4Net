@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private float _z;
         
         public VisionSpeedEstimateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.VisionSpeedEstimate, 208)
+                base(MavLink4Net.Messages.MavMessageType.VisionSpeedEstimate)
         {
         }
         

@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private uint _count;
         
         public LogRequestDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogRequestData, 116)
+                base(MavLink4Net.Messages.MavMessageType.LogRequestData)
         {
         }
         

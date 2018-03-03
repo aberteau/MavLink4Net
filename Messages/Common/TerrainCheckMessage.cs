@@ -45,7 +45,7 @@ namespace MavLink4Net.Messages.Common
         private int _lon;
         
         public TerrainCheckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.TerrainCheck, 203)
+                base(MavLink4Net.Messages.MavMessageType.TerrainCheck)
         {
         }
         

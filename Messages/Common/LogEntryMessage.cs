@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private uint _size;
         
         public LogEntryMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogEntry, 56)
+                base(MavLink4Net.Messages.MavMessageType.LogEntry)
         {
         }
         

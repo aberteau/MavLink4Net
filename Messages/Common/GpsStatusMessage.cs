@@ -76,7 +76,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _satelliteSnr = new byte[20];
         
         public GpsStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsStatus, 23)
+                base(MavLink4Net.Messages.MavMessageType.GpsStatus)
         {
         }
         

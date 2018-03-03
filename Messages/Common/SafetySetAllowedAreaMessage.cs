@@ -102,7 +102,7 @@ namespace MavLink4Net.Messages.Common
         private float _p2z;
         
         public SafetySetAllowedAreaMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SafetySetAllowedArea, 15)
+                base(MavLink4Net.Messages.MavMessageType.SafetySetAllowedArea)
         {
         }
         

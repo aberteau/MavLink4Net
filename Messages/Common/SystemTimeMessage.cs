@@ -45,7 +45,7 @@ namespace MavLink4Net.Messages.Common
         private uint _timeBootMs;
         
         public SystemTimeMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SystemTime, 137)
+                base(MavLink4Net.Messages.MavMessageType.SystemTime)
         {
         }
         

@@ -142,7 +142,7 @@ namespace MavLink4Net.Messages.Common
         private float _yawRate;
         
         public PositionTargetGlobalIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.PositionTargetGlobalInt, 150)
+                base(MavLink4Net.Messages.MavMessageType.PositionTargetGlobalInt)
         {
         }
         

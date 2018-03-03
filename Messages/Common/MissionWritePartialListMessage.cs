@@ -62,7 +62,7 @@ namespace MavLink4Net.Messages.Common
         private short _endIndex;
         
         public MissionWritePartialListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionWritePartialList, 9)
+                base(MavLink4Net.Messages.MavMessageType.MissionWritePartialList)
         {
         }
         

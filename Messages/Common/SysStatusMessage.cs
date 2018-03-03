@@ -132,7 +132,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _errorsCount4;
         
         public SysStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SysStatus, 124)
+                base(MavLink4Net.Messages.MavMessageType.SysStatus)
         {
         }
         

@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private float _bottomClearance;
         
         public AltitudeMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Altitude, 47)
+                base(MavLink4Net.Messages.MavMessageType.Altitude)
         {
         }
         

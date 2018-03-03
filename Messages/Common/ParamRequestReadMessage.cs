@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private short _paramIndex;
         
         public ParamRequestReadMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ParamRequestRead, 214)
+                base(MavLink4Net.Messages.MavMessageType.ParamRequestRead)
         {
         }
         

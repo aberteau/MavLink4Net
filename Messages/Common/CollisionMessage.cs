@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private float _horizontalMinimumDelta;
         
         public CollisionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Collision, 81)
+                base(MavLink4Net.Messages.MavMessageType.Collision)
         {
         }
         

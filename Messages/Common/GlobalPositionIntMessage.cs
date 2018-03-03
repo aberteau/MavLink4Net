@@ -103,7 +103,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _hdg;
         
         public GlobalPositionIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GlobalPositionInt, 104)
+                base(MavLink4Net.Messages.MavMessageType.GlobalPositionInt)
         {
         }
         

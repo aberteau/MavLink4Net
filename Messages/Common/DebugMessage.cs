@@ -53,7 +53,7 @@ namespace MavLink4Net.Messages.Common
         private float _value;
         
         public DebugMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Debug, 46)
+                base(MavLink4Net.Messages.MavMessageType.Debug)
         {
         }
         

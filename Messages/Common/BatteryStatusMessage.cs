@@ -100,7 +100,7 @@ namespace MavLink4Net.Messages.Common
         private sbyte _batteryRemaining;
         
         public BatteryStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.BatteryStatus, 154)
+                base(MavLink4Net.Messages.MavMessageType.BatteryStatus)
         {
         }
         

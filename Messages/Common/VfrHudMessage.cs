@@ -76,7 +76,7 @@ namespace MavLink4Net.Messages.Common
         private float _climb;
         
         public VfrHudMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.VfrHud, 20)
+                base(MavLink4Net.Messages.MavMessageType.VfrHud)
         {
         }
         

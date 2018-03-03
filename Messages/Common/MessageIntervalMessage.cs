@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private int _intervalUs;
         
         public MessageIntervalMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MessageInterval, 95)
+                base(MavLink4Net.Messages.MavMessageType.MessageInterval)
         {
         }
         

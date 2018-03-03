@@ -116,7 +116,7 @@ namespace MavLink4Net.Messages.Common
         private ulong _uid;
         
         public AutopilotVersionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AutopilotVersion, 178)
+                base(MavLink4Net.Messages.MavMessageType.AutopilotVersion)
         {
         }
         

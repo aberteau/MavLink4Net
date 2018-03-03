@@ -78,7 +78,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _buttons;
         
         public ManualControlMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ManualControl, 243)
+                base(MavLink4Net.Messages.MavMessageType.ManualControl)
         {
         }
         

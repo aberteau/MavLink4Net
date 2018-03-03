@@ -76,7 +76,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _data = new byte[70];
         
         public SerialControlMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SerialControl, 220)
+                base(MavLink4Net.Messages.MavMessageType.SerialControl)
         {
         }
         

@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         private float _sizeY;
         
         public LandingTargetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LandingTarget, 200)
+                base(MavLink4Net.Messages.MavMessageType.LandingTarget)
         {
         }
         

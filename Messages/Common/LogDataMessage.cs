@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _data = new byte[90];
         
         public LogDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogData, 134)
+                base(MavLink4Net.Messages.MavMessageType.LogData)
         {
         }
         

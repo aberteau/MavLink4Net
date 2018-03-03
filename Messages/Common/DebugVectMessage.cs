@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private float _z;
         
         public DebugVectMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.DebugVect, 49)
+                base(MavLink4Net.Messages.MavMessageType.DebugVect)
         {
         }
         

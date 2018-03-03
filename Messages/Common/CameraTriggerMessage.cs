@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private uint _seq;
         
         public CameraTriggerMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.CameraTrigger, 174)
+                base(MavLink4Net.Messages.MavMessageType.CameraTrigger)
         {
         }
         

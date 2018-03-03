@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         private uint _dgpsAge;
         
         public Gps2RawMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Gps2Raw, 87)
+                base(MavLink4Net.Messages.MavMessageType.Gps2Raw)
         {
         }
         

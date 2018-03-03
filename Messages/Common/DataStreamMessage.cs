@@ -52,7 +52,7 @@ namespace MavLink4Net.Messages.Common
         private byte _onOff;
         
         public DataStreamMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.DataStream, 21)
+                base(MavLink4Net.Messages.MavMessageType.DataStream)
         {
         }
         

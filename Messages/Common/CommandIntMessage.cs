@@ -133,7 +133,7 @@ namespace MavLink4Net.Messages.Common
         private float _z;
         
         public CommandIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.CommandInt, 158)
+                base(MavLink4Net.Messages.MavMessageType.CommandInt)
         {
         }
         

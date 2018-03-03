@@ -132,7 +132,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _squawk;
         
         public AdsbVehicleMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AdsbVehicle, 184)
+                base(MavLink4Net.Messages.MavMessageType.AdsbVehicle)
         {
         }
         

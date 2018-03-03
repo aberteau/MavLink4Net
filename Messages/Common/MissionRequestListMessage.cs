@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public MissionRequestListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionRequestList, 132)
+                base(MavLink4Net.Messages.MavMessageType.MissionRequestList)
         {
         }
         

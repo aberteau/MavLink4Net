@@ -61,7 +61,7 @@ namespace MavLink4Net.Messages.Common
         private ulong _flags;
         
         public HilActuatorControlsMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilActuatorControls, 47)
+                base(MavLink4Net.Messages.MavMessageType.HilActuatorControls)
         {
         }
         

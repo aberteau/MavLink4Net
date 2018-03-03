@@ -45,7 +45,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public ParamRequestListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ParamRequestList, 159)
+                base(MavLink4Net.Messages.MavMessageType.ParamRequestList)
         {
         }
         

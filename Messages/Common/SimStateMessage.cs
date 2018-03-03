@@ -196,7 +196,7 @@ namespace MavLink4Net.Messages.Common
         private float _vd;
         
         public SimStateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SimState, 32)
+                base(MavLink4Net.Messages.MavMessageType.SimState)
         {
         }
         

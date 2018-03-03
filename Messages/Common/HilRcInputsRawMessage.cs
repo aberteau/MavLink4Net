@@ -142,7 +142,7 @@ namespace MavLink4Net.Messages.Common
         private byte _rssi;
         
         public HilRcInputsRawMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilRcInputsRaw, 54)
+                base(MavLink4Net.Messages.MavMessageType.HilRcInputsRaw)
         {
         }
         

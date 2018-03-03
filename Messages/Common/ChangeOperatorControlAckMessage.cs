@@ -52,7 +52,7 @@ namespace MavLink4Net.Messages.Common
         private byte _ack;
         
         public ChangeOperatorControlAckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ChangeOperatorControlAck, 104)
+                base(MavLink4Net.Messages.MavMessageType.ChangeOperatorControlAck)
         {
         }
         

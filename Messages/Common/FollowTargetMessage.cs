@@ -116,7 +116,7 @@ namespace MavLink4Net.Messages.Common
         private ulong _customState;
         
         public FollowTargetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.FollowTarget, 127)
+                base(MavLink4Net.Messages.MavMessageType.FollowTarget)
         {
         }
         

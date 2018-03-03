@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private byte _jpgQuality;
         
         public DataTransmissionHandshakeMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.DataTransmissionHandshake, 29)
+                base(MavLink4Net.Messages.MavMessageType.DataTransmissionHandshake)
         {
         }
         

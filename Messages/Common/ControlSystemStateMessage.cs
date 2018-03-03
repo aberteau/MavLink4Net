@@ -165,7 +165,7 @@ namespace MavLink4Net.Messages.Common
         private float _yawRate;
         
         public ControlSystemStateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ControlSystemState, 103)
+                base(MavLink4Net.Messages.MavMessageType.ControlSystemState)
         {
         }
         

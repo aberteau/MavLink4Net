@@ -148,7 +148,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _fieldsUpdated;
         
         public HighresImuMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HighresImu, 93)
+                base(MavLink4Net.Messages.MavMessageType.HighresImu)
         {
         }
         

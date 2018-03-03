@@ -110,7 +110,7 @@ namespace MavLink4Net.Messages.Common
         private byte _satellitesVisible;
         
         public GpsRawIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsRawInt, 24)
+                base(MavLink4Net.Messages.MavMessageType.GpsRawInt)
         {
         }
         

@@ -100,7 +100,7 @@ namespace MavLink4Net.Messages.Common
         private float _vertAccuracy;
         
         public WindCovMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.WindCov, 105)
+                base(MavLink4Net.Messages.MavMessageType.WindCov)
         {
         }
         

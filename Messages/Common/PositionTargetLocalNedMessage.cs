@@ -142,7 +142,7 @@ namespace MavLink4Net.Messages.Common
         private float _yawRate;
         
         public PositionTargetLocalNedMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.PositionTargetLocalNed, 140)
+                base(MavLink4Net.Messages.MavMessageType.PositionTargetLocalNed)
         {
         }
         

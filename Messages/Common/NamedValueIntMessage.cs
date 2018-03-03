@@ -54,7 +54,7 @@ namespace MavLink4Net.Messages.Common
         private int _value;
         
         public NamedValueIntMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.NamedValueInt, 44)
+                base(MavLink4Net.Messages.MavMessageType.NamedValueInt)
         {
         }
         

@@ -108,7 +108,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _chan8Raw;
         
         public RcChannelsOverrideMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RcChannelsOverride, 124)
+                base(MavLink4Net.Messages.MavMessageType.RcChannelsOverride)
         {
         }
         

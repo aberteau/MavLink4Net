@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public LogRequestEndMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogRequestEnd, 203)
+                base(MavLink4Net.Messages.MavMessageType.LogRequestEnd)
         {
         }
         

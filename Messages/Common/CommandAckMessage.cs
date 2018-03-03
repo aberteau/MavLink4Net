@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private MavLink4Net.Messages.Common.Result _result;
         
         public CommandAckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.CommandAck, 143)
+                base(MavLink4Net.Messages.MavMessageType.CommandAck)
         {
         }
         

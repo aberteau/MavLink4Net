@@ -52,7 +52,7 @@ namespace MavLink4Net.Messages.Common
         private MavLink4Net.Messages.Common.PowerStatus _flags;
         
         public PowerStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.PowerStatus, 203)
+                base(MavLink4Net.Messages.MavMessageType.PowerStatus)
         {
         }
         

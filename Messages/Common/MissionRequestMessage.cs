@@ -54,7 +54,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _seq;
         
         public MissionRequestMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionRequest, 230)
+                base(MavLink4Net.Messages.MavMessageType.MissionRequest)
         {
         }
         

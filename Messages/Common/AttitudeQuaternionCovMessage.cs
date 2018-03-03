@@ -78,7 +78,7 @@ namespace MavLink4Net.Messages.Common
         private float[] _covariance = new float[9];
         
         public AttitudeQuaternionCovMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AttitudeQuaternionCov, 167)
+                base(MavLink4Net.Messages.MavMessageType.AttitudeQuaternionCov)
         {
         }
         

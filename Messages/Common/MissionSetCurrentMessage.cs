@@ -54,7 +54,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _seq;
         
         public MissionSetCurrentMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionSetCurrent, 28)
+                base(MavLink4Net.Messages.MavMessageType.MissionSetCurrent)
         {
         }
         

@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         private float _xtrackError;
         
         public NavControllerOutputMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.NavControllerOutput, 183)
+                base(MavLink4Net.Messages.MavMessageType.NavControllerOutput)
         {
         }
         

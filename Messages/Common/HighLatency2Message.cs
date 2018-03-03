@@ -244,7 +244,7 @@ namespace MavLink4Net.Messages.Common
         private sbyte _custom2;
         
         public HighLatency2Message() : 
-                base(MavLink4Net.Messages.MavMessageType.HighLatency2, 179)
+                base(MavLink4Net.Messages.MavMessageType.HighLatency2)
         {
         }
         

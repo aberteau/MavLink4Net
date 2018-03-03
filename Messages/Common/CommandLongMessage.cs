@@ -116,7 +116,7 @@ namespace MavLink4Net.Messages.Common
         private float _param7;
         
         public CommandLongMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.CommandLong, 152)
+                base(MavLink4Net.Messages.MavMessageType.CommandLong)
         {
         }
         

@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private uint _clipping2;
         
         public VibrationMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Vibration, 90)
+                base(MavLink4Net.Messages.MavMessageType.Vibration)
         {
         }
         

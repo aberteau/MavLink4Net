@@ -116,7 +116,7 @@ namespace MavLink4Net.Messages.Common
         private byte _navMode;
         
         public HilControlsMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilControls, 63)
+                base(MavLink4Net.Messages.MavMessageType.HilControls)
         {
         }
         

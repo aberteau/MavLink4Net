@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _loaded;
         
         public TerrainReportMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.TerrainReport, 1)
+                base(MavLink4Net.Messages.MavMessageType.TerrainReport)
         {
         }
         

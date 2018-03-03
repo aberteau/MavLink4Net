@@ -86,7 +86,7 @@ namespace MavLink4Net.Messages.Common
         private float _yaw;
         
         public LocalPositionNedSystemGlobalOffsetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LocalPositionNedSystemGlobalOffset, 231)
+                base(MavLink4Net.Messages.MavMessageType.LocalPositionNedSystemGlobalOffset)
         {
         }
         

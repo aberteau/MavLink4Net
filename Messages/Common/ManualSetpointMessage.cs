@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private byte _manualOverrideSwitch;
         
         public ManualSetpointMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ManualSetpoint, 106)
+                base(MavLink4Net.Messages.MavMessageType.ManualSetpoint)
         {
         }
         

@@ -53,7 +53,7 @@ namespace MavLink4Net.Messages.Common
         private MavLink4Net.Messages.Common.MissionResult _type;
         
         public MissionAckMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionAck, 153)
+                base(MavLink4Net.Messages.MavMessageType.MissionAck)
         {
         }
         

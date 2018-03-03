@@ -69,7 +69,7 @@ namespace MavLink4Net.Messages.Common
         private short[] _data = new short[16];
         
         public TerrainDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.TerrainData, 229)
+                base(MavLink4Net.Messages.MavMessageType.TerrainData)
         {
         }
         

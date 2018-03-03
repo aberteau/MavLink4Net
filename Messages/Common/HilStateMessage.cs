@@ -156,7 +156,7 @@ namespace MavLink4Net.Messages.Common
         private short _zacc;
         
         public HilStateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilState, 183)
+                base(MavLink4Net.Messages.MavMessageType.HilState)
         {
         }
         

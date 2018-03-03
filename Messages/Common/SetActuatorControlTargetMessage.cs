@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private float[] _controls = new float[8];
         
         public SetActuatorControlTargetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SetActuatorControlTarget, 168)
+                base(MavLink4Net.Messages.MavMessageType.SetActuatorControlTarget)
         {
         }
         

@@ -116,7 +116,7 @@ namespace MavLink4Net.Messages.Common
         private float _approachZ;
         
         public SetHomePositionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SetHomePosition, 85)
+                base(MavLink4Net.Messages.MavMessageType.SetHomePosition)
         {
         }
         

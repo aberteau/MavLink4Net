@@ -124,7 +124,7 @@ namespace MavLink4Net.Messages.Common
         private float _distance;
         
         public OpticalFlowRadMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.OpticalFlowRad, 138)
+                base(MavLink4Net.Messages.MavMessageType.OpticalFlowRad)
         {
         }
         

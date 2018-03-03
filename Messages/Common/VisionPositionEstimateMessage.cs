@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private float _yaw;
         
         public VisionPositionEstimateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.VisionPositionEstimate, 158)
+                base(MavLink4Net.Messages.MavMessageType.VisionPositionEstimate)
         {
         }
         

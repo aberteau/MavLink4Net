@@ -148,7 +148,7 @@ namespace MavLink4Net.Messages.Common
         private uint _fieldsUpdated;
         
         public HilSensorMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilSensor, 108)
+                base(MavLink4Net.Messages.MavMessageType.HilSensor)
         {
         }
         

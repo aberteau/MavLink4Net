@@ -69,7 +69,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _payload = new byte[249];
         
         public V2ExtensionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.V2Extension, 8)
+                base(MavLink4Net.Messages.MavMessageType.V2Extension)
         {
         }
         

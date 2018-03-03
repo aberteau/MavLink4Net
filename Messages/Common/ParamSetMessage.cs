@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private MavLink4Net.Messages.Common.ParamType _paramType;
         
         public ParamSetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ParamSet, 168)
+                base(MavLink4Net.Messages.MavMessageType.ParamSet)
         {
         }
         

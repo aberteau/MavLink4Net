@@ -142,7 +142,7 @@ namespace MavLink4Net.Messages.Common
         private float _z;
         
         public MissionItemMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionItem, 254)
+                base(MavLink4Net.Messages.MavMessageType.MissionItem)
         {
         }
         

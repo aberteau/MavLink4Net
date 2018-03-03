@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private int _altitude;
         
         public SetGpsGlobalOriginMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SetGpsGlobalOrigin, 41)
+                base(MavLink4Net.Messages.MavMessageType.SetGpsGlobalOrigin)
         {
         }
         

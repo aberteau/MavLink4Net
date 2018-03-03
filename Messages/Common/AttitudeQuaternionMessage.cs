@@ -94,7 +94,7 @@ namespace MavLink4Net.Messages.Common
         private float _yawspeed;
         
         public AttitudeQuaternionMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AttitudeQuaternion, 246)
+                base(MavLink4Net.Messages.MavMessageType.AttitudeQuaternion)
         {
         }
         

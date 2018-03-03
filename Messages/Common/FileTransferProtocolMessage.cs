@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _payload = new byte[251];
         
         public FileTransferProtocolMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.FileTransferProtocol, 84)
+                base(MavLink4Net.Messages.MavMessageType.FileTransferProtocol)
         {
         }
         

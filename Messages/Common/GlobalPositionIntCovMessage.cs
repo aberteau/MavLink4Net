@@ -108,7 +108,7 @@ namespace MavLink4Net.Messages.Common
         private float[] _covariance = new float[36];
         
         public GlobalPositionIntCovMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GlobalPositionIntCov, 119)
+                base(MavLink4Net.Messages.MavMessageType.GlobalPositionIntCov)
         {
         }
         

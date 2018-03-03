@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private short _temperature;
         
         public ScaledPressure3Message() : 
-                base(MavLink4Net.Messages.MavMessageType.ScaledPressure3, 131)
+                base(MavLink4Net.Messages.MavMessageType.ScaledPressure3)
         {
         }
         

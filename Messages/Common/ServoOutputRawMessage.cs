@@ -110,7 +110,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _servo8Raw;
         
         public ServoOutputRawMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ServoOutputRaw, 222)
+                base(MavLink4Net.Messages.MavMessageType.ServoOutputRaw)
         {
         }
         

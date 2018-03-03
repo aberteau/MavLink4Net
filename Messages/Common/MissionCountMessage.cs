@@ -54,7 +54,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _count;
         
         public MissionCountMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionCount, 221)
+                base(MavLink4Net.Messages.MavMessageType.MissionCount)
         {
         }
         

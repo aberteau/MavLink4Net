@@ -52,7 +52,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _data = new byte[180];
         
         public GpsRtcmDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsRtcmData, 35)
+                base(MavLink4Net.Messages.MavMessageType.GpsRtcmData)
         {
         }
         

@@ -101,7 +101,7 @@ namespace MavLink4Net.Messages.Common
         private float _thrust;
         
         public SetAttitudeTargetMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.SetAttitudeTarget, 49)
+                base(MavLink4Net.Messages.MavMessageType.SetAttitudeTarget)
         {
         }
         

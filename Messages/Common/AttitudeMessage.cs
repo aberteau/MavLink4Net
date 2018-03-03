@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private float _yawspeed;
         
         public AttitudeMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Attitude, 39)
+                base(MavLink4Net.Messages.MavMessageType.Attitude)
         {
         }
         

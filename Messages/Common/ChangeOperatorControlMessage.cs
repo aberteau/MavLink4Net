@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private char[] _passkey = new char[25];
         
         public ChangeOperatorControlMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ChangeOperatorControl, 217)
+                base(MavLink4Net.Messages.MavMessageType.ChangeOperatorControl)
         {
         }
         

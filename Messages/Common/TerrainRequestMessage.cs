@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private ulong _mask;
         
         public TerrainRequestMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.TerrainRequest, 6)
+                base(MavLink4Net.Messages.MavMessageType.TerrainRequest)
         {
         }
         

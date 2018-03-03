@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private float _yaw;
         
         public ViconPositionEstimateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ViconPositionEstimate, 56)
+                base(MavLink4Net.Messages.MavMessageType.ViconPositionEstimate)
         {
         }
         

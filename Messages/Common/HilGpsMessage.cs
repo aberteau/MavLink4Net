@@ -134,7 +134,7 @@ namespace MavLink4Net.Messages.Common
         private byte _satellitesVisible;
         
         public HilGpsMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HilGps, 124)
+                base(MavLink4Net.Messages.MavMessageType.HilGps)
         {
         }
         

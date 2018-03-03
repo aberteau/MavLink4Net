@@ -108,7 +108,7 @@ namespace MavLink4Net.Messages.Common
         private float _posVertAccuracy;
         
         public EstimatorStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.EstimatorStatus, 163)
+                base(MavLink4Net.Messages.MavMessageType.EstimatorStatus)
         {
         }
         

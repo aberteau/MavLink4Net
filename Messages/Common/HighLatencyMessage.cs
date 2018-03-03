@@ -220,7 +220,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _wpDistance;
         
         public HighLatencyMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.HighLatency, 150)
+                base(MavLink4Net.Messages.MavMessageType.HighLatency)
         {
         }
         

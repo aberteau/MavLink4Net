@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public LogEraseMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LogErase, 237)
+                base(MavLink4Net.Messages.MavMessageType.LogErase)
         {
         }
         

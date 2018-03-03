@@ -133,7 +133,7 @@ namespace MavLink4Net.Messages.Common
         private int _iarNumHypotheses;
         
         public Gps2RtkMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Gps2Rtk, 226)
+                base(MavLink4Net.Messages.MavMessageType.Gps2Rtk)
         {
         }
         

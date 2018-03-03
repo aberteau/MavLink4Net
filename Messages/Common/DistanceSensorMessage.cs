@@ -92,7 +92,7 @@ namespace MavLink4Net.Messages.Common
         private byte _covariance;
         
         public DistanceSensorMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.DistanceSensor, 85)
+                base(MavLink4Net.Messages.MavMessageType.DistanceSensor)
         {
         }
         

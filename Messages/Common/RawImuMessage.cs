@@ -110,7 +110,7 @@ namespace MavLink4Net.Messages.Common
         private short _zmag;
         
         public RawImuMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RawImu, 144)
+                base(MavLink4Net.Messages.MavMessageType.RawImu)
         {
         }
         

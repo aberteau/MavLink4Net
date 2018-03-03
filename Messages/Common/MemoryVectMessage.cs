@@ -62,7 +62,7 @@ namespace MavLink4Net.Messages.Common
         private sbyte[] _value = new sbyte[32];
         
         public MemoryVectMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MemoryVect, 204)
+                base(MavLink4Net.Messages.MavMessageType.MemoryVect)
         {
         }
         

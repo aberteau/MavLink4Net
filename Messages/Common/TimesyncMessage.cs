@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private long _ts1;
         
         public TimesyncMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Timesync, 34)
+                base(MavLink4Net.Messages.MavMessageType.Timesync)
         {
         }
         

@@ -68,7 +68,7 @@ namespace MavLink4Net.Messages.Common
         private byte _startStop;
         
         public RequestDataStreamMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RequestDataStream, 148)
+                base(MavLink4Net.Messages.MavMessageType.RequestDataStream)
         {
         }
         

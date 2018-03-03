@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private MavLink4Net.Messages.Common.LandedState _landedState;
         
         public ExtendedSysStateMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ExtendedSysState, 130)
+                base(MavLink4Net.Messages.MavMessageType.ExtendedSysState)
         {
         }
         

@@ -60,7 +60,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _data = new byte[110];
         
         public GpsInjectDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsInjectData, 250)
+                base(MavLink4Net.Messages.MavMessageType.GpsInjectData)
         {
         }
         

@@ -86,7 +86,7 @@ namespace MavLink4Net.Messages.Common
         private float _vz;
         
         public LocalPositionNedMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.LocalPositionNed, 185)
+                base(MavLink4Net.Messages.MavMessageType.LocalPositionNed)
         {
         }
         

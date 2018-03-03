@@ -61,7 +61,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public PingMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Ping, 237)
+                base(MavLink4Net.Messages.MavMessageType.Ping)
         {
         }
         

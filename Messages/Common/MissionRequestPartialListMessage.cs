@@ -62,7 +62,7 @@ namespace MavLink4Net.Messages.Common
         private short _endIndex;
         
         public MissionRequestPartialListMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionRequestPartialList, 212)
+                base(MavLink4Net.Messages.MavMessageType.MissionRequestPartialList)
         {
         }
         

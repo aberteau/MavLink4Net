@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private byte _targetComponent;
         
         public MissionClearAllMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.MissionClearAll, 232)
+                base(MavLink4Net.Messages.MavMessageType.MissionClearAll)
         {
         }
         

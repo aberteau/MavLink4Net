@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private byte[] _data = new byte[253];
         
         public EncapsulatedDataMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.EncapsulatedData, 223)
+                base(MavLink4Net.Messages.MavMessageType.EncapsulatedData)
         {
         }
         

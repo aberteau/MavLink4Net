@@ -38,7 +38,7 @@ namespace MavLink4Net.Messages.Common
         private char[] _key = new char[32];
         
         public AuthKeyMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.AuthKey, 119)
+                base(MavLink4Net.Messages.MavMessageType.AuthKey)
         {
         }
         

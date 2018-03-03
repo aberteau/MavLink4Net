@@ -109,7 +109,7 @@ namespace MavLink4Net.Messages.Common
         private short _zmag;
         
         public ScaledImu2Message() : 
-                base(MavLink4Net.Messages.MavMessageType.ScaledImu2, 76)
+                base(MavLink4Net.Messages.MavMessageType.ScaledImu2)
         {
         }
         

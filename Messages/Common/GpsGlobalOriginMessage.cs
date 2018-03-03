@@ -53,7 +53,7 @@ namespace MavLink4Net.Messages.Common
         private int _altitude;
         
         public GpsGlobalOriginMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.GpsGlobalOrigin, 39)
+                base(MavLink4Net.Messages.MavMessageType.GpsGlobalOrigin)
         {
         }
         

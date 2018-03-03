@@ -84,7 +84,7 @@ namespace MavLink4Net.Messages.Common
         private ushort _fixed;
         
         public RadioStatusMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RadioStatus, 185)
+                base(MavLink4Net.Messages.MavMessageType.RadioStatus)
         {
         }
         

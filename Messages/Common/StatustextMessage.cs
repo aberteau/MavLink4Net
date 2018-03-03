@@ -44,7 +44,7 @@ namespace MavLink4Net.Messages.Common
         private char[] _text = new char[50];
         
         public StatustextMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.Statustext, 83)
+                base(MavLink4Net.Messages.MavMessageType.Statustext)
         {
         }
         

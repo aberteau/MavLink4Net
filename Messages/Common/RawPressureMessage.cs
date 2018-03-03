@@ -70,7 +70,7 @@ namespace MavLink4Net.Messages.Common
         private short _temperature;
         
         public RawPressureMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.RawPressure, 67)
+                base(MavLink4Net.Messages.MavMessageType.RawPressure)
         {
         }
         

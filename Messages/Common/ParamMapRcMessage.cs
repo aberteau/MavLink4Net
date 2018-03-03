@@ -101,7 +101,7 @@ namespace MavLink4Net.Messages.Common
         private float _paramValueMax;
         
         public ParamMapRcMessage() : 
-                base(MavLink4Net.Messages.MavMessageType.ParamMapRc, 78)
+                base(MavLink4Net.Messages.MavMessageType.ParamMapRc)
         {
         }
         
