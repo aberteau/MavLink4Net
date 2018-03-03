@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.ComponentModel;
-
 
 namespace MavLink4Net.Messages.Serialization.Common
 {
