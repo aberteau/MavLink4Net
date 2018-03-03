@@ -90,5 +90,16 @@ namespace MavLink4Net.CodeGenerator.Core
 
             return typeInfo;
         }
+
+        public static TypeInfo GetCrcExtraProviderTypeInfo()
+        {
+            TypeInfo typeInfo = new TypeInfo()
+            {
+                Name = "CrcExtraProvider",
+                Namespace = ConstantHelper.Namespaces.Root_Messages
+            };
+
+            return typeInfo;
+        }
     }
 }

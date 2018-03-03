@@ -39,11 +39,14 @@ namespace MavLink4Net.CodeGenerator.Core
             TypeInfo serializerInterfaceTypeInfo = TypeInfoHelper.GetSerializerInterfaceTypeInfo();
             TypeInfo serializerFactoryClassTypeInfo = TypeInfoHelper.GetSerializerFactoryTypeInfo();
             TypeInfo messageFactoryClassTypeInfo = TypeInfoHelper.GetMessageFactoryTypeInfo();
+            TypeInfo crcExtraProviderClassTypeInfo = TypeInfoHelper.GetCrcExtraProviderTypeInfo();
 
             CodeGeneratorOptions options = new CodeGeneratorOptions() { BracingStyle = "C" };
             CodeDomProvider codeProvider = CreateCodeDomProvider(language);
 
             GenerateMessageTypeEnum(codeProvider, options, messageTypeEnumTypeInfo, messagesPath, mavLink.Messages);
+
+            GenerateCrcExtraProvider(codeProvider, options, crcExtraProviderClassTypeInfo, mavLink.Messages, messagesPath, messageTypeEnumTypeInfo);
 
             IDictionary<MessageDefinitions.Data.Enum, TypeInfo> typeInfoByEnum = GetTypeInfoByEnum(mavLink.Enums, ConstantHelper.Namespaces.Root_Messages_Common);
 
@@ -236,6 +239,27 @@ namespace MavLink4Net.CodeGenerator.Core
         private static void GenerateMessageFactory(CodeDomProvider codeProvider, CodeGeneratorOptions options, MessageFactoryGenerationParams pParams, IEnumerable<Message> messages)
         {
             CodeCompileUnit unit = MessageFactoryGeneratorHelper.CreateCodeCompileUnit(pParams.TypeInfo, messages, pParams.CommonMessagesNamespace, pParams.MessageTypeEnumTypeInfo, pParams.MessageInterfaceTypeInfo);
+            codeProvider.GenerateCodeFromCompileUnit(unit, options, pParams.OutputFilePath);
+        }
+
+        #endregion
+
+        #region CrcExtraProvider
+
+        private static void GenerateCrcExtraProvider(CodeDomProvider codeProvider, CodeGeneratorOptions options, TypeInfo crcExtraProviderClassTypeInfo, IEnumerable<Message> messages, string outputPath, TypeInfo messageTypeEnumTypeInfo)
+        {
+            CrcExtraProviderGenerationParams messageFactoryGenerationParams = new CrcExtraProviderGenerationParams();
+            string filename = TypeInfoHelper.GetFilename(crcExtraProviderClassTypeInfo);
+            messageFactoryGenerationParams.OutputFilePath = Path.Combine(outputPath, filename);
+            messageFactoryGenerationParams.TypeInfo = crcExtraProviderClassTypeInfo;
+            messageFactoryGenerationParams.MessageTypeEnumTypeInfo = messageTypeEnumTypeInfo;
+
+            GenerateCrcExtraProvider(codeProvider, options, messageFactoryGenerationParams, messages);
+        }
+
+        private static void GenerateCrcExtraProvider(CodeDomProvider codeProvider, CodeGeneratorOptions options, CrcExtraProviderGenerationParams pParams, IEnumerable<Message> messages)
+        {
+            CodeCompileUnit unit = CrcExtraProviderGeneratorHelper.CreateCodeCompileUnit(pParams.TypeInfo, messages, pParams.MessageTypeEnumTypeInfo);
             codeProvider.GenerateCodeFromCompileUnit(unit, options, pParams.OutputFilePath);
         }
 
