@@ -31,3 +31,8 @@ Visual Studio
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## NuGet Packages
+Available on NuGet Gallery :
+* [MavLink4Net.Messages](https://www.nuget.org/packages/MavLink4Net.Messages/)
+* [MavLink4Net.Messages.Serialization](https://www.nuget.org/packages/MavLink4Net.Messages.Serialization/)
