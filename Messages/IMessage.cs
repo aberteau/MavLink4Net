@@ -7,6 +7,5 @@ namespace MavLink4Net.Messages
     public interface IMessage
     {
         MavMessageType MavType { get; }
-        byte CrcExtra { get; }
     }
 }

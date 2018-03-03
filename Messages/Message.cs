@@ -7,12 +7,9 @@ namespace MavLink4Net.Messages
     {
         public MavMessageType MavType { get; }
 
-        public byte CrcExtra { get; }
-
-        protected Message(MavMessageType mavType, byte crcExtra)
+        protected Message(MavMessageType mavType)
         {
             MavType = mavType;
-            CrcExtra = crcExtra;
         }
     }
 }

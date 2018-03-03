@@ -50,7 +50,7 @@ namespace MavLink4Net.CodeGenerator.Core
             codeTypeDeclaration.CustomAttributes.Add(metadataAttributeDeclaration);
 
             codeTypeDeclaration.BaseTypes.Add(messageBaseClassTypeInfo.FullName);
-            AddConstructor(codeTypeDeclaration, messageTypeEnumValue, message.CrcExtra);
+            AddConstructor(codeTypeDeclaration, messageTypeEnumValue);
 
             // Add summary comments
             CodeCommentStatement[] summaryCommentStatements = CodeCommentStatementHelper.GetSummaryCodeCommentStatements(message.Description);
@@ -88,14 +88,13 @@ namespace MavLink4Net.CodeGenerator.Core
             return codeAttributeDeclaration;
         }
 
-        private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageTypeEnumValue, byte crc)
+        private static void AddConstructor(CodeTypeDeclaration codeTypeDeclaration, string messageTypeEnumValue)
         {
             // Declare the constructor
             CodeConstructor constructor = new CodeConstructor();
             constructor.Attributes = MemberAttributes.Public | MemberAttributes.Final;
 
             constructor.BaseConstructorArgs.Add(new CodeArgumentReferenceExpression(messageTypeEnumValue));
-            constructor.BaseConstructorArgs.Add(new CodePrimitiveExpression(crc));
 
             codeTypeDeclaration.Members.Add(constructor);
         }
