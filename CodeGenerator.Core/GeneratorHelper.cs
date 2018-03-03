@@ -33,7 +33,8 @@ namespace MavLink4Net.CodeGenerator.Core
             string serializerCommonOutputPath = Path.Combine(serializationOutputPath, ConstantHelper.CommonName);
             System.IO.Directory.CreateDirectory(serializerCommonOutputPath);
 
-            TypeInfo messageBaseClassTypeInfo = TypeInfoHelper.GetMessageTypeInfo();
+            TypeInfo messageBaseClassTypeInfo = TypeInfoHelper.GetMessageClassTypeInfo();
+            TypeInfo messageInterfaceTypeInfo = TypeInfoHelper.GetMessageInterfaceTypeInfo();
             TypeInfo messageTypeEnumTypeInfo = TypeInfoHelper.GetMavMessageTypeTypeInfo();
             TypeInfo serializerInterfaceTypeInfo = TypeInfoHelper.GetSerializerInterfaceTypeInfo();
             TypeInfo serializerFactoryClassTypeInfo = TypeInfoHelper.GetSerializerFactoryTypeInfo();
@@ -49,7 +50,7 @@ namespace MavLink4Net.CodeGenerator.Core
 
             GenerateMessageClassFiles(codeProvider, options, messagesCommonPath, messageBaseClassTypeInfo, messageTypeEnumTypeInfo, mavLink.Messages, typeInfoByEnum);
 
-            GenerateSerializerClassFiles(codeProvider, options, serializerCommonOutputPath, mavLink.Messages, serializerInterfaceTypeInfo, messageBaseClassTypeInfo);
+            GenerateSerializerClassFiles(codeProvider, options, serializerCommonOutputPath, mavLink.Messages, serializerInterfaceTypeInfo, messageInterfaceTypeInfo);
 
             GenerateSerializerFactory(codeProvider, options, serializerFactoryClassTypeInfo, mavLink.Messages, serializationOutputPath, messageTypeEnumTypeInfo, serializerInterfaceTypeInfo);
         }

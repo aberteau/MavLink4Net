@@ -45,9 +45,21 @@ namespace MavLink4Net.CodeGenerator.Core
             return typeInfo;
         }
 
-        public static TypeInfo GetMessageTypeInfo()
+        public static TypeInfo GetMessageClassTypeInfo()
         {
             string messageBaseClassName = "Message";
+
+            TypeInfo typeInfo = new Core.TypeInfo()
+            {
+                Name = messageBaseClassName,
+                Namespace = ConstantHelper.Namespaces.Root_Messages
+            };
+            return typeInfo;
+        }
+
+        public static TypeInfo GetMessageInterfaceTypeInfo()
+        {
+            string messageBaseClassName = "IMessage";
 
             TypeInfo typeInfo = new Core.TypeInfo()
             {

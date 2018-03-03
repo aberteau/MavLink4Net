@@ -13,16 +13,16 @@ namespace MavLink4Net.Messages.Serialization
             return serializer;
         }
 
-        public static void Serialize(BinaryWriter writer, Message message)
+        public static void Serialize(BinaryWriter writer, IMessage message)
         {
             IMessageSerializer serializer = CreateSerializer(message.MavType);
             serializer?.Serialize(writer, message);
         }
 
-        public static Message Deserialize(BinaryReader reader, MavMessageType mavType)
+        public static IMessage Deserialize(BinaryReader reader, MavMessageType mavType)
         {
             IMessageSerializer serializer = CreateSerializer(mavType);
-            Message message = serializer?.Deserialize(reader);
+            IMessage message = serializer?.Deserialize(reader);
             return message;
         }
     }
